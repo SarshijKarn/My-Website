@@ -1,125 +1,215 @@
-/* styles.css */
-
-/* General Styles */
-body {
-    font-family: 'Poppins', sans-serif;
+/* General reset and basic layout */
+* {
     margin: 0;
     padding: 0;
-    background: #f4f4f4;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
     color: #333;
-    transition: background 0.3s ease;
+    overflow-x: hidden;
+    position: relative;
 }
 
-/* Dark Mode */
-body.dark-mode {
-    background: #222;
-    color: #fff;
-}
-
-/* Navigation */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background: #0077b6;
+/* Header Styles */
+header {
+    background-color: #005f99; /* Blue background for header */
     color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeInUp 1.5s ease-in-out;
 }
 
-nav ul {
+header nav ul {
     list-style: none;
     display: flex;
+    justify-content: center;
     gap: 20px;
 }
 
-nav ul li a {
+header nav ul li {
+    display: inline;
+}
+
+header nav ul li a {
     color: white;
     text-decoration: none;
     font-weight: bold;
-    transition: 0.3s;
+    font-size: 18px;
+    transition: color 0.3s ease;
 }
 
-nav ul li a:hover {
-    color: #ffcc00;
+header nav ul li a:hover {
+    color: #f39c12;
 }
 
 /* Hero Section */
 .hero {
     text-align: center;
-    padding: 50px;
-    background: #00b4d8;
-    color: white;
+    margin: 40px 0;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
 }
 
 .hero img {
     width: 150px;
+    height: 150px;
     border-radius: 50%;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: moveUp 2s ease-in-out;
+}
+
+.hero h2 {
+    font-size: 28px;
+    margin-top: 10px;
+    color: #222;
+    animation: fadeInUp 1.5s ease-in-out;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #777;
     margin-bottom: 20px;
+    animation: fadeInUp 2s ease-in-out;
 }
 
 .social-icons a {
-    color: white;
     font-size: 24px;
     margin: 0 10px;
-    transition: 0.3s;
+    color: #444;
+    transition: color 0.3s, transform 0.3s ease;
+    animation: bounceIn 2s;
 }
 
 .social-icons a:hover {
-    color: #ffcc00;
+    color: #f39c12;
+    transform: scale(1.2);
 }
 
-/* Sections */
-section {
-    padding: 50px;
+/* Section Styles */
+.section {
+    padding: 40px;
     text-align: center;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeIn 1.5s forwards;
 }
 
-.project-list {
-    display: flex;
-    justify-content: center;
+/* Qualifications Section */
+#qualifications .card-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-    flex-wrap: wrap;
+    animation: fadeInUp 2s ease-in-out;
 }
 
-.project {
-    background: white;
-    padding: 20px;
+.card {
+    background-color: #f9f9f9;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Contact Form */
-form {
-    display: flex;
-    flex-direction: column;
-    max-width: 400px;
-    margin: auto;
-}
-
-input, textarea {
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-button {
-    background: #0077b6;
-    color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-button:hover {
-    background: #005f8a;
-}
-
-/* Footer */
-footer {
-    text-align: center;
     padding: 20px;
-    background: #0077b6;
-    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: cardZoomIn 1s ease-out;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    animation: slideIn 1s ease-out;
+}
+
+.card p {
+    font-size: 16px;
+}
+
+.card h3 .highlight {
+    color: #005f99;
+    font-weight: bold;
+}
+
+/* Hover Effects */
+button, .card {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover, .card:hover {
+    transform: scale(1.05);
+}
+
+/* Floating Labels Animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes cardZoomIn {
+    0% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes moveUp {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+    header nav ul {
+        flex-direction: column;
+    }
+
+    .hero img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .card-container {
+        grid-template-columns: 1fr;
+    }
 }
