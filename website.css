@@ -13,6 +13,32 @@ body {
     position: relative;
 }
 
+/* ======= Navbar Styles ======= */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+    }
+}
+
+
+/* Make images responsive */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ======= Layout Styles ======= */
+.container {
+    width: 80%; /* Instead of 800px */
+    padding: 20px;
+}
+
+
 /* Header Styles */
 header {
     background-color: #005f99; /* Blue background for header */
@@ -198,21 +224,26 @@ button:hover, .card:hover {
     }
 }
 
-/* Mobile View */
+/* For Tablets and smaller devices (width <= 768px) */
 @media (max-width: 768px) {
-    header nav ul {
-        flex-direction: column;
+    .container {
+        width: 100%; /* Full-width for smaller screens */
     }
-
-    .hero img {
-        width: 120px;
-        height: 120px;
-    }
-
-    .card-container {
-        grid-template-columns: 1fr;
+    #contact {
+        padding: 20px; /* Less padding for smaller screens */
     }
 }
+
+/* For Mobile Phones and smaller devices (width <= 480px) */
+@media (max-width: 480px) {
+    #contact form {
+        width: 100%; /* Full-width form inputs */
+    }
+    button {
+        width: 100%; /* Make button take full width on mobile */
+    }
+}
+
 
 /* Dark Mode Styles */
 .dark-mode {
