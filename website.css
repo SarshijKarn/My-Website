@@ -213,3 +213,30 @@ button:hover, .card:hover {
         grid-template-columns: 1fr;
     }
 }
+
+/* Dark Mode Styles */
+.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.dark-mode header {
+    background-color: #1e1e1e;
+}
+
+.dark-mode .card {
+    background-color: #222;
+    color: #ddd;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .social-links a {
+    color: #ffffff;
+}
+
+.dark-mode .theme-toggle {
+    color: #ffffff;
+    cursor: pointer;
+}
+
+}
