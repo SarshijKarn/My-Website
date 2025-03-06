@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sarshij Karn Official Site</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
@@ -18,7 +18,7 @@
                 <li><a href="#qualifications">Qualifications</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="theme-toggle">🌙</div>
+            <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
         </nav>
     </header>
 
@@ -26,17 +26,19 @@
         <img src="profile.jpg" alt="Sarshij Karn">
         <h2>Electronics, Communication & Information Engineering Student</h2>
         <p>Future Engineer | Tech Enthusiast | Explorer</p>
-        <div class="social-icons">
-            <a href="https://youtube.com/@sarshijkarn"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.instagram.com/sarshijkarn"><i class="fab fa-instagram"></i></a>
-            <a href="https://github.com/SarshijKarn"><i class="fab fa-github"></i></a>
-            <a href="https://x.com/sarshijkarn"><i class="fab fa-twitter"></i></a>
-        </div>
     </section>
 
     <section id="about" class="section">
         <h2>About Me</h2>
         <p>Hello! I’m <strong>Sarshij Karn</strong>, an Electronics Engineering student passionate about technology, stock analysis, and content creation. I’m always learning and exploring new things.</p>
+        
+        <!-- Social Media Links as Text -->
+        <div class="social-links">
+            <a href="https://youtube.com/@sarshijkarn" target="_blank">| YouTube |</a> 
+            <a href="https://www.instagram.com/sarshijkarn" target="_blank">Instagram |</a>
+            <a href="https://github.com/SarshijKarn" target="_blank">GitHub |</a>
+            <a href="https://x.com/sarshijkarn" target="_blank">Twitter |</a>
+        </div>
     </section>
 
     <section id="hobbies" class="section">
@@ -105,10 +107,29 @@
         <p>Copyright &copy; 2024 Sarshij Karn</p>
     </footer>
 
+ <!-- JavaScript for Dark Mode Toggle -->
     <script>
-        document.querySelector('.theme-toggle').addEventListener('click', () => {
+        function toggleTheme() {
             document.body.classList.toggle('dark-mode');
-        });
+
+            // Save the theme preference
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                document.querySelector('.theme-toggle').textContent = '☀️';
+            } else {
+                localStorage.setItem('theme', 'light');
+                document.querySelector('.theme-toggle').textContent = '🌙';
+            }
+        }
+
+        // Apply saved theme on page load
+        window.onload = function () {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.theme-toggle').textContent = '☀️';
+            }
+        };
     </script>
 </body>
 </html>
+
