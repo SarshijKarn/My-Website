@@ -282,3 +282,85 @@ a:hover {
 .social-icon.fa-youtube-square:hover {
   color: #FF0000; /* YouTube red */
 }
+
+/* Contact Section - Small & Stylish */
+#contact {
+    background: linear-gradient(135deg, #0073e6, #00c6ff);
+    color: white;
+    text-align: center;
+    padding: 30px 10px; /* Reduced padding */
+    border-radius: 10px;
+    max-width: 450px; /* Smaller width */
+    margin: 40px auto; /* Centered */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Styling - Compact */
+#contact form {
+    max-width: 400px;
+    margin: auto;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    backdrop-filter: blur(8px);
+}
+
+/* Reduce Input Field Sizes */
+.input-group {
+    margin-bottom: 10px;
+}
+
+.input-group label {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    padding: 7px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+/* Button - Smaller but Attractive */
+button {
+    background: white;
+    color: #0073e6;
+    border: none;
+    padding: 8px 16px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    background: #005bb5;
+    color: white;
+}
+
+/* Copyright Section - Centered in a Vibrant Box */
+#copyright {
+    position: fixed; /* Sticks at the bottom */
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); /* Center align */
+    width: auto;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #ff6b6b, #ffcc00); /* Vibrant Gradient */
+    color: white;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 10px 10px 0 0; /* Rounded top corners */
+    box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.3); /* Soft shadow */
+}
+
+/* Smooth Hover Effect */
+#copyright:hover {
+    background: linear-gradient(135deg, #ff4757, #ffa502); /* Slightly darker on hover */
+    transition: 0.3s ease-in-out;
+}
