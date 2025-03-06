@@ -239,4 +239,46 @@ button:hover, .card:hover {
     cursor: pointer;
 }
 
+a {
+  color: #333;
+  margin-right: 10px;
+}
+
+a:hover {
+  color: #0073e6; /* Change to your preferred hover color */
+}
+
+/* Default styling for the social media icons */
+.social-icon {
+  color: #333; /* Default icon color */
+  font-size: 30px; /* Adjust the size as needed */
+  margin-right: 15px; /* Space between the icons */
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transitions for hover effects */
+}
+
+/* Hover effect for changing color */
+.social-icon:hover {
+  color: #0073e6; /* Change to your preferred hover color */
+  transform: scale(1.1); /* Slightly enlarge the icon on hover */
+}
+
+/* Optional: Styling for a specific icon (e.g., Facebook) */
+.social-icon.fa-facebook-square:hover {
+  color: #3b5998; /* Facebook blue */
+}
+
+.social-icon.fa-twitter-square:hover {
+  color: #1DA1F2; /* Twitter blue */
+}
+
+.social-icon.fa-instagram-square:hover {
+  color: #E4405F; /* Instagram pink */
+}
+
+.social-icon.fa-github-square:hover {
+  color: #333; /* GitHub's dark theme */
+}
+
+.social-icon.fa-youtube-square:hover {
+  color: #FF0000; /* YouTube red */
 }
