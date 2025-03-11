@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://sarshijkarn.com.np/sitemap.xml
