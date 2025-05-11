@@ -395,3 +395,18 @@ button:hover {
     background: linear-gradient(135deg, #ff4757, #ffa502); /* Slightly darker on hover */
     transition: 0.3s ease-in-out;
 }
+
+/* === Full Page BMW Background Behind All Content === 
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('https://raw.githubusercontent.com/SarshijKarn/My-Website/refs/heads/main/bg.png') no-repeat center center/cover;
+    z-index: -1;
+}
+
+*/
