@@ -7,11 +7,12 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    background: linear-gradient(to right, #f5f7fa, #c3cfe2); /* ← background here */
     color: #333;
     overflow-x: hidden;
     position: relative;
 }
+
 
 /* ======= Navbar Styles ======= */
 .navbar {
