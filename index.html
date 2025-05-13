@@ -31,12 +31,13 @@
 <body>
     <header>
         <nav>
-            <h1><u><i><b>Sarshij Karn</u></i></b></h1>
+            <h1><u><i><b>Sarshij Karn </u></i></b></h1>
             <ul>
                 <li><a href="#about">About</a></li>
                 <li><a href="#hobbies">Hobbies</a></li>
                 <li><a href="#qualifications">Qualifications</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="#resources-section">"'Notes"'</a></li>
             </ul>
             <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
         </nav>
@@ -45,8 +46,109 @@
     <section class="hero">
         <img src="profile.jpg" alt="Sarshij Karn">
         <h2>Electronics, Communication & Information Engineering Student</h2>
-        <p>Future Engineer 💡 | Tech Enthusiast 🤖 | Explorer 🌍 | Sentimental Technophile 💻❤️</p>
+        <p>Future Engineer 💡 | Tech Enthusiast 🤖 |  Sentimental Technophile 💻❤️</p>
     </section>
+
+
+    <section id="resources-section" class="resources-section">
+  <h2>📚 👉Download Notes & Resources👈</h2>
+
+  <!-- Electronics, Communication and Information Engineering (BEI) -->
+  <div class="collapsible">
+    <button class="collapsible-btn">Electronics, Communication and Information Engineering (BEI)</button>
+    <div class="content">
+
+      <!-- Semester 1 -->
+      <div class="semester">
+        <button class="collapsible-btn">Semester 1</button>
+        <div class="content">
+          <ul>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID1" target="_blank">Engineering Mathematics I</a></li>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID2" target="_blank">Engineering Physics</a></li>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID3" target="_blank">Computer Programming</a></li>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID4" target="_blank">Engineering Drawing</a></li>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID5" target="_blank">Fundamentals of Electrical and Electronics Engineering</a></li>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID6" target="_blank">Engineering Workshop</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Semester 2 -->
+      <div class="semester">
+        <button class="collapsible-btn">Semester 2</button>
+        <div class="content">
+          <ul>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID7" target="_blank">Engineering Mathematics II</a></li>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID8" target="_blank">Object Oriented Programming</a></li>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID9" target="_blank">Electronic Device and Circuits</a></li>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID10" target="_blank">Digital Logic</a></li>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID11" target="_blank">Electrical Circuits and Machines</a></li>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID12" target="_blank">Engineering Chemistry</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Semester 3 -->
+      <div class="semester">
+        <button class="collapsible-btn">Semester 3</button>
+        <div class="content">
+          <ul>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID13" target="_blank">Engineering Mathematics III</a></li>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID14" target="_blank">Communication English</a></li>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID15" target="_blank">Computer Graphics and Visualization</a></li>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID16" target="_blank">Microprocessors</a></li>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID17" target="_blank">Advanced Electronics</a></li>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID18" target="_blank">Control System</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Semester 4 -->
+      <div class="semester">
+        <button class="collapsible-btn">Semester 4</button>
+        <div class="content">
+          <ul>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID19" target="_blank">Numerical Methods</a></li>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID20" target="_blank">Discrete Structure</a></li>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID21" target="_blank">Instrumentation</a></li>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID22" target="_blank">Computer Organization & Architecture</a></li>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID23" target="_blank">Electromagnetics</a></li>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID24" target="_blank">Signals and Systems</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Extra Reference Materials -->
+      <div class="semester">
+        <button class="collapsible-btn">Extra Reference Materials</button>
+        <div class="content">
+          <ul>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID25" target="_blank">E-books</a></li>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID26" target="_blank">Solved Question Papers</a></li>
+            <li><a href="https://drive.google.com/drive/folders/yourFolderID27" target="_blank">Preparation Materials</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  // Collapsible buttons functionality
+  var coll = document.getElementsByClassName("collapsible-btn");
+  for (var i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  }
+</script>
 
     <section id="about" class="section">
         <h2>About Me</h2>
@@ -86,6 +188,8 @@
         </div>
     </section>
 
+
+  
     <section id="hobbies" class="section">
         <h2>💬 Hobbies? More like side quests.</h2>
         <div class="card-container">
@@ -117,7 +221,7 @@
     </section>
 
     <section id="qualifications" class="section">
-        <h2>Qualifications: Yes, I Actually Did That!
+        <h2>Qualifications: Yes, I Actually Did That (And No, I’m Not Bragging)
         </h2>
         <div class="card-container">
             <div class="card">
@@ -141,8 +245,7 @@
 
     <section id="contact" class="section">
         <h2>Contact Me</h2>
-        <p>Got something important to say? I’m listening!</p>
-        <p>[search me on google,for info about me 😉]</p>
+        <p>Got something important to say? Or maybe you just want to ask how I manage to be this awesome? Either way, I’m listening!</p>
         <div class="contact-container">
             <form action="https://formspree.io/f/mnnpappe" method="POST">
                 <div class="input-group">
@@ -208,5 +311,4 @@
 
 </body>
 </html>
-
 
