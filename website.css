@@ -6,9 +6,11 @@
 }
 
 body {
-    background-color: #e6f0ff;
-    color: #222;
+    background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+    color: #222; /* Dark text for readability */
   }
+  
+  
 
 
 /* ======= Navbar Styles ======= */
@@ -313,54 +315,62 @@ a:hover {
 }
 
 /* Contact Section - Small & Stylish */
+/* Contact Section */
+/* Contact Section */
 #contact {
     background: linear-gradient(135deg, #0073e6, #00c6ff);
     color: white;
     text-align: center;
-    padding: 30px 10px; /* Reduced padding */
-    border-radius: 10px;
-    max-width: 450px; /* Smaller width */
-    margin: 40px auto; /* Centered */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 40px 20px;
+    border-radius: 12px;
+    max-width: 500px;
+    margin: 40px auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Form Styling - Compact */
-#contact form {
+.contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
     max-width: 400px;
-    margin: auto;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 8px;
-    backdrop-filter: blur(8px);
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
 }
 
-/* Reduce Input Field Sizes */
+/* Input Group */
 .input-group {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    text-align: left;
 }
 
 .input-group label {
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: bold;
 }
 
 .input-group input,
 .input-group textarea {
     width: 100%;
-    padding: 7px;
+    padding: 10px;
     border: none;
     border-radius: 5px;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #333;
 }
 
-/* Button - Smaller but Attractive */
+/* Button */
 button {
     background: white;
     color: #0073e6;
     border: none;
-    padding: 8px 16px;
-    font-size: 1rem;
+    padding: 10px 18px;
+    font-size: 1.1rem;
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s ease;
@@ -371,6 +381,13 @@ button:hover {
     color: white;
 }
 
+/* Responsive Design */
+@media (max-width: 600px) {
+    #contact {
+        padding: 30px 15px;
+        max-width: 90%;
+    }
+}
 /* Copyright Section - Centered in a Vibrant Box */
 #copyright {
     position: fixed; /* Sticks at the bottom */
@@ -394,6 +411,9 @@ button:hover {
     transition: 0.3s ease-in-out;
 }
 
+
+/* Keep existing styles here, add or modify below where relevant */
+
 /* === Full Page BMW Background Behind All Content === 
 body::before {
     content: '';
@@ -408,3 +428,51 @@ body::before {
 }
 
 */
+
+/* Styles for the collapsible buttons */
+.collapsible-btn {
+  background-color: #008CBA;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 5px 0;
+  transition: 0.3s;
+}
+
+.collapsible-btn:hover {
+  background-color: #555;
+}
+
+/* Styles for the collapsible content (hidden by default) */
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+/* Styles for the semester list */
+.semester ul {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+.semester li {
+  padding: 5px 0;
+}
+
+.semester li a {
+  color: #000;
+  text-decoration: none;
+}
+
+.semester li a:hover {
+  color: #008CBA;
+}
+
+
