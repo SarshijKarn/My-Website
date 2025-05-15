@@ -1015,6 +1015,53 @@ document.addEventListener("DOMContentLoaded", () => {
     showNextLine();
 });
 </script>
+<script>
+  // Create and append the trail container div dynamically
+  const trailContainer = document.createElement('div');
+  trailContainer.id = 'trail-container';
+  document.body.appendChild(trailContainer);
+
+  // Add styles dynamically for trail container and dots
+  const style = document.createElement('style');
+  style.textContent = `
+    #trail-container {
+      position: fixed;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    .trail-dot {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ff6b6b, #f9d423, #00c9ff);
+      opacity: 0.6;
+      transform: translate(-50%, -50%);
+      animation: fadeOut 0.8s forwards;
+    }
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.2);
+      }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Listen to mousemove event and add trailing dots
+  document.addEventListener('mousemove', e => {
+    const dot = document.createElement('div');
+    dot.className = 'trail-dot';
+    dot.style.left = e.clientX + 'px';
+    dot.style.top = e.clientY + 'px';
+    trailContainer.appendChild(dot);
+
+    setTimeout(() => {
+      dot.remove();
+    }, 800);
+  });
+</script>
 
 </body>
 </html>
