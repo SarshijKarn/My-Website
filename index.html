@@ -30,70 +30,8 @@
       ]
    }
 </script>
-<style>
-    /* Overlay background */
-    #overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.6);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
-
-    /* Popup box */
-    #popup {
-      background: white;
-      padding: 20px 30px;
-      border-radius: 8px;
-      text-align: center;
-      position: relative;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
-
-    /* Close button (X) */
-    #closeBtn {
-      position: absolute;
-      top: 8px;
-      right: 12px;
-      font-size: 20px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-  </style>
-
 </head>
 <body>
-
-  <!-- Overlay and popup -->
-<div id="overlay">
-  <div id="popup">
-    <span id="closeBtn">&times;</span>
-    <h2>Site Under Construction</h2>
-    <p>We're working hard to finish the development of this site. Check back soon!</p>
-  </div>
-</div>
-
-<script>
-  const overlay = document.getElementById('overlay');
-  const closeBtn = document.getElementById('closeBtn');
-
-  // Close on "X" button
-  closeBtn.onclick = () => overlay.style.display = 'none';
-
-  // Close on clicking outside the popup
-  overlay.onclick = (e) => {
-    if (e.target === overlay) {
-      overlay.style.display = 'none';
-    }
-  };
-</script>
-
-
     <header>
         <nav>
             <h1><u><i><b>Sarshij Karn </u></i></b></h1>
