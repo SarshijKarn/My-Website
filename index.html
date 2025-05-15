@@ -1016,12 +1016,12 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 <script>
-  // Create and append the trail container div dynamically
+  // Create trail container
   const trailContainer = document.createElement('div');
   trailContainer.id = 'trail-container';
   document.body.appendChild(trailContainer);
 
-  // Add styles dynamically for trail container and dots
+  // Add CSS styles dynamically
   const style = document.createElement('style');
   style.textContent = `
     #trail-container {
@@ -1035,33 +1035,41 @@ document.addEventListener("DOMContentLoaded", () => {
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      background: radial-gradient(circle, #ff6b6b, #f9d423, #00c9ff);
-      opacity: 0.6;
+      opacity: 0.8;
       transform: translate(-50%, -50%);
-      animation: fadeOut 0.8s forwards;
+      animation: fadeOut 1.2s forwards;
+      filter: drop-shadow(0 0 8px currentColor);
     }
     @keyframes fadeOut {
       to {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(0.2);
+        transform: translate(-50%, -50%) scale(0.3);
       }
     }
   `;
   document.head.appendChild(style);
 
-  // Listen to mousemove event and add trailing dots
-  document.addEventListener('mousemove', e => {
-    const dot = document.createElement('div');
-    dot.className = 'trail-dot';
-    dot.style.left = e.clientX + 'px';
-    dot.style.top = e.clientY + 'px';
-    trailContainer.appendChild(dot);
+  // Color palette: vibrant & elegant
+  const colors = [
+    '#FF6B6B', // soft red
+    '#FFD93D', // warm yellow
+    '#6BCB77', // fresh green
+    '#4D96FF', // bright blue
+    '#845EC2'  // violet
+  ];
 
-    setTimeout(() => {
-      dot.remove();
-    }, 800);
+  document.addEventListener('mousemove', e => {
+    // Spawn 4 dots for longer tail with small offset
+    for (let i = 0; i < 4; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'trail-dot';
+      dot.style.left = (e.clientX - i * 6) + 'px';
+      dot.style.top = (e.clientY - i * 6) + 'px';
+      dot.style.color = colors[Math.floor(Math.random() * colors.length)];
+      trailContainer.appendChild(dot);
+      setTimeout(() => dot.remove(), 1200);
+    }
   });
 </script>
-
 </body>
 </html>
