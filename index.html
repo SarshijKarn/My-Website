@@ -1,1015 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="website.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Sarshij Karn</title>
-    <meta name="description" content="Welcome to Sarshij Karn's official website."/>
-    <meta name="keywords" content="Sarshij Karn, Sarshij, Electronics Engineer, Stock Market, Investor, Content Creator, Trader, Nepal, Website, Engineering, sarshij, sarshij karn"/>
-    <meta name="author" content="Sarshij Karn" />
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/SarshijKarn/My-Website/refs/heads/main/assets/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/SarshijKarn/My-Website/refs/heads/main/assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="48x48" href="https://raw.githubusercontent.com/SarshijKarn/My-Website/refs/heads/main/assets/favicon-48x48.png">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script>
-    <script type="application/ld+json">
-   {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Sarshij Karn",
-      "url": "https://sarshijkarn.com.np",
-      "sameAs": [
-        "https://www.linkedin.com/in/sarshij-karn-1a7766236",
-        "https://facebook.com/sarshij.karn.3",
-        "https://x.com/sarshijkarn",
-        "https://www.instagram.com/sarshijkarn",
-        "https://github.com/SarshijKarn",
-        "https://youtube.com/@sarshijkarn"
-      ]
-   }
-</script>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>sarshijkarn.com.np — Initializing...</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #010c15;
+      color: #00eaff;
+      font-family: 'Courier New', monospace;
+      overflow: hidden;
+    }
+    .background {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(#00eaff11 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: 0;
+    }
+    .terminal-window {
+      background-color: #08131c;
+      border: 1px solid #0ff;
+      width: 500px;
+      margin: 100px auto 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #00eaff88;
+      padding: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+    .window-header {
+      background-color: #0a1a29;
+      color: #00eaff;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 8px 8px 0 0;
+      border-bottom: 1px solid #0ff;
+      text-align: center;
+    }
+    .code-box {
+      background: #050e15;
+      padding: 15px;
+      border-radius: 0 0 8px 8px;
+      height: 120px;
+      overflow: hidden;
+      white-space: pre-wrap;
+    }
+    .status-bar {
+      margin-top: 8px;
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      color: #fff;
+    }
+    .dot {
+      height: 10px;
+      width: 10px;
+      border-radius: 50%;
+      display: inline-block;
+      background-color: #0f0;
+      margin-right: 6px;
+    }
+    .loading-spinner {
+      border: 6px solid #00eaff22;
+      border-top: 6px solid #00eaff;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+    .loading-text {
+      text-align: center;
+      font-weight: bold;
+      color: #00eaff;
+      margin-top: 12px;
+      animation: blink 1.5s infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+  </style>
 </head>
 <body>
-<div id="trail-container"></div>
-  <!-- Left Decorative Wave -->
-<div class="side-wave left-wave">
-  <svg width="80" height="100%" viewBox="0 0 80 800" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M80 0 Q40 200 80 400 Q120 600 80 800 L0 800 L0 0 Z" fill="#00c6ff22"/>
-  </svg>
+
+<div id="loading-screen">
+  <div class="background"></div>
+
+  <div class="terminal-window">
+    <div class="window-header">system.initialize()</div>
+    <div class="code-box" id="code-box"></div>
+    <div class="status-bar">
+      <span class="dot online"></span> SYSTEM READY
+      <span class="status-right">100% ⚡ CONNECTED</span>
+    </div>
+  </div>
+
+  <div class="loading-spinner"></div>
+  <div class="loading-text">Initializing environment...</div>
 </div>
-<!-- Right Decorative Wave -->
-<div class="side-wave right-wave">
-  <svg width="80" height="100%" viewBox="0 0 80 800" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0 0 Q40 200 0 400 Q-40 600 0 800 L80 800 L80 0 Z" fill="#ff6b6b22"/>
-  </svg>
-</div>
-   
-  <div id="animated-bg"></div>
-  <canvas id="bg-canvas"></canvas>
-  <!-- 3D Animated Background -->
-  <canvas id="bg-canvas"></canvas>
-  <div id="three-cube-bg"></div>
-    <!-- Navbar -->
-  <header class="navbar glass">
-    <div class="logo">
-      <img src="https://raw.githubusercontent.com/SarshijKarn/My-Website/main/Ghibli.png" alt="Sarshij Karn" />
-      <span>Sarshij Karn</span>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="#about" class="nav-link">About</a></li>
-        <li><a href="#qualifications" class="nav-link">Qualifications</a></li>
-        <li><a href="#hobbies" class="nav-link">Hobbies</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
-        <li><a href="#resources-section" class="nav-link">Notes</a></li>     
-      </ul>
-    </nav>
-  </header>
-    <!-- Hero Section -->
-  <section class="hero glass">
-    <div class="hero-content">
-      <img class="profile-img" src="https://raw.githubusercontent.com/SarshijKarn/My-Website/main/profile.jpg" alt="Sarshij Karn"/>
-      <h1>
-        Hi, I'm <span class="highlight">Sarshij Karn</span>
-        <span class="wave">👋</span>
-      </h1>
-      <h3 id="tagline" class="subtitle"></h3>
-      <div class="typewriter" id="typewriter"></div>
-      <div class="social-links">
-  <a href="https://github.com/SarshijKarn" target="_blank"><i class="fab fa-github social-icon"></i></a>
-  <a href="https://www.linkedin.com/in/sarshij-karn-1a7766236 " target="_blank"><i class="fab fa-linkedin social-icon"></i></a>
-  <a href="https://x.com/sarshijkarn" target="_blank"><i class="fab fa-twitter social-icon"></i></a>
-  <a href="https://facebook.com/sarshij.karn.3" target="_blank"><i class="fab fa-facebook social-icon"></i></a>
-  <a href="https://www.instagram.com/sarshijkarn" target="_blank"><i class="fab fa-instagram social-icon"></i></a>
-  <a href="https://youtube.com/@sarshijkarn" target="_blank"><i class="fab fa-youtube social-icon"></i></a>
-  <a href="mailto:sarshijkarn333@gmail.com"><i class="fas fa-envelope social-icon"></i></a>
-</div>
-    </div>
-    <div class="hero-3d">
-      <img src="https://raw.githubusercontent.com/SarshijKarn/My-Website/main/logo.jpg" alt="3D Tech" class="floating-img"/>
-    </div>
-  </section>
-  <div id="animated-lines"></div>
-    <section id="resources-section" class="resources-section">
-  <h2>📚 👉Download Notes & Resources👈</h2>
 
-  <!-- Electronics, Communication and Information Engineering (BEI) -->
-  <div class="collapsible">
-    <button class="collapsible-btn">Electronics, Communication and Information Engineering (BEI)</button>
-    <div class="content">
-
-      <!-- Semester 1 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 1</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1ekYc2S9Q6HvYzbywTYYLN_A57DMnwah0?usp=drive_link" target="_blank">Engineering Mathematics I</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eZ1yGLY6_vaHNcprRWnIgpH1bRlf2Mu6?usp=drive_link" target="_blank">Engineering Physics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1ec99_INhe_qhOjh2csd3kp-iGW3XyBMk?usp=drive_link" target="_blank">Computer Programming</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1ee9OnMUzpo4NvuHHKOJAsmQUCNHfNlIA?usp=drive_link" target="_blank">Engineering Drawing</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1efpea8HbrU8e3wAqRr_wB___RugxMaDp?usp=drive_link" target="_blank">Fundamentals of Electrical and Electronics Engineering</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eag7g9VtiCghu0HOJZHq5EUwXpdFlttV?usp=drive_link" target="_blank">Engineering Workshop</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1TZjbRV9p3fViyzKpbInVWqcCbxJjE486?usp=drive_link" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 2 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 2</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1eO3pxXYQJyr6Bs2pYEXHabcBxiUO5-T3?usp=drive_link" target="_blank">Engineering Mathematics II</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eAtyI4WM6itepNOxbPE4JByKW9Yxt5DY?usp=drive_link" target="_blank">Object Oriented Programming</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eOHM3Vo1ry4JMPYlO8TrPM3bNxPA17nu?usp=drive_link" target="_blank">Electronic Device and Circuits</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eW-512FzyNkupfs9cNQlrcMYmkShwrMY?usp=drive_link" target="_blank">Digital Logic</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eVUVYgHlhQLQxuUUHuAjMKSIk9hPus_u?usp=drive_link" target="_blank">Electrical Circuits and Machines</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eJlzMC1giLyjp_LVROd2hCg2I2fF5mCM?usp=drive_link" target="_blank">Engineering Chemistry</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1-dAa9NfcBbs5CIKJFQAOiWveUnOtPtik?usp=drive_link" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 3 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 3</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1aR7aOqISs3Gsquy_rcVlbWD5ZQN65kcg?usp=drive_link" target="_blank">Engineering Mathematics III</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1aXQX6WCyoKi1yxn39rH8PwIJJ_a1Bjsu?usp=drive_link" target="_blank">Communication English</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1aeRIlbTJPefUgWkJKir3EVnzxD7LtHHW?usp=drive_link" target="_blank">Computer Graphics and Visualization</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1aUQR1mKUSey242skL8Q1pbF4FIc0iNJs?usp=drive_link" target="_blank">Microprocessors</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1aJDQzPLkNxVUT5Qbc1GAEnUDpMFR3dsV?usp=drive_link" target="_blank">Advanced Electronics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1aMZZxmcwHogRDP4qLk_Tz8ndP2Oip9Av?usp=drive_link" target="_blank">Control System</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1aOVh1JbjjFYoOVLah53800NTdU0SfCtS?usp=drive_link" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 4 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 4</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1mWwwyzJteTv61wgBuEvoVm3uFMtYNOQ-" target="_blank">Numerical Methods</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mFlunugaMpZBTeAd9WmVOJrh_oRHEcok" target="_blank">Discrete Structure</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mNUzNXyB39V5Nh-LmKPeEfoEVSmqp83Z" target="_blank">Instrumentation</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mWJNUt6h157SXLGAUwvo4UVhVsY896Bv" target="_blank">Computer Organization & Architecture</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mGynXRJpfZwjw-Mnka9gBh_WSKubadWD" target="_blank">Electromagnetics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mVXiwN-SdB3ROq4Dx2Ei59a8sgMBRoUm" target="_blank">Signals and Systems</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1phlXeZKNz4wyfgVb2S_bh2i7b5qQh7yM" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 5 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 5</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1mWwwyzJteTv61wgBuEvoVm3uFMtYNOQ-" target="_blank">Numerical Methods</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mFlunugaMpZBTeAd9WmVOJrh_oRHEcok" target="_blank">Discrete Structure</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mNUzNXyB39V5Nh-LmKPeEfoEVSmqp83Z" target="_blank">Instrumentation</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mWJNUt6h157SXLGAUwvo4UVhVsY896Bv" target="_blank">Computer Organization & Architecture</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mGynXRJpfZwjw-Mnka9gBh_WSKubadWD" target="_blank">Electromagnetics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mVXiwN-SdB3ROq4Dx2Ei59a8sgMBRoUm" target="_blank">Signals and Systems</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1phlXeZKNz4wyfgVb2S_bh2i7b5qQh7yM" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 6 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 6</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1mWwwyzJteTv61wgBuEvoVm3uFMtYNOQ-" target="_blank">Numerical Methods</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mFlunugaMpZBTeAd9WmVOJrh_oRHEcok" target="_blank">Discrete Structure</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mNUzNXyB39V5Nh-LmKPeEfoEVSmqp83Z" target="_blank">Instrumentation</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mWJNUt6h157SXLGAUwvo4UVhVsY896Bv" target="_blank">Computer Organization & Architecture</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mGynXRJpfZwjw-Mnka9gBh_WSKubadWD" target="_blank">Electromagnetics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mVXiwN-SdB3ROq4Dx2Ei59a8sgMBRoUm" target="_blank">Signals and Systems</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1phlXeZKNz4wyfgVb2S_bh2i7b5qQh7yM" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 7 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 7</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1mWwwyzJteTv61wgBuEvoVm3uFMtYNOQ-" target="_blank">Numerical Methods</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mFlunugaMpZBTeAd9WmVOJrh_oRHEcok" target="_blank">Discrete Structure</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mNUzNXyB39V5Nh-LmKPeEfoEVSmqp83Z" target="_blank">Instrumentation</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mWJNUt6h157SXLGAUwvo4UVhVsY896Bv" target="_blank">Computer Organization & Architecture</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mGynXRJpfZwjw-Mnka9gBh_WSKubadWD" target="_blank">Electromagnetics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mVXiwN-SdB3ROq4Dx2Ei59a8sgMBRoUm" target="_blank">Signals and Systems</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1phlXeZKNz4wyfgVb2S_bh2i7b5qQh7yM" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 8 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 8</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1mWwwyzJteTv61wgBuEvoVm3uFMtYNOQ-" target="_blank">Numerical Methods</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mFlunugaMpZBTeAd9WmVOJrh_oRHEcok" target="_blank">Discrete Structure</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mNUzNXyB39V5Nh-LmKPeEfoEVSmqp83Z" target="_blank">Instrumentation</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mWJNUt6h157SXLGAUwvo4UVhVsY896Bv" target="_blank">Computer Organization & Architecture</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mGynXRJpfZwjw-Mnka9gBh_WSKubadWD" target="_blank">Electromagnetics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mVXiwN-SdB3ROq4Dx2Ei59a8sgMBRoUm" target="_blank">Signals and Systems</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1phlXeZKNz4wyfgVb2S_bh2i7b5qQh7yM" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Extra Reference Materials -->
-      <div class="semester">
-        <button class="collapsible-btn">Extra Reference Materials</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/yourFolderID25" target="_blank">E-books</a></li>
-            <li><a href="https://drive.google.com/drive/folders/yourFolderID26" target="_blank">Solved Question Papers</a></li>
-            <li><a href="https://drive.google.com/drive/folders/yourFolderID27" target="_blank">Preparation Materials</a></li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- Civil Engineering (BCE) -->
-  <div class="collapsible">
-    <button class="collapsible-btn">Civil Engineering (BCE)</button>
-    <div class="content">
-
-      <!-- Semester 1 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 1</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1ekYc2S9Q6HvYzbywTYYLN_A57DMnwah0?usp=drive_link" target="_blank">Engineering Mathematics I</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eZ1yGLY6_vaHNcprRWnIgpH1bRlf2Mu6?usp=drive_link" target="_blank">Engineering Physics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1ec99_INhe_qhOjh2csd3kp-iGW3XyBMk?usp=drive_link" target="_blank">Computer Programming</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1ee9OnMUzpo4NvuHHKOJAsmQUCNHfNlIA?usp=drive_link" target="_blank">Engineering Drawing</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1efpea8HbrU8e3wAqRr_wB___RugxMaDp?usp=drive_link" target="_blank">Fundamentals of Electrical and Electronics Engineering</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eag7g9VtiCghu0HOJZHq5EUwXpdFlttV?usp=drive_link" target="_blank">Engineering Workshop</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1TZjbRV9p3fViyzKpbInVWqcCbxJjE486?usp=drive_link" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 2 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 2</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1eO3pxXYQJyr6Bs2pYEXHabcBxiUO5-T3?usp=drive_link" target="_blank">Engineering Mathematics II</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eAtyI4WM6itepNOxbPE4JByKW9Yxt5DY?usp=drive_link" target="_blank">Object Oriented Programming</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eOHM3Vo1ry4JMPYlO8TrPM3bNxPA17nu?usp=drive_link" target="_blank">Electronic Device and Circuits</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eW-512FzyNkupfs9cNQlrcMYmkShwrMY?usp=drive_link" target="_blank">Digital Logic</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eVUVYgHlhQLQxuUUHuAjMKSIk9hPus_u?usp=drive_link" target="_blank">Electrical Circuits and Machines</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eJlzMC1giLyjp_LVROd2hCg2I2fF5mCM?usp=drive_link" target="_blank">Engineering Chemistry</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1-dAa9NfcBbs5CIKJFQAOiWveUnOtPtik?usp=drive_link" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 3 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 3</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1aR7aOqISs3Gsquy_rcVlbWD5ZQN65kcg?usp=drive_link" target="_blank">Engineering Mathematics III</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1aXQX6WCyoKi1yxn39rH8PwIJJ_a1Bjsu?usp=drive_link" target="_blank">Communication English</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1aeRIlbTJPefUgWkJKir3EVnzxD7LtHHW?usp=drive_link" target="_blank">Computer Graphics and Visualization</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1aUQR1mKUSey242skL8Q1pbF4FIc0iNJs?usp=drive_link" target="_blank">Microprocessors</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1aJDQzPLkNxVUT5Qbc1GAEnUDpMFR3dsV?usp=drive_link" target="_blank">Advanced Electronics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1aMZZxmcwHogRDP4qLk_Tz8ndP2Oip9Av?usp=drive_link" target="_blank">Control System</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1aOVh1JbjjFYoOVLah53800NTdU0SfCtS?usp=drive_link" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 4 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 4</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1mWwwyzJteTv61wgBuEvoVm3uFMtYNOQ-" target="_blank">Numerical Methods</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mFlunugaMpZBTeAd9WmVOJrh_oRHEcok" target="_blank">Discrete Structure</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mNUzNXyB39V5Nh-LmKPeEfoEVSmqp83Z" target="_blank">Instrumentation</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mWJNUt6h157SXLGAUwvo4UVhVsY896Bv" target="_blank">Computer Organization & Architecture</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mGynXRJpfZwjw-Mnka9gBh_WSKubadWD" target="_blank">Electromagnetics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mVXiwN-SdB3ROq4Dx2Ei59a8sgMBRoUm" target="_blank">Signals and Systems</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1phlXeZKNz4wyfgVb2S_bh2i7b5qQh7yM" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 5 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 5</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1mWwwyzJteTv61wgBuEvoVm3uFMtYNOQ-" target="_blank">Numerical Methods</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mFlunugaMpZBTeAd9WmVOJrh_oRHEcok" target="_blank">Discrete Structure</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mNUzNXyB39V5Nh-LmKPeEfoEVSmqp83Z" target="_blank">Instrumentation</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mWJNUt6h157SXLGAUwvo4UVhVsY896Bv" target="_blank">Computer Organization & Architecture</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mGynXRJpfZwjw-Mnka9gBh_WSKubadWD" target="_blank">Electromagnetics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mVXiwN-SdB3ROq4Dx2Ei59a8sgMBRoUm" target="_blank">Signals and Systems</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1phlXeZKNz4wyfgVb2S_bh2i7b5qQh7yM" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 6 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 6</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1mWwwyzJteTv61wgBuEvoVm3uFMtYNOQ-" target="_blank">Numerical Methods</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mFlunugaMpZBTeAd9WmVOJrh_oRHEcok" target="_blank">Discrete Structure</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mNUzNXyB39V5Nh-LmKPeEfoEVSmqp83Z" target="_blank">Instrumentation</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mWJNUt6h157SXLGAUwvo4UVhVsY896Bv" target="_blank">Computer Organization & Architecture</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mGynXRJpfZwjw-Mnka9gBh_WSKubadWD" target="_blank">Electromagnetics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mVXiwN-SdB3ROq4Dx2Ei59a8sgMBRoUm" target="_blank">Signals and Systems</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1phlXeZKNz4wyfgVb2S_bh2i7b5qQh7yM" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 7 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 7</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1mWwwyzJteTv61wgBuEvoVm3uFMtYNOQ-" target="_blank">Numerical Methods</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mFlunugaMpZBTeAd9WmVOJrh_oRHEcok" target="_blank">Discrete Structure</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mNUzNXyB39V5Nh-LmKPeEfoEVSmqp83Z" target="_blank">Instrumentation</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mWJNUt6h157SXLGAUwvo4UVhVsY896Bv" target="_blank">Computer Organization & Architecture</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mGynXRJpfZwjw-Mnka9gBh_WSKubadWD" target="_blank">Electromagnetics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mVXiwN-SdB3ROq4Dx2Ei59a8sgMBRoUm" target="_blank">Signals and Systems</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1phlXeZKNz4wyfgVb2S_bh2i7b5qQh7yM" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 8 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 8</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1mWwwyzJteTv61wgBuEvoVm3uFMtYNOQ-" target="_blank">Numerical Methods</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mFlunugaMpZBTeAd9WmVOJrh_oRHEcok" target="_blank">Discrete Structure</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mNUzNXyB39V5Nh-LmKPeEfoEVSmqp83Z" target="_blank">Instrumentation</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mWJNUt6h157SXLGAUwvo4UVhVsY896Bv" target="_blank">Computer Organization & Architecture</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mGynXRJpfZwjw-Mnka9gBh_WSKubadWD" target="_blank">Electromagnetics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mVXiwN-SdB3ROq4Dx2Ei59a8sgMBRoUm" target="_blank">Signals and Systems</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1phlXeZKNz4wyfgVb2S_bh2i7b5qQh7yM" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Extra Reference Materials -->
-      <div class="semester">
-        <button class="collapsible-btn">Extra Reference Materials</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/yourFolderID25" target="_blank">E-books</a></li>
-            <li><a href="https://drive.google.com/drive/folders/yourFolderID26" target="_blank">Solved Question Papers</a></li>
-            <li><a href="https://drive.google.com/drive/folders/yourFolderID27" target="_blank">Preparation Materials</a></li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- Computer Engineering (BCT) -->
-  <div class="collapsible">
-    <button class="collapsible-btn">Computer Engineering (BCT)</button>
-    <div class="content">
-
-      <!-- Semester 1 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 1</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1ekYc2S9Q6HvYzbywTYYLN_A57DMnwah0?usp=drive_link" target="_blank">Engineering Mathematics I</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eZ1yGLY6_vaHNcprRWnIgpH1bRlf2Mu6?usp=drive_link" target="_blank">Engineering Physics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1ec99_INhe_qhOjh2csd3kp-iGW3XyBMk?usp=drive_link" target="_blank">Computer Programming</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1ee9OnMUzpo4NvuHHKOJAsmQUCNHfNlIA?usp=drive_link" target="_blank">Engineering Drawing</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1efpea8HbrU8e3wAqRr_wB___RugxMaDp?usp=drive_link" target="_blank">Fundamentals of Electrical and Electronics Engineering</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eag7g9VtiCghu0HOJZHq5EUwXpdFlttV?usp=drive_link" target="_blank">Engineering Workshop</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1TZjbRV9p3fViyzKpbInVWqcCbxJjE486?usp=drive_link" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 2 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 2</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1eO3pxXYQJyr6Bs2pYEXHabcBxiUO5-T3?usp=drive_link" target="_blank">Engineering Mathematics II</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eAtyI4WM6itepNOxbPE4JByKW9Yxt5DY?usp=drive_link" target="_blank">Object Oriented Programming</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eOHM3Vo1ry4JMPYlO8TrPM3bNxPA17nu?usp=drive_link" target="_blank">Electronic Device and Circuits</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eW-512FzyNkupfs9cNQlrcMYmkShwrMY?usp=drive_link" target="_blank">Digital Logic</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eVUVYgHlhQLQxuUUHuAjMKSIk9hPus_u?usp=drive_link" target="_blank">Electrical Circuits and Machines</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eJlzMC1giLyjp_LVROd2hCg2I2fF5mCM?usp=drive_link" target="_blank">Engineering Chemistry</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1-dAa9NfcBbs5CIKJFQAOiWveUnOtPtik?usp=drive_link" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 3 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 3</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1aR7aOqISs3Gsquy_rcVlbWD5ZQN65kcg?usp=drive_link" target="_blank">Engineering Mathematics III</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1aXQX6WCyoKi1yxn39rH8PwIJJ_a1Bjsu?usp=drive_link" target="_blank">Communication English</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1aeRIlbTJPefUgWkJKir3EVnzxD7LtHHW?usp=drive_link" target="_blank">Computer Graphics and Visualization</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1aUQR1mKUSey242skL8Q1pbF4FIc0iNJs?usp=drive_link" target="_blank">Microprocessors</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1aJDQzPLkNxVUT5Qbc1GAEnUDpMFR3dsV?usp=drive_link" target="_blank">Advanced Electronics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1aMZZxmcwHogRDP4qLk_Tz8ndP2Oip9Av?usp=drive_link" target="_blank">Control System</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1aOVh1JbjjFYoOVLah53800NTdU0SfCtS?usp=drive_link" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 4 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 4</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1mWwwyzJteTv61wgBuEvoVm3uFMtYNOQ-" target="_blank">Numerical Methods</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mFlunugaMpZBTeAd9WmVOJrh_oRHEcok" target="_blank">Discrete Structure</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mNUzNXyB39V5Nh-LmKPeEfoEVSmqp83Z" target="_blank">Instrumentation</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mWJNUt6h157SXLGAUwvo4UVhVsY896Bv" target="_blank">Computer Organization & Architecture</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mGynXRJpfZwjw-Mnka9gBh_WSKubadWD" target="_blank">Electromagnetics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mVXiwN-SdB3ROq4Dx2Ei59a8sgMBRoUm" target="_blank">Signals and Systems</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1phlXeZKNz4wyfgVb2S_bh2i7b5qQh7yM" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 5 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 5</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1mWwwyzJteTv61wgBuEvoVm3uFMtYNOQ-" target="_blank">Numerical Methods</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mFlunugaMpZBTeAd9WmVOJrh_oRHEcok" target="_blank">Discrete Structure</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mNUzNXyB39V5Nh-LmKPeEfoEVSmqp83Z" target="_blank">Instrumentation</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mWJNUt6h157SXLGAUwvo4UVhVsY896Bv" target="_blank">Computer Organization & Architecture</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mGynXRJpfZwjw-Mnka9gBh_WSKubadWD" target="_blank">Electromagnetics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mVXiwN-SdB3ROq4Dx2Ei59a8sgMBRoUm" target="_blank">Signals and Systems</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1phlXeZKNz4wyfgVb2S_bh2i7b5qQh7yM" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 6 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 6</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1mWwwyzJteTv61wgBuEvoVm3uFMtYNOQ-" target="_blank">Numerical Methods</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mFlunugaMpZBTeAd9WmVOJrh_oRHEcok" target="_blank">Discrete Structure</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mNUzNXyB39V5Nh-LmKPeEfoEVSmqp83Z" target="_blank">Instrumentation</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mWJNUt6h157SXLGAUwvo4UVhVsY896Bv" target="_blank">Computer Organization & Architecture</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mGynXRJpfZwjw-Mnka9gBh_WSKubadWD" target="_blank">Electromagnetics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mVXiwN-SdB3ROq4Dx2Ei59a8sgMBRoUm" target="_blank">Signals and Systems</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1phlXeZKNz4wyfgVb2S_bh2i7b5qQh7yM" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 7 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 7</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1mWwwyzJteTv61wgBuEvoVm3uFMtYNOQ-" target="_blank">Numerical Methods</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mFlunugaMpZBTeAd9WmVOJrh_oRHEcok" target="_blank">Discrete Structure</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mNUzNXyB39V5Nh-LmKPeEfoEVSmqp83Z" target="_blank">Instrumentation</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mWJNUt6h157SXLGAUwvo4UVhVsY896Bv" target="_blank">Computer Organization & Architecture</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mGynXRJpfZwjw-Mnka9gBh_WSKubadWD" target="_blank">Electromagnetics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mVXiwN-SdB3ROq4Dx2Ei59a8sgMBRoUm" target="_blank">Signals and Systems</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1phlXeZKNz4wyfgVb2S_bh2i7b5qQh7yM" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 8 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 8</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1mWwwyzJteTv61wgBuEvoVm3uFMtYNOQ-" target="_blank">Numerical Methods</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mFlunugaMpZBTeAd9WmVOJrh_oRHEcok" target="_blank">Discrete Structure</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mNUzNXyB39V5Nh-LmKPeEfoEVSmqp83Z" target="_blank">Instrumentation</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mWJNUt6h157SXLGAUwvo4UVhVsY896Bv" target="_blank">Computer Organization & Architecture</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mGynXRJpfZwjw-Mnka9gBh_WSKubadWD" target="_blank">Electromagnetics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mVXiwN-SdB3ROq4Dx2Ei59a8sgMBRoUm" target="_blank">Signals and Systems</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1phlXeZKNz4wyfgVb2S_bh2i7b5qQh7yM" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Extra Reference Materials -->
-      <div class="semester">
-        <button class="collapsible-btn">Extra Reference Materials</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/yourFolderID25" target="_blank">E-books</a></li>
-            <li><a href="https://drive.google.com/drive/folders/yourFolderID26" target="_blank">Solved Question Papers</a></li>
-            <li><a href="https://drive.google.com/drive/folders/yourFolderID27" target="_blank">Preparation Materials</a></li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- Electrical Engineering (BEL) -->
-  <div class="collapsible">
-    <button class="collapsible-btn">Electrical Engineering (BEL)</button>
-    <div class="content">
-
-      <!-- Semester 1 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 1</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1ekYc2S9Q6HvYzbywTYYLN_A57DMnwah0?usp=drive_link" target="_blank">Engineering Mathematics I</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eZ1yGLY6_vaHNcprRWnIgpH1bRlf2Mu6?usp=drive_link" target="_blank">Engineering Physics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1ec99_INhe_qhOjh2csd3kp-iGW3XyBMk?usp=drive_link" target="_blank">Computer Programming</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1ee9OnMUzpo4NvuHHKOJAsmQUCNHfNlIA?usp=drive_link" target="_blank">Engineering Drawing</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1efpea8HbrU8e3wAqRr_wB___RugxMaDp?usp=drive_link" target="_blank">Fundamentals of Electrical and Electronics Engineering</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eag7g9VtiCghu0HOJZHq5EUwXpdFlttV?usp=drive_link" target="_blank">Engineering Workshop</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1TZjbRV9p3fViyzKpbInVWqcCbxJjE486?usp=drive_link" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 2 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 2</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1eO3pxXYQJyr6Bs2pYEXHabcBxiUO5-T3?usp=drive_link" target="_blank">Engineering Mathematics II</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eAtyI4WM6itepNOxbPE4JByKW9Yxt5DY?usp=drive_link" target="_blank">Object Oriented Programming</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eOHM3Vo1ry4JMPYlO8TrPM3bNxPA17nu?usp=drive_link" target="_blank">Electronic Device and Circuits</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eW-512FzyNkupfs9cNQlrcMYmkShwrMY?usp=drive_link" target="_blank">Digital Logic</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eVUVYgHlhQLQxuUUHuAjMKSIk9hPus_u?usp=drive_link" target="_blank">Electrical Circuits and Machines</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1eJlzMC1giLyjp_LVROd2hCg2I2fF5mCM?usp=drive_link" target="_blank">Engineering Chemistry</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1-dAa9NfcBbs5CIKJFQAOiWveUnOtPtik?usp=drive_link" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 3 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 3</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1aR7aOqISs3Gsquy_rcVlbWD5ZQN65kcg?usp=drive_link" target="_blank">Engineering Mathematics III</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1aXQX6WCyoKi1yxn39rH8PwIJJ_a1Bjsu?usp=drive_link" target="_blank">Communication English</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1aeRIlbTJPefUgWkJKir3EVnzxD7LtHHW?usp=drive_link" target="_blank">Computer Graphics and Visualization</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1aUQR1mKUSey242skL8Q1pbF4FIc0iNJs?usp=drive_link" target="_blank">Microprocessors</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1aJDQzPLkNxVUT5Qbc1GAEnUDpMFR3dsV?usp=drive_link" target="_blank">Advanced Electronics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1aMZZxmcwHogRDP4qLk_Tz8ndP2Oip9Av?usp=drive_link" target="_blank">Control System</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1aOVh1JbjjFYoOVLah53800NTdU0SfCtS?usp=drive_link" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 4 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 4</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1mWwwyzJteTv61wgBuEvoVm3uFMtYNOQ-" target="_blank">Numerical Methods</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mFlunugaMpZBTeAd9WmVOJrh_oRHEcok" target="_blank">Discrete Structure</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mNUzNXyB39V5Nh-LmKPeEfoEVSmqp83Z" target="_blank">Instrumentation</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mWJNUt6h157SXLGAUwvo4UVhVsY896Bv" target="_blank">Computer Organization & Architecture</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mGynXRJpfZwjw-Mnka9gBh_WSKubadWD" target="_blank">Electromagnetics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mVXiwN-SdB3ROq4Dx2Ei59a8sgMBRoUm" target="_blank">Signals and Systems</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1phlXeZKNz4wyfgVb2S_bh2i7b5qQh7yM" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 5 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 5</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1mWwwyzJteTv61wgBuEvoVm3uFMtYNOQ-" target="_blank">Numerical Methods</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mFlunugaMpZBTeAd9WmVOJrh_oRHEcok" target="_blank">Discrete Structure</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mNUzNXyB39V5Nh-LmKPeEfoEVSmqp83Z" target="_blank">Instrumentation</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mWJNUt6h157SXLGAUwvo4UVhVsY896Bv" target="_blank">Computer Organization & Architecture</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mGynXRJpfZwjw-Mnka9gBh_WSKubadWD" target="_blank">Electromagnetics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mVXiwN-SdB3ROq4Dx2Ei59a8sgMBRoUm" target="_blank">Signals and Systems</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1phlXeZKNz4wyfgVb2S_bh2i7b5qQh7yM" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 6 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 6</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1mWwwyzJteTv61wgBuEvoVm3uFMtYNOQ-" target="_blank">Numerical Methods</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mFlunugaMpZBTeAd9WmVOJrh_oRHEcok" target="_blank">Discrete Structure</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mNUzNXyB39V5Nh-LmKPeEfoEVSmqp83Z" target="_blank">Instrumentation</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mWJNUt6h157SXLGAUwvo4UVhVsY896Bv" target="_blank">Computer Organization & Architecture</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mGynXRJpfZwjw-Mnka9gBh_WSKubadWD" target="_blank">Electromagnetics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mVXiwN-SdB3ROq4Dx2Ei59a8sgMBRoUm" target="_blank">Signals and Systems</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1phlXeZKNz4wyfgVb2S_bh2i7b5qQh7yM" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 7 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 7</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1mWwwyzJteTv61wgBuEvoVm3uFMtYNOQ-" target="_blank">Numerical Methods</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mFlunugaMpZBTeAd9WmVOJrh_oRHEcok" target="_blank">Discrete Structure</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mNUzNXyB39V5Nh-LmKPeEfoEVSmqp83Z" target="_blank">Instrumentation</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mWJNUt6h157SXLGAUwvo4UVhVsY896Bv" target="_blank">Computer Organization & Architecture</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mGynXRJpfZwjw-Mnka9gBh_WSKubadWD" target="_blank">Electromagnetics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mVXiwN-SdB3ROq4Dx2Ei59a8sgMBRoUm" target="_blank">Signals and Systems</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1phlXeZKNz4wyfgVb2S_bh2i7b5qQh7yM" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Semester 8 -->
-      <div class="semester">
-        <button class="collapsible-btn">Semester 8</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/1mWwwyzJteTv61wgBuEvoVm3uFMtYNOQ-" target="_blank">Numerical Methods</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mFlunugaMpZBTeAd9WmVOJrh_oRHEcok" target="_blank">Discrete Structure</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mNUzNXyB39V5Nh-LmKPeEfoEVSmqp83Z" target="_blank">Instrumentation</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mWJNUt6h157SXLGAUwvo4UVhVsY896Bv" target="_blank">Computer Organization & Architecture</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mGynXRJpfZwjw-Mnka9gBh_WSKubadWD" target="_blank">Electromagnetics</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1mVXiwN-SdB3ROq4Dx2Ei59a8sgMBRoUm" target="_blank">Signals and Systems</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1phlXeZKNz4wyfgVb2S_bh2i7b5qQh7yM" target="_blank">Extras</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Extra Reference Materials -->
-      <div class="semester">
-        <button class="collapsible-btn">Extra Reference Materials</button>
-        <div class="content">
-          <ul>
-            <li><a href="https://drive.google.com/drive/folders/yourFolderID25" target="_blank">E-books</a></li>
-            <li><a href="https://drive.google.com/drive/folders/yourFolderID26" target="_blank">Solved Question Papers</a></li>
-            <li><a href="https://drive.google.com/drive/folders/yourFolderID27" target="_blank">Preparation Materials</a></li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
+<!-- Typing Sound -->
+<audio id="typing-sound" preload="auto">
+  <source src="assets/typing.wav" type="audio/wav" />
+</audio>
 
 <script>
-  // Collapsible buttons functionality
-  var coll = document.getElementsByClassName("collapsible-btn");
-  for (var i = 0; i < coll.length; i++) {
-    coll[i].addEventListener("click", function() {
-      this.classList.toggle("active");
-      var content = this.nextElementSibling;
-      if (content.style.display === "block") {
-        content.style.display = "none";
-      } else {
-        content.style.display = "block";
-      }
-    });
-  }
-</script>
+  const codeBox = document.getElementById('code-box');
+  const typingSound = document.getElementById('typing-sound');
 
-    <section id="about" class="section">
-        <h2>About Me</h2>
-        <div class="card-container">
-        <div class="card">
-        <p>Hello! I’m <strong>Sarshij Karn</strong>. I'm not just an Electronics + Communication + Information Engineering student — I'm also a part-time philosopher & a tech wizard who accidentally became a vibe coder, trader & a content creator.
-           My brain runs on curiosity, my heart runs on scars, and my project runs on late nights and emotional flashbacks.</p>
-              I code like it's therapy, trade like it's art, and YouTube like it's war.
-           <p>"If it’s chaotic, creative, and a bit too ambitious, it’s probably mine." 🔥
-            </p><br>
-        </div>
-    </section>
-
-  
-    <section id="hobbies" class="section">
-        <h2>💬 Hobbies? More like side quests.</h2>
-        <div class="card-container">
-            <div class="card">
-                <h3>Reading Books</h3>
-                <p>I dive into books like they’re portals — sometimes for knowledge, sometimes just to escape people. From science to self-help, I read it all… because therapy is expensive.</p>
-            </div>
-            <div class="card">
-                <h3>Sports</h3>
-                <p>I play football and cricket not just for fitness, but to occasionally pretend I have balance in life. Sports keep me moving, breathing, and distracted from debugging till 2 AM.</p>
-            </div>
-            <div class="card">
-                <h3>Tech Geek</h3>
-                <p>I keep up with tech like it’s the latest gossip. Gadgets, software, AI — if it blinks, beeps, or updates at midnight, I’m probably already obsessed.</p>
-            </div>
-            <div class="card">
-                <h3>Content Creation</h3>
-                <p>Why just experience life when you can turn it into content? I share what I know, what I build, and sometimes just what broke — with a sprinkle of “watch this fail successfully".</p>
-            </div>
-            <div class="card">
-                <h3>Exploration</h3>
-                <p>New places, new people, new problems to overthink.I explore places like I explore tech — with excitement, mild confusion, and a tendency to get lost. Whether it’s a random street or a new concept, I’m in it for the experience, the chaos, and the story.</p>
-            </div>
-            <div class="card">
-                <h3>Electronics</h3>
-                <p>As an engineering student, I mess with circuits and microcontrollers like a mad scientist. If it sparks, blinks, or makes no sense at first — I’m in.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="qualifications" class="section">
-        <h2>Qualifications: Yes, I Actually Did That!
-        </h2>
-        <div class="card-container">
-            <div class="card">
-                <h3><span class="highlight">4.0 GPA</span> in Class 10</h3>
-                <p>Nailed my Class 10 with a perfect GPA because I like to set the bar high — all thanks, HappyLand Secondary School, for making me look good.</p>
-            </div>
-            <div class="card">
-                <h3><span class="highlight">89%</span> in Class 12</h3>
-                <p>Class 12 was a breeze (for me, not the textbooks). Scored 89% at Liverpool International College, proving that hard work and late nights last moment study can make magic happen.</p>
-            </div>
-            <div class="card">
-                <h3><span class="highlight">Cracked Engineering Entrance</span> in First Attempt</h3>
-                <p>Didn’t need a backup plan. Cracked the engineering entrance exam on my first try and landed a full scholarship at IOE, TU — because who doesn’t like a challenge? </p>
-            </div>
-            <div class="card">
-                <h3><span class="highlight">Pursuing Bachelor's</span> in Electronics, Communication & Information Engineering</h3>
-                <p>Currently chasing knowledge (and an endless supply of coffee) while pursuing my Bachelor's at the National College of Engineering. Electronics, communication, and information — I’ve got it covered.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-  <section id="contact" class="section glass reveal">
-        <h2>Let's Connect</h2>
-        <p>Got something to say?</p>
-        <div class="contact-container">
-            <form action="https://formspree.io/f/mnnpappe" method="POST">
-                <div class="input-group">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" placeholder="(I guess I’ll call you something, right?)" required>
-                </div>
-    
-                <div class="input-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" placeholder="(To spam you..just kidding, to reply back.)" required>
-                </div>
-    
-                <div class="input-group">
-                    <label for="message">Message:</label>
-                    <textarea id="message" name="message" rows="5" placeholder="(Click here if you’re brave enough.)
-
-                    " required></textarea>
-                </div>
-    
-                <button type="submit">Send Message</button>
-            </form>
-        </div>
-    </section>
-
-
-      
-
-    <script src="script.js">
-        document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector("#contact form");
-
-    form.addEventListener("submit", function (event) {
-        alert("Your message has been sent successfully!");
-    });
-});
-
-    </script>
-
-<!-- Footer -->
-  <footer id="copyright" class="glass">
-    &copy; 2025 Sarshij Karn. Crafted with <i class="fas fa-heart"></i> and late-night code.
-  </footer>
-<script>
-    const overlay = document.getElementById('overlay');
-    const closeBtn = document.getElementById('closeBtn');
-
-    closeBtn.onclick = () => overlay.style.display = 'none';
-    overlay.onclick = (e) => {
-      if (e.target === overlay) {
-        overlay.style.display = 'none';
-      }
-    };
-  </script>
-<!-- Vanta.js (animated background library) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
-<script>
-VANTA.WAVES({
-  el: "#animated-bg",
-  mouseControls: true,
-  touchControls: true,
-  minHeight: 200.00,
-  minWidth: 200.00,
-  scale: 1.00,
-  scaleMobile: 1.00,
-  color: 0x0073e6,
-  shininess: 50.00,
-  waveHeight: 20.00,
-  waveSpeed: 1.00,
-  zoom: 0.85
-});
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-<script>
-(function(){
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-  const renderer = new THREE.WebGLRenderer({ alpha: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  document.getElementById('three-cube-bg').appendChild(renderer.domElement);
-
-  // Create a colorful cube
-  const geometry = new THREE.BoxGeometry();
-  const material = new THREE.MeshNormalMaterial({wireframe: false});
-  const cube = new THREE.Mesh(geometry, material);
-  scene.add(cube);
-
-  camera.position.z = 3;
-
-  function animate() {
-    requestAnimationFrame(animate);
-    cube.rotation.x += 0.008;
-    cube.rotation.y += 0.013;
-    renderer.render(scene, camera);
-  }
-  animate();
-
-  // Responsive
-  window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth/window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  });
-})();
-</script>
-<script>
 const lines = [
-  "Invent. Inspire. Iterate. 🚀",
-  "Code, Coffee, Repeat.",
-  "Engineering the future, one bug at a time.",
-  "Dream big. Debug bigger.",
-  "Turning chaos into code & stories."
+  "[SYSTEM] Initializing theme engine ...",
+  "[ENGINE] Powering up modules...",
+  "[NETWORK] Establishing secure connection...",
+  "[STATUS] System check complete.",
+  "[BOOT] Launching Sarshij Karn environment →"
 ];
-let lineIdx = 0;
-function showNextLine() {
-  const container = document.getElementById('animated-lines');
-  container.innerHTML = `<span class="animated-line">${lines[lineIdx]}</span>`;
-  lineIdx = (lineIdx + 1) % lines.length;
-  setTimeout(showNextLine, 3200);
-}
-showNextLine();
-</script>
-<div id="floating-shapes"></div>
 
-<script>
-const text = "Future Engineer💡| Tech Enthusiast🤖| Sentimental Technophile💻❤️";
-const words = text.split(" ");
-const tagline = document.getElementById('tagline');
-let index = 0;
-let isDeleting = false;
 
-function typeLoop() {
-    if (!isDeleting && index < words.length) {
-        tagline.textContent += (index > 0 ? " " : "") + words[index];
-        index++;
-        setTimeout(typeLoop, 400);
-    } 
-    else if (isDeleting && index >= 0) {
-        const currentWords = words.slice(0, index).join(" ");
-        tagline.textContent = currentWords;
-        index--;
-        setTimeout(typeLoop, 200);
-    } 
-    else if (!isDeleting && index === words.length) {
-        isDeleting = true;
-        setTimeout(typeLoop, 1500);
-    } 
-    else if (isDeleting && index < 0) {
-        isDeleting = false;
-        index = 0;
-        setTimeout(typeLoop, 500);
-    }
-}
+  let currentLine = 0;
+  let currentChar = 0;
 
-window.onload = typeLoop;
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const lines = [
-        "Invent. Inspire. Iterate. 🚀",
-        "Code, Coffee, Repeat.",
-        "Engineering the future, one bug at a time.",
-        "Dream big. Debug bigger.",
-        "Turning chaos into code & stories."
-    ];
-    let lineIdx = 0;
-
-    function showNextLine() {
-        const container = document.getElementById('animated-lines');
-        container.innerHTML = `<span class="animated-line">${lines[lineIdx]}</span>`;
-        lineIdx = (lineIdx + 1) % lines.length;
-        setTimeout(showNextLine, 3200);
-    }
-
-    showNextLine();
-});
-</script>
-<script>
-  // Create trail container
-  const trailContainer = document.createElement('div');
-  trailContainer.id = 'trail-container';
-  document.body.appendChild(trailContainer);
-
-  // Add CSS styles dynamically
-  const style = document.createElement('style');
-  style.textContent = `
-    #trail-container {
-      position: fixed;
-      top: 0; left: 0;
-      pointer-events: none;
-      z-index: 9999;
-    }
-    .trail-dot {
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      opacity: 0.8;
-      transform: translate(-50%, -50%);
-      animation: fadeOut 1.2s forwards;
-      filter: drop-shadow(0 0 8px currentColor);
-    }
-    @keyframes fadeOut {
-      to {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.3);
+  function typeLine() {
+    if (currentLine < lines.length) {
+      const line = lines[currentLine];
+      const typed = line.slice(0, currentChar + 1);
+      if (currentChar === 0) {
+        codeBox.innerHTML += "<span class='line'></span>";
       }
-    }
-  `;
-  document.head.appendChild(style);
+      const linesEl = codeBox.querySelectorAll(".line");
+      linesEl[linesEl.length - 1].innerText = typed + "_";
 
-  // Color palette: vibrant & elegant
-  const colors = [
-    '#FF6B6B', // soft red
-    '#FFD93D', // warm yellow
-    '#6BCB77', // fresh green
-    '#4D96FF', // bright blue
-    '#845EC2'  // violet
-  ];
+      // play typing sound
+      typingSound.currentTime = 0;
+      typingSound.play();
 
-  document.addEventListener('mousemove', e => {
-    // Spawn 4 dots for longer tail with small offset
-    for (let i = 0; i < 1; i++) {
-      const dot = document.createElement('div');
-      dot.className = 'trail-dot';
-      dot.style.left = (e.clientX - i * 6) + 'px';
-      dot.style.top = (e.clientY - i * 6) + 'px';
-      dot.style.color = colors[Math.floor(Math.random() * colors.length)];
-      trailContainer.appendChild(dot);
-      setTimeout(() => dot.remove(), 1200);
+      currentChar++;
+      if (currentChar < line.length) {
+        setTimeout(typeLine, 10);
+      } else {
+        currentChar = 0;
+        currentLine++;
+        setTimeout(typeLine, 100);
+      }
+    } else {
+      speakWelcome();
+      setTimeout(() => {
+        window.location.href = "realsite.html";
+      }, 100); // Delay to allow welcome voice
     }
-  });
+  }
+
+  function speakWelcome() {
+    if ('speechSynthesis' in window) {
+      const utter = new SpeechSynthesisUtterance("Welcome to the system.");
+      utter.pitch = 1;
+      utter.rate = 0.9;
+      utter.volume = 1;
+      speechSynthesis.speak(utter);
+    }
+  }
+
+  // Wait for user interaction before starting (browser autoplay policy)
+  window.onload = () => {
+    const loaderText = document.querySelector('.loading-text');
+    loaderText.textContent = "👉Click anywhere to begin...👈";
+    
+    document.body.addEventListener('click', () => {
+      loaderText.textContent = "Initializing environment...";
+      typeLine();
+    }, { once: true });
+  };
 </script>
+
 </body>
 </html>
