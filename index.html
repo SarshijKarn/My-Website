@@ -64,14 +64,10 @@
         <li><a href="#qualifications" class="nav-link">Qualifications</a></li>
         <li><a href="#hobbies" class="nav-link">Hobbies</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
-        <li><a href="#resources-section" class="nav-link">Notes</a></li>
-        <li>
-            <i class="fas fa-sun"></i>
-        </li>
+        <li><a href="#resources-section" class="nav-link">Notes</a></li>     
       </ul>
     </nav>
   </header>
-
     <!-- Hero Section -->
   <section class="hero glass">
     <div class="hero-content">
@@ -93,11 +89,7 @@
       <img src="https://raw.githubusercontent.com/SarshijKarn/My-Website/main/logo.jpg" alt="3D Tech" class="floating-img"/>
     </div>
   </section>
-  
   <div id="animated-lines"></div>
-
-
-
     <section id="resources-section" class="resources-section">
   <h2>📚 👉Download Notes & Resources👈</h2>
 
@@ -835,29 +827,8 @@
         </div>
     </section>
 
- <!-- JavaScript for Dark Mode Toggle -->
-    <script>
-        function toggleTheme() {
-            document.body.classList.toggle('dark-mode');
 
-            // Save the theme preference
-            if (document.body.classList.contains('dark-mode')) {
-                localStorage.setItem('theme', 'dark');
-                document.querySelector('.theme-toggle').textContent = '☀️';
-            } else {
-                localStorage.setItem('theme', 'light');
-                document.querySelector('.theme-toggle').textContent = '🌙';
-            }
-        }
-
-        // Apply saved theme on page load
-        window.onload = function () {
-            if (localStorage.getItem('theme') === 'dark') {
-                document.body.classList.add('dark-mode');
-                document.querySelector('.theme-toggle').textContent = '☀️';
-            }
-        };
-    </script>
+      
 
     <script src="script.js">
         document.addEventListener("DOMContentLoaded", function () {
