@@ -10,9 +10,6 @@ body {
     color: #222; /* Dark text for readability */
   }
   
-  
-
-
 /* ======= Navbar Styles ======= */
 .navbar {
     display: flex;
@@ -244,32 +241,6 @@ button:hover, .card:hover {
     }
 }
 
-
-/* Dark Mode Styles */
-.dark-mode {
-    background-color: #121212;
-    color: #ffffff;
-}
-
-.dark-mode header {
-    background-color: #1e1e1e;
-}
-
-.dark-mode .card {
-    background-color: #222;
-    color: #ddd;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-}
-
-.dark-mode .social-links a {
-    color: #ffffff;
-}
-
-.dark-mode .theme-toggle {
-    color: #ffffff;
-    cursor: pointer;
-}
-
 a {
   color: #333;
   margin-right: 10px;
@@ -314,12 +285,10 @@ a:hover {
   color: #FF0000; /* YouTube red */
 }
 
-/* Contact Section - Small & Stylish */
-/* Contact Section */
+
 /* Contact Section */
 #contact {
-    background: linear-gradient(135deg, #0073e6, #00c6ff);
-    color: white;
+    background: linear-gradient(135deg, #0073e6,);
     text-align: center;
     padding: 40px 20px;
     border-radius: 12px;
@@ -412,22 +381,6 @@ button:hover {
 }
 
 
-/* Keep existing styles here, add or modify below where relevant */
-
-/* === Full Page BMW Background Behind All Content === 
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                url('https://raw.githubusercontent.com/SarshijKarn/My-Website/refs/heads/main/bg.png') no-repeat center center/cover;
-    z-index: -1;
-}
-
-*/
 
 /* Styles for the collapsible buttons */
 .collapsible-btn {
@@ -738,30 +691,6 @@ button[type="submit"]:hover { background: #005bb5; transform: scale(1.04); }
   .floating-img { width: 140px; height: 140px; }
 }
 
-/* === Dark Mode === */
-body.dark {
-  background: linear-gradient(135deg, #232526 0%, #414345 100%);
-  color: #f2f2f2;
-}
-body.dark .glass {
-  background: rgba(30,30,40,0.7);
-  color: #f2f2f2;
-  border: 1px solid #333;
-}
-body.dark .navbar, body.dark #copyright {
-  background: linear-gradient(90deg, #232526, #414345);
-  color: #fff;
-}
-body.dark .card, body.dark .hobby-card {
-  background: rgba(40,40,60,0.85);
-  color: #fff;
-}
-body.dark .profile-img { border-color: #00c6ff; }
-body.dark .highlight { color: #00c6ff; }
-body.dark .social-icon:hover { color: #00c6ff; }
-body.dark button[type="submit"] { background: linear-gradient(90deg, #00c6ff, #0073e6); }
-body.dark button[type="submit"]:hover { background: #00c6ff; }
-
 /* === 3D Canvas === */
 #bg-canvas {
   position: fixed;
@@ -1020,28 +949,44 @@ body::before {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
 }
 
+<!-- Animated Lines -->
+.center-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 1rem;
+}
 
 #animated-lines {
-    margin-top: 1rem;
-    height: 1.5rem; /* Reserve space to prevent layout shift */
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #8bef11;
+  border-radius: 8px;
+  text-align: center;
+  width: fit-content; /* Ensures the box wraps the text only */
 }
 
 .animated-line {
-    display: inline-block;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #00ffc3;
-    text-shadow: 0 0 8px #00ffc3, 0 0 15px #00ffc3;
-    animation: fadeInOut 3s ease-in-out forwards;
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff5e6;
+  text-shadow:
+    0 0 2px #190dc1,
+    0 0 6px #b1aebc,
+    0 0 12px #e06711,
+    0 0 18px #ff0080,
+    0 0 24px #ff0080;
+  animation: fadeInOut 3s ease-in-out forwards;
 }
 
 @keyframes fadeInOut {
-    0% { opacity: 0; transform: translateY(10px); }
-    10% { opacity: 1; transform: translateY(0); }
-    90% { opacity: 1; transform: translateY(0); }
-    100% { opacity: 0; transform: translateY(-10px); }
+  0%   { opacity: 0; transform: translateY(10px); }
+  10%  { opacity: 1; transform: translateY(0); }
+  90%  { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-10px); }
 }
-
 /* Trailing */
 #trail-container {
     position: fixed;
@@ -1067,4 +1012,213 @@ body::before {
         opacity: 0;
         transform: translate(-50%, -50%) scale(0.2);
     }
+}
+
+.section-heading {
+  font-size: 3rem;
+  text-align: center;
+  margin: 50px 0 30px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #ff9a8b, #fbc687, #fccc63);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  animation: shimmer 2.5s infinite ease-in-out, fadeInDown 1s ease-out, pulseGlow 3s infinite;
+  text-shadow: 0 0 10px rgba(255, 200, 150, 0.5);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1;
+}
+
+/* Glowing Pulse */
+@keyframes pulseGlow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(255, 200, 150, 0.5), 0 0 20px rgba(255, 170, 100, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255, 220, 170, 0.7), 0 0 40px rgba(255, 180, 120, 0.6);
+  }
+}
+
+/* Shimmer */
+@keyframes shimmer {
+  0% {
+    background-position: -500% center;
+  }
+  100% {
+    background-position: 500% center;
+  }
+}
+
+/* Fade-in Drop */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Underline */
+.section-heading::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #ff9a8b, #fbc687);
+  margin: 10px auto 0;
+  border-radius: 10px;
+  animation: fadeInBar 1.5s ease-out;
+}
+
+@keyframes fadeInBar {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 60px;
+    opacity: 1;
+  }
+}
+
+/* Sparkles on hover */
+.section-heading:hover::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(255,255,255,0.4) 1%, transparent 40%);
+  animation: sparkle 2s infinite ease-in-out;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    transform: translateX(-20%) translateY(-20%) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateX(20%) translateY(20%) scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+
+#particles-js {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  background: transparent;
+}
+
+
+.line::after {
+  content: '_';
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+
+.cool-nav {
+  list-style: none;
+  display: flex;
+  gap: 2.5rem;
+  padding: 0;
+  margin: 1rem 0;
+  justify-content: center;
+  font-weight: 900;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  opacity: 0;
+  animation: navEntrance 1s ease forwards;
+  animation-delay: 0.5s;
+}
+
+
+/* navbar effects */
+.cool-nav li a {
+  position: relative;
+  text-decoration: none;
+  color: #fff5e6;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+  padding-bottom: 4px;
+  animation: glowPulse 4s ease-in-out infinite;
+  animation-delay: calc(0.6s + var(--i) * 0.2s);
+}
+
+/* Underline effect on hover */
+.cool-nav li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  background: linear-gradient(90deg, #ff0080, #ff6a00);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+/* Hover/focus */
+.cool-nav li a:hover,
+.cool-nav li a:focus {
+  color: #ff6a00;
+  text-shadow:
+    0 0 8px #ff0080,
+    0 0 15px #ff6a00;
+  animation: none; /* stop pulse on hover for clarity */
+}
+
+.cool-nav li a:hover::after,
+.cool-nav li a:focus::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Entrance animation */
+@keyframes navEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Glow pulse animation */
+@keyframes glowPulse {
+  0%, 100% {
+    text-shadow:
+      0 0 2px #190dc1,
+      0 0 6px #b1aebc,
+      0 0 12px #e06711,
+      0 0 18px #ff0080,
+      0 0 24px #ff0080;
+  }
+  50% {
+    text-shadow:
+      0 0 6px #ff6a00,
+      0 0 18px #ff6a00,
+      0 0 30px #ff0080,
+      0 0 36px #ff0080,
+      0 0 42px #ff0080;
+  }
 }
