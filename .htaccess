@@ -10,6 +10,7 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Allow all bots including Googlebot
 SetEnvIfNoCase User-Agent "Googlebot" allowbot
+SetEnvIfNoCase User-Agent "Googlebot smartphone" allowbot
 SetEnvIfNoCase User-Agent "bingbot" allowbot
 SetEnvIfNoCase User-Agent "Slurp" allowbot
 Order Allow,Deny
