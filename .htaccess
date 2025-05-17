@@ -4,18 +4,9 @@
 RewriteEngine On
 RewriteBase /
 
-# Force HTTPS (optional but recommended)
+# Force HTTPS
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-# Allow all bots including Googlebot
-SetEnvIfNoCase User-Agent "Googlebot" allowbot
-SetEnvIfNoCase User-Agent "Googlebot smartphone" allowbot
-SetEnvIfNoCase User-Agent "bingbot" allowbot
-SetEnvIfNoCase User-Agent "Slurp" allowbot
-Order Allow,Deny
-Allow from env=allowbot
-Allow from all
 </IfModule>
 
 # END .htaccess
