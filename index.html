@@ -154,11 +154,11 @@ const lines = [
 
       currentChar++;
       if (currentChar < line.length) {
-        setTimeout(typeLine, 10);
+        setTimeout(typeLine, 5);
       } else {
         currentChar = 0;
         currentLine++;
-        setTimeout(typeLine, 20);
+        setTimeout(typeLine, 10);
       }
     } else {
       speakWelcome();
