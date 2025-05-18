@@ -1,6 +1,6 @@
 # Allow all search engines and web crawlers
 User-agent: *
-Allow:
+Allow: /
 # Provide sitemap for indexing all pages
 Sitemap: https://sarshijkarn.com.np/sitemap.xml
 
