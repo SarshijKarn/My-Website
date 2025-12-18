@@ -511,6 +511,11 @@
              box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
+        /* Hero Section Padding Fix */
+        #home {
+             padding-top: 120px; /* Ensure content starts below navbar */
+        }
+
         /* Navbar */
         .navbar {
             position: fixed;
