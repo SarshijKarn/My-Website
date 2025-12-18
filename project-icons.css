@@ -1,0 +1,1004 @@
+/* ========================================
+   CUSTOM PROJECT ICONS STYLES
+   ======================================== */
+
+/* Base Container */
+.project-icon-container {
+    height: 192px;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(0, 206, 209, 0.1));
+    transition: all 0.3s ease;
+}
+
+.project-icon-container:hover {
+    transform: scale(1.02);
+}
+
+/* ========================================
+   PROJECT 1: EMOTION DETECTION
+   ======================================== */
+.emotion-detection {
+    background: linear-gradient(135deg, #8A2BE2 0%, #00CED1 100%);
+}
+
+.emotion-face {
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+.face-outline {
+    width: 100%;
+    height: 100%;
+    border: 4px solid #fff;
+    border-radius: 50%;
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    animation: faceGlow 2s ease-in-out infinite;
+}
+
+@keyframes faceGlow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
+    }
+}
+
+.eye {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 50%;
+    top: 35%;
+    animation: blink 3s infinite;
+}
+
+.eye-left {
+    left: 30%;
+}
+
+.eye-right {
+    right: 30%;
+}
+
+@keyframes blink {
+
+    0%,
+    48%,
+    52%,
+    100% {
+        transform: scaleY(1);
+    }
+
+    50% {
+        transform: scaleY(0.1);
+    }
+}
+
+.mouth {
+    position: absolute;
+    width: 50px;
+    height: 25px;
+    border: 3px solid #fff;
+    border-top: none;
+    border-radius: 0 0 50px 50px;
+    bottom: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: smile 4s ease-in-out infinite;
+}
+
+@keyframes smile {
+
+    0%,
+    100% {
+        border-radius: 0 0 50px 50px;
+        height: 25px;
+    }
+
+    50% {
+        border-radius: 50px 50px 0 0;
+        height: 15px;
+        border-top: 3px solid #fff;
+        border-bottom: none;
+    }
+}
+
+.scan-line {
+    position: absolute;
+    width: 140%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #FFD600, transparent);
+    top: 0;
+    left: -20%;
+    animation: scan 3s linear infinite;
+    box-shadow: 0 0 10px #FFD600;
+}
+
+@keyframes scan {
+    0% {
+        top: 0;
+    }
+
+    100% {
+        top: 100%;
+    }
+}
+
+/* ========================================
+   PROJECT 2: GESTURE CALCULATOR
+   ======================================== */
+.gesture-calculator {
+    background: linear-gradient(135deg, #00CED1 0%, #8A2BE2 100%);
+}
+
+.hand-gesture {
+    position: relative;
+    width: 80px;
+    height: 100px;
+}
+
+.palm {
+    position: absolute;
+    width: 60px;
+    height: 70px;
+    background: #fff;
+    border-radius: 50% 50% 40% 40%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.finger {
+    position: absolute;
+    width: 12px;
+    background: #fff;
+    border-radius: 8px 8px 0 0;
+    bottom: 60px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    animation: fingerWave 2s ease-in-out infinite;
+}
+
+.finger-1 {
+    height: 35px;
+    left: 8px;
+    animation-delay: 0s;
+}
+
+.finger-2 {
+    height: 40px;
+    left: 22px;
+    animation-delay: 0.1s;
+}
+
+.finger-3 {
+    height: 38px;
+    left: 36px;
+    animation-delay: 0.2s;
+}
+
+.finger-4 {
+    height: 32px;
+    left: 50px;
+    animation-delay: 0.3s;
+}
+
+.finger-5 {
+    height: 25px;
+    left: 2px;
+    bottom: 40px;
+    animation-delay: 0.4s;
+}
+
+@keyframes fingerWave {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(-10deg);
+    }
+}
+
+.gesture-wave {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 3px solid rgba(255, 214, 0, 0.6);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: waveExpand 2s ease-out infinite;
+}
+
+@keyframes waveExpand {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}
+
+.calculator-display {
+    position: absolute;
+    bottom: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #00ff00;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    animation: displayPulse 2s ease-in-out infinite;
+}
+
+@keyframes displayPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 4px 15px rgba(0, 255, 0, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 4px 25px rgba(0, 255, 0, 0.6);
+    }
+}
+
+/* ========================================
+   PROJECT 3: YOUTUBE UNSUBSCRIBER
+   ======================================== */
+.youtube-unsubscriber {
+    background: linear-gradient(135deg, #8A2BE2 0%, #FF6F61 100%);
+}
+
+.youtube-icon {
+    position: relative;
+    width: 120px;
+    height: 85px;
+    background: #FF0000;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4);
+    animation: ytPulse 2s ease-in-out infinite;
+}
+
+@keyframes ytPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.yt-play {
+    width: 0;
+    height: 0;
+    border-left: 30px solid #fff;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    margin-left: 8px;
+}
+
+.unsub-slash {
+    position: absolute;
+    width: 140px;
+    height: 6px;
+    background: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    animation: slashGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes slashGlow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    }
+
+    50% {
+        box-shadow: 0 0 30px rgba(255, 255, 255, 1);
+    }
+}
+
+.channel-count {
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: #FF0000;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    animation: countDown 2s ease-in-out infinite;
+}
+
+@keyframes countDown {
+
+    0%,
+    100% {
+        transform: translateX(-50%) scale(1);
+    }
+
+    50% {
+        transform: translateX(-50%) scale(1.1);
+    }
+}
+
+/* ========================================
+   PROJECT 5: YOUTUBE PLAYLIST DOWNLOADER
+   ======================================== */
+.youtube-downloader {
+    background: linear-gradient(135deg, #FF0000 0%, #8A2BE2 100%);
+}
+
+.youtube-playlist {
+    position: relative;
+    width: 140px;
+    height: 120px;
+}
+
+.yt-logo {
+    width: 80px;
+    height: 55px;
+    background: #FF0000;
+    border-radius: 12px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.5);
+}
+
+.yt-logo::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 20px solid #fff;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    top: 50%;
+    left: 50%;
+    transform: translate(-40%, -50%);
+}
+
+.playlist-items {
+    position: absolute;
+    top: 65px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.playlist-item {
+    width: 100px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 4px;
+    position: relative;
+    animation: itemSlide 3s ease-in-out infinite;
+}
+
+.playlist-item:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.playlist-item:nth-child(2) {
+    animation-delay: 0.3s;
+    width: 90px;
+}
+
+.playlist-item:nth-child(3) {
+    animation-delay: 0.6s;
+    width: 80px;
+}
+
+@keyframes itemSlide {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: translateX(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateX(5px);
+    }
+}
+
+.download-arrow {
+    position: absolute;
+    bottom: -10px;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background: #00ff00;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #000;
+    box-shadow: 0 4px 15px rgba(0, 255, 0, 0.6);
+    animation: downloadBounce 2s ease-in-out infinite;
+}
+
+@keyframes downloadBounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* ========================================
+   PROJECT 4: SMART VAULT
+   ======================================== */
+.smart-vault {
+    background: linear-gradient(135deg, #8A2BE2 0%, #FF6F61 100%);
+}
+
+.vault-safe {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(145deg, #2a2a3e, #1a1a2e);
+    border-radius: 12px;
+    border: 4px solid #3a3a4e;
+    box-shadow:
+        inset 0 0 20px rgba(0, 0, 0, 0.5),
+        0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.vault-door {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(145deg, #4a4a5e, #2a2a3e);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid #5a5a6e;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.6);
+}
+
+.vault-handle {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(145deg, #8A2BE2, #6A1BC2);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid #9A3BF2;
+    animation: handleRotate 4s linear infinite;
+}
+
+@keyframes handleRotate {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.vault-handle::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 20px;
+    background: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 4px;
+}
+
+.vault-lock {
+    position: absolute;
+    width: 20px;
+    height: 25px;
+    background: #FFD600;
+    border-radius: 5px 5px 0 0;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px rgba(255, 214, 0, 0.6);
+}
+
+.vault-lock::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 3px solid #FFD600;
+    border-radius: 50%;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-bottom: none;
+}
+
+.lock-indicator {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    top: 10px;
+    right: 10px;
+    animation: lockBlink 2s ease-in-out infinite;
+}
+
+.lock-indicator.locked {
+    background: #FF6F61;
+    box-shadow: 0 0 10px #FF6F61;
+}
+
+@keyframes lockBlink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
+
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================== */
+@media (max-width: 768px) {
+    .project-icon-container {
+        height: 110px;
+    }
+
+    .emotion-face {
+        width: 100px;
+        height: 100px;
+        transform: scale(0.7);
+    }
+
+    .hand-gesture {
+        width: 70px;
+        height: 90px;
+        transform: scale(0.7);
+    }
+
+    .youtube-icon {
+        width: 100px;
+        height: 70px;
+        transform: scale(0.7);
+    }
+
+    .youtube-playlist {
+        width: 120px;
+        height: 100px;
+        transform: scale(0.7);
+    }
+
+    .vault-safe {
+        width: 100px;
+        height: 100px;
+        transform: scale(0.7);
+    }
+
+
+
+    .reddit-icon {
+        transform: scale(0.7);
+    }
+
+    .qr-frame {
+        transform: scale(0.7);
+    }
+
+    .calculator-display {
+        font-size: 14px;
+        padding: 4px 8px;
+        bottom: 5px;
+    }
+}
+
+/* ========================================
+   PROJECT 7: REDDIT DATA SCRAPER
+   ======================================== */
+.reddit-scraper {
+    background: linear-gradient(135deg, #FF4500 0%, #FF8700 100%);
+}
+
+.reddit-icon {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.reddit-head {
+    position: absolute;
+    width: 80px;
+    height: 50px;
+    background: #fff;
+    border-radius: 25px;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.reddit-eye {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #FF4500;
+    border-radius: 50%;
+    top: 18px;
+    animation: blink 4s infinite;
+}
+
+.reddit-eye.left {
+    left: 20px;
+}
+
+.reddit-eye.right {
+    right: 20px;
+}
+
+.reddit-mouth {
+    position: absolute;
+    width: 30px;
+    height: 15px;
+    border-bottom: 3px solid #000;
+    border-radius: 50%;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.reddit-antenna {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%) rotate(20deg);
+    width: 4px;
+    height: 25px;
+    background: #fff;
+    transform-origin: bottom center;
+    animation: antennaWiggle 3s ease-in-out infinite;
+}
+
+.reddit-antenna::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes antennaWiggle {
+
+    0%,
+    100% {
+        transform: translateX(-50%) rotate(20deg);
+    }
+
+    50% {
+        transform: translateX(-50%) rotate(-20deg);
+    }
+}
+
+.data-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.data-bit {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 2px;
+    animation: dataFloat 3s linear infinite;
+}
+
+.data-bit:nth-child(1) {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.data-bit:nth-child(2) {
+    top: 40%;
+    right: 10%;
+    animation-delay: 1s;
+}
+
+.data-bit:nth-child(3) {
+    top: 10%;
+    right: 30%;
+    animation-delay: 2s;
+}
+
+@keyframes dataFloat {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-40px) scale(0);
+        opacity: 0;
+    }
+}
+
+/* ========================================
+   PROJECT 8: HYPER QR UTILITY
+   ======================================== */
+.hyper-qr {
+    background: linear-gradient(135deg, #000000 0%, #434343 100%);
+}
+
+.qr-frame {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 5px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.qr-pattern {
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(45deg, #000 25%, transparent 25%),
+        linear-gradient(-45deg, #000 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #000 75%),
+        linear-gradient(-45deg, transparent 75%, #000 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    opacity: 0.8;
+}
+
+.qr-corner {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border: 4px solid #000;
+    background: transparent;
+}
+
+.qr-corner.tl {
+    top: 5px;
+    left: 5px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.qr-corner.tr {
+    top: 5px;
+    right: 5px;
+    border-left: none;
+    border-bottom: none;
+}
+
+.qr-corner.bl {
+    bottom: 5px;
+    left: 5px;
+    border-right: none;
+    border-top: none;
+}
+
+.qr-scan-line {
+    position: absolute;
+    width: 110%;
+    height: 2px;
+    background: #00ff00;
+    box-shadow: 0 0 10px #00ff00;
+    left: -5%;
+    top: 0;
+    animation: qrScan 2s linear infinite;
+}
+
+@keyframes qrScan {
+    0% {
+        top: 0;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        top: 100%;
+        opacity: 0;
+    }
+}
+
+.wifi-waves {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 40px;
+    height: 40px;
+}
+
+.wifi-wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border: 3px solid transparent;
+    border-top-color: #00ff00;
+    border-radius: 50%;
+    animation: wifiPulse 2s infinite;
+}
+
+.wifi-wave:nth-child(1) {
+    width: 20px;
+    height: 20px;
+    animation-delay: 0s;
+}
+
+.wifi-wave:nth-child(2) {
+    width: 30px;
+    height: 30px;
+    animation-delay: 0.3s;
+}
+
+.wifi-wave:nth-child(3) {
+    width: 40px;
+    height: 40px;
+    animation-delay: 0.6s;
+}
+
+@keyframes wifiPulse {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.2);
+    }
+}
+
+/* ========================================
+   PROJECT: MEDASSIST
+   ======================================== */
+.med-assist {
+    background: linear-gradient(135deg, #00C853 0%, #B2FF59 100%);
+}
+
+.medical-cross {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(0, 200, 83, 0.4);
+    animation: pulseHeal 3s ease-in-out infinite;
+}
+
+.cross-horizontal {
+    position: absolute;
+    width: 60px;
+    height: 18px;
+    background: #F44336;
+    border-radius: 4px;
+}
+
+.cross-vertical {
+    position: absolute;
+    width: 18px;
+    height: 60px;
+    background: #F44336;
+    border-radius: 4px;
+}
+
+.heart-beat {
+    position: absolute;
+    width: 120%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.5);
+    top: 50%;
+    left: -10%;
+    overflow: hidden;
+}
+
+.heart-beat::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, #fff, transparent);
+    animation: heartLine 2s linear infinite;
+}
+
+@keyframes pulseHeal {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(0, 200, 83, 0.4);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(0, 200, 83, 0.7);
+        transform: scale(1.05);
+    }
+}
+
+@keyframes heartLine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
