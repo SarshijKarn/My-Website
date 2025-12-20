@@ -290,6 +290,26 @@ document.querySelectorAll(".card-3d").forEach((card) => {
 
 // Initialize everything when DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
+  // ⚡ WAKE UP CALL (Mitigate Render Cold Starts) & UPDATE UI
+  const statusEl = document.getElementById('serverStatus');
+  fetch('http://localhost:3000/api/wake-up')
+    .then(res => {
+        if(res.ok) {
+            console.log('Server Status: Online');
+            if(statusEl) {
+                statusEl.classList.add('online');
+                statusEl.querySelector('.status-text').textContent = "System Online";
+            }
+        }
+    })
+    .catch(err => {
+        console.log('Server waking up...');
+        if(statusEl) {
+             statusEl.classList.add('offline');
+             statusEl.querySelector('.status-text').textContent = "Server Offline";
+        }
+    });
+
   // Create initial particles - reduced count for better performance
   for (let i = 0; i < 5; i++) {
     setTimeout(createParticle, i * 200);

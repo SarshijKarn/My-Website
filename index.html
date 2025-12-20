@@ -1,930 +1,1240 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sarshij Karn</title>
     <link rel="canonical" href="https://sarshijkarn.com.np/" />
-    <meta name="description"
-        content="Welcome to the portfolio of Sarshij Karn — a passionate Electronics, Communication & Information Engineering student. Explore my journey, tech projects, personal interests, and achievements in innovation, trading, and creativity." />
-    <meta name="keywords"
-        content="Sarshij Karn, Sarshij, sarshij, sarshij karn, Electronics Engineer, Stock Market, Investor, Content Creator, Trader, Nepal, Website, Engineering, portfolio, engineering student, projects, creativity, notes, engineering notes, technology, templates," />
+    <meta
+      name="description"
+      content="Welcome to the portfolio of Sarshij Karn — a passionate Electronics, Communication & Information Engineering student. Explore my journey, tech projects, personal interests, and achievements in innovation, trading, and creativity."
+    />
+    <meta
+      name="keywords"
+      content="Sarshij Karn, Sarshij, sarshij, sarshij karn, Electronics Engineer, Stock Market, Investor, Content Creator, Trader, Nepal, Website, Engineering, portfolio, engineering student, projects, creativity, notes, engineering notes, technology, templates,"
+    />
     <meta name="author" content="Sarshij Karn" />
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="styles.css">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" href="styles.css" />
     <!-- Standard favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <!-- PNG versions for modern browsers -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
     <!-- Apple Touch Icon for iOS devices -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <!-- Web Manifest for PWA support -->
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="manifest" href="/site.webmanifest" />
     <script type="application/ld+json">
-   {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Sarshij Karn",
-      "url": "https://sarshijkarn.com.np",
-      "sameAs": [
-        "https://www.linkedin.com/in/sarshij-karn-1a7766236/",
-        "https://facebook.com/sarshij.karn.3",
-        "https://x.com/sarshijkarn",
-        "https://www.instagram.com/sarshijkarn",
-        "https://github.com/SarshijKarn",
-        "https://youtube.com/@sarshijkarn"
-      ]
-   }
-</script>
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Sarshij Karn",
+        "url": "https://sarshijkarn.com.np",
+        "sameAs": [
+          "https://www.linkedin.com/in/sarshij-karn-1a7766236/",
+          "https://facebook.com/sarshij.karn.3",
+          "https://x.com/sarshijkarn",
+          "https://www.instagram.com/sarshijkarn",
+          "https://github.com/SarshijKarn",
+          "https://youtube.com/@sarshijkarn"
+        ]
+      }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Fira+Code:wght@300;400;500&family=Poppins:wght@500;600&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=1.1">
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Fira+Code:wght@300;400;500&family=Poppins:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css?v=1.1" />
+    <link rel="stylesheet" href="server-status.css" />
 
-    <link rel="stylesheet" href="project-icons.css?v=1.1">
+    <link rel="stylesheet" href="project-icons.css?v=1.1" />
     <!-- tsParticles -->
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.0/tsparticles.bundle.min.js"></script>
-</head>
+  </head>
 
-<body class="dark">
+  <body class="dark">
     <!-- Particle Background -->
     <!-- Background Video - Galaxy -->
     <video autoplay loop muted playsinline id="bg-video">
-        <source src="assets/galaxy.mp4" type="video/mp4">
+      <source src="assets/galaxy.mp4" type="video/mp4" />
     </video>
 
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
-        <div class="navbar-container">
-            <div class="navbar-content">
-                <!-- Logo/Name -->
-                <a href="#home" class="navbar-logo">
-                    <span class="logo-text">Sarshij</span>
-                    <span class="logo-dot">.</span>
-                </a>
+      <div class="navbar-container">
+        <div class="navbar-content">
+          <!-- Logo/Name -->
+          <a href="#home" class="navbar-logo">
+            <span class="logo-text">Sarshij</span>
+            <span class="logo-dot">.</span>
+          </a>
 
-                <!-- Theme Toggle - Right after logo -->
-                <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
-                    <div class="toggle-track">
-                        <i class="fas fa-sun sun-icon"></i>
-                        <i class="fas fa-moon moon-icon"></i>
-                    </div>
-                </button>
-
-                <!-- Desktop Navigation -->
-                <ul class="nav-links">
-                    <li><a href="#home" class="nav-link active" data-section="home">
-                            <span class="link-text">Home</span>
-                            <span class="link-indicator"></span>
-                        </a></li>
-                    <li><a href="#about" class="nav-link" data-section="about">
-                            <span class="link-text">About</span>
-                            <span class="link-indicator"></span>
-                        </a></li>
-                    <li><a href="#skills" class="nav-link" data-section="skills">
-                            <span class="link-text">Skills</span>
-                            <span class="link-indicator"></span>
-                        </a></li>
-                    <li><a href="#projects" class="nav-link" data-section="projects">
-                            <span class="link-text">Projects</span>
-                            <span class="link-indicator"></span>
-                        </a></li>
-                    <li><a href="#education" class="nav-link" data-section="education">
-                            <span class="link-text">Education</span>
-                            <span class="link-indicator"></span>
-                        </a></li>
-                    <li><a href="#contact" class="nav-link" data-section="contact">
-                            <span class="link-text">Contact</span>
-                            <span class="link-indicator"></span>
-                        </a></li>
-                </ul>
-
-                <!-- Mobile Menu Button -->
-                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                </button>
+          <!-- Theme Toggle - Right after logo -->
+          <button
+            id="themeToggle"
+            class="theme-toggle"
+            aria-label="Toggle theme"
+          >
+            <div class="toggle-track">
+              <i class="fas fa-sun sun-icon"></i>
+              <i class="fas fa-moon moon-icon"></i>
             </div>
-        </div>
+          </button>
 
-        <!-- Mobile Menu Overlay -->
-        <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+          <!-- Desktop Navigation -->
+          <ul class="nav-links">
+            <li>
+              <a href="#home" class="nav-link active" data-section="home">
+                <span class="link-text">Home</span>
+                <span class="link-indicator"></span>
+              </a>
+            </li>
+            <li>
+              <a href="#about" class="nav-link" data-section="about">
+                <span class="link-text">About</span>
+                <span class="link-indicator"></span>
+              </a>
+            </li>
+            <li>
+              <a href="#skills" class="nav-link" data-section="skills">
+                <span class="link-text">Skills</span>
+                <span class="link-indicator"></span>
+              </a>
+            </li>
+            <li>
+              <a href="#projects" class="nav-link" data-section="projects">
+                <span class="link-text">Projects</span>
+                <span class="link-indicator"></span>
+              </a>
+            </li>
+            <li>
+              <a href="#education" class="nav-link" data-section="education">
+                <span class="link-text">Education</span>
+                <span class="link-indicator"></span>
+              </a>
+            </li>
+            <li>
+              <a href="#contact" class="nav-link" data-section="contact">
+                <span class="link-text">Contact</span>
+                <span class="link-indicator"></span>
+              </a>
+            </li>
+          </ul>
 
-        <!-- Mobile Menu -->
-        <div class="mobile-menu" id="mobileMenu">
-            <div class="mobile-menu-header">
-                <span class="mobile-menu-title">Menu</span>
-                <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <ul class="mobile-nav-links">
-                <li><a href="#home" class="mobile-link" data-section="home">
-                        <i class="fas fa-home"></i>
-                        <span>Home</span>
-                    </a></li>
-                <li><a href="#about" class="mobile-link" data-section="about">
-                        <i class="fas fa-user"></i>
-                        <span>About</span>
-                    </a></li>
-                <li><a href="#skills" class="mobile-link" data-section="skills">
-                        <i class="fas fa-code"></i>
-                        <span>Skills</span>
-                    </a></li>
-                <li><a href="#projects" class="mobile-link" data-section="projects">
-                        <i class="fas fa-folder"></i>
-                        <span>Projects</span>
-                    </a></li>
-                <li><a href="#education" class="mobile-link" data-section="education">
-                        <i class="fas fa-graduation-cap"></i>
-                        <span>Education</span>
-                    </a></li>
-                <li><a href="#contact" class="mobile-link" data-section="contact">
-                        <i class="fas fa-envelope"></i>
-                        <span>Contact</span>
-                    </a></li>
-            </ul>
+          <!-- Mobile Menu Button -->
+          <button
+            class="mobile-menu-btn"
+            id="mobileMenuBtn"
+            aria-label="Toggle menu"
+          >
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
         </div>
+      </div>
+
+      <!-- Mobile Menu Overlay -->
+      <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+      <!-- Mobile Menu -->
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+          <span class="mobile-menu-title">Menu</span>
+          <button
+            class="mobile-menu-close"
+            id="mobileMenuClose"
+            aria-label="Close menu"
+          >
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <ul class="mobile-nav-links">
+          <li>
+            <a href="#home" class="mobile-link" data-section="home">
+              <i class="fas fa-home"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="#about" class="mobile-link" data-section="about">
+              <i class="fas fa-user"></i>
+              <span>About</span>
+            </a>
+          </li>
+          <li>
+            <a href="#skills" class="mobile-link" data-section="skills">
+              <i class="fas fa-code"></i>
+              <span>Skills</span>
+            </a>
+          </li>
+          <li>
+            <a href="#projects" class="mobile-link" data-section="projects">
+              <i class="fas fa-folder"></i>
+              <span>Projects</span>
+            </a>
+          </li>
+          <li>
+            <a href="#education" class="mobile-link" data-section="education">
+              <i class="fas fa-graduation-cap"></i>
+              <span>Education</span>
+            </a>
+          </li>
+          <li>
+            <a href="#contact" class="mobile-link" data-section="contact">
+              <i class="fas fa-envelope"></i>
+              <span>Contact</span>
+            </a>
+          </li>
+        </ul>
+      </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center relative">
-        <div class="text-center z-10">
-            <!-- Mobile Experience Notice -->
-            <div id="mobileNotice" class="mobile-notice">
-                <div class="mobile-notice-content">
-                    <p class="mobile-notice-text">
-                        <strong>For the best experience</strong>, Please view this portfolio on large screens.🙏
-                        (I've a Life)
-                    </p>
-                    <button id="closeMobileNotice" class="mobile-notice-close" aria-label="Close notice">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Hero Profile Video -->
-            <div class="hero-photo-container mb-8 relative">
-                <!-- Blackhole Effect (Nested for perfect alignment) -->
-                <div class="blackhole-container">
-                    <video autoplay loop muted playsinline class="blackhole-video">
-                        <source src="assets/blackhole.mp4" type="video/mp4">
-                    </video>
-                </div>
-
-                <div class="hero-photo-wrapper">
-                    <img src="assets/img/me.jpg" alt="Sarshij Karn" class="hero-photo">
-                    <div class="hero-photo-glow"></div>
-                    <div class="hero-photo-border"></div>
-                </div>
-            </div>
-
-            <div class="flex items-center justify-center gap-2 md:gap-4 mb-6 flex-wrap">
-                <h1 id="hero-name" class="glitch hero-title glow-special text-6xl md:text-8xl" data-text="SARSHIJ KARN">
-                    SARSHIJ KARN</h1>
-                <div class="flex items-center gap-2 md:gap-3">
-                    <i class="fas fa-check-circle text-5xl md:text-7xl"
-                        style="color: #1877F2; filter: drop-shadow(0 0 15px rgba(24, 119, 242, 0.6)); vertical-align: middle;"></i>
-                    <i id="pronounce-name"
-                        class="fas fa-volume-up text-3xl md:text-5xl cursor-pointer hover:text-purple-400 transition-colors"
-                        style="color: #ffffff; vertical-align: middle;" title="Click to hear pronunciation"></i>
-                </div>
-            </div>
-            <div class="text-xl md:text-2xl mb-8 neon-cyan">
-                <span class="inline-block typing-text">Engineering · Technologia · Cybersecurity · AI</span>
-            </div>
-            <!-- Social Links -->
-            <div class="flex justify-center space-x-8 mb-8">
-                <a href="https://github.com/SarshijKarn" target="_blank" aria-label="GitHub"
-                    class="text-gray-400 hover:text-purple-400 text-3xl transition-all duration-300 transform hover:scale-110 hover:drop-shadow-lg">
-                    <i class="fab fa-github"></i>
-                </a>
-
-                <a href="https://www.linkedin.com/in/sarshij-karn-1a7766236/" target="_blank" aria-label="LinkedIn"
-                    class="text-gray-400 hover:text-blue-400 text-3xl transition-all duration-300 transform hover:scale-110 hover:drop-shadow-lg">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-
-                <a href="https://x.com/sarshijkarn" target="_blank" aria-label="X / Twitter"
-                    class="text-gray-400 hover:text-blue-400 text-3xl transition-all duration-300 transform hover:scale-110 hover:drop-shadow-lg">
-                    <i class="fab fa-twitter"></i>
-                </a>
-
-                <a href="https://www.instagram.com/sarshijkarn" target="_blank" aria-label="Instagram"
-                    class="text-gray-400 hover:text-pink-400 text-3xl transition-all duration-300 transform hover:scale-110 hover:drop-shadow-lg">
-                    <i class="fab fa-instagram"></i>
-                </a>
-
-                <a href="https://youtube.com/@sarshijkarn" target="_blank" aria-label="YouTube"
-                    class="text-gray-400 hover:text-red-500 text-3xl transition-all duration-300 transform hover:scale-110 hover:drop-shadow-lg">
-                    <i class="fab fa-youtube"></i>
-                </a>
-
-                <a href="mailto:sarshijkarn333@gmail.com" aria-label="Email"
-                    class="text-gray-400 hover:text-green-400 text-3xl transition-all duration-300 transform hover:scale-110 hover:drop-shadow-lg">
-                    <i class="fas fa-envelope"></i>
-                </a>
-            </div>
-
-            <!-- Include Font Awesome -->
-            <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
-            <div class="flex flex-col items-center">
-                <a href="assets/Sarshij-Karn-Resume.pdf" download class="btn-neon">
-                    <i class="fas fa-file-download"></i> Download Resume
-                </a>
-
-                <a href="#about"
-                    class="inline-block bg-gradient-to-r from-purple-600 to-cyan-400 px-8 py-3 rounded-full text-white font-semibold hover:from-purple-700 hover:to-cyan-500 transition-all transform hover:scale-105 shadow-[0_0_15px_rgba(138,43,226,0.5)]">
-                    Explore My Journey
-                </a>
-            </div>
+    <section
+      id="home"
+      class="min-h-screen flex items-center justify-center relative"
+    >
+      <div class="text-center z-10">
+        <!-- Mobile Experience Notice -->
+        <div id="mobileNotice" class="mobile-notice">
+          <div class="mobile-notice-content">
+            <p class="mobile-notice-text">
+              <strong>For the best experience</strong>, Please view this
+              portfolio on large screens.🙏 (I've a Life)
+            </p>
+            <button
+              id="closeMobileNotice"
+              class="mobile-notice-close"
+              aria-label="Close notice"
+            >
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
         </div>
 
-        <!-- Scroll indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <i class="fas fa-chevron-down text-2xl neon-cyan"></i>
+        <!-- Hero Profile Video -->
+        <div class="hero-photo-container mb-8 relative">
+          <!-- Blackhole Effect (Nested for perfect alignment) -->
+          <div class="blackhole-container">
+            <video autoplay loop muted playsinline class="blackhole-video">
+              <source src="assets/blackhole.mp4" type="video/mp4" />
+            </video>
+          </div>
+
+          <div class="hero-photo-wrapper">
+            <img
+              src="assets/img/me.jpg"
+              alt="Sarshij Karn"
+              class="hero-photo"
+            />
+            <div class="hero-photo-glow"></div>
+            <div class="hero-photo-border"></div>
+          </div>
         </div>
+
+        <div
+          class="flex items-center justify-center gap-2 md:gap-4 mb-6 flex-wrap"
+        >
+          <h1
+            id="hero-name"
+            class="glitch hero-title glow-special text-6xl md:text-8xl"
+            data-text="SARSHIJ KARN"
+          >
+            SARSHIJ KARN
+          </h1>
+          <div class="flex items-center gap-2 md:gap-3">
+            <i
+              class="fas fa-check-circle text-5xl md:text-7xl"
+              style="
+                color: #1877f2;
+                filter: drop-shadow(0 0 15px rgba(24, 119, 242, 0.6));
+                vertical-align: middle;
+              "
+            ></i>
+            <i
+              id="pronounce-name"
+              class="fas fa-volume-up text-3xl md:text-5xl cursor-pointer hover:text-purple-400 transition-colors"
+              style="color: #ffffff; vertical-align: middle"
+              title="Click to hear pronunciation"
+            ></i>
+          </div>
+        </div>
+        <div class="text-xl md:text-2xl mb-8 neon-cyan">
+          <span class="inline-block typing-text"
+            >Engineering · Technologia · Cybersecurity · AI</span
+          >
+        </div>
+        <!-- Social Links -->
+        <div class="flex justify-center space-x-8 mb-8">
+          <a
+            href="https://github.com/SarshijKarn"
+            target="_blank"
+            aria-label="GitHub"
+            class="text-gray-400 hover:text-purple-400 text-3xl transition-all duration-300 transform hover:scale-110 hover:drop-shadow-lg"
+          >
+            <i class="fab fa-github"></i>
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/sarshij-karn-1a7766236/"
+            target="_blank"
+            aria-label="LinkedIn"
+            class="text-gray-400 hover:text-blue-400 text-3xl transition-all duration-300 transform hover:scale-110 hover:drop-shadow-lg"
+          >
+            <i class="fab fa-linkedin"></i>
+          </a>
+
+          <a
+            href="https://x.com/sarshijkarn"
+            target="_blank"
+            aria-label="X / Twitter"
+            class="text-gray-400 hover:text-blue-400 text-3xl transition-all duration-300 transform hover:scale-110 hover:drop-shadow-lg"
+          >
+            <i class="fab fa-twitter"></i>
+          </a>
+
+          <a
+            href="https://www.instagram.com/sarshijkarn"
+            target="_blank"
+            aria-label="Instagram"
+            class="text-gray-400 hover:text-pink-400 text-3xl transition-all duration-300 transform hover:scale-110 hover:drop-shadow-lg"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+
+          <a
+            href="https://youtube.com/@sarshijkarn"
+            target="_blank"
+            aria-label="YouTube"
+            class="text-gray-400 hover:text-red-500 text-3xl transition-all duration-300 transform hover:scale-110 hover:drop-shadow-lg"
+          >
+            <i class="fab fa-youtube"></i>
+          </a>
+
+          <a
+            href="mailto:sarshijkarn333@gmail.com"
+            aria-label="Email"
+            class="text-gray-400 hover:text-green-400 text-3xl transition-all duration-300 transform hover:scale-110 hover:drop-shadow-lg"
+          >
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+
+        <!-- Include Font Awesome -->
+        <script
+          src="https://kit.fontawesome.com/a076d05399.js"
+          crossorigin="anonymous"
+        ></script>
+
+        <div class="flex flex-col items-center">
+          <a href="assets/Sarshij-Karn-Resume.pdf" download class="btn-neon">
+            <i class="fas fa-file-download"></i> Download Resume
+          </a>
+
+          <a
+            href="#about"
+            class="inline-block bg-gradient-to-r from-purple-600 to-cyan-400 px-8 py-3 rounded-full text-white font-semibold hover:from-purple-700 hover:to-cyan-500 transition-all transform hover:scale-105 shadow-[0_0_15px_rgba(138,43,226,0.5)]"
+          >
+            Explore My Journey
+          </a>
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div
+        class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
+      >
+        <i class="fas fa-chevron-down text-2xl neon-cyan"></i>
+      </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="py-12 md:py-20 px-4 md:px-6">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl heading-animate font-medium text-center mb-16 neon-yellow"><span
-                    class="heading-highlight">About Me</span></h2>
+      <div class="max-w-6xl mx-auto">
+        <h2
+          class="text-4xl heading-animate font-medium text-center mb-16 neon-yellow"
+        >
+          <span class="heading-highlight">About Me</span>
+        </h2>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <!-- Left: Enhanced Photo with Decorative Elements -->
-                <div class="about-image-section">
-                    <div class="about-photo-enhanced">
-                        <div class="about-photo-wrapper-new">
-                            <video autoplay loop muted playsinline class="about-profile-video" poster="assets/img/me.jpg">
-                                <source src="assets/hero-video.mp4" type="video/mp4">
-                            </video>
-                            <div class="about-photo-ring"></div>
-                            <div class="about-photo-ring-2"></div>
-                        </div>
-                        <!-- Floating Tech Icons -->
-                        <div class="floating-icon floating-icon-1">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <div class="floating-icon floating-icon-2">
-                            <i class="fas fa-microchip"></i>
-                        </div>
-                        <div class="floating-icon floating-icon-3">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <div class="floating-icon floating-icon-4">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right: Content -->
-                <div class="about-content-section">
-                    <div class="card rounded-xl p-8 about-card-enhanced">
-                        <div class="text-lg leading-relaxed mb-6">
-                            <p class="mb-6 about-text-gradient">
-                                Insightful and dedicated engineering student proficient in electronics,
-                                programming and fluent in AI tools and up-to-date with emerging technology
-                                trends.
-                            </p>
-                            <p class="about-text-gradient">
-                                Constantly work on improving my problem-solving, coding, and analytical skills
-                                while staying ahead of the curve by actively exploring AI tools and keeping up
-                                with emerging tech trends.
-                            </p>
-                        </div>
-
-                        <!-- Enhanced Stats Grid -->
-                        <div class="grid grid-cols-2 gap-4 mt-8">
-                            <div class="stat-card">
-                                <div class="stat-icon">
-                                    <i class="fas fa-graduation-cap"></i>
-                                </div>
-                                <div class="stat-value neon-purple">4.0</div>
-                                <div class="stat-label">Grade X GPA</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon">
-                                    <i class="fas fa-award"></i>
-                                </div>
-                                <div class="stat-value neon-cyan">3.53</div>
-                                <div class="stat-label">Grade XII GPA</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon">
-                                    <i class="fas fa-calendar-alt"></i>
-                                </div>
-                                <div class="stat-value neon-purple">2024</div>
-                                <div class="stat-label">Currently Student</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                                <div class="stat-value neon-cyan">Nepal</div>
-                                <div class="stat-label">Located in</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <!-- Left: Enhanced Photo with Decorative Elements -->
+          <div class="about-image-section">
+            <div class="about-photo-enhanced">
+              <div class="about-photo-wrapper-new">
+                <video
+                  autoplay
+                  loop
+                  muted
+                  playsinline
+                  class="about-profile-video"
+                  poster="assets/img/me.jpg"
+                >
+                  <source src="assets/hero-video.mp4" type="video/mp4" />
+                </video>
+                <div class="about-photo-ring"></div>
+                <div class="about-photo-ring-2"></div>
+              </div>
+              <!-- Floating Tech Icons -->
+              <div class="floating-icon floating-icon-1">
+                <i class="fas fa-code"></i>
+              </div>
+              <div class="floating-icon floating-icon-2">
+                <i class="fas fa-microchip"></i>
+              </div>
+              <div class="floating-icon floating-icon-3">
+                <i class="fas fa-brain"></i>
+              </div>
+              <div class="floating-icon floating-icon-4">
+                <i class="fas fa-shield-alt"></i>
+              </div>
             </div>
+          </div>
+
+          <!-- Right: Content -->
+          <div class="about-content-section">
+            <div class="card rounded-xl p-8 about-card-enhanced">
+              <div class="text-lg leading-relaxed mb-6">
+                <p class="mb-6 about-text-gradient">
+                  Insightful and dedicated engineering student proficient in
+                  electronics, programming and fluent in AI tools and up-to-date
+                  with emerging technology trends.
+                </p>
+                <p class="about-text-gradient">
+                  Constantly work on improving my problem-solving, coding, and
+                  analytical skills while staying ahead of the curve by actively
+                  exploring AI tools and keeping up with emerging tech trends.
+                </p>
+              </div>
+
+              <!-- Enhanced Stats Grid -->
+              <div class="grid grid-cols-2 gap-4 mt-8">
+                <div class="stat-card">
+                  <div class="stat-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                  </div>
+                  <div class="stat-value neon-purple">4.0</div>
+                  <div class="stat-label">Grade X GPA</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-icon">
+                    <i class="fas fa-award"></i>
+                  </div>
+                  <div class="stat-value neon-cyan">3.53</div>
+                  <div class="stat-label">Grade XII GPA</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                  </div>
+                  <div class="stat-value neon-purple">2024</div>
+                  <div class="stat-label">Currently Student</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div class="stat-value neon-cyan">Nepal</div>
+                  <div class="stat-label">Located in</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Skills Section -->
     <section id="skills" class="py-12 md:py-20 px-4 md:px-6">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl heading-animate font-medium text-center mb-12 neon-yellow"><span
-                    class="heading-highlight">Skills & Expertise</span></h2>
-            <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-                <!-- Programming -->
-                <div class="card rounded-xl p-6 text-center card-3d">
-                    <i class="fas fa-code text-4xl neon-purple mb-4"></i>
-                    <h3 class="text-xl font-semibold mb-3">Programming</h3>
-                    <div class="text-sm space-y-1">
-                        <div>C,</div>
-                        <div>C++,</div>
-                        <div>Python</div>
-                    </div>
-                </div>
-
-                <!-- AI & Machine Learning -->
-                <div class="card rounded-xl p-6 text-center card-3d">
-                    <i class="fas fa-brain text-4xl neon-cyan mb-4"></i>
-                    <h3 class="text-xl font-semibold mb-3">AI & ML</h3>
-                    <div class="text-sm space-y-1">
-                        <div>TensorFlow, Keras,</div>
-                        <div>OpenCV, MediaPipe,</div>
-                        <div>Prompt Engineering</div>
-                    </div>
-                </div>
-
-                <!-- Electronics -->
-                <div class="card rounded-xl p-6 text-center card-3d">
-                    <i class="fas fa-microchip text-4xl neon-purple mb-4"></i>
-                    <h3 class="text-xl font-semibold mb-3">Electronics</h3>
-                    <div class="text-sm space-y-1">
-                        <div>Arduino, Circuit Simulation,</div>
-                        <div>Signals & Systems,</div>
-                        <div>PCB Design</div>
-                    </div>
-                </div>
-
-                <!-- Cybersecurity -->
-                <div class="card rounded-xl p-6 text-center card-3d">
-                    <i class="fas fa-shield-alt text-4xl neon-cyan mb-4"></i>
-                    <h3 class="text-xl font-semibold mb-3">Cybersecurity</h3>
-                    <div class="text-sm space-y-1">
-                        <div>Linux Scripting,</div>
-                        <div>Learning Ethical Hacking,</div>
-                        <div>Terminal Operations</div>
-                    </div>
-                </div>
+      <div class="max-w-6xl mx-auto">
+        <h2
+          class="text-4xl heading-animate font-medium text-center mb-12 neon-yellow"
+        >
+          <span class="heading-highlight">Skills & Expertise</span>
+        </h2>
+        <div
+          class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+        >
+          <!-- Programming -->
+          <div class="card rounded-xl p-6 text-center card-3d">
+            <i class="fas fa-code text-4xl neon-purple mb-4"></i>
+            <h3 class="text-xl font-semibold mb-3">Programming</h3>
+            <div class="text-sm space-y-1">
+              <div>C,</div>
+              <div>C++,</div>
+              <div>Python</div>
             </div>
+          </div>
+
+          <!-- AI & Machine Learning -->
+          <div class="card rounded-xl p-6 text-center card-3d">
+            <i class="fas fa-brain text-4xl neon-cyan mb-4"></i>
+            <h3 class="text-xl font-semibold mb-3">AI & ML</h3>
+            <div class="text-sm space-y-1">
+              <div>TensorFlow, Keras,</div>
+              <div>OpenCV, MediaPipe,</div>
+              <div>Prompt Engineering</div>
+            </div>
+          </div>
+
+          <!-- Electronics -->
+          <div class="card rounded-xl p-6 text-center card-3d">
+            <i class="fas fa-microchip text-4xl neon-purple mb-4"></i>
+            <h3 class="text-xl font-semibold mb-3">Electronics</h3>
+            <div class="text-sm space-y-1">
+              <div>Arduino, Circuit Simulation,</div>
+              <div>Signals & Systems,</div>
+              <div>PCB Design</div>
+            </div>
+          </div>
+
+          <!-- Cybersecurity -->
+          <div class="card rounded-xl p-6 text-center card-3d">
+            <i class="fas fa-shield-alt text-4xl neon-cyan mb-4"></i>
+            <h3 class="text-xl font-semibold mb-3">Cybersecurity</h3>
+            <div class="text-sm space-y-1">
+              <div>Linux Scripting,</div>
+              <div>Learning Ethical Hacking,</div>
+              <div>Terminal Operations</div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Projects Section -->
     <section id="projects" class="py-12 md:py-20 px-4 md:px-6">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl heading-animate font-medium text-center mb-12 neon-yellow"><span
-                    class="heading-highlight">Featured Projects</span></h2>
-            <div class="grid grid-cols-2 gap-3 md:gap-8">
-
-                <!-- Project 1: MedAssist (New) -->
-                <div class="card rounded-xl p-3 md:p-6 h-full card-3d group">
-                    <div class="project-icon-container med-assist">
-                        <div class="medical-cross">
-                            <div class="cross-horizontal"></div>
-                            <div class="cross-vertical"></div>
-                            <div class="heart-beat"></div>
-                        </div>
-                    </div>
-                    <h3 class="text-sm md:text-xl font-semibold mb-3">MedAssist</h3>
-                    <p class="text-xs md:text-sm mb-4 line-clamp-3">A smart healthcare companion app that helps users manage their medications, appointments, and medical records efficiently with AI-powered features.</p>
-                    <div class="flex space-x-4">
-                        <a href="https://github.com/SarshijKarn"
-                            class="bg-purple-600 hover:bg-purple-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm">
-                            <i class="fab fa-github mr-1 md:mr-2"></i>GitHub
-                        </a>
-                        <a href="https://github.com/SarshijKarn/MedAssist" target="_blank"
-                            class="bg-cyan-600 hover:bg-cyan-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm">
-                            <i class="fas fa-external-link-alt mr-1 md:mr-2"></i>Demo
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 2: Reddit Data Scraper -->
-                <div class="card rounded-xl p-3 md:p-6 h-full card-3d group">
-                    <div class="project-icon-container reddit-scraper">
-                        <div class="reddit-icon">
-                            <div class="reddit-antenna"></div>
-                            <div class="reddit-head">
-                                <div class="reddit-eye left"></div>
-                                <div class="reddit-eye right"></div>
-                                <div class="reddit-mouth"></div>
-                            </div>
-                            <div class="data-particles">
-                                <div class="data-bit"></div>
-                                <div class="data-bit"></div>
-                                <div class="data-bit"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <h3 class="text-sm md:text-xl font-semibold mb-3">Reddit Data Scraper</h3>
-                    <p class="text-xs md:text-sm mb-4 line-clamp-3">A powerful Python tool to scrape posts and comments
-                        from a specific subreddit starting from a given year.</p>
-                    <div class="flex space-x-4">
-                        <a href="https://github.com/SarshijKarn"
-                            class="bg-purple-600 hover:bg-purple-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm">
-                            <i class="fab fa-github mr-1 md:mr-2"></i>GitHub
-                        </a>
-                        <a href="https://github.com/SarshijKarn/Reddit-Data-Scraper"
-                            class="bg-cyan-600 hover:bg-cyan-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm">
-                            <i class="fas fa-external-link-alt mr-1 md:mr-2"></i>Demo
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 3: HyperQR -->
-                <div class="card rounded-xl p-3 md:p-6 h-full card-3d group">
-                    <div class="project-icon-container hyper-qr">
-                        <div class="qr-frame">
-                            <div class="qr-pattern"></div>
-                            <div class="qr-corner tl"></div>
-                            <div class="qr-corner tr"></div>
-                            <div class="qr-corner bl"></div>
-                            <div class="qr-scan-line"></div>
-                            <div class="wifi-waves">
-                                <div class="wifi-wave"></div>
-                                <div class="wifi-wave"></div>
-                                <div class="wifi-wave"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <h3 class="text-sm md:text-xl font-semibold mb-3">HyperQR-All-in-One-QR-Code-Utility</h3>
-                    <p class="text-xs md:text-sm mb-4 line-clamp-3">A powerful, modern QR code scanner for Windows with
-                        WiFi auto-connect, batch scanning, and beautiful UI.</p>
-                    <div class="flex space-x-4">
-                        <a href="https://github.com/SarshijKarn"
-                            class="bg-purple-600 hover:bg-purple-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm">
-                            <i class="fab fa-github mr-1 md:mr-2"></i>GitHub
-                        </a>
-                        <a href="https://github.com/SarshijKarn/HyperQR-All-in-One-QR-Code-Utility"
-                            class="bg-cyan-600 hover:bg-cyan-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm">
-                            <i class="fas fa-external-link-alt mr-1 md:mr-2"></i>Demo
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 4: SmartVault -->
-                <div class="card rounded-xl p-3 md:p-6 h-full card-3d group">
-                    <div class="project-icon-container smart-vault">
-                        <div class="vault-safe">
-                            <div class="vault-door"></div>
-                            <div class="vault-handle"></div>
-                            <div class="vault-lock"></div>
-                            <div class="lock-indicator locked"></div>
-                        </div>
-                    </div>
-                    <h3 class="text-sm md:text-xl font-semibold mb-3">SmartVault- Text and Photo Notes App</h3>
-                    <p class="text-xs md:text-sm mb-4 line-clamp-3">Secure, privacy-first notes that support text and
-                        photos, with a local PIN-protected vault and optional AIpowered image enhancements via Google
-                        Gemini. Built with React, TypeScript, and Vite</p>
-                    <div class="flex space-x-4">
-                        <a href="https://github.com/SarshijKarn"
-                            class="bg-purple-600 hover:bg-purple-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm">
-                            <i class="fab fa-github mr-1 md:mr-2"></i>GitHub
-                        </a>
-                        <a href="https://github.com/SarshijKarn/Smart-Vault-Text-and-Photo-Notes-App"
-                            class="bg-cyan-600 hover:bg-cyan-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm">
-                            <i class="fas fa-external-link-alt mr-1 md:mr-2"></i>Demo
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 5: Emotion Detection -->
-                <div class="card rounded-xl p-3 md:p-6 h-full card-3d group">
-                    <div class="project-icon-container emotion-detection">
-                        <div class="emotion-face">
-                            <div class="face-outline"></div>
-                            <div class="eye eye-left"></div>
-                            <div class="eye eye-right"></div>
-                            <div class="mouth happy"></div>
-                            <div class="scan-line"></div>
-                        </div>
-                    </div>
-                    <h3 class="text-sm md:text-xl font-semibold mb-3">Emotion Detection Model</h3>
-                    <p class="text-xs md:text-sm mb-4 line-clamp-3">Python-based machine learning model using OpenCV and
-                        deep learning to detect human emotions from real-time facial expressions.It includes an avatar
-                        visualization and text-to-speech announcements whenever the detected emotion changes. It also
-                        logs the emotion in a file.</p>
-                    <div class="flex space-x-4">
-                        <a href="https://github.com/SarshijKarn"
-                            class="bg-purple-600 hover:bg-purple-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm">
-                            <i class="fab fa-github mr-1 md:mr-2"></i>GitHub
-                        </a>
-                        <a href="https://github.com/SarshijKarn/Emotion-Detection-Model" target="_blank"
-                            class="bg-cyan-600 hover:bg-cyan-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm">
-                            <i class="fas fa-external-link-alt mr-1 md:mr-2"></i>Demo
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 6: Gesture Calculator -->
-                <div class="card rounded-xl p-3 md:p-6 h-full card-3d group">
-                    <div class="project-icon-container gesture-calculator">
-                        <div class="hand-gesture">
-                            <div class="palm"></div>
-                            <div class="finger finger-1"></div>
-                            <div class="finger finger-2"></div>
-                            <div class="finger finger-3"></div>
-                            <div class="finger finger-4"></div>
-                            <div class="finger finger-5"></div>
-                            <div class="gesture-wave"></div>
-                        </div>
-                        <div class="calculator-display">1+1=2</div>
-                    </div>
-                    <h3 class="text-sm md:text-xl font-semibold mb-3">Gesture Based Calculator</h3>
-                    <p class="text-xs md:text-sm mb-4 line-clamp-3">Gesture-controlled calculator that performs
-                        arithmetic operations based on hand gestures with speech feedback and real-time overlay
-                        interface.</p>
-                    <div class="flex space-x-4">
-                        <a href="https://github.com/SarshijKarn"
-                            class="bg-purple-600 hover:bg-purple-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm">
-                            <i class="fab fa-github mr-1 md:mr-2"></i>GitHub
-                        </a>
-                        <a href="https://github.com/SarshijKarn/Gesture-Based-Calculator"
-                            class="bg-cyan-600 hover:bg-cyan-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm">
-                            <i class="fas fa-external-link-alt mr-1 md:mr-2"></i>Demo
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 7: YT Bulk Unsubscriber -->
-                <div class="card rounded-xl p-3 md:p-6 h-full card-3d group">
-                    <div class="project-icon-container youtube-unsubscriber">
-                        <div class="youtube-icon">
-                            <div class="yt-play"></div>
-                            <div class="unsub-slash"></div>
-                            <div class="channel-count">-999</div>
-                        </div>
-                    </div>
-                    <h3 class="text-sm md:text-xl font-semibold mb-3">YouTube Channels Bulk Unsubscriber</h3>
-                    <p class="text-xs md:text-sm mb-4 line-clamp-3">A simple desktop tool that allows you to
-                        bulk-unsubscribe from YouTube channels using your own Google account. Built with Python,
-                        Tkinter, YouTube API v3, and OAuth 2.0 authentication.</p>
-                    <div class="flex space-x-4">
-                        <a href="https://github.com/SarshijKarn"
-                            class="bg-purple-600 hover:bg-purple-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm">
-                            <i class="fab fa-github mr-1 md:mr-2"></i>GitHub
-                        </a>
-                        <a href="https://github.com/SarshijKarn/YouTube-Bulk-Unsubscriber-Python-Tkinter-GUI-"
-                            class="bg-cyan-600 hover:bg-cyan-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm">
-                            <i class="fas fa-external-link-alt mr-1 md:mr-2"></i>Demo
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 8: YT Playlist Downloader -->
-                <div class="card rounded-xl p-3 md:p-6 h-full card-3d group">
-                    <div class="project-icon-container youtube-downloader">
-                        <div class="youtube-playlist">
-                            <div class="yt-logo"></div>
-                            <div class="playlist-items">
-                                <div class="playlist-item"></div>
-                                <div class="playlist-item"></div>
-                                <div class="playlist-item"></div>
-                            </div>
-                            <div class="download-arrow">
-                                <i class="fas fa-download"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <h3 class="text-sm md:text-xl font-semibold mb-3">YouTube Playlist Downloader</h3>
-                    <p class="text-xs md:text-sm mb-4 line-clamp-3">A simple Python application to download YouTube
-                        playlists and videos with both CLI and GUI interfaces. Download entire YouTube playlists or
-                        single videos in multiple quality options with progress tracking.</p>
-                    <div class="flex space-x-4">
-                        <a href="https://github.com/SarshijKarn"
-                            class="bg-purple-600 hover:bg-purple-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm">
-                            <i class="fab fa-github mr-1 md:mr-2"></i>GitHub
-                        </a>
-                        <a href="https://github.com/SarshijKarn/Youtube-Playlist-Downloader"
-                            class="bg-cyan-600 hover:bg-cyan-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm">
-                            <i class="fas fa-external-link-alt mr-1 md:mr-2"></i>Demo
-                        </a>
-                    </div>
-                </div>
-
+      <div class="max-w-6xl mx-auto">
+        <h2
+          class="text-4xl heading-animate font-medium text-center mb-12 neon-yellow"
+        >
+          <span class="heading-highlight">Featured Projects</span>
+        </h2>
+        <div class="grid grid-cols-2 gap-3 md:gap-8">
+          <!-- Project 1: MedAssist (New) -->
+          <div class="card rounded-xl p-3 md:p-6 h-full card-3d group">
+            <div class="project-icon-container med-assist">
+              <div class="medical-cross">
+                <div class="cross-horizontal"></div>
+                <div class="cross-vertical"></div>
+                <div class="heart-beat"></div>
+              </div>
             </div>
+            <h3 class="text-sm md:text-xl font-semibold mb-3">MedAssist</h3>
+            <p class="text-xs md:text-sm mb-4 line-clamp-3">
+              A smart healthcare companion app that helps users manage their
+              medications, appointments, and medical records efficiently with
+              AI-powered features.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="https://github.com/SarshijKarn"
+                class="bg-purple-600 hover:bg-purple-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm"
+              >
+                <i class="fab fa-github mr-1 md:mr-2"></i>GitHub
+              </a>
+              <a
+                href="https://github.com/SarshijKarn/MedAssist"
+                target="_blank"
+                class="bg-cyan-600 hover:bg-cyan-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm"
+              >
+                <i class="fas fa-external-link-alt mr-1 md:mr-2"></i>Demo
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 2: Reddit Data Scraper -->
+          <div class="card rounded-xl p-3 md:p-6 h-full card-3d group">
+            <div class="project-icon-container reddit-scraper">
+              <div class="reddit-icon">
+                <div class="reddit-antenna"></div>
+                <div class="reddit-head">
+                  <div class="reddit-eye left"></div>
+                  <div class="reddit-eye right"></div>
+                  <div class="reddit-mouth"></div>
+                </div>
+                <div class="data-particles">
+                  <div class="data-bit"></div>
+                  <div class="data-bit"></div>
+                  <div class="data-bit"></div>
+                </div>
+              </div>
+            </div>
+            <h3 class="text-sm md:text-xl font-semibold mb-3">
+              Reddit Data Scraper
+            </h3>
+            <p class="text-xs md:text-sm mb-4 line-clamp-3">
+              A powerful Python tool to scrape posts and comments from a
+              specific subreddit starting from a given year.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="https://github.com/SarshijKarn"
+                class="bg-purple-600 hover:bg-purple-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm"
+              >
+                <i class="fab fa-github mr-1 md:mr-2"></i>GitHub
+              </a>
+              <a
+                href="https://github.com/SarshijKarn/Reddit-Data-Scraper"
+                class="bg-cyan-600 hover:bg-cyan-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm"
+              >
+                <i class="fas fa-external-link-alt mr-1 md:mr-2"></i>Demo
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 3: HyperQR -->
+          <div class="card rounded-xl p-3 md:p-6 h-full card-3d group">
+            <div class="project-icon-container hyper-qr">
+              <div class="qr-frame">
+                <div class="qr-pattern"></div>
+                <div class="qr-corner tl"></div>
+                <div class="qr-corner tr"></div>
+                <div class="qr-corner bl"></div>
+                <div class="qr-scan-line"></div>
+                <div class="wifi-waves">
+                  <div class="wifi-wave"></div>
+                  <div class="wifi-wave"></div>
+                  <div class="wifi-wave"></div>
+                </div>
+              </div>
+            </div>
+            <h3 class="text-sm md:text-xl font-semibold mb-3">
+              HyperQR-All-in-One-QR-Code-Utility
+            </h3>
+            <p class="text-xs md:text-sm mb-4 line-clamp-3">
+              A powerful, modern QR code scanner for Windows with WiFi
+              auto-connect, batch scanning, and beautiful UI.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="https://github.com/SarshijKarn"
+                class="bg-purple-600 hover:bg-purple-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm"
+              >
+                <i class="fab fa-github mr-1 md:mr-2"></i>GitHub
+              </a>
+              <a
+                href="https://github.com/SarshijKarn/HyperQR-All-in-One-QR-Code-Utility"
+                class="bg-cyan-600 hover:bg-cyan-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm"
+              >
+                <i class="fas fa-external-link-alt mr-1 md:mr-2"></i>Demo
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 4: SmartVault -->
+          <div class="card rounded-xl p-3 md:p-6 h-full card-3d group">
+            <div class="project-icon-container smart-vault">
+              <div class="vault-safe">
+                <div class="vault-door"></div>
+                <div class="vault-handle"></div>
+                <div class="vault-lock"></div>
+                <div class="lock-indicator locked"></div>
+              </div>
+            </div>
+            <h3 class="text-sm md:text-xl font-semibold mb-3">
+              SmartVault- Text and Photo Notes App
+            </h3>
+            <p class="text-xs md:text-sm mb-4 line-clamp-3">
+              Secure, privacy-first notes that support text and photos, with a
+              local PIN-protected vault and optional AIpowered image
+              enhancements via Google Gemini. Built with React, TypeScript, and
+              Vite
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="https://github.com/SarshijKarn"
+                class="bg-purple-600 hover:bg-purple-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm"
+              >
+                <i class="fab fa-github mr-1 md:mr-2"></i>GitHub
+              </a>
+              <a
+                href="https://github.com/SarshijKarn/Smart-Vault-Text-and-Photo-Notes-App"
+                class="bg-cyan-600 hover:bg-cyan-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm"
+              >
+                <i class="fas fa-external-link-alt mr-1 md:mr-2"></i>Demo
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 5: Emotion Detection -->
+          <div class="card rounded-xl p-3 md:p-6 h-full card-3d group">
+            <div class="project-icon-container emotion-detection">
+              <div class="emotion-face">
+                <div class="face-outline"></div>
+                <div class="eye eye-left"></div>
+                <div class="eye eye-right"></div>
+                <div class="mouth happy"></div>
+                <div class="scan-line"></div>
+              </div>
+            </div>
+            <h3 class="text-sm md:text-xl font-semibold mb-3">
+              Emotion Detection Model
+            </h3>
+            <p class="text-xs md:text-sm mb-4 line-clamp-3">
+              Python-based machine learning model using OpenCV and deep learning
+              to detect human emotions from real-time facial expressions.It
+              includes an avatar visualization and text-to-speech announcements
+              whenever the detected emotion changes. It also logs the emotion in
+              a file.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="https://github.com/SarshijKarn"
+                class="bg-purple-600 hover:bg-purple-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm"
+              >
+                <i class="fab fa-github mr-1 md:mr-2"></i>GitHub
+              </a>
+              <a
+                href="https://github.com/SarshijKarn/Emotion-Detection-Model"
+                target="_blank"
+                class="bg-cyan-600 hover:bg-cyan-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm"
+              >
+                <i class="fas fa-external-link-alt mr-1 md:mr-2"></i>Demo
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 6: Gesture Calculator -->
+          <div class="card rounded-xl p-3 md:p-6 h-full card-3d group">
+            <div class="project-icon-container gesture-calculator">
+              <div class="hand-gesture">
+                <div class="palm"></div>
+                <div class="finger finger-1"></div>
+                <div class="finger finger-2"></div>
+                <div class="finger finger-3"></div>
+                <div class="finger finger-4"></div>
+                <div class="finger finger-5"></div>
+                <div class="gesture-wave"></div>
+              </div>
+              <div class="calculator-display">1+1=2</div>
+            </div>
+            <h3 class="text-sm md:text-xl font-semibold mb-3">
+              Gesture Based Calculator
+            </h3>
+            <p class="text-xs md:text-sm mb-4 line-clamp-3">
+              Gesture-controlled calculator that performs arithmetic operations
+              based on hand gestures with speech feedback and real-time overlay
+              interface.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="https://github.com/SarshijKarn"
+                class="bg-purple-600 hover:bg-purple-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm"
+              >
+                <i class="fab fa-github mr-1 md:mr-2"></i>GitHub
+              </a>
+              <a
+                href="https://github.com/SarshijKarn/Gesture-Based-Calculator"
+                class="bg-cyan-600 hover:bg-cyan-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm"
+              >
+                <i class="fas fa-external-link-alt mr-1 md:mr-2"></i>Demo
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 7: YT Bulk Unsubscriber -->
+          <div class="card rounded-xl p-3 md:p-6 h-full card-3d group">
+            <div class="project-icon-container youtube-unsubscriber">
+              <div class="youtube-icon">
+                <div class="yt-play"></div>
+                <div class="unsub-slash"></div>
+                <div class="channel-count">-999</div>
+              </div>
+            </div>
+            <h3 class="text-sm md:text-xl font-semibold mb-3">
+              YouTube Channels Bulk Unsubscriber
+            </h3>
+            <p class="text-xs md:text-sm mb-4 line-clamp-3">
+              A simple desktop tool that allows you to bulk-unsubscribe from
+              YouTube channels using your own Google account. Built with Python,
+              Tkinter, YouTube API v3, and OAuth 2.0 authentication.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="https://github.com/SarshijKarn"
+                class="bg-purple-600 hover:bg-purple-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm"
+              >
+                <i class="fab fa-github mr-1 md:mr-2"></i>GitHub
+              </a>
+              <a
+                href="https://github.com/SarshijKarn/YouTube-Bulk-Unsubscriber-Python-Tkinter-GUI-"
+                class="bg-cyan-600 hover:bg-cyan-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm"
+              >
+                <i class="fas fa-external-link-alt mr-1 md:mr-2"></i>Demo
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 8: YT Playlist Downloader -->
+          <div class="card rounded-xl p-3 md:p-6 h-full card-3d group">
+            <div class="project-icon-container youtube-downloader">
+              <div class="youtube-playlist">
+                <div class="yt-logo"></div>
+                <div class="playlist-items">
+                  <div class="playlist-item"></div>
+                  <div class="playlist-item"></div>
+                  <div class="playlist-item"></div>
+                </div>
+                <div class="download-arrow">
+                  <i class="fas fa-download"></i>
+                </div>
+              </div>
+            </div>
+            <h3 class="text-sm md:text-xl font-semibold mb-3">
+              YouTube Playlist Downloader
+            </h3>
+            <p class="text-xs md:text-sm mb-4 line-clamp-3">
+              A simple Python application to download YouTube playlists and
+              videos with both CLI and GUI interfaces. Download entire YouTube
+              playlists or single videos in multiple quality options with
+              progress tracking.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="https://github.com/SarshijKarn"
+                class="bg-purple-600 hover:bg-purple-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm"
+              >
+                <i class="fab fa-github mr-1 md:mr-2"></i>GitHub
+              </a>
+              <a
+                href="https://github.com/SarshijKarn/Youtube-Playlist-Downloader"
+                class="bg-cyan-600 hover:bg-cyan-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm"
+              >
+                <i class="fas fa-external-link-alt mr-1 md:mr-2"></i>Demo
+              </a>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Education Timeline -->
     <section id="qualifications" class="py-12 md:py-20 relative">
-        <div id="education" class="max-w-6xl mx-auto px-4 md:px-6">
-            <h2 class="text-4xl heading-animate font-medium text-center mb-12 neon-yellow"><span
-                    class="heading-highlight">Education & Qualifications</span></h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="card rounded-xl p-6 md:ml-8">
-                        <div class="circuit-line" style="top: 50%; width: 100px;"></div>
-                        <h3 class="text-xl font-semibold mb-2">Bachelor's in Electronics, Communication and
-                            Information
-                            Engineering</h3>
-                        <div class="text-purple-400 mb-2">National College Of Engineering (T.U) •••••2024 - Present
-                        </div>
-                        <p class="text-sm">Currently pursuing engineering degree with focus on electronics,
-                            communication systems, and information technology.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="card rounded-xl p-6 md:ml-8">
-                        <div class="circuit-line" style="top: 50%; width: 100px;"></div>
-                        <h3 class="text-xl font-semibold mb-2">Grade XII (NEB)</h3>
-                        <div class="text-purple-400 mb-2">Liverpool International College • 2023</div>
-                        <p class="text-sm mb-2"><span class="gpa-highlight">GPA: 3.53</span></p>
-                        <p class="text-sm">Completed higher secondary education with merit-based scholarship for
-                            good
-                            academic performance.</p>
-                    </div>
-                </div>
-
-
-                <div class="timeline-item">
-                    <div class="card rounded-xl p-6 md:ml-8">
-                        <div class="circuit-line" style="top: 50%; width: 100px;"></div>
-                        <h3 class="text-xl font-semibold mb-2">Grade X (NEB)</h3>
-                        <div class="text-purple-400 mb-2">Happyland Secondary School • 2021</div>
-                        <p class="text-sm mb-2"><span class="gpa-highlight">GPA: 4.00</span></p>
-                        <p class="text-sm">Achieved perfect academic performance in secondary education.</p>
-                    </div>
-                </div>
-
-                <!-- Awards Section -->
-                <div class="timeline-item">
-                    <div class="card rounded-xl p-6 md:mr-8">
-                        <div class="circuit-line" style="top: 50%; width: 100px;"></div>
-                        <h3 class="text-xl font-semibold mb-2">Awards & Recognition</h3>
-                        <div class="text-cyan-400 mb-2">Multiple Achievements</div>
-                        <div class="text-sm space-y-2">
-                            <div>• Merit-Based Scholarship - Liverpool International College</div>
-                            <div>• Full Merit Scholarship - National College Of Engineering</div>
-                            <div>• Certificate of Participation - Multiple Hackathons & Workshops</div>
-                        </div>
-                    </div>
-                </div>
+      <div id="education" class="max-w-6xl mx-auto px-4 md:px-6">
+        <h2
+          class="text-4xl heading-animate font-medium text-center mb-12 neon-yellow"
+        >
+          <span class="heading-highlight">Education & Qualifications</span>
+        </h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="card rounded-xl p-6 md:ml-8">
+              <div class="circuit-line" style="top: 50%; width: 100px"></div>
+              <h3 class="text-xl font-semibold mb-2">
+                Bachelor's in Electronics, Communication and Information
+                Engineering
+              </h3>
+              <div class="text-purple-400 mb-2">
+                National College Of Engineering (T.U) •••••2024 - Present
+              </div>
+              <p class="text-sm">
+                Currently pursuing engineering degree with focus on electronics,
+                communication systems, and information technology.
+              </p>
             </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="card rounded-xl p-6 md:ml-8">
+              <div class="circuit-line" style="top: 50%; width: 100px"></div>
+              <h3 class="text-xl font-semibold mb-2">Grade XII (NEB)</h3>
+              <div class="text-purple-400 mb-2">
+                Liverpool International College • 2023
+              </div>
+              <p class="text-sm mb-2">
+                <span class="gpa-highlight">GPA: 3.53</span>
+              </p>
+              <p class="text-sm">
+                Completed higher secondary education with merit-based
+                scholarship for good academic performance.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="card rounded-xl p-6 md:ml-8">
+              <div class="circuit-line" style="top: 50%; width: 100px"></div>
+              <h3 class="text-xl font-semibold mb-2">Grade X (NEB)</h3>
+              <div class="text-purple-400 mb-2">
+                Happyland Secondary School • 2021
+              </div>
+              <p class="text-sm mb-2">
+                <span class="gpa-highlight">GPA: 4.00</span>
+              </p>
+              <p class="text-sm">
+                Achieved perfect academic performance in secondary education.
+              </p>
+            </div>
+          </div>
+
+          <!-- Awards Section -->
+          <div class="timeline-item">
+            <div class="card rounded-xl p-6 md:mr-8">
+              <div class="circuit-line" style="top: 50%; width: 100px"></div>
+              <h3 class="text-xl font-semibold mb-2">Awards & Recognition</h3>
+              <div class="text-cyan-400 mb-2">Multiple Achievements</div>
+              <div class="text-sm space-y-2">
+                <div>
+                  • Merit-Based Scholarship - Liverpool International College
+                </div>
+                <div>
+                  • Full Merit Scholarship - National College Of Engineering
+                </div>
+                <div>
+                  • Certificate of Participation - Multiple Hackathons &
+                  Workshops
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Hobbies/Interests Section -->
     <section id="hobbies" class="py-12 md:py-20 px-4 md:px-6">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl heading-animate font-medium text-center mb-12 neon-yellow"><span
-                    class="heading-highlight">Interests & Hobbies</span></h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                <div class="card rounded-xl p-6 text-center card-3d">
-                    <i class="fas fa-shield-alt text-4xl neon-cyan mb-4"></i>
-                    <h3 class="text-lg font-semibold">Cybersecurity</h3>
-                </div>
-                <div class="card rounded-xl p-6 text-center card-3d">
-                    <i class="fas fa-laptop-code text-4xl neon-purple mb-4"></i>
-                    <h3 class="text-lg font-semibold">Technology & AI</h3>
-                </div>
-                <div class="card rounded-xl p-6 text-center card-3d">
-                    <i class="fas fa-chart-line text-4xl neon-cyan mb-4"></i>
-                    <h3 class="text-lg font-semibold">Financial Markets</h3>
-                </div>
-                <div class="card rounded-xl p-6 text-center card-3d">
-                    <i class="fas fa-globe text-4xl neon-purple mb-4"></i>
-                    <h3 class="text-lg font-semibold">Web & Tech Exploration</h3>
-                </div>
-                <div class="card rounded-xl p-6 text-center card-3d">
-                    <i class="fas fa-running text-4xl neon-cyan mb-4"></i>
-                    <h3 class="text-lg font-semibold">Playing Sports</h3>
-                </div>
-                <div class="card rounded-xl p-6 text-center card-3d">
-                    <i class="fas fa-book text-4xl neon-purple mb-4"></i>
-                    <h3 class="text-lg font-semibold">Reading Books</h3>
-                </div>
-                <div class="card rounded-xl p-6 text-center card-3d">
-                    <i class="fas fa-code text-4xl neon-cyan mb-4"></i>
-                    <h3 class="text-lg font-semibold">Hackathons</h3>
-                </div>
-                <div class="card rounded-xl p-6 text-center card-3d">
-                    <i class="fas fa-brain text-4xl neon-purple mb-4"></i>
-                    <h3 class="text-lg font-semibold">Human Psychology</h3>
-                </div>
-            </div>
+      <div class="max-w-6xl mx-auto">
+        <h2
+          class="text-4xl heading-animate font-medium text-center mb-12 neon-yellow"
+        >
+          <span class="heading-highlight">Interests & Hobbies</span>
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          <div class="card rounded-xl p-6 text-center card-3d">
+            <i class="fas fa-shield-alt text-4xl neon-cyan mb-4"></i>
+            <h3 class="text-lg font-semibold">Cybersecurity</h3>
+          </div>
+          <div class="card rounded-xl p-6 text-center card-3d">
+            <i class="fas fa-laptop-code text-4xl neon-purple mb-4"></i>
+            <h3 class="text-lg font-semibold">Technology & AI</h3>
+          </div>
+          <div class="card rounded-xl p-6 text-center card-3d">
+            <i class="fas fa-chart-line text-4xl neon-cyan mb-4"></i>
+            <h3 class="text-lg font-semibold">Financial Markets</h3>
+          </div>
+          <div class="card rounded-xl p-6 text-center card-3d">
+            <i class="fas fa-globe text-4xl neon-purple mb-4"></i>
+            <h3 class="text-lg font-semibold">Web & Tech Exploration</h3>
+          </div>
+          <div class="card rounded-xl p-6 text-center card-3d">
+            <i class="fas fa-running text-4xl neon-cyan mb-4"></i>
+            <h3 class="text-lg font-semibold">Playing Sports</h3>
+          </div>
+          <div class="card rounded-xl p-6 text-center card-3d">
+            <i class="fas fa-book text-4xl neon-purple mb-4"></i>
+            <h3 class="text-lg font-semibold">Reading Books</h3>
+          </div>
+          <div class="card rounded-xl p-6 text-center card-3d">
+            <i class="fas fa-code text-4xl neon-cyan mb-4"></i>
+            <h3 class="text-lg font-semibold">Hackathons</h3>
+          </div>
+          <div class="card rounded-xl p-6 text-center card-3d">
+            <i class="fas fa-brain text-4xl neon-purple mb-4"></i>
+            <h3 class="text-lg font-semibold">Human Psychology</h3>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="py-12 md:py-20 px-4 md:px-6 relative">
-        <!-- Background Grid -->
-        <div class="contact-grid-bg"></div>
+      <!-- Background Grid -->
+      <div class="contact-grid-bg"></div>
 
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl heading-animate font-medium text-center mb-16 neon-yellow"><span
-                    class="heading-highlight">Get In Touch</span></h2>
+      <div class="max-w-6xl mx-auto">
+        <h2
+          class="text-4xl heading-animate font-medium text-center mb-16 neon-yellow"
+        >
+          <span class="heading-highlight">Get In Touch</span>
+        </h2>
 
-            <!-- Contact Cards Grid -->
-            <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-16">
-                <!-- Email Card -->
-                <div class="magnetic-card" data-magnetic>
-                    <div class="magnetic-card-inner">
-                        <div class="contact-icon-wrapper">
-                            <i class="fas fa-envelope contact-icon"></i>
-                        </div>
-                        <h3 class="contact-label">Email</h3>
-                        <a href="mailto:sarshijkarn333@gmail.com" class="contact-value" style="text-decoration: none; color: inherit; display: block; margin-bottom: 0.5rem;">
-                            sarshijkarn333@gmail.com
-                        </a>
-                        <div class="click-hint">Click to send mail</div>
-                    </div>
-                    <div class="card-particles"></div>
-                </div>
-
-                <!-- Phone Card -->
-                <div class="magnetic-card" data-magnetic>
-                    <div class="magnetic-card-inner">
-                        <div class="contact-icon-wrapper">
-                            <i class="fas fa-phone contact-icon"></i>
-                        </div>
-                        <h3 class="contact-label">Phone</h3>
-                        <p class="contact-value" data-copy="+977 9863918187">
-                            +977 9863918187
-                        </p>
-                        <div class="click-hint">Click to copy</div>
-                    </div>
-                    <div class="card-particles"></div>
-                </div>
-
-                <!-- Location Card -->
-                <div class="magnetic-card" data-magnetic>
-                    <div class="magnetic-card-inner">
-                        <div class="contact-icon-wrapper">
-                            <i class="fas fa-map-marker-alt contact-icon"></i>
-                        </div>
-                        <h3 class="contact-label">Location</h3>
-                        <p class="contact-value" data-copy="Kathmandu, Nepal">
-                            Kathmandu, Nepal
-                        </p>
-                        <div class="click-hint">Click to copy</div>
-                    </div>
-                    <div class="card-particles"></div>
-                </div>
-
-                <!-- Website Card -->
-                <div class="magnetic-card" data-magnetic>
-                    <div class="magnetic-card-inner">
-                        <div class="contact-icon-wrapper">
-                            <i class="fas fa-globe contact-icon"></i>
-                        </div>
-                        <h3 class="contact-label">Website</h3>
-                        <a href="https://sarshijkarn.com.np" target="_blank" class="contact-value contact-link">
-                            sarshijkarn.com.np
-                        </a>
-                        <div class="click-hint">Visit site</div>
-                    </div>
-                    <div class="card-particles"></div>
-                </div>
+        <!-- Contact Cards Grid -->
+        <div
+          class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-16"
+        >
+          <!-- Email Card -->
+          <div class="magnetic-card" data-magnetic>
+            <div class="magnetic-card-inner">
+              <div class="contact-icon-wrapper">
+                <i class="fas fa-envelope contact-icon"></i>
+              </div>
+              <h3 class="contact-label">Email</h3>
+              <a
+                href="mailto:sarshijkarn333@gmail.com"
+                class="contact-value"
+                style="
+                  text-decoration: none;
+                  color: inherit;
+                  display: block;
+                  margin-bottom: 0.5rem;
+                "
+              >
+                sarshijkarn333@gmail.com
+              </a>
+              <div class="click-hint">Click to send mail</div>
             </div>
+            <div class="card-particles"></div>
+          </div>
 
-            <!-- Social Media Orbital -->
-            <div class="social-orbital-container mb-16">
-                <h3 class="text-2xl font-semibold text-center mb-8 neon-cyan">Follow Me</h3>
-                <div class="social-orbital">
-                    <div class="orbital-center">
-                        <i class="fas fa-user-circle"></i>
-                    </div>
-                    <a href="https://github.com/SarshijKarn" target="_blank" class="orbital-icon" data-orbit="0"
-                        aria-label="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/sarshij-karn-1a7766236/" target="_blank" class="orbital-icon"
-                        data-orbit="1" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://x.com/sarshijkarn" target="_blank" class="orbital-icon" data-orbit="2"
-                        aria-label="X / Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://www.instagram.com/sarshijkarn" target="_blank" class="orbital-icon" data-orbit="3"
-                        aria-label="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://youtube.com/@sarshijkarn" target="_blank" class="orbital-icon" data-orbit="4"
-                        aria-label="YouTube">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                    <a href="mailto:sarshijkarn333@gmail.com" class="orbital-icon" data-orbit="5" aria-label="Email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
+          <!-- Phone Card -->
+          <div class="magnetic-card" data-magnetic>
+            <div class="magnetic-card-inner">
+              <div class="contact-icon-wrapper">
+                <i class="fas fa-phone contact-icon"></i>
+              </div>
+              <h3 class="contact-label">Phone</h3>
+              <p class="contact-value" data-copy="+977 9863918187">
+                +977 9863918187
+              </p>
+              <div class="click-hint">Click to copy</div>
             </div>
+            <div class="card-particles"></div>
+          </div>
 
-            <!-- Enhanced Contact Form -->
-            <div class="max-w-2xl mx-auto">
-                <div class="contact-form-card">
-                    <h3 class="text-2xl font-semibold text-center mb-2 neon-cyan">Send Me a Message</h3>
-
-                    <!-- Progress Indicator -->
-                    <div class="form-progress-container">
-                        <div class="form-progress-bar" id="formProgress"></div>
-                        <div class="form-progress-text" id="formProgressText">0% Complete</div>
-                    </div>
-
-                    <form action="https://formspree.io/f/mnnpappe" method="POST" id="contactForm" novalidate>
-                        <div class="form-group">
-                            <label for="name" class="form-label-top">
-                                <i class="fas fa-user"></i>
-                                <span>Your Name</span>
-                            </label>
-                            <input type="text" id="name" name="name" class="form-input"
-                                placeholder="Enter your full name" required>
-                            <div class="form-border"></div>
-                            <div class="input-ripple"></div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email" class="form-label-top">
-                                <i class="fas fa-envelope"></i>
-                                <span>Your Email</span>
-                            </label>
-                            <input type="email" id="email" name="email" class="form-input"
-                                placeholder="your.email@example.com" required>
-                            <div class="form-border"></div>
-                            <div class="input-ripple"></div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message" class="form-label-top">
-                                <i class="fas fa-comment-dots"></i>
-                                <span>Your Message</span>
-                            </label>
-                            <textarea id="message" name="message" class="form-input form-textarea" rows="5"
-                                placeholder="Write your message here..." maxlength="500" required></textarea>
-                            <div class="form-border"></div>
-                            <div class="input-ripple"></div>
-                            <div class="character-counter">
-                                <span id="charCount">0</span> / 500
-                            </div>
-                        </div>
-
-                        <button type="submit" class="submit-button">
-                            <span class="button-text">Send Message</span>
-                            <span class="button-icon"><i class="fas fa-paper-plane"></i></span>
-                            <span class="button-loader"></span>
-                            <span class="button-success"><i class="fas fa-check-circle"></i></span>
-                            <div class="button-particles"></div>
-                        </button>
-                    </form>
-                </div>
+          <!-- Location Card -->
+          <div class="magnetic-card" data-magnetic>
+            <div class="magnetic-card-inner">
+              <div class="contact-icon-wrapper">
+                <i class="fas fa-map-marker-alt contact-icon"></i>
+              </div>
+              <h3 class="contact-label">Location</h3>
+              <p class="contact-value" data-copy="Kathmandu, Nepal">
+                Kathmandu, Nepal
+              </p>
+              <div class="click-hint">Click to copy</div>
             </div>
+            <div class="card-particles"></div>
+          </div>
+
+          <!-- Website Card -->
+          <div class="magnetic-card" data-magnetic>
+            <div class="magnetic-card-inner">
+              <div class="contact-icon-wrapper">
+                <i class="fas fa-globe contact-icon"></i>
+              </div>
+              <h3 class="contact-label">Website</h3>
+              <a
+                href="https://sarshijkarn.com.np"
+                target="_blank"
+                class="contact-value contact-link"
+              >
+                sarshijkarn.com.np
+              </a>
+              <div class="click-hint">Visit site</div>
+            </div>
+            <div class="card-particles"></div>
+          </div>
         </div>
 
-        <!-- Toast Notification -->
-        <div id="copyToast" class="copy-toast">
-            <i class="fas fa-check-circle"></i>
-            <span>Copied to clipboard!</span>
+        <!-- Social Media Orbital -->
+        <div class="social-orbital-container mb-16">
+          <h3 class="text-2xl font-semibold text-center mb-8 neon-cyan">
+            Follow Me
+          </h3>
+          <div class="social-orbital">
+            <div class="orbital-center">
+              <i class="fas fa-user-circle"></i>
+            </div>
+            <a
+              href="https://github.com/SarshijKarn"
+              target="_blank"
+              class="orbital-icon"
+              data-orbit="0"
+              aria-label="GitHub"
+            >
+              <i class="fab fa-github"></i>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/sarshij-karn-1a7766236/"
+              target="_blank"
+              class="orbital-icon"
+              data-orbit="1"
+              aria-label="LinkedIn"
+            >
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a
+              href="https://x.com/sarshijkarn"
+              target="_blank"
+              class="orbital-icon"
+              data-orbit="2"
+              aria-label="X / Twitter"
+            >
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a
+              href="https://www.instagram.com/sarshijkarn"
+              target="_blank"
+              class="orbital-icon"
+              data-orbit="3"
+              aria-label="Instagram"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a
+              href="https://youtube.com/@sarshijkarn"
+              target="_blank"
+              class="orbital-icon"
+              data-orbit="4"
+              aria-label="YouTube"
+            >
+              <i class="fab fa-youtube"></i>
+            </a>
+            <a
+              href="mailto:sarshijkarn333@gmail.com"
+              class="orbital-icon"
+              data-orbit="5"
+              aria-label="Email"
+            >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
         </div>
+
+        <!-- Enhanced Contact Form -->
+        <div class="max-w-2xl mx-auto">
+          <div class="contact-form-card">
+            <h3 class="text-2xl font-semibold text-center mb-2 neon-cyan">
+              Send Me a Message
+            </h3>
+
+            <!-- Progress Indicator -->
+            <div class="form-progress-container">
+              <div class="form-progress-bar" id="formProgress"></div>
+              <div class="form-progress-text" id="formProgressText">
+                0% Complete
+              </div>
+            </div>
+
+            <form
+              action="http://localhost:3000/api/contact"
+              method="POST"
+              id="contactForm"
+              novalidate
+            >
+              <div class="form-group">
+                <label for="name" class="form-label-top">
+                  <i class="fas fa-user"></i>
+                  <span>Your Name</span>
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="form-input"
+                  placeholder="Enter your full name"
+                  required
+                />
+                <div class="form-border"></div>
+                <div class="input-ripple"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="email" class="form-label-top">
+                  <i class="fas fa-envelope"></i>
+                  <span>Your Email</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-input"
+                  placeholder="your.email@example.com"
+                  required
+                />
+                <div class="form-border"></div>
+                <div class="input-ripple"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="message" class="form-label-top">
+                  <i class="fas fa-comment-dots"></i>
+                  <span>Your Message</span>
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  class="form-input form-textarea"
+                  rows="5"
+                  placeholder="Write your message here..."
+                  maxlength="500"
+                  required
+                ></textarea>
+                <div class="form-border"></div>
+                <div class="input-ripple"></div>
+                <div class="character-counter">
+                  <span id="charCount">0</span> / 500
+                </div>
+              </div>
+
+              <button type="submit" class="submit-button">
+                <span class="button-text">Send Message</span>
+                <span class="button-icon"
+                  ><i class="fas fa-paper-plane"></i
+                ></span>
+                <span class="button-loader"></span>
+                <span class="button-success"
+                  ><i class="fas fa-check-circle"></i
+                ></span>
+                <div class="button-particles"></div>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toast Notification -->
+      <div id="copyToast" class="copy-toast">
+        <i class="fas fa-check-circle"></i>
+        <span>Copied to clipboard!</span>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer class="py-8 px-6 border-t border-gray-800">
-        <div class="max-w-6xl mx-auto text-center">
-            <div class="text-gray-400 space-y-1">
-                <p class="transition-all duration-500 hover:text-white hover:drop-shadow-[0_0_4px_white]">
-                    &copy; 2025 Sarshij Karn. All rights reserved.
-                </p>
-                <p class="text-sm mt-2 transition-all duration-500 hover:text-white hover:drop-shadow-[0_0_4px_white]">
-                    Built with passion and futuristic vision in Nepal 🌌
-                </p>
-            </div>
+      <div class="max-w-6xl mx-auto text-center">
+        <div class="text-gray-400 space-y-1">
+          <p
+            class="transition-all duration-500 hover:text-white hover:drop-shadow-[0_0_4px_white]"
+          >
+            &copy; 2025 Sarshij Karn. All rights reserved.
+          </p>
+          <p
+            class="text-sm mt-2 transition-all duration-500 hover:text-white hover:drop-shadow-[0_0_4px_white]"
+          >
+            Built with passion and futuristic vision in Nepal 🌌
+          </p>
+          
+          <!-- Server Status Indicator -->
+          <div id="serverStatus" class="status-indicator">
+            <span class="status-dot"></span>
+            <span class="status-text">Establishing Uplink...</span>
+          </div>
+
         </div>
+      </div>
     </footer>
 
     <!-- Back to Top Button -->
     <button id="backToTop" class="back-to-top" aria-label="Back to top">
-        <i class="fas fa-arrow-up"></i>
+      <i class="fas fa-arrow-up"></i>
     </button>
 
     <script src="script.js?v=1.1"></script>
-</body>
-
+  </body>
 </html>
