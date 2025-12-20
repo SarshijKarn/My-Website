@@ -135,39 +135,34 @@ app.post('/api/contact', async (req, res) => {
             }
 
             console.log(`📧 Attempting to send emails using: ${process.env.EMAIL_USER}`);
+            console.log(`📧 EMAIL_PASS length: ${process.env.EMAIL_PASS ? process.env.EMAIL_PASS.length : 'MISSING'} characters`);
+            
+            // Check if password has spaces (common mistake)
+            if (process.env.EMAIL_PASS && process.env.EMAIL_PASS.includes(' ')) {
+                console.warn('⚠️ WARNING: EMAIL_PASS contains spaces! Gmail app passwords should NOT have spaces.');
+                console.warn('⚠️ Remove all spaces from your Gmail app password.');
+            }
 
-            // Create Transporter with better Gmail configuration
-            const transporter = nodemailer.createTransport({
-                service: 'gmail',
+            // Create Transporter with Gmail configuration - try port 465 (SSL) first, fallback to 587 (TLS)
+            // Port 465 with SSL is more reliable than 587 with TLS
+            let transporter = nodemailer.createTransport({
                 host: 'smtp.gmail.com',
-                port: 587,
-                secure: false, // true for 465, false for other ports
+                port: 465,
+                secure: true, // Use SSL for port 465
                 auth: {
                     user: process.env.EMAIL_USER,
                     pass: process.env.EMAIL_PASS
                 },
                 tls: {
                     rejectUnauthorized: false
-                }
+                },
+                connectionTimeout: 60000, // 60 seconds
+                greetingTimeout: 30000, // 30 seconds
+                socketTimeout: 60000, // 60 seconds
+                debug: false,
+                logger: false
             });
-
-            // Verify transporter connection with timeout
-            try {
-                console.log('🔍 Verifying email transporter connection...');
-                await Promise.race([
-                    transporter.verify(),
-                    new Promise((_, reject) => setTimeout(() => reject(new Error('Transporter verification timeout after 10s')), 10000))
-                ]);
-                console.log('✅ Email transporter verified successfully');
-            } catch (verifyError) {
-                console.error('❌ Email transporter verification FAILED:');
-                console.error('   Message:', verifyError.message);
-                console.error('   Code:', verifyError.code || 'N/A');
-                console.error('   This usually means EMAIL_PASS is incorrect or Gmail app password is not set up.');
-                console.error('   Full error:', verifyError);
-                // Continue anyway - sometimes verify fails but sending works
-                console.log('⚠️ Continuing with email sending despite verification failure...');
-            }
+            console.log('✅ Transporter created with port 465 (SSL) - increased timeouts to 60s');
 
             // 1. Send Email to Sarshij (Archive) - Use EMAIL_USER as sender
             const adminMailOptions = {
@@ -204,19 +199,19 @@ app.post('/api/contact', async (req, res) => {
         `
             };
 
-            // Send emails with timeout and better error handling
-            const emailTimeout = 20000; // 20 seconds per email
+            // Send emails with increased timeout - Gmail can be slow
+            const emailTimeout = 60000; // 60 seconds per email - increased significantly
             
             console.log('📤 Starting to send emails and Discord notification...');
             
             // Send all notifications in parallel with proper error handling
             const promises = [];
             
-            // 1. Admin email
+            // 1. Admin email - with detailed error logging
             promises.push(
                 Promise.race([
                     transporter.sendMail(adminMailOptions),
-                    new Promise((_, reject) => setTimeout(() => reject(new Error('Admin email timeout after 20s')), emailTimeout))
+                    new Promise((_, reject) => setTimeout(() => reject(new Error('Admin email timeout after 60s')), emailTimeout))
                 ])
                 .then(result => {
                     console.log('✅ Admin email sent successfully! Message ID:', result.messageId);
@@ -226,18 +221,26 @@ app.post('/api/contact', async (req, res) => {
                     console.error('❌ Admin Email FAILED:');
                     console.error('   Message:', err.message);
                     console.error('   Code:', err.code || 'N/A');
-                    if (err.response) {
-                        console.error('   Response:', err.response);
+                    console.error('   Command:', err.command || 'N/A');
+                    console.error('   Response:', err.response || 'N/A');
+                    console.error('   ResponseCode:', err.responseCode || 'N/A');
+                    if (err.code === 'EAUTH') {
+                        console.error('   ⚠️ AUTHENTICATION ERROR: EMAIL_PASS is likely incorrect!');
+                        console.error('   ⚠️ Make sure you\'re using a Gmail App Password (16 characters, no spaces)');
                     }
-                    return { type: 'admin', success: false, error: err.message };
+                    if (err.code === 'ETIMEDOUT' || err.code === 'ECONNREFUSED') {
+                        console.error('   ⚠️ CONNECTION ERROR: Cannot reach Gmail servers');
+                        console.error('   ⚠️ Check firewall/network settings');
+                    }
+                    return { type: 'admin', success: false, error: err.message, code: err.code };
                 })
             );
             
-            // 2. User auto-reply
+            // 2. User auto-reply - with detailed error logging
             promises.push(
                 Promise.race([
                     transporter.sendMail(userAutoReplyOptions),
-                    new Promise((_, reject) => setTimeout(() => reject(new Error('User email timeout after 20s')), emailTimeout))
+                    new Promise((_, reject) => setTimeout(() => reject(new Error('User email timeout after 60s')), emailTimeout))
                 ])
                 .then(result => {
                     console.log('✅ User auto-reply sent successfully! Message ID:', result.messageId);
@@ -247,10 +250,18 @@ app.post('/api/contact', async (req, res) => {
                     console.error('❌ User Auto-Reply FAILED:');
                     console.error('   Message:', err.message);
                     console.error('   Code:', err.code || 'N/A');
-                    if (err.response) {
-                        console.error('   Response:', err.response);
+                    console.error('   Command:', err.command || 'N/A');
+                    console.error('   Response:', err.response || 'N/A');
+                    console.error('   ResponseCode:', err.responseCode || 'N/A');
+                    if (err.code === 'EAUTH') {
+                        console.error('   ⚠️ AUTHENTICATION ERROR: EMAIL_PASS is likely incorrect!');
+                        console.error('   ⚠️ Make sure you\'re using a Gmail App Password (16 characters, no spaces)');
                     }
-                    return { type: 'user', success: false, error: err.message };
+                    if (err.code === 'ETIMEDOUT' || err.code === 'ECONNREFUSED') {
+                        console.error('   ⚠️ CONNECTION ERROR: Cannot reach Gmail servers');
+                        console.error('   ⚠️ Check firewall/network settings');
+                    }
+                    return { type: 'user', success: false, error: err.message, code: err.code };
                 })
             );
             
