@@ -95,7 +95,7 @@ themeToggle.addEventListener("click", () => {
   body.className = isDark ? "dark" : "light";
   themeToggle.classList.toggle("active");
 
-    // Theme logic handled by CSS variables for videos/backgrounds
+  // Theme logic handled by CSS variables for videos/backgrounds
 });
 
 // Smooth scrolling for navigation links
@@ -149,7 +149,7 @@ const animDelay = isMobile ? 0.1 : 0.3;
 gsap.from(".hero-photo-wrapper", {
   duration: animDuration,
   scale: isMobile ? 0.8 : 0,
-  rotation: 0, /* No rotation */
+  rotation: 0 /* No rotation */,
   opacity: 0,
   ease: "back.out(1.7)",
 });
@@ -291,70 +291,72 @@ document.querySelectorAll(".card-3d").forEach((card) => {
 // Initialize everything when DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
   // ⚡ WAKE UP CALL (Mitigate Render Cold Starts) & UPDATE UI
-  const statusEl = document.getElementById('serverStatus');
-  const submitBtn = document.querySelector('.submit-button');
-  const btnText = submitBtn ? submitBtn.querySelector('.button-text') : null;
+  const statusEl = document.getElementById("serverStatus");
+  const submitBtn = document.querySelector(".submit-button");
+  const btnText = submitBtn ? submitBtn.querySelector(".button-text") : null;
   const originalBtnText = btnText ? "Send Message" : "Send";
 
   // Lock the button initially (Cyber Security Protocol)
-  if(submitBtn && btnText) {
-       submitBtn.disabled = true;
-       submitBtn.classList.add('initializing');
-       btnText.textContent = "📡 INITIALIZING UPLINK...";
+  if (submitBtn && btnText) {
+    submitBtn.disabled = true;
+    submitBtn.classList.add("initializing");
+    btnText.textContent = "📡 INITIALIZING UPLINK...";
   }
 
-// 🔧 CONFIGURATION: CHANGE THIS URL WHEN DEPLOYING
-const BACKEND_URL = 'https://backend-contact-form-hvqf.onrender.com'; 
-// Example: const BACKEND_URL = 'https://my-backend.onrender.com';
+  // 🔧 CONFIGURATION: CHANGE THIS URL WHEN DEPLOYING
+  const BACKEND_URL = "https://backend-contact-form-hvqf.onrender.com";
+  // Example: const BACKEND_URL = 'https://my-backend.onrender.com';
 
   fetch(`${BACKEND_URL}/api/wake-up`)
-    .then(res => {
-        if(res.ok) {
-            console.log('Server Status: Online');
-            if(statusEl) {
-                statusEl.classList.add('online');
-                statusEl.querySelector('.status-text').textContent = "System Online";
-            }
-            // Unlock Button
-            if(submitBtn && btnText) {
-                submitBtn.disabled = false;
-                submitBtn.classList.remove('initializing');
-                submitBtn.classList.add('system-ready');
-                btnText.textContent = "TRANSMIT MESSAGE"; // Cooler text
-                
-                // Remove flash effect after animation
-                setTimeout(() => submitBtn.classList.remove('system-ready'), 1000);
-            }
+    .then((res) => {
+      if (res.ok) {
+        console.log("Server Status: Online");
+        if (statusEl) {
+          statusEl.classList.add("online");
+          statusEl.querySelector(".status-text").textContent = "System Online";
         }
+        // Unlock Button
+        if (submitBtn && btnText) {
+          submitBtn.disabled = false;
+          submitBtn.classList.remove("initializing");
+          submitBtn.classList.add("system-ready");
+          btnText.textContent = "TRANSMIT MESSAGE"; // Cooler text
+
+          // Remove flash effect after animation
+          setTimeout(() => submitBtn.classList.remove("system-ready"), 1000);
+        }
+      }
     })
-    .catch(err => {
-        console.log('Server waking up...');
-        if(statusEl) {
-             statusEl.classList.add('offline');
-             statusEl.querySelector('.status-text').textContent = "Server Offline (Waking up...)";
-        }
-        // Unlock anyway (fallback) so they can try click
-        if(submitBtn && btnText) {
-             submitBtn.disabled = false;
-             submitBtn.classList.remove('initializing');
-             btnText.textContent = originalBtnText;
-        }
+    .catch((err) => {
+      console.log("Server waking up...");
+      if (statusEl) {
+        statusEl.classList.add("offline");
+        statusEl.querySelector(".status-text").textContent =
+          "Server Offline (Waking up...)";
+      }
+      // Unlock anyway (fallback) so they can try click
+      if (submitBtn && btnText) {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove("initializing");
+        btnText.textContent = originalBtnText;
+      }
     });
 
   // Create initial particles - reduced count for better performance
   function createParticle() {
-      const particle = document.createElement("div");
-      particle.className = "cyber-particle";
-      particle.style.left = Math.random() * 100 + "vw";
-      particle.style.top = Math.random() * 100 + "vh";
-      particle.style.animationDuration = Math.random() * 3 + 2 + "s";
-      document.body.appendChild(particle);
-      
-      // Cleanup
-      setTimeout(() => {
-          particle.remove();
-          if(document.body.contains(particle)) requestAnimationFrame(createParticle); // Keep generating
-      }, 5000);
+    const particle = document.createElement("div");
+    particle.className = "cyber-particle";
+    particle.style.left = Math.random() * 100 + "vw";
+    particle.style.top = Math.random() * 100 + "vh";
+    particle.style.animationDuration = Math.random() * 3 + 2 + "s";
+    document.body.appendChild(particle);
+
+    // Cleanup
+    setTimeout(() => {
+      particle.remove();
+      if (document.body.contains(particle))
+        requestAnimationFrame(createParticle); // Keep generating
+    }, 5000);
   }
 
   for (let i = 0; i < 5; i++) {
@@ -639,8 +641,8 @@ if (contactForm) {
     try {
       const formData = new FormData(contactForm);
       const data = Object.fromEntries(formData.entries());
-      
-      const response = await fetch(contactForm.action, {
+
+      const response = await fetch(`${BACKEND_URL}/api/contact`, {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -797,5 +799,3 @@ if (closeMobileNotice && mobileNotice) {
     }
   });
 }
-
-
