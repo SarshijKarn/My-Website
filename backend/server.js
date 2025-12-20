@@ -143,26 +143,36 @@ app.post('/api/contact', async (req, res) => {
                 console.warn('⚠️ Remove all spaces from your Gmail app password.');
             }
 
-            // Create Transporter with Gmail configuration - try port 465 (SSL) first, fallback to 587 (TLS)
-            // Port 465 with SSL is more reliable than 587 with TLS
+            // Create Transporter - Port 587 with STARTTLS is often more reliable on cloud environments like Render
             let transporter = nodemailer.createTransport({
+                service: 'gmail',
                 host: 'smtp.gmail.com',
-                port: 465,
-                secure: true, // Use SSL for port 465
+                port: 587,
+                secure: false, // Use false for STARTTLS (Port 587)
                 auth: {
                     user: process.env.EMAIL_USER,
                     pass: process.env.EMAIL_PASS
                 },
                 tls: {
-                    rejectUnauthorized: false
+                    rejectUnauthorized: false,
+                    minVersion: 'TLSv1.2'
                 },
-                connectionTimeout: 60000, // 60 seconds
-                greetingTimeout: 30000, // 30 seconds
-                socketTimeout: 60000, // 60 seconds
-                debug: false,
-                logger: false
+                connectionTimeout: 60000, 
+                greetingTimeout: 30000, 
+                socketTimeout: 60000, 
+                debug: true, // Enable debug logging
+                logger: true // Enable internal logger
             });
-            console.log('✅ Transporter created with port 465 (SSL) - increased timeouts to 60s');
+            console.log('✅ Transporter initialized with Port 587 (STARTTLS) and Debug mode.');
+
+            // Verify connection before sending
+            try {
+                await transporter.verify();
+                console.log('📬 SMTP Connection verified successfully!');
+            } catch (vErr) {
+                console.error('❌ SMTP Verification FAILED:', vErr.message);
+                // We'll continue anyway, but this gives better logs
+            }
 
             // 1. Send Email to Sarshij (Archive) - Use EMAIL_USER as sender
             const adminMailOptions = {
