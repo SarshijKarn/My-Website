@@ -292,9 +292,21 @@ document.querySelectorAll(".card-3d").forEach((card) => {
 document.addEventListener("DOMContentLoaded", () => {
   // ⚡ WAKE UP CALL (Mitigate Render Cold Starts) & UPDATE UI
   const statusEl = document.getElementById('serverStatus');
+  const submitBtn = document.querySelector('.submit-button');
+  const btnText = submitBtn ? submitBtn.querySelector('.button-text') : null;
+  const originalBtnText = btnText ? "Send Message" : "Send";
+
+  // Lock the button initially (Cyber Security Protocol)
+  if(submitBtn && btnText) {
+       submitBtn.disabled = true;
+       submitBtn.classList.add('initializing');
+       btnText.textContent = "📡 INITIALIZING UPLINK...";
+  }
+
 // 🔧 CONFIGURATION: CHANGE THIS URL WHEN DEPLOYING
 const BACKEND_URL = 'https://backend-contact-form-hvqf.onrender.com'; 
 // Example: const BACKEND_URL = 'https://my-backend.onrender.com';
+
   fetch(`${BACKEND_URL}/api/wake-up`)
     .then(res => {
         if(res.ok) {
@@ -303,13 +315,29 @@ const BACKEND_URL = 'https://backend-contact-form-hvqf.onrender.com';
                 statusEl.classList.add('online');
                 statusEl.querySelector('.status-text').textContent = "System Online";
             }
+            // Unlock Button
+            if(submitBtn && btnText) {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('initializing');
+                submitBtn.classList.add('system-ready');
+                btnText.textContent = "TRANSMIT MESSAGE"; // Cooler text
+                
+                // Remove flash effect after animation
+                setTimeout(() => submitBtn.classList.remove('system-ready'), 1000);
+            }
         }
     })
     .catch(err => {
         console.log('Server waking up...');
         if(statusEl) {
              statusEl.classList.add('offline');
-             statusEl.querySelector('.status-text').textContent = "Server Offline";
+             statusEl.querySelector('.status-text').textContent = "Server Offline (Waking up...)";
+        }
+        // Unlock anyway (fallback) so they can try click
+        if(submitBtn && btnText) {
+             submitBtn.disabled = false;
+             submitBtn.classList.remove('initializing');
+             btnText.textContent = originalBtnText;
         }
     });
 

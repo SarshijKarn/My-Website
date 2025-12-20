@@ -22,14 +22,17 @@ if (!process.env.DISCORD_WEBHOOK_URL || process.env.DISCORD_WEBHOOK_URL.includes
 app.set('trust proxy', true);
 
 // Middleware
-app.use(cors()); 
+app.use(cors({
+    origin: '*', // Allow all origins (GitHub Pages, Custom Domain, etc.)
+    methods: ['GET', 'POST', 'OPTIONS']
+})); 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(requestIp.mw());
 
 // Rate Limiting (Stricter for spam protection)
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, 
+  windowMs: 3 * 60 * 1000,  // 3 Minutes
   max: 5, 
   message: { success: false, message: 'Rate limit exceeded. Too many requests.' }
 });

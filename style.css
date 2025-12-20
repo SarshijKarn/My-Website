@@ -3647,3 +3647,38 @@
         display: block;
     }
 }
+
+/* --- Server Initialization States --- */
+.submit-button.initializing {
+    background: #1a1a1a;
+    border-color: #ffd700;
+    color: #ffd700;
+    cursor: wait;
+    opacity: 0.8;
+}
+
+.submit-button.initializing .button-text {
+    animation: textPulse 1.5s infinite;
+}
+
+.submit-button.system-ready {
+    animation: readyFlash 0.5s ease-out;
+}
+
+@keyframes textPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes readyFlash {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7);
+        border-color: #00ff88;
+        transform: scale(1.02);
+    }
+    100% {
+        box-shadow: 0 0 0 20px rgba(0, 255, 136, 0);
+        border-color: rgba(255, 255, 255, 0.1);
+        transform: scale(1);
+    }
+}
