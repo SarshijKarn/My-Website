@@ -292,7 +292,10 @@ document.querySelectorAll(".card-3d").forEach((card) => {
 document.addEventListener("DOMContentLoaded", () => {
   // ⚡ WAKE UP CALL (Mitigate Render Cold Starts) & UPDATE UI
   const statusEl = document.getElementById('serverStatus');
-  fetch('http://localhost:3000/api/wake-up')
+// 🔧 CONFIGURATION: CHANGE THIS URL WHEN DEPLOYING
+const BACKEND_URL = 'https://backend-contact-form-hvqf.onrender.com'; 
+// Example: const BACKEND_URL = 'https://my-backend.onrender.com';
+  fetch(`${BACKEND_URL}/api/wake-up`)
     .then(res => {
         if(res.ok) {
             console.log('Server Status: Online');

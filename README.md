@@ -1,85 +1,135 @@
-# Sarshij Karn – Modern Portfolio Website
+# ⚡ Sarshij's Cyber-Portfolio
 
-Welcome to the portfolio website of **Sarshij Karn** – an Electronics, Communication & Information Engineering student passionate about technology, AI, embedded systems, and learning. This site is a high-performance, visually immersive personal portfolio showcasing modern web techniques.
+![Banner](https://capsule-render.vercel.app/api?type=waving&color=0f172a&height=300&section=header&text=Sarshij%20Karn&fontSize=90&fontColor=00ff88&animation=fadeIn&fontAlignY=38&desc=Engineering%20|%20AI%20|%20Cybersecurity&descAlignY=55&descAlign=50)
 
-[🌐 **Live Demo**](https://sarshijkarn.com.np/)
+> _"Technology is best when it brings people together."_
 
-![Portfolio_Demo](assets/websitefront.gif)
-
----
-
-## ✨ Features
-
-- **Immersive Video Backgrounds**: High-quality galaxy background, blackhole hero effect, and dynamic video profiles.
-- **Modern UI/UX**: Fully responsive design with glassmorphism, neon effects, and smooth transitions.
-- **Hardware Accelerated**: Optimized for performance on all devices using GPU acceleration techniques for 60fps playback.
-- **Interactive Elements**: Glitch text effects, typing animations, and hover-triggered 3D card flips.
-- **Light/Dark Mode**: Persistent theme toggle with adapted visual assets.
-- **Smooth Navigation**: Scroll-spy navigation and animated section reveals.
-- **Mobile First**: Optimized layouts for mobile devices, including touch-friendly menus and resized assets.
-- **Accessible**: Semantic HTML and ARIA labels for better accessibility.
+A high-performance, **Cyberpunk-themed** personal portfolio website featuring 3D interactive elements, neon aesthetics, and a robust custom backend for real-time communication.
 
 ---
 
-## 🚀 Quick Start
+## 🌟 Key Features
 
-1. **Clone or Download this repo**
-2. Open `index.html` in your browser
+### 🎨 **Frontend Excellence**
 
-This project is _static only_ – no server-side rendering required!
+- **🌌 Neon Glassmorphism**: Stunning dark UI with glowing effects and blurred glass cards.
+- **✨ Interactive Particles**: `tsParticles` integration for a living, breathing background.
+- **📱 Fully Responsive**: Optimized for every device from 4K Monitors to Mobile Phones.
+- **🚄 GSAP Animations**: Smooth scroll triggers, magnetic tilt effects, and text reveals.
+- **🔊 Audio Pronunciation**: Built-in name pronunciation feature.
 
-> Optionally, for local development, use [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) in VSCode to auto-reload changes.
+### 🛡️ **Powerful Backend (Node.js)**
 
----
-
-## 🛠️ Technologies & Tools
-
-- **HTML5 & CSS3:** Semantic markup, CSS Custom Properties (Variables), Flexbox/Grid.
-- **JavaScript (Vanilla):** efficient DOM manipulation and interaction logic.
-- **[GSAP](https://greensock.com/gsap/):** For high-performance, timeline-based animations.
-- **FontAwesome:** For vector icons.
-- **Google Fonts:** Custom typography (Orbitron, Poppins, Fira Code).
-- **Video Assets:** Optimized MP4s for backgrounds and hero elements.
+- **🚨 Discord Webhook**: Sends instant rich-embed notifications to your phone when someone contacts you.
+- **🤖 AI Auto-Reply**: Immediately confirms receipt to the visitor with a cyber-themed email.
+- **🕵️‍♂️ Intelligence Report**: Captures Sender IP, Location, and Device info for security.
+- **🟢 Live Status**: Real-time "System Online" indicator in the website footer.
+- **🧱 Rate Limiting**: Anti-spam protection limits requests per IP.
 
 ---
 
-## 📂 Folder/File Structure
+## 🛠️ Tech Stack
 
-```
+| Domain       | Technologies                                                                                                                                                                                                                                                                                                                                                                                                           |
+| :----------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Frontend** | ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black) ![GSAP](https://img.shields.io/badge/GSAP-GreenSock-88CE02?style=flat&logo=greensock&logoColor=white) |
+| **Backend**  | ![NodeJS](https://img.shields.io/badge/Node.js-43853D?style=flat&logo=node.js&logoColor=white) ![ExpressJS](https://img.shields.io/badge/Express.js-404D59?style=flat) ![Nodemailer](https://img.shields.io/badge/Nodemailer-Sent-0078D4?style=flat)                                                                                                                                                                   |
+| **Tools**    | ![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white) ![Render](https://img.shields.io/badge/Render-Cloud-46E3B7?style=flat) ![Discord](https://img.shields.io/badge/Discord-Webhook-5865F2?style=flat)                                                                                                                                                                                  |
+
+---
+
+## 📂 Project Structure
+
+```bash
 My-Website/
-│
-├── index.html         # Main HTML file, includes all sections and scripts
-├── style.css          # Core styles, animations, variables, responsive design
-├── project-icons.css  # Specific animations for project icons
-├── script.js          # UI logic: animations, global state, mobile optimization
-├── assets/            # Video assets, images, and documents
-│    ├── galaxy.mp4       # Main background
-│    ├── blackhole.mp4    # Hero section visual
-│    ├── hero-video.mp4   # Personal profile video
-│    └── ...
-├── README.md          # This file
-└── ...
+├── 📂 assets/              # Images, icons, and static media
+├── 📂 backend/             # Node.js API Server
+│   ├── node_modules/       # Dependencies (IGNORED)
+│   ├── .env                # Secrets: API Keys & Passwords (IGNORED)
+│   ├── .env.example        # Template for secrets
+│   ├── server.js           # Main Express Logic (Email + Discord + GeoIP)
+│   └── package.json        # Backend Config
+├── index.html              # Main Portfolio Page
+├── script.js               # Frontend Logic (GSAP, Animations, Fetch)
+├── style.css               # Core Styles & Tailwind Overrides
+├── server-status.css       # Status Indicator Styles
+└── project-icons.css       # Custom Icons
 ```
 
 ---
 
-## 🔍 Project Highlights
+## 🚀 Getting Started
 
-### Visual Experience
+### 1️⃣ Clone the Repository
 
-- **Video Integration**: Seamless integration of multiple video layers (background, foreground, masks) without compromising performance.
-- **GPU Acceleration**: All heavy visual elements use `transform: translateZ(0)` to ensure smooth rendering on mobile devices.
-- **Responsive Design**: Assets resize and reposition dynamically based on the device view (Mobile/Tablet/Desktop).
+```bash
+git clone https://github.com/SarshijKarn/My-Website.git
+cd My-Website
+```
 
-### Interaction
+### 2️⃣ Verify Frontend
 
-- **Hero Section**: Features a static/video profile option, typing text effect, and glitch title animation.
-- **Cards & sections**: 3D tilt effects on hover and intersection-observer based scroll animations.
+Simply open `index.html` with **Live Server** in VS Code.
+
+### 3️⃣ Setup Backend (Local Development)
+
+Navigate to the backend folder and install dependencies:
+
+```bash
+cd backend
+npm install
+```
+
+Create your secret configuration file:
+
+- Rename `.env.example` → `.env`
+- Add your credentials:
+  ```env
+  EMAIL_USER=your-email@gmail.com
+  EMAIL_PASS=your-google-app-password
+  DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/...
+  PORT=3000
+  ```
+
+Start the server:
+
+```bash
+npm start
+```
+
+_You should see: `Server v2.0 running on http://localhost:3000`_
 
 ---
 
-## 🧑‍💻 Customization
+## ☁️ Deployment Guide
 
-- **Videos:** Replace assets in `/assets/` and update paths in `index.html`.
-- **Personal info:** Update `index.html` content sections.
-- **Theme:** Adjust colors in `style.css` :root variables.
+### **Frontend (GitHub Pages)**
+
+1.  Go to GitHub Repo Settings > Pages.
+2.  Source: `Deploy from a branch`.
+3.  Branch: `main` / `root`.
+4.  Save.
+
+### **Backend (Render.com)**
+
+1.  Create a **New Web Service** on Render.
+2.  Connect this repo.
+3.  Settings:
+    - **Root Directory:** `backend`
+    - **Build Command:** `npm install`
+    - **Start Command:** `npm start`
+4.  **Environment Variables:** Add `EMAIL_USER`, `EMAIL_PASS`, and `DISCORD_WEBHOOK_URL` from your `.env`.
+
+---
+
+## 👨‍💻 Credits
+
+**Designed & Developed with ❤️ by**
+
+# [SARSHIJ KARN](https://sarshijkarn.com.np)
+
+_Visionary Developer | Tech Enthusiast_
+
+---
+
+_© 2025 Sarshij Karn. All Rights Reserved._
