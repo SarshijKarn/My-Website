@@ -30,11 +30,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(requestIp.mw());
 
-// Rate Limiting (Stricter for spam protection)
+// Rate Limiting (10 messages per minute)
 const limiter = rateLimit({
-  windowMs: 3 * 60 * 1000,  // 3 Minutes
-  max: 5, 
-  message: { success: false, message: 'Rate limit exceeded. Too many requests.' }
+  windowMs: 60 * 1000,  // 1 Minute
+  max: 10, 
+  message: { success: false, message: 'Rate limit exceeded. Too many requests. Please wait a minute.' },
+  standardHeaders: true,
+  legacyHeaders: false,
 });
 
 app.use('/api/contact', limiter);
@@ -87,6 +89,7 @@ app.post('/api/contact', async (req, res) => {
     console.log('📩 Incoming POST request to /api/contact'); // Debug log
     const { name, email, message } = req.body;
 
+    // Validate input
     if (!name || !email || !message) {
         return res.status(400).json({ success: false, message: 'All fields are required.' });
     }
@@ -103,87 +106,88 @@ app.post('/api/contact', async (req, res) => {
 
     const systemInfo = `**IP:** ${ip}\n**Loc:** ${locationInfo}\n**Time:** ${timestamp}\n**Device:** ${userAgent}`;
 
-    // Create Transporter
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS
-        }
-    });
+    // RESPOND IMMEDIATELY - Don't wait for emails
+    res.status(200).json({ success: true, message: 'Message received successfully!' });
 
-    // 1. Send Email to Sarshij (Archive)
-    const adminMailOptions = {
-        from: `"${name}" <${email}>`,
-        to: process.env.EMAIL_USER,
-        replyTo: email,
-        subject: `⚡ New Message from ${name}`,
-        html: `
-      <h2>New Contact Form Submission</h2>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Message:</strong><br>${message}</p>
-      <hr>
-      <h3>🕵️‍♂️ Intelligence Report</h3>
-      <pre>${systemInfo}</pre>
-    `
-    };
-
-    // 2. Send Auto-Reply to User (Confirmation)
-    const userAutoReplyOptions = {
-        from: `"Sarshij Karn" <${process.env.EMAIL_USER}>`,
-        to: email, // Send to the visitor
-        subject: `[SYSTEM] Receipt Acknowledged: Ticket #${Date.now().toString().slice(-4)}`,
-        html: `
-      <div style="background: #000; color: #0f0; font-family: 'Courier New', monospace; padding: 20px;">
-        <h2 style="border-bottom: 2px solid #0f0;">📡 TRANSMISSION RECEIVED</h2>
-        <p>Greetings ${name},</p>
-        <p>My server has successfully intercepted your message. I am currently decoding the data and will establish a neural link (reply) with you shortly.</p>
-        <br>
-        <p><i>"Technology is best when it brings people together."</i></p>
-        <br>
-        <p>-- <br>Sarshij Karn<br>Format: Engineering | AI | Cybersec</p>
-      </div>
-    `
-    };
-
-    // Set response timeout to prevent hanging
-    const responseTimeout = setTimeout(() => {
-        if (!res.headersSent) {
-            console.warn('⚠️ Response timeout - sending response anyway');
-            res.status(200).json({ success: true, message: 'Message received (processing in background).' });
-        }
-    }, 15000); // 15 second timeout
-
-    try {
-        // Run all in parallel but handle errors individually
-        const results = await Promise.allSettled([
-            transporter.sendMail(adminMailOptions),
-            transporter.sendMail(userAutoReplyOptions),
-            sendToDiscord({ name, email, message }, systemInfo)
-        ]);
-
-        clearTimeout(responseTimeout);
-
-        // Log individual failures
-        results.forEach((result, index) => {
-            if (result.status === 'rejected') {
-                const services = ['Admin Email', 'User Auto-Reply', 'Discord'];
-                console.error(`❌ ${services[index]} failed:`, result.reason?.message || 'Unknown error');
+    // Handle emails asynchronously (don't block response)
+    (async () => {
+        try {
+            // Check if email credentials are configured
+            if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+                console.warn('⚠️ Email credentials not configured. Skipping email sending.');
+                return;
             }
-        });
 
-        console.log('✅ Request processed (some services might have failed but response is 200).');
-        if (!res.headersSent) {
-            res.status(200).json({ success: true, message: 'Message received successfully!' });
+            // Create Transporter
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: process.env.EMAIL_USER,
+                    pass: process.env.EMAIL_PASS
+                }
+            });
+
+            // 1. Send Email to Sarshij (Archive)
+            const adminMailOptions = {
+                from: `"${name}" <${email}>`,
+                to: process.env.EMAIL_USER,
+                replyTo: email,
+                subject: `⚡ New Message from ${name}`,
+                html: `
+          <h2>New Contact Form Submission</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Message:</strong><br>${message}</p>
+          <hr>
+          <h3>🕵️‍♂️ Intelligence Report</h3>
+          <pre>${systemInfo}</pre>
+        `
+            };
+
+            // 2. Send Auto-Reply to User (Confirmation)
+            const userAutoReplyOptions = {
+                from: `"Sarshij Karn" <${process.env.EMAIL_USER}>`,
+                to: email,
+                subject: `[SYSTEM] Receipt Acknowledged: Ticket #${Date.now().toString().slice(-4)}`,
+                html: `
+          <div style="background: #000; color: #0f0; font-family: 'Courier New', monospace; padding: 20px;">
+            <h2 style="border-bottom: 2px solid #0f0;">📡 TRANSMISSION RECEIVED</h2>
+            <p>Greetings ${name},</p>
+            <p>My server has successfully intercepted your message. I am currently decoding the data and will establish a neural link (reply) with you shortly.</p>
+            <br>
+            <p><i>"Technology is best when it brings people together."</i></p>
+            <br>
+            <p>-- <br>Sarshij Karn<br>Format: Engineering | AI | Cybersec</p>
+          </div>
+        `
+            };
+
+            // Send emails with timeout
+            const emailTimeout = 10000; // 10 seconds per email
+            const emailPromises = [
+                Promise.race([
+                    transporter.sendMail(adminMailOptions),
+                    new Promise((_, reject) => setTimeout(() => reject(new Error('Email timeout')), emailTimeout))
+                ]).catch(err => {
+                    console.error('❌ Admin Email failed:', err.message);
+                }),
+                Promise.race([
+                    transporter.sendMail(userAutoReplyOptions),
+                    new Promise((_, reject) => setTimeout(() => reject(new Error('Email timeout')), emailTimeout))
+                ]).catch(err => {
+                    console.error('❌ User Auto-Reply failed:', err.message);
+                }),
+                sendToDiscord({ name, email, message }, systemInfo).catch(err => {
+                    console.error('❌ Discord failed:', err.message);
+                })
+            ];
+
+            await Promise.allSettled(emailPromises);
+            console.log('✅ Email processing completed (some may have failed).');
+        } catch (error) {
+            console.error('❌ Background email processing error:', error.message);
         }
-    } catch (error) {
-        clearTimeout(responseTimeout);
-        console.error('❌ Transmission error:', error);
-        if (!res.headersSent) {
-            res.status(500).json({ success: false, message: 'Transmission failed.' });
-        }
-    }
+    })();
 });
 
 app.listen(PORT, () => {

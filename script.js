@@ -633,6 +633,63 @@ if (contactForm) {
     input.addEventListener("blur", updateProgress);
   });
 
+  // Form validation function
+  function validateForm() {
+    const nameInput = contactForm.querySelector('#name');
+    const emailInput = contactForm.querySelector('#email');
+    const messageInput = contactForm.querySelector('#message');
+    
+    const errors = [];
+    
+    // Validate name
+    const name = nameInput?.value.trim() || '';
+    if (!name) {
+      errors.push('Name is required');
+      nameInput?.classList.add('error');
+    } else if (name.length < 2) {
+      errors.push('Name must be at least 2 characters');
+      nameInput?.classList.add('error');
+    } else if (name.length > 100) {
+      errors.push('Name must be less than 100 characters');
+      nameInput?.classList.add('error');
+    } else {
+      nameInput?.classList.remove('error');
+    }
+    
+    // Validate email
+    const email = emailInput?.value.trim() || '';
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email) {
+      errors.push('Email is required');
+      emailInput?.classList.add('error');
+    } else if (!emailRegex.test(email)) {
+      errors.push('Please enter a valid email address');
+      emailInput?.classList.add('error');
+    } else if (email.length > 255) {
+      errors.push('Email must be less than 255 characters');
+      emailInput?.classList.add('error');
+    } else {
+      emailInput?.classList.remove('error');
+    }
+    
+    // Validate message
+    const message = messageInput?.value.trim() || '';
+    if (!message) {
+      errors.push('Message is required');
+      messageInput?.classList.add('error');
+    } else if (message.length < 10) {
+      errors.push('Message must be at least 10 characters');
+      messageInput?.classList.add('error');
+    } else if (message.length > 500) {
+      errors.push('Message must be less than 500 characters');
+      messageInput?.classList.add('error');
+    } else {
+      messageInput?.classList.remove('error');
+    }
+    
+    return { isValid: errors.length === 0, errors };
+  }
+
   // Form submission
   contactForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -645,8 +702,31 @@ if (contactForm) {
     }
 
     const submitButton = contactForm.querySelector(".submit-button");
+    if (!submitButton) {
+      console.error('Submit button not found!');
+      return;
+    }
+    
     const buttonText = submitButton.querySelector(".button-text");
+    if (!buttonText) {
+      console.error('Button text element not found!');
+      return;
+    }
+    
     const originalText = buttonText.textContent;
+
+    // Frontend validation
+    const validation = validateForm();
+    if (!validation.isValid) {
+      // Show first error
+      buttonText.textContent = validation.errors[0];
+      submitButton.classList.add("error");
+      setTimeout(() => {
+        submitButton.classList.remove("error");
+        buttonText.textContent = originalText;
+      }, 3000);
+      return;
+    }
 
     // Add loading state
     submitButton.classList.add("loading");
@@ -655,72 +735,103 @@ if (contactForm) {
     try {
       const formData = new FormData(contactForm);
       const data = Object.fromEntries(formData.entries());
+      
+      // Sanitize data (trim whitespace)
+      data.name = data.name.trim();
+      data.email = data.email.trim();
+      data.message = data.message.trim();
 
       // Add timeout to prevent hanging
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
 
-      const response = await fetch(`${BACKEND_URL}/api/contact`, {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        signal: controller.signal,
-      });
+      let response;
+      try {
+        response = await fetch(`${BACKEND_URL}/api/contact`, {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          signal: controller.signal,
+        });
+        clearTimeout(timeoutId);
+      } catch (fetchError) {
+        clearTimeout(timeoutId);
+        throw fetchError;
+      }
 
-      clearTimeout(timeoutId);
+      // Handle response
+      try {
+        if (response.ok) {
+          const result = await response.json();
+          
+          // Validate response structure
+          if (!result || typeof result !== 'object') {
+            throw new Error('Invalid response from server');
+          }
+          
+          // Success state
+          submitButton.classList.remove("loading");
+          submitButton.classList.add("success");
+          buttonText.textContent = "Message Sent!";
 
-      if (response.ok) {
-        const result = await response.json();
-        // Success state
-        submitButton.classList.remove("loading");
-        submitButton.classList.add("success");
-        buttonText.textContent = "Message Sent!";
+          // Create success particle burst
+          createFormSuccessEffect(submitButton);
 
-        // Create success particle burst
-        createFormSuccessEffect(submitButton);
+          // Reset form
+          contactForm.reset();
+          formInputs.forEach((input) => {
+            input.classList.remove("has-value", "error");
+          });
+          updateProgress();
 
-        // Reset form
-        contactForm.reset();
-        formInputs.forEach((input) => input.classList.remove("has-value"));
-        updateProgress();
-
-        setTimeout(() => {
-          submitButton.classList.remove("success");
-          buttonText.textContent = originalText;
-          submitButton.disabled = false;
-        }, 3000);
-      } else {
-        // Try to get error message from response
-        let errorMessage = "Form submission failed";
-        try {
-          const errorData = await response.json();
-          errorMessage = errorData.message || errorMessage;
-        } catch (e) {
-          // If response is not JSON, use status text
-          errorMessage = response.statusText || errorMessage;
+          setTimeout(() => {
+            submitButton.classList.remove("success");
+            buttonText.textContent = originalText;
+            submitButton.disabled = false;
+          }, 3000);
+        } else {
+          // Handle non-OK responses
+          let errorMessage = "Form submission failed";
+          try {
+            const errorData = await response.json();
+            errorMessage = errorData.message || errorData.error || errorMessage;
+          } catch (parseError) {
+            // If response is not JSON, use status text
+            if (response && response.status) {
+              errorMessage = response.statusText || `Server error (${response.status})`;
+            }
+          }
+          throw new Error(errorMessage);
         }
-        throw new Error(errorMessage);
+      } catch (responseError) {
+        throw responseError;
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Form submission error:", error);
 
       // Error state
       submitButton.classList.remove("loading");
       submitButton.classList.add("error");
       
       // Show more specific error message
+      let errorMessage = "Error! Try Again";
+      
       if (error.name === 'AbortError' || error.message.includes("timeout")) {
-        buttonText.textContent = "Request Timeout! Try Again";
-      } else if (error.message.includes("Failed to fetch") || error.message.includes("NetworkError")) {
-        buttonText.textContent = "Network Error! Check Connection";
-      } else if (error.message.includes("Rate limit")) {
-        buttonText.textContent = "Too Many Requests! Wait a moment";
-      } else {
-        buttonText.textContent = "Error! Try Again";
+        errorMessage = "Request Timeout! Try Again";
+      } else if (error.message.includes("Failed to fetch") || error.message.includes("NetworkError") || error.message.includes("ERR_")) {
+        errorMessage = "Network Error! Check Connection";
+      } else if (error.message.includes("Rate limit") || error.message.includes("Too many requests")) {
+        errorMessage = "Too Many Requests! Please wait a minute";
+      } else if (error.message.includes("All fields are required")) {
+        errorMessage = "Please fill all fields";
+      } else if (error.message) {
+        errorMessage = error.message.length > 50 ? "Error! Try Again" : error.message;
       }
+      
+      buttonText.textContent = errorMessage;
 
       setTimeout(() => {
         submitButton.classList.remove("error");
