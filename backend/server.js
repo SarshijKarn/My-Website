@@ -115,23 +115,43 @@ app.post('/api/contact', async (req, res) => {
             // Check if email credentials are configured
             if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
                 console.warn('⚠️ Email credentials not configured. Skipping email sending.');
+                console.warn(`EMAIL_USER: ${process.env.EMAIL_USER ? 'SET' : 'MISSING'}`);
+                console.warn(`EMAIL_PASS: ${process.env.EMAIL_PASS ? 'SET' : 'MISSING'}`);
                 return;
             }
 
-            // Create Transporter
+            console.log(`📧 Attempting to send emails using: ${process.env.EMAIL_USER}`);
+
+            // Create Transporter with better Gmail configuration
             const transporter = nodemailer.createTransport({
                 service: 'gmail',
+                host: 'smtp.gmail.com',
+                port: 587,
+                secure: false, // true for 465, false for other ports
                 auth: {
                     user: process.env.EMAIL_USER,
                     pass: process.env.EMAIL_PASS
+                },
+                tls: {
+                    rejectUnauthorized: false
                 }
             });
 
-            // 1. Send Email to Sarshij (Archive)
+            // Verify transporter connection
+            try {
+                await transporter.verify();
+                console.log('✅ Email transporter verified successfully');
+            } catch (verifyError) {
+                console.error('❌ Email transporter verification failed:', verifyError.message);
+                console.error('Full error:', verifyError);
+                return;
+            }
+
+            // 1. Send Email to Sarshij (Archive) - Use EMAIL_USER as sender
             const adminMailOptions = {
-                from: `"${name}" <${email}>`,
+                from: `"Contact Form" <${process.env.EMAIL_USER}>`,
                 to: process.env.EMAIL_USER,
-                replyTo: email,
+                replyTo: email, // This allows replying to the sender
                 subject: `⚡ New Message from ${name}`,
                 html: `
           <h2>New Contact Form Submission</h2>
@@ -162,30 +182,50 @@ app.post('/api/contact', async (req, res) => {
         `
             };
 
-            // Send emails with timeout
-            const emailTimeout = 10000; // 10 seconds per email
-            const emailPromises = [
-                Promise.race([
+            // Send emails with timeout and better error handling
+            const emailTimeout = 15000; // 15 seconds per email
+            
+            // Send admin email
+            try {
+                const adminResult = await Promise.race([
                     transporter.sendMail(adminMailOptions),
-                    new Promise((_, reject) => setTimeout(() => reject(new Error('Email timeout')), emailTimeout))
-                ]).catch(err => {
-                    console.error('❌ Admin Email failed:', err.message);
-                }),
-                Promise.race([
-                    transporter.sendMail(userAutoReplyOptions),
-                    new Promise((_, reject) => setTimeout(() => reject(new Error('Email timeout')), emailTimeout))
-                ]).catch(err => {
-                    console.error('❌ User Auto-Reply failed:', err.message);
-                }),
-                sendToDiscord({ name, email, message }, systemInfo).catch(err => {
-                    console.error('❌ Discord failed:', err.message);
-                })
-            ];
+                    new Promise((_, reject) => setTimeout(() => reject(new Error('Admin email timeout')), emailTimeout))
+                ]);
+                console.log('✅ Admin email sent successfully:', adminResult.messageId);
+            } catch (adminError) {
+                console.error('❌ Admin Email failed:');
+                console.error('Error message:', adminError.message);
+                console.error('Error code:', adminError.code);
+                console.error('Error response:', adminError.response);
+                console.error('Full error:', adminError);
+            }
 
-            await Promise.allSettled(emailPromises);
-            console.log('✅ Email processing completed (some may have failed).');
+            // Send user auto-reply
+            try {
+                const userResult = await Promise.race([
+                    transporter.sendMail(userAutoReplyOptions),
+                    new Promise((_, reject) => setTimeout(() => reject(new Error('User email timeout')), emailTimeout))
+                ]);
+                console.log('✅ User auto-reply sent successfully:', userResult.messageId);
+            } catch (userError) {
+                console.error('❌ User Auto-Reply failed:');
+                console.error('Error message:', userError.message);
+                console.error('Error code:', userError.code);
+                console.error('Error response:', userError.response);
+                console.error('Full error:', userError);
+            }
+
+            // Send Discord notification (already working)
+            sendToDiscord({ name, email, message }, systemInfo).catch(err => {
+                console.error('❌ Discord failed:', err.message);
+            });
+
+            console.log('✅ Email processing completed.');
         } catch (error) {
-            console.error('❌ Background email processing error:', error.message);
+            console.error('❌ Background email processing error:');
+            console.error('Error message:', error.message);
+            console.error('Error stack:', error.stack);
+            console.error('Full error:', error);
         }
     })();
 });
