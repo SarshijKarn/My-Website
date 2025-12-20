@@ -147,6 +147,14 @@ app.post('/api/contact', async (req, res) => {
     `
     };
 
+    // Set response timeout to prevent hanging
+    const responseTimeout = setTimeout(() => {
+        if (!res.headersSent) {
+            console.warn('⚠️ Response timeout - sending response anyway');
+            res.status(200).json({ success: true, message: 'Message received (processing in background).' });
+        }
+    }, 15000); // 15 second timeout
+
     try {
         // Run all in parallel but handle errors individually
         const results = await Promise.allSettled([
@@ -155,19 +163,26 @@ app.post('/api/contact', async (req, res) => {
             sendToDiscord({ name, email, message }, systemInfo)
         ]);
 
+        clearTimeout(responseTimeout);
+
         // Log individual failures
         results.forEach((result, index) => {
             if (result.status === 'rejected') {
                 const services = ['Admin Email', 'User Auto-Reply', 'Discord'];
-                console.error(`❌ ${services[index]} failed:`, result.reason.message);
+                console.error(`❌ ${services[index]} failed:`, result.reason?.message || 'Unknown error');
             }
         });
 
         console.log('✅ Request processed (some services might have failed but response is 200).');
-        res.status(200).json({ success: true, message: 'Message received successfully!' });
+        if (!res.headersSent) {
+            res.status(200).json({ success: true, message: 'Message received successfully!' });
+        }
     } catch (error) {
+        clearTimeout(responseTimeout);
         console.error('❌ Transmission error:', error);
-        res.status(500).json({ success: false, message: 'Transmission failed.' });
+        if (!res.headersSent) {
+            res.status(500).json({ success: false, message: 'Transmission failed.' });
+        }
     }
 });
 

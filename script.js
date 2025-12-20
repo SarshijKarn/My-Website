@@ -656,6 +656,10 @@ if (contactForm) {
       const formData = new FormData(contactForm);
       const data = Object.fromEntries(formData.entries());
 
+      // Add timeout to prevent hanging
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+
       const response = await fetch(`${BACKEND_URL}/api/contact`, {
         method: "POST",
         body: JSON.stringify(data),
@@ -663,7 +667,10 @@ if (contactForm) {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
+        signal: controller.signal,
       });
+
+      clearTimeout(timeoutId);
 
       if (response.ok) {
         const result = await response.json();
@@ -705,7 +712,9 @@ if (contactForm) {
       submitButton.classList.add("error");
       
       // Show more specific error message
-      if (error.message.includes("Failed to fetch") || error.message.includes("NetworkError")) {
+      if (error.name === 'AbortError' || error.message.includes("timeout")) {
+        buttonText.textContent = "Request Timeout! Try Again";
+      } else if (error.message.includes("Failed to fetch") || error.message.includes("NetworkError")) {
         buttonText.textContent = "Network Error! Check Connection";
       } else if (error.message.includes("Rate limit")) {
         buttonText.textContent = "Too Many Requests! Wait a moment";
