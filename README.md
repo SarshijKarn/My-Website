@@ -33,7 +33,7 @@ A high-performance, **Cyberpunk-themed** personal portfolio website featuring 3D
 | Domain       | Technologies                                                                                                                                                                                                                                                                                                                                                                                                           |
 | :----------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Frontend** | ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black) ![GSAP](https://img.shields.io/badge/GSAP-GreenSock-88CE02?style=flat&logo=greensock&logoColor=white) |
-| **Backend**  | ![NodeJS](https://img.shields.io/badge/Node.js-43853D?style=flat&logo=node.js&logoColor=white) ![ExpressJS](https://img.shields.io/badge/Express.js-404D59?style=flat) ![Nodemailer](https://img.shields.io/badge/Nodemailer-Sent-0078D4?style=flat)                                                                                                                                                                   |
+| **Backend**  | ![NodeJS](https://img.shields.io/badge/Node.js-43853D?style=flat&logo=node.js&logoColor=white) ![ExpressJS](https://img.shields.io/badge/Express.js-404D59?style=flat) ![Resend](https://img.shields.io/badge/Resend-API-black?style=flat)                                                                                                                                                                             |
 | **Tools**    | ![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white) ![Render](https://img.shields.io/badge/Render-Cloud-46E3B7?style=flat) ![Discord](https://img.shields.io/badge/Discord-Webhook-5865F2?style=flat)                                                                                                                                                                                  |
 
 ---
@@ -85,8 +85,9 @@ Create your secret configuration file:
 - Rename `.env.example` → `.env`
 - Add your credentials:
   ```env
-  EMAIL_USER=your-email@gmail.com
-  EMAIL_PASS=your-google-app-password
+  EMAIL_USER=contact@yourdomain.com
+  EMAIL_PASS=re_your_resend_api_key
+  ADMIN_EMAIL=your-personal@email.com
   DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/...
   PORT=3000
   ```
@@ -118,7 +119,7 @@ _You should see: `Server v2.0 running on http://localhost:3000`_
     - **Root Directory:** `backend`
     - **Build Command:** `npm install`
     - **Start Command:** `npm start`
-4.  **Environment Variables:** Add `EMAIL_USER`, `EMAIL_PASS`, and `DISCORD_WEBHOOK_URL` from your `.env`.
+4.  **Environment Variables:** Add `EMAIL_USER`, `EMAIL_PASS`, `ADMIN_EMAIL`, and `DISCORD_WEBHOOK_URL` from your `.env`.
 
 ---
 

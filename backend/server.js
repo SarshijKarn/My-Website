@@ -10,13 +10,13 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // 🔍 CONFIGURATION CHECK
-if (!process.env.EMAIL_USER || process.env.EMAIL_USER.includes('your-email')) {
-    console.warn('\n⚠️  WARNING: EMAIL_USER is missing or default. Email features will FAIL.');
-    console.warn('👉  Please edit the .env file in the backend folder.\n');
-}
-if (!process.env.DISCORD_WEBHOOK_URL || process.env.DISCORD_WEBHOOK_URL.includes('your-discord-webhook')) {
-    console.warn('\n⚠️  WARNING: DISCORD_WEBHOOK_URL is missing or default. Discord notifications will FAIL.\n');
-}
+const requiredEnv = ['EMAIL_USER', 'EMAIL_PASS', 'ADMIN_EMAIL', 'DISCORD_WEBHOOK_URL'];
+requiredEnv.forEach(env => {
+    if (!process.env[env] || process.env[env].includes('your-')) {
+        console.warn(`\n⚠️  WARNING: ${env} is missing or default. Systems will FAIL.`);
+        console.warn('👉  Please update the Environment Variables in Render or your local .env file.\n');
+    }
+});
 
 // Trust proxies (Crucial for Render/Heroku to get real IPs)
 app.set('trust proxy', 1); // Use 1 instead of true to fix rate limiter warning
@@ -134,160 +134,87 @@ app.post('/api/contact', async (req, res) => {
                 return;
             }
 
-            console.log(`📧 Attempting to send emails using: ${process.env.EMAIL_USER}`);
-            console.log(`📧 EMAIL_PASS length: ${process.env.EMAIL_PASS ? process.env.EMAIL_PASS.length : 'MISSING'} characters`);
+            console.log(`📧 Notification Protocol initialized using: ${process.env.EMAIL_USER}`);
+
+            // ---------------------------------------------------------
+            // 🚀 RESEND API INTEGRATION (Direct & Reliable)
+            // ---------------------------------------------------------
+            const RESEND_API_KEY = process.env.EMAIL_PASS; // Using existing variable for simplicity
             
-            // Check if password has spaces (common mistake)
-            if (process.env.EMAIL_PASS && process.env.EMAIL_PASS.includes(' ')) {
-                console.warn('⚠️ WARNING: EMAIL_PASS contains spaces! Gmail app passwords should NOT have spaces.');
-                console.warn('⚠️ Remove all spaces from your Gmail app password.');
-            }
+            // Pull details from Environment Variables for security
+            const SENDER_EMAIL = process.env.EMAIL_USER; 
+            const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
 
-            // Create Transporter - Port 587 with STARTTLS is often more reliable on cloud environments like Render
-            let transporter = nodemailer.createTransport({
-                service: 'gmail',
-                host: 'smtp.gmail.com',
-                port: 587,
-                secure: false, // Use false for STARTTLS (Port 587)
-                auth: {
-                    user: process.env.EMAIL_USER,
-                    pass: process.env.EMAIL_PASS
-                },
-                tls: {
-                    rejectUnauthorized: false,
-                    minVersion: 'TLSv1.2'
-                },
-                connectionTimeout: 60000, 
-                greetingTimeout: 30000, 
-                socketTimeout: 60000, 
-                debug: true, // Enable debug logging
-                logger: true // Enable internal logger
-            });
-            console.log('✅ Transporter initialized with Port 587 (STARTTLS) and Debug mode.');
+            console.log(`📤 Sending notifications via Resend API...`);
 
-            // Verify connection before sending
-            try {
-                await transporter.verify();
-                console.log('📬 SMTP Connection verified successfully!');
-            } catch (vErr) {
-                console.error('❌ SMTP Verification FAILED:', vErr.message);
-                // We'll continue anyway, but this gives better logs
-            }
-
-            // 1. Send Email to Sarshij (Archive) - Use EMAIL_USER as sender
-            const adminMailOptions = {
-                from: `"Contact Form" <${process.env.EMAIL_USER}>`,
-                to: process.env.EMAIL_USER,
-                replyTo: email, // This allows replying to the sender
+            // 1. Admin Email Payload
+            const adminEmailPayload = {
+                from: `Portfolio <${SENDER_EMAIL}>`,
+                to: [ADMIN_EMAIL],
+                reply_to: email,
                 subject: `⚡ New Message from ${name}`,
                 html: `
-          <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Message:</strong><br>${message}</p>
-          <hr>
-          <h3>🕵️‍♂️ Intelligence Report</h3>
-          <pre>${systemInfo}</pre>
-        `
+                    <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
+                        <h2 style="color: #00ff88;">New Contact Form Submission</h2>
+                        <p><strong>Name:</strong> ${name}</p>
+                        <p><strong>Email:</strong> ${email}</p>
+                        <p><strong>Message:</strong><br>${message}</p>
+                        <hr>
+                        <h3>🕵️‍♂️ Intelligence Report</h3>
+                        <pre style="background: #f4f4f4; padding: 10px; border-radius: 5px;">${systemInfo}</pre>
+                    </div>
+                `
             };
 
-            // 2. Send Auto-Reply to User (Confirmation)
-            const userAutoReplyOptions = {
-                from: `"Sarshij Karn" <${process.env.EMAIL_USER}>`,
-                to: email,
-                subject: `[SYSTEM] Receipt Acknowledged: Ticket #${Date.now().toString().slice(-4)}`,
+            // 2. User Auto-Reply Payload
+            const ticketId = `ACK-${Math.random().toString(36).toUpperCase().substring(2, 8)}`;
+            const userAutoReplyPayload = {
+                from: `Sarshij Karn <${SENDER_EMAIL}>`,
+                to: [email],
+                subject: `[Receipt Acknowledged] Transmission ${ticketId}`,
                 html: `
-          <div style="background: #000; color: #0f0; font-family: 'Courier New', monospace; padding: 20px;">
-            <h2 style="border-bottom: 2px solid #0f0;">📡 TRANSMISSION RECEIVED</h2>
-            <p>Greetings ${name},</p>
-            <p>My server has successfully intercepted your message. I am currently decoding the data and will establish a neural link (reply) with you shortly.</p>
-            <br>
-            <p><i>"Technology is best when it brings people together."</i></p>
-            <br>
-            <p>-- <br>Sarshij Karn<br>Format: Engineering | AI | Cybersec</p>
-          </div>
-        `
+                <div style="background-color: #050505; color: #ffffff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px; line-height: 1.6; max-width: 600px; margin: auto; border: 1px solid #1a1a1a; border-radius: 8px;">
+                    <div style="border-bottom: 2px solid #00ff88; padding-bottom: 20px; margin-bottom: 30px;">
+                        <h1 style="color: #00ff88; margin: 0; font-size: 24px; letter-spacing: 2px;">SYSTEM ACKNOWLEDGMENT</h1>
+                        <p style="color: #888; margin: 5px 0 0 0; font-size: 12px;">ENCRYPTED TRANSMISSION // ${ticketId}</p>
+                    </div>
+                    <p style="font-size: 16px;">Greetings <strong style="color: #00ff88;">${name}</strong>,</p>
+                    <p>My neural network has successfully intercepted your transmission. Your message has been logged into the terminal and is currently awaiting manual decryption.</p>
+                    <div style="background: #111; border-left: 3px solid #00ff88; padding: 15px; margin: 25px 0; color: #ccc; font-style: italic;">
+                        "The best way to predict the future is to invent it."
+                    </div>
+                    <p>Expect a direct link established at <span style="color: #00ff88;">${email}</span> once the data has been analyzed.</p>
+                    <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #1a1a1a; font-size: 13px; color: #555;">
+                        <p style="margin: 0;">--</p>
+                        <p style="margin: 5px 0; font-weight: bold; color: #888;">SARSHIJ KARN</p>
+                        <p style="margin: 0;">Full-Stack Developer | AI Enthusiast | Cybersec Explorer</p>
+                    </div>
+                </div>
+                `
             };
 
-            // Send emails with increased timeout - Gmail can be slow
-            const emailTimeout = 60000; // 60 seconds per email - increased significantly
-            
-            console.log('📤 Starting to send emails and Discord notification...');
-            
-            // Send all notifications in parallel with proper error handling
-            const promises = [];
-            
-            // 1. Admin email - with detailed error logging
-            promises.push(
-                Promise.race([
-                    transporter.sendMail(adminMailOptions),
-                    new Promise((_, reject) => setTimeout(() => reject(new Error('Admin email timeout after 60s')), emailTimeout))
-                ])
-                .then(result => {
-                    console.log('✅ Admin email sent successfully! Message ID:', result.messageId);
-                    return { type: 'admin', success: true };
-                })
-                .catch(err => {
-                    console.error('❌ Admin Email FAILED:');
-                    console.error('   Message:', err.message);
-                    console.error('   Code:', err.code || 'N/A');
-                    console.error('   Command:', err.command || 'N/A');
-                    console.error('   Response:', err.response || 'N/A');
-                    console.error('   ResponseCode:', err.responseCode || 'N/A');
-                    if (err.code === 'EAUTH') {
-                        console.error('   ⚠️ AUTHENTICATION ERROR: EMAIL_PASS is likely incorrect!');
-                        console.error('   ⚠️ Make sure you\'re using a Gmail App Password (16 characters, no spaces)');
-                    }
-                    if (err.code === 'ETIMEDOUT' || err.code === 'ECONNREFUSED') {
-                        console.error('   ⚠️ CONNECTION ERROR: Cannot reach Gmail servers');
-                        console.error('   ⚠️ Check firewall/network settings');
-                    }
-                    return { type: 'admin', success: false, error: err.message, code: err.code };
-                })
-            );
-            
-            // 2. User auto-reply - with detailed error logging
-            promises.push(
-                Promise.race([
-                    transporter.sendMail(userAutoReplyOptions),
-                    new Promise((_, reject) => setTimeout(() => reject(new Error('User email timeout after 60s')), emailTimeout))
-                ])
-                .then(result => {
-                    console.log('✅ User auto-reply sent successfully! Message ID:', result.messageId);
-                    return { type: 'user', success: true };
-                })
-                .catch(err => {
-                    console.error('❌ User Auto-Reply FAILED:');
-                    console.error('   Message:', err.message);
-                    console.error('   Code:', err.code || 'N/A');
-                    console.error('   Command:', err.command || 'N/A');
-                    console.error('   Response:', err.response || 'N/A');
-                    console.error('   ResponseCode:', err.responseCode || 'N/A');
-                    if (err.code === 'EAUTH') {
-                        console.error('   ⚠️ AUTHENTICATION ERROR: EMAIL_PASS is likely incorrect!');
-                        console.error('   ⚠️ Make sure you\'re using a Gmail App Password (16 characters, no spaces)');
-                    }
-                    if (err.code === 'ETIMEDOUT' || err.code === 'ECONNREFUSED') {
-                        console.error('   ⚠️ CONNECTION ERROR: Cannot reach Gmail servers');
-                        console.error('   ⚠️ Check firewall/network settings');
-                    }
-                    return { type: 'user', success: false, error: err.message, code: err.code };
-                })
-            );
-            
-            // 3. Discord notification
-            promises.push(
+            // Send via Axios in parallel
+            const headers = { 
+                'Authorization': `Bearer ${RESEND_API_KEY}`,
+                'Content-Type': 'application/json' 
+            };
+
+            const promises = [
+                // Admin Email
+                axios.post('https://api.resend.com/emails', adminEmailPayload, { headers })
+                    .then(r => ({ type: 'admin', success: true, id: r.data.id }))
+                    .catch(e => ({ type: 'admin', success: false, error: e.response?.data?.message || e.message })),
+                
+                // User Auto-Reply
+                axios.post('https://api.resend.com/emails', userAutoReplyPayload, { headers })
+                    .then(r => ({ type: 'user', success: true, id: r.data.id }))
+                    .catch(e => ({ type: 'user', success: false, error: e.response?.data?.message || e.message })),
+                
+                // Discord (Existing)
                 sendToDiscord({ name, email, message }, systemInfo)
-                .then(() => {
-                    console.log('✅ Discord notification sent successfully!');
-                    return { type: 'discord', success: true };
-                })
-                .catch(err => {
-                    console.error('❌ Discord notification FAILED:');
-                    console.error('   Message:', err.message);
-                    return { type: 'discord', success: false, error: err.message };
-                })
-            );
+                    .then(() => ({ type: 'discord', success: true }))
+                    .catch(e => ({ type: 'discord', success: false, error: e.message }))
+            ];
             
             // Wait for all to complete
             const results = await Promise.allSettled(promises);
