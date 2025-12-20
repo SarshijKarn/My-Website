@@ -19,7 +19,7 @@ if (!process.env.DISCORD_WEBHOOK_URL || process.env.DISCORD_WEBHOOK_URL.includes
 }
 
 // Trust proxies (Crucial for Render/Heroku to get real IPs)
-app.set('trust proxy', true);
+app.set('trust proxy', 1); // Use 1 instead of true to fix rate limiter warning
 
 // Middleware
 app.use(cors({
@@ -30,13 +30,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(requestIp.mw());
 
-// Rate Limiting (10 messages per minute)
+// Rate Limiting (10 messages per minute) - Fixed trust proxy issue
 const limiter = rateLimit({
   windowMs: 60 * 1000,  // 1 Minute
   max: 10, 
   message: { success: false, message: 'Rate limit exceeded. Too many requests. Please wait a minute.' },
   standardHeaders: true,
   legacyHeaders: false,
+  trustProxy: true, // Explicitly set trust proxy for rate limiter
 });
 
 app.use('/api/contact', limiter);
@@ -61,10 +62,14 @@ const axios = require('axios'); // For Discord Webhook
 
 // Helper: Send to Discord
 async function sendToDiscord(messageData, systemInfo) {
-    if (!process.env.DISCORD_WEBHOOK_URL) return;
+    if (!process.env.DISCORD_WEBHOOK_URL) {
+        console.warn('⚠️ DISCORD_WEBHOOK_URL not configured. Skipping Discord notification.');
+        return;
+    }
 
     try {
-        await axios.post(process.env.DISCORD_WEBHOOK_URL, {
+        console.log('📤 Sending Discord notification...');
+        const response = await axios.post(process.env.DISCORD_WEBHOOK_URL, {
             embeds: [{
                 title: "🚀 New Mission: Incoming Message",
                 color: 5793266, // Cyber Green
@@ -77,10 +82,19 @@ async function sendToDiscord(messageData, systemInfo) {
                 footer: { text: "Sarshij's Command Center" },
                 timestamp: new Date()
             }]
+        }, {
+            timeout: 10000 // 10 second timeout
         });
-        console.log("Discord notification sent.");
+        console.log("✅ Discord notification sent successfully. Status:", response.status);
     } catch (error) {
-        console.error("Discord Error:", error.message);
+        console.error("❌ Discord Error:");
+        console.error("   Message:", error.message);
+        console.error("   Code:", error.code || 'N/A');
+        if (error.response) {
+            console.error("   Response status:", error.response.status);
+            console.error("   Response data:", error.response.data);
+        }
+        throw error; // Re-throw so caller knows it failed
     }
 }
 
@@ -137,14 +151,22 @@ app.post('/api/contact', async (req, res) => {
                 }
             });
 
-            // Verify transporter connection
+            // Verify transporter connection with timeout
             try {
-                await transporter.verify();
+                console.log('🔍 Verifying email transporter connection...');
+                await Promise.race([
+                    transporter.verify(),
+                    new Promise((_, reject) => setTimeout(() => reject(new Error('Transporter verification timeout after 10s')), 10000))
+                ]);
                 console.log('✅ Email transporter verified successfully');
             } catch (verifyError) {
-                console.error('❌ Email transporter verification failed:', verifyError.message);
-                console.error('Full error:', verifyError);
-                return;
+                console.error('❌ Email transporter verification FAILED:');
+                console.error('   Message:', verifyError.message);
+                console.error('   Code:', verifyError.code || 'N/A');
+                console.error('   This usually means EMAIL_PASS is incorrect or Gmail app password is not set up.');
+                console.error('   Full error:', verifyError);
+                // Continue anyway - sometimes verify fails but sending works
+                console.log('⚠️ Continuing with email sending despite verification failure...');
             }
 
             // 1. Send Email to Sarshij (Archive) - Use EMAIL_USER as sender
@@ -183,44 +205,88 @@ app.post('/api/contact', async (req, res) => {
             };
 
             // Send emails with timeout and better error handling
-            const emailTimeout = 15000; // 15 seconds per email
+            const emailTimeout = 20000; // 20 seconds per email
             
-            // Send admin email
-            try {
-                const adminResult = await Promise.race([
+            console.log('📤 Starting to send emails and Discord notification...');
+            
+            // Send all notifications in parallel with proper error handling
+            const promises = [];
+            
+            // 1. Admin email
+            promises.push(
+                Promise.race([
                     transporter.sendMail(adminMailOptions),
-                    new Promise((_, reject) => setTimeout(() => reject(new Error('Admin email timeout')), emailTimeout))
-                ]);
-                console.log('✅ Admin email sent successfully:', adminResult.messageId);
-            } catch (adminError) {
-                console.error('❌ Admin Email failed:');
-                console.error('Error message:', adminError.message);
-                console.error('Error code:', adminError.code);
-                console.error('Error response:', adminError.response);
-                console.error('Full error:', adminError);
-            }
-
-            // Send user auto-reply
-            try {
-                const userResult = await Promise.race([
+                    new Promise((_, reject) => setTimeout(() => reject(new Error('Admin email timeout after 20s')), emailTimeout))
+                ])
+                .then(result => {
+                    console.log('✅ Admin email sent successfully! Message ID:', result.messageId);
+                    return { type: 'admin', success: true };
+                })
+                .catch(err => {
+                    console.error('❌ Admin Email FAILED:');
+                    console.error('   Message:', err.message);
+                    console.error('   Code:', err.code || 'N/A');
+                    if (err.response) {
+                        console.error('   Response:', err.response);
+                    }
+                    return { type: 'admin', success: false, error: err.message };
+                })
+            );
+            
+            // 2. User auto-reply
+            promises.push(
+                Promise.race([
                     transporter.sendMail(userAutoReplyOptions),
-                    new Promise((_, reject) => setTimeout(() => reject(new Error('User email timeout')), emailTimeout))
-                ]);
-                console.log('✅ User auto-reply sent successfully:', userResult.messageId);
-            } catch (userError) {
-                console.error('❌ User Auto-Reply failed:');
-                console.error('Error message:', userError.message);
-                console.error('Error code:', userError.code);
-                console.error('Error response:', userError.response);
-                console.error('Full error:', userError);
-            }
-
-            // Send Discord notification (already working)
-            sendToDiscord({ name, email, message }, systemInfo).catch(err => {
-                console.error('❌ Discord failed:', err.message);
+                    new Promise((_, reject) => setTimeout(() => reject(new Error('User email timeout after 20s')), emailTimeout))
+                ])
+                .then(result => {
+                    console.log('✅ User auto-reply sent successfully! Message ID:', result.messageId);
+                    return { type: 'user', success: true };
+                })
+                .catch(err => {
+                    console.error('❌ User Auto-Reply FAILED:');
+                    console.error('   Message:', err.message);
+                    console.error('   Code:', err.code || 'N/A');
+                    if (err.response) {
+                        console.error('   Response:', err.response);
+                    }
+                    return { type: 'user', success: false, error: err.message };
+                })
+            );
+            
+            // 3. Discord notification
+            promises.push(
+                sendToDiscord({ name, email, message }, systemInfo)
+                .then(() => {
+                    console.log('✅ Discord notification sent successfully!');
+                    return { type: 'discord', success: true };
+                })
+                .catch(err => {
+                    console.error('❌ Discord notification FAILED:');
+                    console.error('   Message:', err.message);
+                    return { type: 'discord', success: false, error: err.message };
+                })
+            );
+            
+            // Wait for all to complete
+            const results = await Promise.allSettled(promises);
+            
+            // Log summary
+            const summary = results.map((result, index) => {
+                if (result.status === 'fulfilled') {
+                    return result.value;
+                } else {
+                    const types = ['admin', 'user', 'discord'];
+                    return { type: types[index] || 'unknown', success: false, error: result.reason?.message || 'Unknown error' };
+                }
             });
-
-            console.log('✅ Email processing completed.');
+            
+            console.log('📊 Notification Summary:');
+            summary.forEach(item => {
+                console.log(`   ${item.type}: ${item.success ? '✅ SUCCESS' : '❌ FAILED'} ${item.error ? `(${item.error})` : ''}`);
+            });
+            
+            console.log('✅ All notification attempts completed.');
         } catch (error) {
             console.error('❌ Background email processing error:');
             console.error('Error message:', error.message);
