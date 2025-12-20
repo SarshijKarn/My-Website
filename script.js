@@ -5,6 +5,11 @@ gsap.registerPlugin(ScrollTrigger);
 const BACKEND_URL = "https://backend-contact-form-hvqf.onrender.com";
 // Example: const BACKEND_URL = 'https://my-backend.onrender.com';
 
+// Safety check: Ensure BACKEND_URL is defined
+if (typeof BACKEND_URL === 'undefined' || !BACKEND_URL) {
+  console.error('BACKEND_URL is not defined! Please check script.js configuration.');
+}
+
 // ========================================
 // ENHANCED NAVBAR
 // ========================================
@@ -94,13 +99,15 @@ const themeToggle = document.getElementById("themeToggle");
 const body = document.body;
 let isDark = true;
 
-themeToggle.addEventListener("click", () => {
-  isDark = !isDark;
-  body.className = isDark ? "dark" : "light";
-  themeToggle.classList.toggle("active");
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    isDark = !isDark;
+    body.className = isDark ? "dark" : "light";
+    themeToggle.classList.toggle("active");
 
-  // Theme logic handled by CSS variables for videos/backgrounds
-});
+    // Theme logic handled by CSS variables for videos/backgrounds
+  });
+}
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -630,6 +637,13 @@ if (contactForm) {
   contactForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    // Safety check: Ensure BACKEND_URL is defined
+    if (typeof BACKEND_URL === 'undefined' || !BACKEND_URL) {
+      console.error('BACKEND_URL is not defined! Cannot submit form.');
+      alert('Configuration error: Backend URL is not set. Please contact the site administrator.');
+      return;
+    }
+
     const submitButton = contactForm.querySelector(".submit-button");
     const buttonText = submitButton.querySelector(".button-text");
     const originalText = buttonText.textContent;
@@ -652,6 +666,7 @@ if (contactForm) {
       });
 
       if (response.ok) {
+        const result = await response.json();
         // Success state
         submitButton.classList.remove("loading");
         submitButton.classList.add("success");
@@ -671,7 +686,16 @@ if (contactForm) {
           submitButton.disabled = false;
         }, 3000);
       } else {
-        throw new Error("Form submission failed");
+        // Try to get error message from response
+        let errorMessage = "Form submission failed";
+        try {
+          const errorData = await response.json();
+          errorMessage = errorData.message || errorMessage;
+        } catch (e) {
+          // If response is not JSON, use status text
+          errorMessage = response.statusText || errorMessage;
+        }
+        throw new Error(errorMessage);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -679,7 +703,15 @@ if (contactForm) {
       // Error state
       submitButton.classList.remove("loading");
       submitButton.classList.add("error");
-      buttonText.textContent = "Error! Try Again";
+      
+      // Show more specific error message
+      if (error.message.includes("Failed to fetch") || error.message.includes("NetworkError")) {
+        buttonText.textContent = "Network Error! Check Connection";
+      } else if (error.message.includes("Rate limit")) {
+        buttonText.textContent = "Too Many Requests! Wait a moment";
+      } else {
+        buttonText.textContent = "Error! Try Again";
+      }
 
       setTimeout(() => {
         submitButton.classList.remove("error");
