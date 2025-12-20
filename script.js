@@ -1,6 +1,10 @@
 // GSAP Animations and Interactions
 gsap.registerPlugin(ScrollTrigger);
 
+// 🔧 CONFIGURATION: CHANGE THIS URL WHEN DEPLOYING
+const BACKEND_URL = "https://backend-contact-form-hvqf.onrender.com";
+// Example: const BACKEND_URL = 'https://my-backend.onrender.com';
+
 // ========================================
 // ENHANCED NAVBAR
 // ========================================
@@ -302,10 +306,6 @@ document.addEventListener("DOMContentLoaded", () => {
     submitBtn.classList.add("initializing");
     btnText.textContent = "📡 INITIALIZING UPLINK...";
   }
-
-  // 🔧 CONFIGURATION: CHANGE THIS URL WHEN DEPLOYING
-  const BACKEND_URL = "https://backend-contact-form-hvqf.onrender.com";
-  // Example: const BACKEND_URL = 'https://my-backend.onrender.com';
 
   fetch(`${BACKEND_URL}/api/wake-up`)
     .then((res) => {
