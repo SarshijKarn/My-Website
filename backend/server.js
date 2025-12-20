@@ -30,14 +30,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(requestIp.mw());
 
-// Rate Limiting (10 messages per minute) - Fixed trust proxy issue
+// Rate Limiting (10 messages per minute)
+// Note: trustProxy is handled by app.set('trust proxy', 1) above, not needed here
 const limiter = rateLimit({
   windowMs: 60 * 1000,  // 1 Minute
   max: 10, 
   message: { success: false, message: 'Rate limit exceeded. Too many requests. Please wait a minute.' },
   standardHeaders: true,
   legacyHeaders: false,
-  trustProxy: true, // Explicitly set trust proxy for rate limiter
 });
 
 app.use('/api/contact', limiter);
