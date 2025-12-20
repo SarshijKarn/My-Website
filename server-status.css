@@ -52,3 +52,22 @@
     font-size: 0.7rem;
   }
 }
+
+/* Cyber Particles */
+.cyber-particle {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    background: rgba(0, 255, 136, 0.5);
+    box-shadow: 0 0 5px #00ff88;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    animation: floatParticle linear forwards;
+}
+
+@keyframes floatParticle {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    20% { opacity: 0.8; }
+    100% { transform: translateY(-100px) scale(0); opacity: 0; }
+}

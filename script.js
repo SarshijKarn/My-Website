@@ -342,6 +342,21 @@ const BACKEND_URL = 'https://backend-contact-form-hvqf.onrender.com';
     });
 
   // Create initial particles - reduced count for better performance
+  function createParticle() {
+      const particle = document.createElement("div");
+      particle.className = "cyber-particle";
+      particle.style.left = Math.random() * 100 + "vw";
+      particle.style.top = Math.random() * 100 + "vh";
+      particle.style.animationDuration = Math.random() * 3 + 2 + "s";
+      document.body.appendChild(particle);
+      
+      // Cleanup
+      setTimeout(() => {
+          particle.remove();
+          if(document.body.contains(particle)) requestAnimationFrame(createParticle); // Keep generating
+      }, 5000);
+  }
+
   for (let i = 0; i < 5; i++) {
     setTimeout(createParticle, i * 200);
   }
