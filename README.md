@@ -1,4 +1,4 @@
-# ⚡ Sarshij's Cyber-Portfolio
+# ⚡ Sarshij's Portfolio
 
 ![Banner](https://capsule-render.vercel.app/api?type=waving&color=0f172a&height=300&section=header&text=Sarshij%20Karn&fontSize=90&fontColor=00ff88&animation=fadeIn&fontAlignY=38&desc=Engineering%20|%20AI%20|%20Cybersecurity&descAlignY=55&descAlign=50)
 
