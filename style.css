@@ -35,46 +35,12 @@ section {
 }
 
 body {
+  font-family: "Fira Code", monospace;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  transition: all 0.3s ease;
+  position: relative;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
-  cursor: none !important; /* Hide default cursor to use custom one */
-}
-
-/* --- Custom Cyber Cursor --- */
-#custom-cursor {
-  width: 20px;
-  height: 20px;
-  background: rgba(0, 206, 209, 0.5);
-  border: 1px solid #00ced1;
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 10000;
-  transition: transform 0.15s ease-out, background 0.3s, border-color 0.3s, opacity 0.3s;
-  box-shadow: 0 0 10px #00ced1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#custom-cursor::after {
-  content: '';
-  width: 4px;
-  height: 4px;
-  background: #fff;
-  border-radius: 50%;
-}
-
-#custom-cursor.hover {
-  transform: scale(3);
-  background: rgba(138, 43, 226, 0.2);
-  border-color: #8a2be2;
-  box-shadow: 0 0 20px #8a2be2;
-}
-
-/* Hide custom cursor on mobile */
-@media (max-width: 1024px) {
-  body { cursor: auto !important; }
-  #custom-cursor { display: none !important; }
 }
 
 /* Video Background */

@@ -10,28 +10,6 @@ if (typeof BACKEND_URL === 'undefined' || !BACKEND_URL) {
   console.error('BACKEND_URL is not defined! Please check script.js configuration.');
 }
 
-// 0. Custom Cursor Logic
-const initCustomCursor = () => {
-  const cursor = document.getElementById('custom-cursor');
-  if (!cursor) return;
-
-  window.addEventListener('mousemove', (e) => {
-    gsap.to(cursor, {
-      x: e.clientX - 10,
-      y: e.clientY - 10,
-      duration: 0.1,
-      ease: "power2.out"
-    });
-  });
-
-  // Add hover effects for all links and buttons
-  const targets = document.querySelectorAll('a, button, .card, .magnetic-card, .terminal-toggle-btn');
-  targets.forEach(target => {
-    target.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-    target.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-  });
-};
-
 // 0.1 Text Scramble (Decryption) Effect
 class TextScramble {
   constructor(el) {
@@ -1227,7 +1205,6 @@ function initTerminalMode() {
 // Initializations
 document.addEventListener('DOMContentLoaded', () => {
     initTerminalMode();
-    initCustomCursor();
 
     // Initialize text scramble on section headers
     const headers = document.querySelectorAll('.heading-highlight');
