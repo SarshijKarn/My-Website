@@ -3,19 +3,19 @@
   "short_name": "Sarshij",
   "icons": [
     {
-      "src": "/favicon-32x32.png",
+      "src": "/favicon-32x32.webp",
       "sizes": "32x32",
-      "type": "image/png"
+      "type": "image/webp"
     },
     {
-      "src": "/favicon-48x48.png",
+      "src": "/favicon-48x48.webp",
       "sizes": "48x48",
-      "type": "image/png"
+      "type": "image/webp"
     },
     {
-      "src": "/apple-touch-icon.png",
+      "src": "/apple-touch-icon.webp",
       "sizes": "180x180",
-      "type": "image/png"
+      "type": "image/webp"
     }
   ],
   "theme_color": "#ffffff",

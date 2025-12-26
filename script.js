@@ -10,6 +10,80 @@ if (typeof BACKEND_URL === 'undefined' || !BACKEND_URL) {
   console.error('BACKEND_URL is not defined! Please check script.js configuration.');
 }
 
+// 0. Custom Cursor Logic
+const initCustomCursor = () => {
+  const cursor = document.getElementById('custom-cursor');
+  if (!cursor) return;
+
+  window.addEventListener('mousemove', (e) => {
+    gsap.to(cursor, {
+      x: e.clientX - 10,
+      y: e.clientY - 10,
+      duration: 0.1,
+      ease: "power2.out"
+    });
+  });
+
+  // Add hover effects for all links and buttons
+  const targets = document.querySelectorAll('a, button, .card, .magnetic-card, .terminal-toggle-btn');
+  targets.forEach(target => {
+    target.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    target.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+  });
+};
+
+// 0.1 Text Scramble (Decryption) Effect
+class TextScramble {
+  constructor(el) {
+    this.el = el;
+    this.chars = '!<>-_\\/[]{}—=+*^?#________';
+    this.update = this.update.bind(this);
+  }
+  setText(newText) {
+    const oldText = this.el.innerText;
+    const length = Math.max(oldText.length, newText.length);
+    const promise = new Promise((resolve) => this.resolve = resolve);
+    this.queue = [];
+    for (let i = 0; i < length; i++) {
+        const from = oldText[i] || '';
+        const to = newText[i] || '';
+        const start = Math.floor(Math.random() * 40);
+        const end = start + Math.floor(Math.random() * 40);
+        this.queue.push({ from, to, start, end });
+    }
+    cancelAnimationFrame(this.frameRequest);
+    this.frame = 0;
+    this.update();
+    return promise;
+  }
+  update() {
+    let output = '';
+    let complete = 0;
+    for (let i = 0, n = this.queue.length; i < n; i++) {
+        let { from, to, start, end, char } = this.queue[i];
+        if (this.frame >= end) {
+            complete++;
+            output += to;
+        } else if (this.frame >= start) {
+            if (!char || Math.random() < 0.28) {
+                char = this.chars[Math.floor(Math.random() * this.chars.length)];
+                this.queue[i].char = char;
+            }
+            output += `<span class="scramble">${char}</span>`;
+        } else {
+            output += from;
+        }
+    }
+    this.el.innerHTML = output;
+    if (complete === this.queue.length) {
+        this.resolve();
+    } else {
+        this.frameRequest = requestAnimationFrame(this.update);
+        this.frame++;
+    }
+  }
+}
+
 // ========================================
 // ENHANCED NAVBAR
 // ========================================
@@ -951,3 +1025,222 @@ if (closeMobileNotice && mobileNotice) {
     }
   });
 }
+
+// ========================================
+// NEW CYBER FEATURES (Preloader, Radar, PWA, Terminal)
+// ========================================
+
+// 1. Optimized Progressive Loading & Preloader Dismissal
+const initProgressiveLoad = () => {
+    const preloader = document.getElementById('preloader');
+    if (!preloader) return;
+
+    // Use a "Race Condition" so slow net won't block the user
+    const dismissPreloader = () => {
+        if (preloader.classList.contains('dismissed')) return;
+        preloader.classList.add('dismissed');
+
+        gsap.to(preloader, {
+            opacity: 0,
+            duration: 0.8,
+            ease: "power2.inOut",
+            onComplete: () => {
+                preloader.style.display = 'none';
+                // Trigger Background Video Loading after preloader is gone
+                document.querySelectorAll('video').forEach(vid => {
+                    vid.setAttribute('preload', 'auto');
+                    vid.play().catch(e => console.log("Autoplay blocked/waiting for interaction"));
+                });
+            }
+        });
+    };
+
+    // Fast dismissal: If DOM is ready, wait max 2s for "Intro effect" 
+    // but don't wait for heavy images/videos
+    setTimeout(dismissPreloader, 2500);
+
+    // If everything happens to load fast, dismiss sooner
+    window.addEventListener('load', dismissPreloader);
+};
+
+// Initialize preloader logic immediately
+initProgressiveLoad();
+
+// 2. Register Service Worker (PWA)
+if ('serviceWorker' in navigator) {
+
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then(reg => console.log('Service Worker registered.'))
+            .catch(err => console.log('Service Worker failed:', err));
+    });
+}
+
+// 3. (Removed Skill Radar)
+
+
+// 4. Terminal Mode Logic
+function initTerminalMode() {
+    const toggleBtn = document.getElementById('toggleTerminal');
+    const terminal = document.getElementById('contactTerminal');
+    const normalForm = document.getElementById('contactForm');
+    const input = document.getElementById('terminalInput');
+    const output = document.getElementById('terminalOutput');
+    const helpBtn = document.getElementById('terminalHelp');
+    
+    if (!toggleBtn || !terminal) return;
+
+    let step = 0;
+    const userData = { name: '', email: '', message: '' };
+
+    if (helpBtn) {
+        helpBtn.addEventListener('click', () => {
+            printToTerminal("---| TERMINAL USER GUIDE |---");
+            printToTerminal("1. Type 'contact' and press ENTER to start.");
+            printToTerminal("2. Follow prompts to enter Name, Email, and Message.");
+            printToTerminal("3. Your data will be sent automatically at the end.");
+            printToTerminal("4. Commands: 'clear' to reset, 'exit' to close.");
+        });
+    }
+
+    toggleBtn.addEventListener('click', () => {
+        terminal.classList.toggle('active');
+        if (terminal.classList.contains('active')) {
+            normalForm.style.display = 'none';
+            toggleBtn.innerHTML = '<i class="fas fa-times"></i> EXIT TERMINAL';
+            printToTerminal("SYSTEM: Establishing secure uplink...");
+            setTimeout(() => printToTerminal("SYSTEM: Connection stabilized. Type 'help' for commands."), 1000);
+            input.focus();
+        } else {
+            normalForm.style.display = 'block';
+            toggleBtn.innerHTML = '<i class="fas fa-terminal"></i> USE CYBER TERMINAL';
+        }
+    });
+
+    input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            const cmd = input.value.trim().toLowerCase();
+            printToTerminal(`<span class="terminal-prompt">root@sarshij:~$</span> ${input.value}`);
+            input.value = '';
+            processCommand(cmd);
+        }
+    });
+
+    function printToTerminal(text, isTypewriter = false) {
+        const line = document.createElement('div');
+        line.className = 'terminal-line';
+        output.appendChild(line);
+
+        if (isTypewriter) {
+            let i = 0;
+            const speed = 20;
+            function type() {
+                if (i < text.length) {
+                    if (text.charAt(i) === '<') {
+                        // Simple tag handling for colors
+                        const tagEnd = text.indexOf('>', i);
+                        line.innerHTML += text.substring(i, tagEnd + 1);
+                        i = tagEnd + 1;
+                    } else {
+                        line.innerHTML += text.charAt(i);
+                        i++;
+                    }
+                    setTimeout(type, speed);
+                    terminal.scrollTop = terminal.scrollHeight;
+                }
+            }
+            type();
+        } else {
+            line.innerHTML = text;
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+    }
+
+    async function processCommand(cmd) {
+        if (cmd === 'help') {
+            printToTerminal("---| TERMINAL USER GUIDE |---");
+            printToTerminal("1. Type 'contact' and press ENTER to start.");
+            printToTerminal("2. Commands: 'clear', 'status', 'exit'", true);
+            return;
+        }
+        if (cmd === 'clear') {
+            output.innerHTML = 'SYSTEM: Memory cleared...';
+            setTimeout(() => output.innerHTML = '', 1000);
+            return;
+        }
+        if (cmd === 'status') {
+            printToTerminal("SYSTEM: Pinging uplink server...", true);
+            try {
+                const res = await fetch(`${BACKEND_URL}/api/wake-up`);
+                if (res.ok) printToTerminal("SYSTEM: <span style='color: #00ff88'>UPLINK ONLINE</span> (v3.0.4)", true);
+                else printToTerminal("SYSTEM: <span style='color: #ff3e3e'>UPLINK DEGRADED</span>", true);
+            } catch (e) {
+                printToTerminal("SYSTEM: <span style='color: #ff3e3e'>UPLINK OFFLINE</span>", true);
+            }
+            return;
+        }
+        if (cmd === 'exit') {
+            toggleBtn.click();
+            return;
+        }
+        
+        // Contact wizard logic
+        if (step === 0 && cmd === 'contact') {
+            step = 1;
+            printToTerminal("SURVEY: Initiation sequence started. Enter your name:", true);
+        } else if (step === 1) {
+            userData.name = cmd;
+            step = 2;
+            printToTerminal(`SUCCESS: ID confirmed as '${cmd}'. Enter neural-mail:`, true);
+        } else if (step === 2) {
+            userData.email = cmd;
+            step = 3;
+            printToTerminal("SUCCESS: Uplink address verified. Enter your transmission data:", true);
+        } else if (step === 3) {
+            userData.message = cmd;
+            printToTerminal("SYSTEM: Encrypting and transmitting data packet...", true);
+            sendData();
+            step = 0;
+        } else {
+            printToTerminal(`ERROR: Unknown command '${cmd}'. Try 'help'.`);
+        }
+    }
+
+    async function sendData() {
+        try {
+            const response = await fetch(`${BACKEND_URL}/api/contact`, {
+                method: "POST",
+                body: JSON.stringify(userData),
+                headers: { "Content-Type": "application/json" }
+            });
+            if (response.ok) {
+                printToTerminal("SYSTEM: <span style='color: #00ff88'>TRANSMISSION SUCCESSFUL.</span> Uplink terminated.", true);
+            } else {
+                printToTerminal("ERROR: <span style='color: #ff3e3e'>TRANSMISSION REJECTED by server.</span>", true);
+            }
+        } catch (err) {
+            printToTerminal("ERROR: <span style='color: #ff3e3e'>CONNECTION TIMEOUT.</span> Packet lost in transit.", true);
+        }
+    }
+}
+
+// Initializations
+document.addEventListener('DOMContentLoaded', () => {
+    initTerminalMode();
+    initCustomCursor();
+
+    // Initialize text scramble on section headers
+    const headers = document.querySelectorAll('.heading-highlight');
+    headers.forEach(header => {
+        const fx = new TextScramble(header);
+        const originalText = header.innerText;
+        
+        // Trigger on scroll/reveal
+        ScrollTrigger.create({
+            trigger: header,
+            start: "top 90%",
+            onEnter: () => fx.setText(originalText)
+        });
+    });
+});
+

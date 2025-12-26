@@ -17,6 +17,7 @@ A high-performance, **Cyberpunk-themed** personal portfolio website featuring 3D
 - **📱 Fully Responsive**: Optimized for every device from 4K Monitors to Mobile Phones.
 - **🚄 GSAP Animations**: Smooth scroll triggers, magnetic tilt effects, and text reveals.
 - **🔊 Audio Pronunciation**: Built-in name pronunciation feature.
+- **⚡ Performance Optimized**: All heavy images converted to WebP, reducing assets size by up to 90% for lightning-fast loads.
 
 ### 🛡️ **Powerful Backend (Node.js)**
 

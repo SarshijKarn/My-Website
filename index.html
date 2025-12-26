@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Sarshij Karn</title>
     <link rel="canonical" href="https://sarshijkarn.com.np/" />
     <meta
@@ -21,13 +21,29 @@
       content="black-translucent"
     />
     <meta name="theme-color" content="#ffffff" />
+    
+    <!-- Open Graph / SEO -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://sarshijkarn.com.np/" />
+    <meta property="og:title" content="Sarshij Karn | Engineering · AI · Cybersecurity" />
+    <meta property="og:description" content="Explore the futuristic portfolio of Sarshij Karn. Passionate engineer dedicated to Electronics, AI, and Cybersecurity." />
+    <meta property="og:image" content="https://sarshijkarn.com.np/assets/og_preview.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://sarshijkarn.com.np/" />
+    <meta property="twitter:title" content="Sarshij Karn | Engineering · AI · Cybersecurity" />
+    <meta property="twitter:description" content="Explore the futuristic portfolio of Sarshij Karn. Passionate engineer dedicated to Electronics, AI, and Cybersecurity." />
+    <meta property="twitter:image" content="https://sarshijkarn.com.np/assets/og_preview.png" />
+
     <!-- Standard favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
     <!-- PNG versions for modern browsers -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+    <link rel="icon" type="image/webp" sizes="32x32" href="/favicon-32x32.webp" />
+    <link rel="icon" type="image/webp" sizes="48x48" href="/favicon-48x48.webp" />
     <!-- Apple Touch Icon for iOS devices -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.webp" />
     <!-- Web Manifest for PWA support -->
     <link rel="manifest" href="/site.webmanifest" />
     <script type="application/ld+json">
@@ -49,6 +65,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -57,18 +75,29 @@
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Fira+Code:wght@300;400;500&family=Poppins:wght@500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css?v=1.1" />
+    <link rel="stylesheet" href="style.css?v=2.0" />
     <link rel="stylesheet" href="server-status.css" />
 
-    <link rel="stylesheet" href="project-icons.css?v=1.1" />
+    <link rel="stylesheet" href="project-icons.css?v=2.0" />
     <!-- tsParticles -->
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.0/tsparticles.bundle.min.js"></script>
   </head>
 
   <body class="dark">
+    <!-- Custom Cyber Cursor -->
+    <div id="custom-cursor"></div>
+
+    <!-- Cyber Preloader -->
+    <div id="preloader">
+      <div class="preloader-content">
+        <div class="loader-scanline"></div>
+        <p class="preloader-text">Initializing Neural Link...</p>
+      </div>
+    </div>
+
     <!-- Particle Background -->
     <!-- Background Video - Galaxy -->
-    <video autoplay loop muted playsinline id="bg-video">
+    <video autoplay loop muted playsinline id="bg-video" preload="none">
       <source src="assets/galaxy.mp4" type="video/mp4" />
     </video>
 
@@ -230,14 +259,14 @@
         <div class="hero-photo-container mb-8 relative">
           <!-- Blackhole Effect (Nested for perfect alignment) -->
           <div class="blackhole-container">
-            <video autoplay loop muted playsinline class="blackhole-video">
+            <video autoplay loop muted playsinline class="blackhole-video" preload="none">
               <source src="assets/blackhole.mp4" type="video/mp4" />
             </video>
           </div>
 
           <div class="hero-photo-wrapper">
             <img
-              src="assets/img/me.jpg"
+              src="assets/img/me.webp"
               alt="Sarshij Karn"
               class="hero-photo"
             />
@@ -382,7 +411,8 @@
                   muted
                   playsinline
                   class="about-profile-video"
-                  poster="assets/img/me.jpg"
+                  poster="assets/img/me.webp"
+                  preload="none"
                 >
                   <source src="assets/hero-video.mp4" type="video/mp4" />
                 </video>
@@ -513,6 +543,8 @@
             </div>
           </div>
         </div>
+
+        </div>
       </div>
     </section>
 
@@ -592,7 +624,7 @@
                 href="https://github.com/SarshijKarn/Reddit-Data-Scraper"
                 class="bg-cyan-600 hover:bg-cyan-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm"
               >
-                <i class="fas fa-external-link-alt mr-1 md:mr-2"></i>Demo
+                <i class="fas fa-file-alt mr-1 md:mr-2"></i>Documentation
               </a>
             </div>
           </div>
@@ -704,7 +736,7 @@
                 target="_blank"
                 class="bg-cyan-600 hover:bg-cyan-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm"
               >
-                <i class="fas fa-external-link-alt mr-1 md:mr-2"></i>Demo
+                <i class="fas fa-file-alt mr-1 md:mr-2"></i>Documentation
               </a>
             </div>
           </div>
@@ -742,7 +774,7 @@
                 href="https://github.com/SarshijKarn/Gesture-Based-Calculator"
                 class="bg-cyan-600 hover:bg-cyan-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm"
               >
-                <i class="fas fa-external-link-alt mr-1 md:mr-2"></i>Demo
+                <i class="fas fa-file-alt mr-1 md:mr-2"></i>Documentation
               </a>
             </div>
           </div>
@@ -775,7 +807,7 @@
                 href="https://github.com/SarshijKarn/YouTube-Bulk-Unsubscriber-Python-Tkinter-GUI-"
                 class="bg-cyan-600 hover:bg-cyan-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm"
               >
-                <i class="fas fa-external-link-alt mr-1 md:mr-2"></i>Demo
+                <i class="fas fa-file-alt mr-1 md:mr-2"></i>Documentation
               </a>
             </div>
           </div>
@@ -815,7 +847,7 @@
                 href="https://github.com/SarshijKarn/Youtube-Playlist-Downloader"
                 class="bg-cyan-600 hover:bg-cyan-700 px-2 py-1 md:px-4 md:py-2 rounded-lg transition-colors text-[10px] md:text-sm"
               >
-                <i class="fas fa-external-link-alt mr-1 md:mr-2"></i>Demo
+                <i class="fas fa-file-alt mr-1 md:mr-2"></i>Documentation
               </a>
             </div>
           </div>
@@ -1113,7 +1145,31 @@
               Send Me a Message
             </h3>
 
+            <!-- Terminal Mode Toggle -->
+            <div class="text-center">
+              <button id="toggleTerminal" class="terminal-toggle-btn">
+                <i class="fas fa-terminal"></i> USE CYBER TERMINAL
+              </button>
+            </div>
+
+            <!-- Terminal Mode Terminal -->
+            <div id="contactTerminal" class="contact-terminal">
+              <div class="terminal-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 5px;">
+                <span class="terminal-title" style="color: #8a2be2; font-size: 0.8rem; text-transform: uppercase; font-family: 'Orbitron', sans-serif;">Secure Terminal</span>
+                <button id="terminalHelp" class="terminal-help-btn" title="Show Help Guide" style="background: none; border: none; color: #00ced1; cursor: pointer; font-size: 1rem; transition: transform 0.3s;">
+                  <i class="fas fa-question-circle"></i>
+                </button>
+              </div>
+              <div class="terminal-line"><span class="terminal-prompt">root@sarshij:~$</span> ./start_transmission.sh</div>
+              <div id="terminalOutput"></div>
+              <div class="terminal-line">
+                <span class="terminal-prompt">root@sarshij:~$ </span>
+                <input type="text" id="terminalInput" class="terminal-input" placeholder="Type command..." autofocus />
+              </div>
+            </div>
+
             <!-- Progress Indicator -->
+
             <div class="form-progress-container">
               <div class="form-progress-bar" id="formProgress"></div>
               <div class="form-progress-text" id="formProgressText">
@@ -1234,6 +1290,6 @@
       <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script src="script.js?v=2.2"></script>
+    <script src="script.js?v=3.0"></script>
   </body>
 </html>
