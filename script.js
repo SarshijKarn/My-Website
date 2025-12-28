@@ -17,26 +17,31 @@ class TextScramble {
     this.chars = '!<>-_\\/[]{}—=+*^?#________';
     this.update = this.update.bind(this);
   }
+  
   setText(newText) {
-    const oldText = this.el.innerText;
+    const oldText = this.el.textContent;
     const length = Math.max(oldText.length, newText.length);
     const promise = new Promise((resolve) => this.resolve = resolve);
     this.queue = [];
+    
     for (let i = 0; i < length; i++) {
-        const from = oldText[i] || '';
-        const to = newText[i] || '';
-        const start = Math.floor(Math.random() * 40);
-        const end = start + Math.floor(Math.random() * 40);
-        this.queue.push({ from, to, start, end });
+      const from = oldText[i] || '';
+      const to = newText[i] || '';
+      const start = Math.floor(Math.random() * 10); // Very fast start
+      const end = start + Math.floor(Math.random() * 15); // Very fast duration
+      this.queue.push({ from, to, start, end });
     }
+    
     cancelAnimationFrame(this.frameRequest);
     this.frame = 0;
     this.update();
     return promise;
   }
+  
   update() {
     let output = '';
     let complete = 0;
+    
     for (let i = 0, n = this.queue.length; i < n; i++) {
         let { from, to, start, end, char } = this.queue[i];
         if (this.frame >= end) {
@@ -47,12 +52,14 @@ class TextScramble {
                 char = this.chars[Math.floor(Math.random() * this.chars.length)];
                 this.queue[i].char = char;
             }
-            output += `<span class="scramble">${char}</span>`;
+            output += char;
         } else {
             output += from;
         }
     }
-    this.el.innerHTML = output;
+    
+    this.el.textContent = output;
+    
     if (complete === this.queue.length) {
         this.resolve();
     } else {
@@ -98,53 +105,14 @@ mobileLinks.forEach((link) => {
   });
 });
 
-// Navbar Scroll Effect
+// Consolidated Scroll Tracking
 let lastScroll = 0;
-window.addEventListener("scroll", () => {
-  const currentScroll = window.pageYOffset;
-
-  if (currentScroll > 100) {
-    navbar.classList.add("scrolled");
-  } else {
-    navbar.classList.remove("scrolled");
-  }
-
-  lastScroll = currentScroll;
-});
+// Note: Scroll execution is throttled via requestTick at the bottom of the file
 
 // Active Section Tracking
 const sections = document.querySelectorAll("section[id]");
 
-function updateActiveLink() {
-  const scrollY = window.pageYOffset;
-
-  sections.forEach((section) => {
-    const sectionHeight = section.offsetHeight;
-    const sectionTop = section.offsetTop - 100;
-    const sectionId = section.getAttribute("id");
-
-    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-      // Update desktop nav
-      navLinks.forEach((link) => {
-        link.classList.remove("active");
-        if (link.getAttribute("data-section") === sectionId) {
-          link.classList.add("active");
-        }
-      });
-
-      // Update mobile nav
-      mobileLinks.forEach((link) => {
-        link.classList.remove("active");
-        if (link.getAttribute("data-section") === sectionId) {
-          link.classList.add("active");
-        }
-      });
-    }
-  });
-}
-
-window.addEventListener("scroll", updateActiveLink);
-updateActiveLink(); // Initial call
+// Active Section Tracking Logic (Moved to updateScrollEffects for performance)
 
 // Theme Management
 const themeToggle = document.getElementById("themeToggle");
@@ -316,21 +284,7 @@ gsap.utils.toArray(".circuit-line").forEach((line) => {
   );
 });
 
-// Navbar scroll effect - optimized with throttling
-let scrollTimeout;
-window.addEventListener("scroll", () => {
-  if (scrollTimeout) return;
-
-  scrollTimeout = setTimeout(() => {
-    const navbar = document.querySelector(".navbar");
-    if (window.scrollY > 100) {
-      navbar.style.backdropFilter = "blur(20px)";
-    } else {
-      navbar.style.backdropFilter = "blur(10px)";
-    }
-    scrollTimeout = null;
-  }, 16); // ~60fps
-});
+// Navbar scroll effect handled in optimized scroll listener at bottom
 
 // Add hover effects to project cards - optimized for performance
 document.querySelectorAll(".card-3d").forEach((card) => {
@@ -434,7 +388,44 @@ document.addEventListener("DOMContentLoaded", () => {
 let ticking = false;
 
 function updateScrollEffects() {
-  // Add any scroll-based effects here
+  const scrollY = window.pageYOffset;
+  
+  // 1. Navbar Effects
+  if (navbar) {
+    if (scrollY > 100) {
+      navbar.classList.add("scrolled");
+      navbar.style.backdropFilter = "blur(20px)";
+    } else {
+      navbar.classList.remove("scrolled");
+      navbar.style.backdropFilter = "blur(10px)";
+    }
+  }
+
+  // 2. Active Section Tracking
+  sections.forEach((section) => {
+    const sectionHeight = section.offsetHeight;
+    const sectionTop = section.offsetTop - 100;
+    const sectionId = section.getAttribute("id");
+
+    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+      // Update desktop nav
+      navLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (link.getAttribute("data-section") === sectionId) {
+          link.classList.add("active");
+        }
+      });
+
+      // Update mobile nav
+      mobileLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (link.getAttribute("data-section") === sectionId) {
+          link.classList.add("active");
+        }
+      });
+    }
+  });
+
   ticking = false;
 }
 
@@ -445,7 +436,9 @@ function requestTick() {
   }
 }
 
-window.addEventListener("scroll", requestTick);
+window.addEventListener("scroll", requestTick, { passive: true });
+// Initial call to set state
+requestAnimationFrame(updateScrollEffects);
 
 // Add intersection observer for better performance
 const observerOptions = {
@@ -1210,13 +1203,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const headers = document.querySelectorAll('.heading-highlight');
     headers.forEach(header => {
         const fx = new TextScramble(header);
-        const originalText = header.innerText;
+        const originalText = header.textContent;
         
-        // Trigger on scroll/reveal
+        // Trigger on scroll/reveal - runs once for better performance
         ScrollTrigger.create({
             trigger: header,
             start: "top 90%",
-            onEnter: () => fx.setText(originalText)
+            onEnter: () => fx.setText(originalText),
+            once: true
         });
     });
 });
