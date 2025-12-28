@@ -4300,3 +4300,43 @@ body {
 .navbar {
   display: none !important;
 }
+
+/* --- Theme Toggle Button (Fixed Global Styles) --- */
+.theme-toggle {
+  background: transparent;
+  border: 1px solid rgba(138, 43, 226, 0.3);
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 5px 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  width: 60px;
+  height: 30px;
+  margin-top: 1rem; /* Spacing from role text */
+}
+
+.light .theme-toggle {
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.toggle-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+}
+
+.sun-icon, .moon-icon {
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.sun-icon { color: #f39c12; opacity: 0; transform: scale(0.5); position: absolute; left: 5px; }
+.moon-icon { color: #f1c40f; opacity: 1; transform: scale(1); position: absolute; right: 5px; }
+
+/* Light mode state */
+.light .sun-icon { opacity: 1; transform: scale(1); }
+.light .moon-icon { opacity: 0; transform: scale(0.5); }

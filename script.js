@@ -10,64 +10,7 @@ if (typeof BACKEND_URL === 'undefined' || !BACKEND_URL) {
   console.error('BACKEND_URL is not defined! Please check script.js configuration.');
 }
 
-// 0.1 Text Scramble (Decryption) Effect
-class TextScramble {
-  constructor(el) {
-    this.el = el;
-    this.chars = '!<>-_\\/[]{}—=+*^?#________';
-    this.update = this.update.bind(this);
-  }
-  
-  setText(newText) {
-    const oldText = this.el.textContent;
-    const length = Math.max(oldText.length, newText.length);
-    const promise = new Promise((resolve) => this.resolve = resolve);
-    this.queue = [];
-    
-    for (let i = 0; i < length; i++) {
-      const from = oldText[i] || '';
-      const to = newText[i] || '';
-      const start = Math.floor(Math.random() * 10); // Very fast start
-      const end = start + Math.floor(Math.random() * 15); // Very fast duration
-      this.queue.push({ from, to, start, end });
-    }
-    
-    cancelAnimationFrame(this.frameRequest);
-    this.frame = 0;
-    this.update();
-    return promise;
-  }
-  
-  update() {
-    let output = '';
-    let complete = 0;
-    
-    for (let i = 0, n = this.queue.length; i < n; i++) {
-        let { from, to, start, end, char } = this.queue[i];
-        if (this.frame >= end) {
-            complete++;
-            output += to;
-        } else if (this.frame >= start) {
-            if (!char || Math.random() < 0.28) {
-                char = this.chars[Math.floor(Math.random() * this.chars.length)];
-                this.queue[i].char = char;
-            }
-            output += char;
-        } else {
-            output += from;
-        }
-    }
-    
-    this.el.textContent = output;
-    
-    if (complete === this.queue.length) {
-        this.resolve();
-    } else {
-        this.frameRequest = requestAnimationFrame(this.update);
-        this.frame++;
-    }
-  }
-}
+// TextScramble Class Removed for Performance
 
 // ========================================
 // ENHANCED NAVBAR
@@ -1231,19 +1174,6 @@ function initTerminalMode() {
 document.addEventListener('DOMContentLoaded', () => {
     initTerminalMode();
 
-    // Initialize text scramble on section headers
-    const headers = document.querySelectorAll('.heading-highlight');
-    headers.forEach(header => {
-        const fx = new TextScramble(header);
-        const originalText = header.textContent;
-        
-        // Trigger on scroll/reveal - runs once for better performance
-        ScrollTrigger.create({
-            trigger: header,
-            start: "top 90%",
-            onEnter: () => fx.setText(originalText),
-            once: true
-        });
-    });
+    // Text scramble removed for performance
 });
 
