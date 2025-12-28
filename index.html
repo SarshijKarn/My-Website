@@ -122,294 +122,178 @@
       <source src="assets/galaxy.mp4" type="video/mp4" />
     </video>
 
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-      <div class="navbar-container">
-        <div class="navbar-content">
-          <!-- Logo/Name -->
-          <a href="#home" class="navbar-logo">
-            <span class="logo-text">Sarshij</span>
-            <span class="logo-dot">.</span>
-          </a>
+    <!-- Mobile Hamburger Button (Fixed) -->
+    <button id="mobileMenuBtn" class="hamburger-btn" aria-label="Toggle Sidebar">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+    </button>
 
-          <!-- Theme Toggle - Right after logo -->
-          <button
-            id="themeToggle"
-            class="theme-toggle"
-            aria-label="Toggle theme"
-          >
-            <div class="toggle-track">
-              <i class="fas fa-sun sun-icon"></i>
-              <i class="fas fa-moon moon-icon"></i>
+    <!-- Fixed Left Sidebar -->
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-profile-container">
+                <img src="assets/img/me.webp" alt="Sarshij Karn" class="sidebar-profile-img">
+                <div class="sidebar-status-dot"></div>
             </div>
-          </button>
-
-          <!-- Desktop Navigation -->
-          <ul class="nav-links">
-            <li>
-              <a href="#home" class="nav-link active" data-section="home">
-                <span class="link-text">Home</span>
-                <span class="link-indicator"></span>
-              </a>
-            </li>
-            <li>
-              <a href="#about" class="nav-link" data-section="about">
-                <span class="link-text">About</span>
-                <span class="link-indicator"></span>
-              </a>
-            </li>
-            <li>
-              <a href="#skills" class="nav-link" data-section="skills">
-                <span class="link-text">Skills</span>
-                <span class="link-indicator"></span>
-              </a>
-            </li>
-            <li>
-              <a href="#projects" class="nav-link" data-section="projects">
-                <span class="link-text">Projects</span>
-                <span class="link-indicator"></span>
-              </a>
-            </li>
-            <li>
-              <a href="#education" class="nav-link" data-section="education">
-                <span class="link-text">Education</span>
-                <span class="link-indicator"></span>
-              </a>
-            </li>
-            <li>
-              <a href="#contact" class="nav-link" data-section="contact">
-                <span class="link-text">Contact</span>
-                <span class="link-indicator"></span>
-              </a>
-            </li>
-          </ul>
-
-          <!-- Mobile Menu Button -->
-          <button
-            class="mobile-menu-btn"
-            id="mobileMenuBtn"
-            aria-label="Toggle menu"
-          >
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-          </button>
+            <div class="sidebar-brand">
+                <span class="brand-text">Sarshij</span><span class="brand-dot">.</span>
+            </div>
+            <div class="sidebar-role">Electronics Engineer</div>
         </div>
-      </div>
 
-      <!-- Mobile Menu Overlay -->
-      <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="#home" class="nav-link active" data-section="home">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#about" class="nav-link" data-section="about">
+                        <i class="fas fa-user"></i>
+                        <span>About</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#skills" class="nav-link" data-section="skills">
+                        <i class="fas fa-code"></i>
+                        <span>Skills</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#projects" class="nav-link" data-section="projects">
+                        <i class="fas fa-folder"></i>
+                        <span>Projects</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#education" class="nav-link" data-section="education">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Education</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#contact" class="nav-link" data-section="contact">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contact</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
 
-      <!-- Mobile Menu -->
-      <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-menu-header">
-          <span class="mobile-menu-title">Menu</span>
-          <button
-            class="mobile-menu-close"
-            id="mobileMenuClose"
-            aria-label="Close menu"
-          >
-            <i class="fas fa-times"></i>
-          </button>
+        <div class="sidebar-footer">
+             <!-- Theme Toggle -->
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+                <div class="toggle-track">
+                    <i class="fas fa-sun sun-icon"></i>
+                    <i class="fas fa-moon moon-icon"></i>
+                </div>
+            </button>
+            <div class="sidebar-copyright">
+                &copy; 2025 Sarshij
+            </div>
         </div>
-        <ul class="mobile-nav-links">
-          <li>
-            <a href="#home" class="mobile-link" data-section="home">
-              <i class="fas fa-home"></i>
-              <span>Home</span>
-            </a>
-          </li>
-          <li>
-            <a href="#about" class="mobile-link" data-section="about">
-              <i class="fas fa-user"></i>
-              <span>About</span>
-            </a>
-          </li>
-          <li>
-            <a href="#skills" class="mobile-link" data-section="skills">
-              <i class="fas fa-code"></i>
-              <span>Skills</span>
-            </a>
-          </li>
-          <li>
-            <a href="#projects" class="mobile-link" data-section="projects">
-              <i class="fas fa-folder"></i>
-              <span>Projects</span>
-            </a>
-          </li>
-          <li>
-            <a href="#education" class="mobile-link" data-section="education">
-              <i class="fas fa-graduation-cap"></i>
-              <span>Education</span>
-            </a>
-          </li>
-          <li>
-            <a href="#contact" class="mobile-link" data-section="contact">
-              <i class="fas fa-envelope"></i>
-              <span>Contact</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    </aside>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <!-- Hero Section -->
-    <section
-      id="home"
-      class="min-h-screen flex items-center justify-center relative"
-    >
-      <div class="text-center z-10">
-        <!-- Mobile Experience Notice -->
-        <div id="mobileNotice" class="mobile-notice">
-          <div class="mobile-notice-content">
-            <p class="mobile-notice-text">
-              <strong>For the best experience</strong>, Please view this
-              portfolio on large screens.🙏 (I've a Life)
-            </p>
-            <button
-              id="closeMobileNotice"
-              class="mobile-notice-close"
-              aria-label="Close notice"
-            >
-              <i class="fas fa-times"></i>
-            </button>
-          </div>
+    <!-- Hero Section -->
+    <!--
+    ========================================
+    HOMEPAGE (HERO) SECTION DOCUMENTATION
+    ========================================
+    This section uses a "Split Layout" approach:
+    1. LEFT SIDE (.hero-content-left): Contains all text (Name, Subtitle, Socials, Resume Button).
+       - 'lg:w-1/2': Takes up 50% width on large screens.
+       - 'flex-col': Stacks items vertically.
+       - 'justify-center': Vertically centers the content by default.
+       - 'lg:pl-10': Adds padding from the left sidebar to position text.
+    
+    2. RIGHT SIDE (.hero-image-right): Contains the large full-body image.
+       - 'lg:w-1/2': Takes up the other 50% width.
+       - 'absolute right-0': Sticks to the right side on mobile if needed, but here it's flexed.
+
+    HOW TO MOVE CONTENT:
+    - To move text UP/DOWN: Adjust 'justify-center' to 'justify-start' (top) or 'justify-end' (bottom) in .hero-content-left.
+    - To move text LEFT/RIGHT: Adjust 'padding-left' (pl-10) or 'padding-right' classes.
+    -->
+    <section id="home" class="min-h-screen flex relative overflow-hidden">
+        
+        <!-- 
+        LEFT COLUMN: TEXT CONTENT
+        -->
+        <div class="hero-content-left z-10 flex flex-col justify-start px-6 md:px-12 lg:pl-10 w-full lg:w-1/2 pt-[45vh] lg:pt-[28vh]">
+            
+            <!-- Name + Icons Row -->
+            <div class="flex items-center flex-nowrap gap-2 mb-2">
+                <h1 id="hero-name" class="glitch hero-title glow-special text-2xl sm:text-3xl md:text-5xl lg:text-5xl xl:text-6xl font-black m-0 whitespace-nowrap" data-text="SARSHIJ KARN">
+                    SARSHIJ KARN
+                </h1>
+                <div class="flex items-center gap-1 flex-shrink-0">
+                    <i class="fas fa-check-circle text-lg sm:text-xl md:text-3xl lg:text-4xl" style="color: #1877f2; filter: drop-shadow(0 0 10px rgba(24, 119, 242, 0.6));"></i>
+                    <i id="pronounce-name" class="fas fa-volume-up text-lg sm:text-xl md:text-3xl lg:text-4xl cursor-pointer hover:text-purple-400 transition-colors" style="color: #ffffff;" title="Click to hear pronunciation"></i>
+                </div>
+            </div>
+            
+            <!-- Subtitle/Description -->
+            <div class="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-4 md:mb-8 neon-cyan font-mono leading-tight">
+                <!-- Mobile: Split lines -->
+                <span class="block md:hidden">· Engineering · Technology</span>
+                <span class="block md:hidden">·Cybersecurity · AI</span>
+                <!-- Desktop: Single line -->
+                <span class="hidden md:inline-block typing-text">Engineering · Technology · Cybersecurity · AI</span>
+            </div>
+
+            <!-- Social Media Links -->
+            <div class="flex space-x-6 mb-6 md:mb-10">
+                <a href="https://github.com/SarshijKarn" target="_blank" aria-label="GitHub" class="social-icon text-gray-400 hover:text-purple-400 text-3xl transition-all duration-300 transform hover:scale-110 hover:drop-shadow-lg">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/sarshij-karn-1a7766236/" target="_blank" aria-label="LinkedIn" class="social-icon text-gray-400 hover:text-blue-400 text-3xl transition-all duration-300 transform hover:scale-110 hover:drop-shadow-lg">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://x.com/sarshijkarn" target="_blank" aria-label="X / Twitter" class="social-icon text-gray-400 hover:text-blue-400 text-3xl transition-all duration-300 transform hover:scale-110 hover:drop-shadow-lg">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.instagram.com/sarshijkarn" target="_blank" aria-label="Instagram" class="social-icon text-gray-400 hover:text-pink-400 text-3xl transition-all duration-300 transform hover:scale-110 hover:drop-shadow-lg">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://youtube.com/@sarshijkarn" target="_blank" aria-label="YouTube" class="social-icon text-gray-400 hover:text-red-500 text-3xl transition-all duration-300 transform hover:scale-110 hover:drop-shadow-lg">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="mailto:sarshijkarn333@gmail.com" aria-label="Email" class="social-icon text-gray-400 hover:text-green-400 text-3xl transition-all duration-300 transform hover:scale-110 hover:drop-shadow-lg">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+
+            <!-- Bottom Buttons (Desktop aligned to bottom) -->
+            <div class="flex flex-col sm:flex-row gap-4 mt-auto mb-16 md:mb-16 w-full sm:w-auto">
+                <!-- Resume Download Button -->
+                <a href="assets/Sarshij-Karn-Resume.pdf" download class="btn-neon w-full sm:w-auto text-center whitespace-nowrap px-8 py-4 text-base sm:text-lg inline-block min-w-[240px]">
+                    <i class="fas fa-file-download mr-2"></i> Download Resume
+                </a>
+            </div>
         </div>
 
-        <!-- Hero Profile Video -->
-        <div class="hero-photo-container mb-8 relative">
-          <!-- Blackhole Effect (Nested for perfect alignment) -->
-          <div class="blackhole-container">
-            <video autoplay loop muted playsinline class="blackhole-video" preload="none">
-              <source src="assets/blackhole.mp4" type="video/mp4" />
-            </video>
-          </div>
-
-          <div class="hero-photo-wrapper">
-            <img
-              src="assets/img/me.webp"
-              alt="Sarshij Karn"
-              class="hero-photo"
-            />
-            <div class="hero-photo-glow"></div>
-            <div class="hero-photo-border"></div>
-          </div>
+        <!-- 
+        RIGHT COLUMN: FULL BODY IMAGE
+        This div holds the image and positions it.
+        'pointer-events-none' ensures the image doesn't block clicks if it overlays anything.
+        -->
+        <div class="hero-image-right pointer-events-none select-none">
+             <div class="hero-img-overlay"></div>
+             <!-- MAIN HERO IMAGE: Change 'src' here to update the photo -->
+             <img src="assets/img/fullME-removebg-min.png" alt="Sarshij Karn" class="full-body-img">
         </div>
 
-        <div
-          class="flex items-center justify-center gap-2 md:gap-4 mb-6 flex-wrap"
-        >
-          <h1
-            id="hero-name"
-            class="glitch hero-title glow-special text-6xl md:text-8xl"
-            data-text="SARSHIJ KARN"
-          >
-            SARSHIJ KARN
-          </h1>
-          <div class="flex items-center gap-2 md:gap-3">
-            <i
-              class="fas fa-check-circle text-5xl md:text-7xl"
-              style="
-                color: #1877f2;
-                filter: drop-shadow(0 0 15px rgba(24, 119, 242, 0.6));
-                vertical-align: middle;
-              "
-            ></i>
-            <i
-              id="pronounce-name"
-              class="fas fa-volume-up text-3xl md:text-5xl cursor-pointer hover:text-purple-400 transition-colors"
-              style="color: #ffffff; vertical-align: middle"
-              title="Click to hear pronunciation"
-            ></i>
-          </div>
+        <!-- Scroll Down Indicator (Bouncing Arrow) -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
+            <i class="fas fa-chevron-down text-2xl neon-cyan"></i>
         </div>
-        <div class="text-xl md:text-2xl mb-8 neon-cyan">
-          <span class="inline-block typing-text"
-            >Engineering · Technologia · Cybersecurity · AI</span
-          >
-        </div>
-        <!-- Social Links -->
-        <div class="flex justify-center space-x-8 mb-8">
-          <a
-            href="https://github.com/SarshijKarn"
-            target="_blank"
-            aria-label="GitHub"
-            class="text-gray-400 hover:text-purple-400 text-3xl transition-all duration-300 transform hover:scale-110 hover:drop-shadow-lg"
-          >
-            <i class="fab fa-github"></i>
-          </a>
-
-          <a
-            href="https://www.linkedin.com/in/sarshij-karn-1a7766236/"
-            target="_blank"
-            aria-label="LinkedIn"
-            class="text-gray-400 hover:text-blue-400 text-3xl transition-all duration-300 transform hover:scale-110 hover:drop-shadow-lg"
-          >
-            <i class="fab fa-linkedin"></i>
-          </a>
-
-          <a
-            href="https://x.com/sarshijkarn"
-            target="_blank"
-            aria-label="X / Twitter"
-            class="text-gray-400 hover:text-blue-400 text-3xl transition-all duration-300 transform hover:scale-110 hover:drop-shadow-lg"
-          >
-            <i class="fab fa-twitter"></i>
-          </a>
-
-          <a
-            href="https://www.instagram.com/sarshijkarn"
-            target="_blank"
-            aria-label="Instagram"
-            class="text-gray-400 hover:text-pink-400 text-3xl transition-all duration-300 transform hover:scale-110 hover:drop-shadow-lg"
-          >
-            <i class="fab fa-instagram"></i>
-          </a>
-
-          <a
-            href="https://youtube.com/@sarshijkarn"
-            target="_blank"
-            aria-label="YouTube"
-            class="text-gray-400 hover:text-red-500 text-3xl transition-all duration-300 transform hover:scale-110 hover:drop-shadow-lg"
-          >
-            <i class="fab fa-youtube"></i>
-          </a>
-
-          <a
-            href="mailto:sarshijkarn333@gmail.com"
-            aria-label="Email"
-            class="text-gray-400 hover:text-green-400 text-3xl transition-all duration-300 transform hover:scale-110 hover:drop-shadow-lg"
-          >
-            <i class="fas fa-envelope"></i>
-          </a>
-        </div>
-
-        <!-- Include Font Awesome -->
-        <script
-          src="https://kit.fontawesome.com/a076d05399.js"
-          crossorigin="anonymous"
-        ></script>
-
-        <div class="flex flex-col items-center">
-          <a href="assets/Sarshij-Karn-Resume.pdf" download class="btn-neon">
-            <i class="fas fa-file-download"></i> Download Resume
-          </a>
-
-          <a
-            href="#about"
-            class="inline-block bg-gradient-to-r from-purple-600 to-cyan-400 px-8 py-3 rounded-full text-white font-semibold hover:from-purple-700 hover:to-cyan-500 transition-all transform hover:scale-105 shadow-[0_0_15px_rgba(138,43,226,0.5)]"
-          >
-            Explore My Journey
-          </a>
-        </div>
-      </div>
-
-      <!-- Scroll indicator -->
-      <div
-        class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
-      >
-        <i class="fas fa-chevron-down text-2xl neon-cyan"></i>
-      </div>
     </section>
 
     <!-- About Section -->

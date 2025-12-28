@@ -73,36 +73,42 @@ class TextScramble {
 // ENHANCED NAVBAR
 // ========================================
 
-const navbar = document.getElementById("navbar");
+// ========================================
+// SIDEBAR & MOBILE NAVIGATION
+// ========================================
+
+const sidebar = document.getElementById("sidebar");
+const sidebarOverlay = document.getElementById("sidebarOverlay");
 const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-const mobileMenu = document.getElementById("mobileMenu");
-const mobileLinks = document.querySelectorAll(".mobile-link");
 const navLinks = document.querySelectorAll(".nav-link");
 
-// Mobile Menu Toggle - Simple Dropdown
-function toggleMobileMenu() {
-  if (mobileMenuBtn && mobileMenu) {
+function toggleSidebar() {
+  if (sidebar && mobileMenuBtn) {
+    sidebar.classList.toggle("active");
     mobileMenuBtn.classList.toggle("active");
-    mobileMenu.classList.toggle("active");
+    if (sidebarOverlay) sidebarOverlay.classList.toggle("active");
   }
 }
 
-function closeMobileMenu() {
-  if (mobileMenuBtn && mobileMenu) {
+function closeSidebar() {
+  if (sidebar && mobileMenuBtn) {
+    sidebar.classList.remove("active");
     mobileMenuBtn.classList.remove("active");
-    mobileMenu.classList.remove("active");
+    if (sidebarOverlay) sidebarOverlay.classList.remove("active");
   }
 }
 
 if (mobileMenuBtn) {
-  mobileMenuBtn.addEventListener("click", toggleMobileMenu);
+  mobileMenuBtn.addEventListener("click", toggleSidebar);
 }
 
-// Close mobile menu when clicking on links
-mobileLinks.forEach((link) => {
-  link.addEventListener("click", () => {
-    closeMobileMenu();
-  });
+if (sidebarOverlay) {
+  sidebarOverlay.addEventListener("click", closeSidebar);
+}
+
+// Close sidebar when clicking on links
+navLinks.forEach((link) => {
+  link.addEventListener("click", closeSidebar);
 });
 
 // Consolidated Scroll Tracking
@@ -177,13 +183,39 @@ if (typingText && !isMobile) {
 const animDuration = isMobile ? 0.5 : 1.5;
 const animDelay = isMobile ? 0.1 : 0.3;
 
+// ========================================
+// HOMEPAGE ANIMATIONS (GSAP)
+// ========================================
+// These functions control how the elements "fly in" when the page loads.
+
+// Animate the LEFT text block
+gsap.from(".hero-content-left", {
+  duration: 1,       // Animation takes 1 second
+  x: -50,            // Starts 50px to the LEFT (slide-in effect)
+  opacity: 0,        // Starts invisible
+  ease: "power2.out",// Smooth easing function
+  delay: 0.2         // Waits 0.2s before starting
+});
+
+// Animate the RIGHT image block
+gsap.from(".hero-image-right", {
+  duration: 1.2,     // Slightly slower than text
+  x: isMobile ? 20 : 50, // Slides in from right (20px mobile, 50px desktop)
+  opacity: 0,        // Starts invisible
+  ease: "power2.out",
+  delay: 0           // Starts immediately (no wait)
+});
+
+// Old Photo Animation Removed
+/* 
 gsap.from(".hero-photo-wrapper", {
   duration: animDuration,
   scale: isMobile ? 0.8 : 0,
-  rotation: 0 /* No rotation */,
+  rotation: 0, 
   opacity: 0,
   ease: "back.out(1.7)",
 });
+*/
 
 gsap.from(".hero-title", {
   duration: isMobile ? 0.5 : 1.2,
