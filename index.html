@@ -133,7 +133,26 @@
     <aside id="sidebar" class="sidebar">
         <div class="sidebar-header">
             <div class="sidebar-profile-container">
-                <img src="assets/img/me.webp" alt="Sarshij Karn" class="sidebar-profile-img" loading="lazy">
+                <div class="sidebar-avatar-wrapper">
+                    <!-- Holographic Avatar -->
+                    <img src="assets/img/me.webp" alt="Sarshij Karn" class="sidebar-hologram-avatar" loading="lazy">
+                    <div class="avatar-scanline"></div>
+                </div>
+                
+                <!-- Rotating HUD HUD -->
+                <svg class="sidebar-hud-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Inner Circuit Ring -->
+                    <circle class="hud-ring inner-ring" cx="50" cy="50" r="42" fill="none" stroke="url(#hud-grad)" stroke-width="1.5" stroke-dasharray="10 5" />
+                    <!-- Outer Binary/Data Ring -->
+                    <circle class="hud-ring outer-ring" cx="50" cy="50" r="48" fill="none" stroke="rgba(0, 206, 209, 0.4)" stroke-width="1" stroke-dasharray="2 3" />
+                    
+                    <defs>
+                        <linearGradient id="hud-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#8a2be2" />
+                            <stop offset="100%" stop-color="#00ced1" />
+                        </linearGradient>
+                    </defs>
+                </svg>
                 <div class="sidebar-status-dot"></div>
             </div>
             <div class="sidebar-brand">
@@ -230,12 +249,12 @@
             
             <!-- Name + Icons Row -->
             <div class="flex items-center flex-nowrap gap-2 mb-2">
-                <h1 id="hero-name" class="glitch hero-title glow-special text-2xl sm:text-3xl md:text-5xl lg:text-5xl xl:text-6xl font-black m-0 whitespace-nowrap" data-text="SARSHIJ KARN">
+                <h1 id="hero-name" class="glitch hero-title glow-special text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-black m-0 whitespace-nowrap" data-text="SARSHIJ KARN">
                     SARSHIJ KARN
                 </h1>
                 <div class="flex items-center gap-1 flex-shrink-0">
-                    <i class="fas fa-check-circle text-lg sm:text-xl md:text-3xl lg:text-4xl" style="color: #1877f2; filter: drop-shadow(0 0 10px rgba(24, 119, 242, 0.6));"></i>
-                    <i id="pronounce-name" class="fas fa-volume-up text-lg sm:text-xl md:text-3xl lg:text-4xl cursor-pointer hover:text-purple-400 transition-colors" style="color: #ffffff;" title="Click to hear pronunciation"></i>
+                    <i class="fas fa-check-circle text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl" style="color: #1877f2; filter: drop-shadow(0 0 10px rgba(24, 119, 242, 0.6));"></i>
+                    <i id="pronounce-name" class="fas fa-volume-up text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl cursor-pointer hover:text-purple-400 transition-colors" style="color: #ffffff;" title="Click to hear pronunciation"></i>
                 </div>
             </div>
             
@@ -273,8 +292,9 @@
             <!-- Bottom Buttons (Desktop aligned to bottom) -->
             <div class="flex flex-col sm:flex-row gap-4 mt-auto mb-16 md:mb-16 w-full sm:w-auto">
                 <!-- Resume Download Button -->
-                <a href="assets/Sarshij-Karn-Resume.pdf" download class="btn-neon w-full sm:w-auto text-center whitespace-nowrap px-8 py-4 text-base sm:text-lg inline-block min-w-[240px]">
-                    <i class="fas fa-file-download mr-2"></i> Download Resume
+                <a href="assets/Sarshij-Karn-Resume.pdf" download class="cyber-download-btn w-full sm:w-auto">
+                    <span class="btn-text">RESUME</span>
+                    <i class="fas fa-download btn-icon"></i>
                 </a>
             </div>
         </div>
@@ -297,94 +317,136 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-12 md:py-20 px-4 md:px-6">
+    <section id="about" class="py-12 md:py-24 px-4 md:px-6 relative overflow-hidden">
+      <!-- Decorative Background Text -->
+      <div class="absolute top-20 right-10 opacity-[0.03] select-none pointer-events-none hidden lg:block">
+        <span class="text-9xl font-black text-white italic">BIO_DATA</span>
+      </div>
+
       <div class="max-w-6xl mx-auto">
-        <h2
-          class="text-4xl heading-animate font-medium text-center mb-16 neon-yellow"
-        >
+        <h2 class="text-4xl heading-animate font-medium text-center mb-16 neon-yellow">
           <span class="heading-highlight">About Me</span>
         </h2>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <!-- Left: Enhanced Photo with Decorative Elements -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <!-- Left: Neural Blueprint Section -->
           <div class="about-image-section">
-            <div class="about-photo-enhanced">
-              <div class="about-photo-wrapper-new">
-                <video
-                  autoplay
-                  loop
-                  muted
-                  playsinline
-                  class="about-profile-video"
-                  poster="assets/img/me.webp"
-                  preload="none"
-                >
-                  <source src="assets/hero-video.mp4" type="video/mp4" />
-                </video>
-                <div class="about-photo-ring"></div>
-                <div class="about-photo-ring-2"></div>
-              </div>
-              <!-- Floating Tech Icons -->
-              <div class="floating-icon floating-icon-1">
-                <i class="fas fa-code"></i>
-              </div>
-              <div class="floating-icon floating-icon-2">
-                <i class="fas fa-microchip"></i>
-              </div>
-              <div class="floating-icon floating-icon-3">
-                <i class="fas fa-brain"></i>
-              </div>
-              <div class="floating-icon floating-icon-4">
-                <i class="fas fa-shield-alt"></i>
+            <div class="about-blueprint-container">
+              <!-- SVG Neural Circuitry -->
+              <svg class="neural-circuits" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="circuit-path path-1" d="M100 250 H50 V100 H150" stroke="url(#circuit-grad)" stroke-width="2"/>
+                <path class="circuit-path path-2" d="M400 250 H450 V400 H350" stroke="url(#circuit-grad)" stroke-width="2"/>
+                <path class="circuit-path path-3" d="M250 100 V50 H400 V150" stroke="url(#circuit-grad)" stroke-width="2"/>
+                <path class="circuit-path path-4" d="M250 400 V450 H100 V350" stroke="url(#circuit-grad)" stroke-width="2"/>
+                <circle class="circuit-node node-1" cx="150" cy="100" r="4" fill="#00ced1"/>
+                <circle class="circuit-node node-2" cx="350" cy="400" r="4" fill="#8a2be2"/>
+                <circle class="circuit-node node-3" cx="400" cy="150" r="4" fill="#00ced1"/>
+                <circle class="circuit-node node-4" cx="100" cy="350" r="4" fill="#8a2be2"/>
+                <defs>
+                  <linearGradient id="circuit-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#8a2be2"/>
+                    <stop offset="100%" stop-color="#00ced1"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+
+              <div class="about-photo-enhanced">
+                <div class="projection-lens group">
+                  <!-- Main Image with "Projected" Filter -->
+                  <div class="projection-image-container">
+                    <img 
+                      src="assets/img/me.webp" 
+                      alt="Sarshij Karn" 
+                      class="projected-profile-img"
+                      loading="lazy"
+                    >
+                    <div class="projection-noise"></div>
+                  </div>
+                  
+                  <!-- Circular HUD Overlays -->
+                  <div class="hud-circle hud-outer"></div>
+                  <div class="hud-circle hud-inner"></div>
+                  <div class="hud-scanner-line"></div>
+                  
+                  <!-- Micro Data Stream -->
+                  <div class="micro-data-stream">
+                    <span>SYS_CORE: 0x8F2</span>
+                    <span>AI_LINK: ACTIVE</span>
+                    <span>NEURAL: 98%</span>
+                    <span>PWR: NOMINAL</span>
+                  </div>
+
+                  <!-- Corner Focus Brackets -->
+                  <div class="focus-bracket tl"></div>
+                  <div class="focus-bracket tr"></div>
+                  <div class="focus-bracket bl"></div>
+                  <div class="focus-bracket br"></div>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- Right: Content -->
+          <!-- Right: Terminal-Style Content -->
           <div class="about-content-section">
-            <div class="card rounded-xl p-8 about-card-enhanced">
-              <div class="text-lg leading-relaxed mb-6">
-                <p class="mb-6 about-text-gradient">
-                  Insightful and dedicated engineering student proficient in
-                  electronics, programming and fluent in AI tools and up-to-date
-                  with emerging technology trends.
-                </p>
-                <p class="about-text-gradient">
-                  Constantly work on improving my problem-solving, coding, and
-                  analytical skills while staying ahead of the curve by actively
-                  exploring AI tools and keeping up with emerging tech trends.
-                </p>
+            <div class="terminal-card about-card-enhanced">
+              <!-- Terminal Header -->
+              <div class="terminal-header">
+                <div class="terminal-dots">
+                  <span class="dot red"></span>
+                  <span class="dot yellow"></span>
+                  <span class="dot green"></span>
+                </div>
+                <div class="terminal-title">sarshij_profile.info</div>
               </div>
 
-              <!-- Enhanced Stats Grid -->
-              <div class="grid grid-cols-2 gap-4 mt-8">
-                <div class="stat-card">
-                  <div class="stat-icon">
-                    <i class="fas fa-graduation-cap"></i>
-                  </div>
-                  <div class="stat-value neon-purple">4.0</div>
-                  <div class="stat-label">Grade X GPA</div>
+              <div class="terminal-body p-8">
+                <div class="text-lg leading-relaxed mb-8">
+                  <p class="mb-6 opacity-90">
+                    <span class="text-purple-400 font-bold">></span> Insightful and dedicated <span class="text-cyan-400">engineering student</span> proficient in electronics and programming.
+                  </p>
+                  <p class="opacity-90">
+                    <span class="text-purple-400 font-bold">></span> Fluent in <span class="text-yellow-400">AI tools</span> and consistently exploring emerging tech trends to sharpen analytical and problem-solving skills.
+                  </p>
                 </div>
-                <div class="stat-card">
-                  <div class="stat-icon">
-                    <i class="fas fa-award"></i>
+
+                <!-- Enhanced Stats Grid -->
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="stat-card group">
+                    <div class="stat-inner">
+                      <i class="fas fa-graduation-cap stat-icon-mini"></i>
+                      <div class="stat-content">
+                        <span class="stat-value neon-purple">4.0</span>
+                        <span class="stat-label">Grade X GPA</span>
+                      </div>
+                    </div>
                   </div>
-                  <div class="stat-value neon-cyan">3.53</div>
-                  <div class="stat-label">Grade XII GPA</div>
-                </div>
-                <div class="stat-card">
-                  <div class="stat-icon">
-                    <i class="fas fa-calendar-alt"></i>
+                  <div class="stat-card group">
+                    <div class="stat-inner">
+                      <i class="fas fa-award stat-icon-mini"></i>
+                      <div class="stat-content">
+                        <span class="stat-value neon-cyan">3.53</span>
+                        <span class="stat-label">Grade XII</span>
+                      </div>
+                    </div>
                   </div>
-                  <div class="stat-value neon-purple">2024</div>
-                  <div class="stat-label">Currently Student</div>
-                </div>
-                <div class="stat-card">
-                  <div class="stat-icon">
-                    <i class="fas fa-map-marker-alt"></i>
+                  <div class="stat-card group">
+                    <div class="stat-inner">
+                      <i class="fas fa-microchip stat-icon-mini"></i>
+                      <div class="stat-content">
+                        <span class="stat-value neon-purple">2024</span>
+                        <span class="stat-label">Batch</span>
+                      </div>
+                    </div>
                   </div>
-                  <div class="stat-value neon-cyan">Nepal</div>
-                  <div class="stat-label">Located in</div>
+                  <div class="stat-card group">
+                    <div class="stat-inner">
+                      <i class="fas fa-map-marker-alt stat-icon-mini"></i>
+                      <div class="stat-content">
+                        <span class="stat-value neon-cyan">Nepal</span>
+                        <span class="stat-label">Location</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
