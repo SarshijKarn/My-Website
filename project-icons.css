@@ -40,20 +40,11 @@
     border-radius: 50%;
     position: relative;
     background: rgba(255, 255, 255, 0.1);
-    animation: faceGlow 2s ease-in-out infinite;
+    /* Animation removed - frozen with medium glow */
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
 }
 
-@keyframes faceGlow {
-
-    0%,
-    100% {
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-    }
-
-    50% {
-        box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
-    }
-}
+/* faceGlow animation removed */
 
 .eye {
     position: absolute;
@@ -62,7 +53,7 @@
     background: #fff;
     border-radius: 50%;
     top: 35%;
-    animation: blink 3s infinite;
+    /* Blink animation removed - eyes frozen open */
 }
 
 .eye-left {
@@ -73,19 +64,7 @@
     right: 30%;
 }
 
-@keyframes blink {
-
-    0%,
-    48%,
-    52%,
-    100% {
-        transform: scaleY(1);
-    }
-
-    50% {
-        transform: scaleY(0.1);
-    }
-}
+/* blink animation removed */
 
 .mouth {
     position: absolute;
@@ -97,45 +76,23 @@
     bottom: 25%;
     left: 50%;
     transform: translateX(-50%);
-    animation: smile 4s ease-in-out infinite;
+    /* Smile animation removed - frozen in happy smile pose */
 }
 
-@keyframes smile {
-
-    0%,
-    100% {
-        border-radius: 0 0 50px 50px;
-        height: 25px;
-    }
-
-    50% {
-        border-radius: 50px 50px 0 0;
-        height: 15px;
-        border-top: 3px solid #fff;
-        border-bottom: none;
-    }
-}
+/* smile animation removed */
 
 .scan-line {
     position: absolute;
     width: 140%;
     height: 3px;
     background: linear-gradient(90deg, transparent, #FFD600, transparent);
-    top: 0;
+    top: 50%;
     left: -20%;
-    animation: scan 3s linear infinite;
+    /* Scan animation removed - frozen at center */
     box-shadow: 0 0 10px #FFD600;
 }
 
-@keyframes scan {
-    0% {
-        top: 0;
-    }
-
-    100% {
-        top: 100%;
-    }
-}
+/* scan animation removed */
 
 /* ========================================
    PROJECT 2: GESTURE CALCULATOR
@@ -169,7 +126,7 @@
     border-radius: 8px 8px 0 0;
     bottom: 60px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    animation: fingerWave 2s ease-in-out infinite;
+    /* Finger wave animation removed - frozen straight */
 }
 
 .finger-1 {
@@ -203,17 +160,7 @@
     animation-delay: 0.4s;
 }
 
-@keyframes fingerWave {
-
-    0%,
-    100% {
-        transform: rotate(0deg);
-    }
-
-    50% {
-        transform: rotate(-10deg);
-    }
-}
+/* fingerWave animation removed */
 
 .gesture-wave {
     position: absolute;
@@ -223,21 +170,12 @@
     border-radius: 50%;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    animation: waveExpand 2s ease-out infinite;
+    transform: translate(-50%, -50%) scale(1.2);
+    /* Wave expand animation removed - frozen at medium scale */
+    opacity: 0.5;
 }
 
-@keyframes waveExpand {
-    0% {
-        transform: translate(-50%, -50%) scale(0.8);
-        opacity: 0.8;
-    }
-
-    100% {
-        transform: translate(-50%, -50%) scale(1.5);
-        opacity: 0;
-    }
-}
+/* waveExpand animation removed */
 
 .calculator-display {
     position: absolute;
@@ -249,21 +187,11 @@
     font-family: 'Courier New', monospace;
     font-size: 20px;
     font-weight: bold;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    animation: displayPulse 2s ease-in-out infinite;
+    box-shadow: 0 4px 20px rgba(0, 255, 0, 0.5);
+    /* Display pulse animation removed - frozen with medium glow */
 }
 
-@keyframes displayPulse {
-
-    0%,
-    100% {
-        box-shadow: 0 4px 15px rgba(0, 255, 0, 0.3);
-    }
-
-    50% {
-        box-shadow: 0 4px 25px rgba(0, 255, 0, 0.6);
-    }
-}
+/* displayPulse animation removed */
 
 /* ========================================
    PROJECT 3: YOUTUBE UNSUBSCRIBER
@@ -282,20 +210,10 @@
     align-items: center;
     justify-content: center;
     box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4);
-    animation: ytPulse 2s ease-in-out infinite;
+    /* Pulse animation removed - frozen at normal scale */
 }
 
-@keyframes ytPulse {
-
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.05);
-    }
-}
+/* ytPulse animation removed */
 
 .yt-play {
     width: 0;
@@ -314,21 +232,11 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(-45deg);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-    animation: slashGlow 1.5s ease-in-out infinite;
+    box-shadow: 0 0 22px rgba(255, 255, 255, 0.9);
+    /* Slash glow animation removed - frozen with strong glow */
 }
 
-@keyframes slashGlow {
-
-    0%,
-    100% {
-        box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-    }
-
-    50% {
-        box-shadow: 0 0 30px rgba(255, 255, 255, 1);
-    }
-}
+/* slashGlow animation removed */
 
 .channel-count {
     position: absolute;
@@ -341,20 +249,10 @@
     border-radius: 20px;
     font-weight: bold;
     font-size: 18px;
-    animation: countDown 2s ease-in-out infinite;
+    /* CountDown animation removed - frozen at normal scale */
 }
 
-@keyframes countDown {
-
-    0%,
-    100% {
-        transform: translateX(-50%) scale(1);
-    }
-
-    50% {
-        transform: translateX(-50%) scale(1.1);
-    }
-}
+/* countDown animation removed */
 
 /* ========================================
    PROJECT 5: YOUTUBE PLAYLIST DOWNLOADER
@@ -410,7 +308,7 @@
     background: rgba(255, 255, 255, 0.8);
     border-radius: 4px;
     position: relative;
-    animation: itemSlide 3s ease-in-out infinite;
+    /* ItemSlide animation removed - frozen at default position */
 }
 
 .playlist-item:nth-child(1) {
@@ -427,19 +325,7 @@
     width: 80px;
 }
 
-@keyframes itemSlide {
-
-    0%,
-    100% {
-        opacity: 0.6;
-        transform: translateX(0);
-    }
-
-    50% {
-        opacity: 1;
-        transform: translateX(5px);
-    }
-}
+/* itemSlide animation removed */
 
 .download-arrow {
     position: absolute;
@@ -455,20 +341,10 @@
     font-size: 20px;
     color: #000;
     box-shadow: 0 4px 15px rgba(0, 255, 0, 0.6);
-    animation: downloadBounce 2s ease-in-out infinite;
+    /* Download bounce animation removed - frozen at default position */
 }
 
-@keyframes downloadBounce {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-}
+/* downloadBounce animation removed */
 
 /* ========================================
    PROJECT 4: SMART VAULT
@@ -510,20 +386,12 @@
     border-radius: 50%;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) rotate(45deg);
     border: 2px solid #9A3BF2;
-    animation: handleRotate 4s linear infinite;
+    /* Handle rotation animation removed - frozen at 45deg angle */
 }
 
-@keyframes handleRotate {
-    0% {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-
-    100% {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
-}
+/* handleRotate animation removed */
 
 .vault-handle::before {
     content: '';
@@ -569,7 +437,8 @@
     border-radius: 50%;
     top: 10px;
     right: 10px;
-    animation: lockBlink 2s ease-in-out infinite;
+    /* Lock blink animation removed - frozen at full opacity */
+    opacity: 1;
 }
 
 .lock-indicator.locked {
@@ -577,17 +446,7 @@
     box-shadow: 0 0 10px #FF6F61;
 }
 
-@keyframes lockBlink {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0.3;
-    }
-}
+/* lockBlink animation removed */
 
 
 /* ========================================
@@ -708,7 +567,7 @@
     height: 25px;
     background: #fff;
     transform-origin: bottom center;
-    animation: antennaWiggle 3s ease-in-out infinite;
+    /* Antenna wiggle animation removed - frozen at 20deg angle */
 }
 
 .reddit-antenna::before {
@@ -724,17 +583,7 @@
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
-@keyframes antennaWiggle {
-
-    0%,
-    100% {
-        transform: translateX(-50%) rotate(20deg);
-    }
-
-    50% {
-        transform: translateX(-50%) rotate(-20deg);
-    }
-}
+/* antennaWiggle animation removed */
 
 .data-particles {
     position: absolute;
@@ -750,7 +599,8 @@
     height: 6px;
     background: rgba(255, 255, 255, 0.6);
     border-radius: 2px;
-    animation: dataFloat 3s linear infinite;
+    /* Data float animation removed - frozen in static position */
+    opacity: 0.6;
 }
 
 .data-bit:nth-child(1) {
@@ -771,21 +621,7 @@
     animation-delay: 2s;
 }
 
-@keyframes dataFloat {
-    0% {
-        transform: translateY(0) scale(1);
-        opacity: 0;
-    }
-
-    50% {
-        opacity: 1;
-    }
-
-    100% {
-        transform: translateY(-40px) scale(0);
-        opacity: 0;
-    }
-}
+/* dataFloat animation removed */
 
 /* ========================================
    PROJECT 8: HYPER QR UTILITY
@@ -853,29 +689,12 @@
     background: #00ff00;
     box-shadow: 0 0 10px #00ff00;
     left: -5%;
-    top: 0;
-    animation: qrScan 2s linear infinite;
+    top: 50%;
+    /* QR scan animation removed - frozen at center */
+    opacity: 0.8;
 }
 
-@keyframes qrScan {
-    0% {
-        top: 0;
-        opacity: 0;
-    }
-
-    10% {
-        opacity: 1;
-    }
-
-    90% {
-        opacity: 1;
-    }
-
-    100% {
-        top: 100%;
-        opacity: 0;
-    }
-}
+/* qrScan animation removed */
 
 .wifi-waves {
     position: absolute;
@@ -892,7 +711,9 @@
     border: 3px solid transparent;
     border-top-color: #00ff00;
     border-radius: 50%;
-    animation: wifiPulse 2s infinite;
+    /* Wifi pulse animation removed - frozen at medium opacity */
+    opacity: 0.5;
+    transform: scale(1);
 }
 
 .wifi-wave:nth-child(1) {
@@ -913,22 +734,7 @@
     animation-delay: 0.6s;
 }
 
-@keyframes wifiPulse {
-    0% {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-
-    50% {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    100% {
-        opacity: 0;
-        transform: scale(1.2);
-    }
-}
+/* wifiPulse animation removed */
 
 /* ========================================
    PROJECT: MEDASSIST
@@ -946,8 +752,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 20px rgba(0, 200, 83, 0.4);
-    animation: pulseHeal 3s ease-in-out infinite;
+    /* Pulse heal animation removed - frozen with medium glow */
+    box-shadow: 0 0 30px rgba(0, 200, 83, 0.6);
 }
 
 .cross-horizontal {
@@ -980,25 +786,13 @@
     content: '';
     position: absolute;
     top: 0;
-    left: -100%;
+    left: 0;
     width: 100%;
     height: 100%;
     background: linear-gradient(90deg, transparent, #fff, transparent);
-    animation: heartLine 2s linear infinite;
+    /* Heart line animation removed - frozen at center */
 }
 
-@keyframes pulseHeal {
-    0%, 100% {
-        box-shadow: 0 0 20px rgba(0, 200, 83, 0.4);
-        transform: scale(1);
-    }
-    50% {
-        box-shadow: 0 0 40px rgba(0, 200, 83, 0.7);
-        transform: scale(1.05);
-    }
-}
+/* pulseHeal animation removed */
 
-@keyframes heartLine {
-    0% { left: -100%; }
-    100% { left: 100%; }
-}
+/* heartLine animation removed */

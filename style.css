@@ -1760,19 +1760,18 @@ body {
 .hud-outer {
   width: 340px;
   height: 340px;
-  animation: rotateHUD 20s linear infinite;
+  /* Rotation animation removed - frozen at 0deg */
+  transform: rotate(0deg);
 }
 
 .hud-inner {
   width: 290px;
   height: 290px;
-  animation: rotateHUD 10s linear infinite reverse;
+  /* Rotation animation removed - frozen at 0deg */
+  transform: rotate(0deg);
 }
 
-@keyframes rotateHUD {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+/* rotateHUD animation removed as requested */
 
 .hud-scanner-line {
   position: absolute;
@@ -1782,14 +1781,13 @@ body {
   box-shadow: 0 0 15px #00ced1;
   z-index: 5;
   top: 50%;
-  animation: hudScan 4s ease-in-out infinite;
+  /* Scanner animation removed - frozen in center position */
+  transform: translateY(0);
+  opacity: 0.8;
   pointer-events: none;
 }
 
-@keyframes hudScan {
-  0%, 100% { transform: translateY(-160px); opacity: 0; }
-  50% { transform: translateY(160px); opacity: 1; }
-}
+/* hudScan animation removed as requested */
 
 /* --- Micro Data Stream --- */
 .micro-data-stream {
@@ -2395,24 +2393,17 @@ body {
 .contact-icon {
   font-size: 2rem;
   color: #00ced1;
-  animation: iconFloat 3s ease-in-out infinite;
+  /* Animation removed - frozen in default pose */
+  transform: translateY(0);
 }
 
 .magnetic-card:hover .contact-icon {
-  animation: iconPulse 1s ease-in-out infinite;
+  /* Keep hover effects but remove continuous animation */
   filter: drop-shadow(0 0 15px currentColor);
+  transform: scale(1.1);
 }
 
-@keyframes iconFloat {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-10px);
-  }
-}
+/* iconFloat animation removed as requested */
 
 @keyframes iconPulse {
   0%,
