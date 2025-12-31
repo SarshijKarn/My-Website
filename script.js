@@ -765,13 +765,22 @@ const initProgressiveLoad = () => {
   window.addEventListener("load", dismissPreloader);
 };
 initProgressiveLoad();
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("/service-worker.js")
-      .then((reg) => console.log("Service Worker registered."))
-      .catch((err) => console.log("Service Worker failed:", err));
+// 🚀 Service Worker Removal Logic - Ensures users get the latest version without caching issues
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then(function(registrations) {
+    for(let registration of registrations) {
+      registration.unregister();
+      console.log('Service Worker unregistered');
+    }
   });
+  
+  // Clear all browser caches for this site
+  if ('caches' in window) {
+    caches.keys().then(function(names) {
+      for (let name of names) caches.delete(name);
+      console.log('All caches cleared');
+    });
+  }
 }
 function initTerminalMode() {
   const toggleBtn = document.getElementById("toggleTerminal");
