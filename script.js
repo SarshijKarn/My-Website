@@ -769,8 +769,40 @@ if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
       .register("/service-worker.js")
-      .then((reg) => console.log("Service Worker registered."))
+      .then((reg) => {
+        console.log("Service Worker registered.");
+        
+        // Check for updates every hour
+        setInterval(() => {
+          reg.update();
+        }, 1000 * 60 * 60);
+
+        reg.onupdatefound = () => {
+          const installingWorker = reg.installing;
+          installingWorker.onstatechange = () => {
+            if (installingWorker.state === "installed") {
+              if (navigator.serviceWorker.controller) {
+                // New update available
+                console.log("New content available; please refresh.");
+                // We'll let the controllerchange event handle the reload
+              } else {
+                // Content cached for offline use
+                console.log("Content is cached for offline use.");
+              }
+            }
+          };
+        };
+      })
       .catch((err) => console.log("Service Worker failed:", err));
+  });
+
+  // Reload the page when the new service worker takes control
+  let refreshing = false;
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (!refreshing) {
+      window.location.reload();
+      refreshing = true;
+    }
   });
 }
 function initTerminalMode() {

@@ -300,6 +300,23 @@ body {
   #bg-video {
     opacity: 0.4; /* Slightly dimmer for better text readability and performance */
   }
+
+  /* 💡 Deeper Mobile Performance Optimization */
+  section {
+    content-visibility: auto; /* Browser only renders when near viewport */
+    contain-intrinsic-size: 1px 500px; /* Placeholder size for layout */
+  }
+  
+  /* Disable heavy hover effects on touch devices */
+  .card-3d:hover {
+    transform: none !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3) !important;
+  }
+  
+  .hero-photo-glow, .hero-photo-border {
+    animation: none !important; /* Stop rotating on mobile to save battery/CPU */
+    filter: blur(10px) !important;
+  }
 }
 @media (max-width: 768px) {
   #skills .card-3d:hover,
