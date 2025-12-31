@@ -1,798 +1,626 @@
-/* ========================================
-   CUSTOM PROJECT ICONS STYLES
-   ======================================== */
-
-/* Base Container */
 .project-icon-container {
-    height: 192px;
-    border-radius: 0.5rem;
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(0, 206, 209, 0.1));
-    transition: all 0.3s ease;
+  height: 192px;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    rgb(138 43 226 / 0.1),
+    rgb(0 206 209 / 0.1)
+  );
+  transition: all 0.3s ease;
 }
-
 .project-icon-container:hover {
-    transform: scale(1.02);
+  transform: scale(1.02);
 }
-
-/* ========================================
-   PROJECT 1: EMOTION DETECTION
-   ======================================== */
 .emotion-detection {
-    background: linear-gradient(135deg, #8A2BE2 0%, #00CED1 100%);
+  background: linear-gradient(135deg, #8a2be2 0%, #00ced1 100%);
 }
-
 .emotion-face {
-    position: relative;
-    width: 120px;
-    height: 120px;
+  position: relative;
+  width: 120px;
+  height: 120px;
 }
-
 .face-outline {
-    width: 100%;
-    height: 100%;
-    border: 4px solid #fff;
-    border-radius: 50%;
-    position: relative;
-    background: rgba(255, 255, 255, 0.1);
-    /* Animation removed - frozen with medium glow */
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+  width: 100%;
+  height: 100%;
+  border: 4px solid #fff;
+  border-radius: 50%;
+  position: relative;
+  background: rgb(255 255 255 / 0.1);
+  box-shadow: 0 0 30px rgb(255 255 255 / 0.5);
 }
-
-/* faceGlow animation removed */
-
 .eye {
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    background: #fff;
-    border-radius: 50%;
-    top: 35%;
-    /* Blink animation removed - eyes frozen open */
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 50%;
+  top: 35%;
 }
-
 .eye-left {
-    left: 30%;
+  left: 30%;
 }
-
 .eye-right {
-    right: 30%;
+  right: 30%;
 }
-
-/* blink animation removed */
-
 .mouth {
-    position: absolute;
-    width: 50px;
-    height: 25px;
-    border: 3px solid #fff;
-    border-top: none;
-    border-radius: 0 0 50px 50px;
-    bottom: 25%;
-    left: 50%;
-    transform: translateX(-50%);
-    /* Smile animation removed - frozen in happy smile pose */
+  position: absolute;
+  width: 50px;
+  height: 25px;
+  border: 3px solid #fff;
+  border-top: none;
+  border-radius: 0 0 50px 50px;
+  bottom: 25%;
+  left: 50%;
+  transform: translateX(-50%);
 }
-
-/* smile animation removed */
-
 .scan-line {
-    position: absolute;
-    width: 140%;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, #FFD600, transparent);
-    top: 50%;
-    left: -20%;
-    /* Scan animation removed - frozen at center */
-    box-shadow: 0 0 10px #FFD600;
+  position: absolute;
+  width: 140%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ffd600, transparent);
+  top: 50%;
+  left: -20%;
+  box-shadow: 0 0 10px #ffd600;
 }
-
-/* scan animation removed */
-
-/* ========================================
-   PROJECT 2: GESTURE CALCULATOR
-   ======================================== */
 .gesture-calculator {
-    background: linear-gradient(135deg, #00CED1 0%, #8A2BE2 100%);
+  background: linear-gradient(135deg, #00ced1 0%, #8a2be2 100%);
 }
-
 .hand-gesture {
-    position: relative;
-    width: 80px;
-    height: 100px;
+  position: relative;
+  width: 80px;
+  height: 100px;
 }
-
 .palm {
-    position: absolute;
-    width: 60px;
-    height: 70px;
-    background: #fff;
-    border-radius: 50% 50% 40% 40%;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  width: 60px;
+  height: 70px;
+  background: #fff;
+  border-radius: 50% 50% 40% 40%;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 15px rgb(0 0 0 / 0.2);
 }
-
 .finger {
-    position: absolute;
-    width: 12px;
-    background: #fff;
-    border-radius: 8px 8px 0 0;
-    bottom: 60px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    /* Finger wave animation removed - frozen straight */
+  position: absolute;
+  width: 12px;
+  background: #fff;
+  border-radius: 8px 8px 0 0;
+  bottom: 60px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.2);
 }
-
 .finger-1 {
-    height: 35px;
-    left: 8px;
-    animation-delay: 0s;
+  height: 35px;
+  left: 8px;
+  animation-delay: 0s;
 }
-
 .finger-2 {
-    height: 40px;
-    left: 22px;
-    animation-delay: 0.1s;
+  height: 40px;
+  left: 22px;
+  animation-delay: 0.1s;
 }
-
 .finger-3 {
-    height: 38px;
-    left: 36px;
-    animation-delay: 0.2s;
+  height: 38px;
+  left: 36px;
+  animation-delay: 0.2s;
 }
-
 .finger-4 {
-    height: 32px;
-    left: 50px;
-    animation-delay: 0.3s;
+  height: 32px;
+  left: 50px;
+  animation-delay: 0.3s;
 }
-
 .finger-5 {
-    height: 25px;
-    left: 2px;
-    bottom: 40px;
-    animation-delay: 0.4s;
+  height: 25px;
+  left: 2px;
+  bottom: 40px;
+  animation-delay: 0.4s;
 }
-
-/* fingerWave animation removed */
-
 .gesture-wave {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    border: 3px solid rgba(255, 214, 0, 0.6);
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1.2);
-    /* Wave expand animation removed - frozen at medium scale */
-    opacity: 0.5;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 3px solid rgb(255 214 0 / 0.6);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.2);
+  opacity: 0.5;
 }
-
-/* waveExpand animation removed */
-
 .calculator-display {
-    position: absolute;
-    bottom: 10px;
-    background: rgba(0, 0, 0, 0.7);
-    color: #00ff00;
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-family: 'Courier New', monospace;
-    font-size: 20px;
-    font-weight: bold;
-    box-shadow: 0 4px 20px rgba(0, 255, 0, 0.5);
-    /* Display pulse animation removed - frozen with medium glow */
+  position: absolute;
+  bottom: 10px;
+  background: rgb(0 0 0 / 0.7);
+  color: lime;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-family: "Courier New", monospace;
+  font-size: 20px;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgb(0 255 0 / 0.5);
 }
-
-/* displayPulse animation removed */
-
-/* ========================================
-   PROJECT 3: YOUTUBE UNSUBSCRIBER
-   ======================================== */
 .youtube-unsubscriber {
-    background: linear-gradient(135deg, #8A2BE2 0%, #FF6F61 100%);
+  background: linear-gradient(135deg, #8a2be2 0%, #ff6f61 100%);
 }
-
 .youtube-icon {
-    position: relative;
-    width: 120px;
-    height: 85px;
-    background: #FF0000;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4);
-    /* Pulse animation removed - frozen at normal scale */
+  position: relative;
+  width: 120px;
+  height: 85px;
+  background: red;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px rgb(255 0 0 / 0.4);
 }
-
-/* ytPulse animation removed */
-
 .yt-play {
-    width: 0;
-    height: 0;
-    border-left: 30px solid #fff;
-    border-top: 20px solid transparent;
-    border-bottom: 20px solid transparent;
-    margin-left: 8px;
+  width: 0;
+  height: 0;
+  border-left: 30px solid #fff;
+  border-top: 20px solid #fff0;
+  border-bottom: 20px solid #fff0;
+  margin-left: 8px;
 }
-
 .unsub-slash {
-    position: absolute;
-    width: 140px;
-    height: 6px;
-    background: #fff;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-45deg);
-    box-shadow: 0 0 22px rgba(255, 255, 255, 0.9);
-    /* Slash glow animation removed - frozen with strong glow */
+  position: absolute;
+  width: 140px;
+  height: 6px;
+  background: #fff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  box-shadow: 0 0 22px rgb(255 255 255 / 0.9);
 }
-
-/* slashGlow animation removed */
-
 .channel-count {
-    position: absolute;
-    bottom: -35px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.8);
-    color: #FF0000;
-    padding: 6px 16px;
-    border-radius: 20px;
-    font-weight: bold;
-    font-size: 18px;
-    /* CountDown animation removed - frozen at normal scale */
+  position: absolute;
+  bottom: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgb(0 0 0 / 0.8);
+  color: red;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 18px;
 }
-
-/* countDown animation removed */
-
-/* ========================================
-   PROJECT 5: YOUTUBE PLAYLIST DOWNLOADER
-   ======================================== */
 .youtube-downloader {
-    background: linear-gradient(135deg, #FF0000 0%, #8A2BE2 100%);
+  background: linear-gradient(135deg, #ff0000 0%, #8a2be2 100%);
 }
-
 .youtube-playlist {
-    position: relative;
-    width: 140px;
-    height: 120px;
+  position: relative;
+  width: 140px;
+  height: 120px;
 }
-
 .yt-logo {
-    width: 80px;
-    height: 55px;
-    background: #FF0000;
-    border-radius: 12px;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.5);
+  width: 80px;
+  height: 55px;
+  background: red;
+  border-radius: 12px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 15px rgb(255 0 0 / 0.5);
 }
-
 .yt-logo::before {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-left: 20px solid #fff;
-    border-top: 12px solid transparent;
-    border-bottom: 12px solid transparent;
-    top: 50%;
-    left: 50%;
-    transform: translate(-40%, -50%);
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 20px solid #fff;
+  border-top: 12px solid #fff0;
+  border-bottom: 12px solid #fff0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-40%, -50%);
 }
-
 .playlist-items {
-    position: absolute;
-    top: 65px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+  position: absolute;
+  top: 65px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
-
 .playlist-item {
-    width: 100px;
-    height: 8px;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 4px;
-    position: relative;
-    /* ItemSlide animation removed - frozen at default position */
+  width: 100px;
+  height: 8px;
+  background: rgb(255 255 255 / 0.8);
+  border-radius: 4px;
+  position: relative;
 }
-
 .playlist-item:nth-child(1) {
-    animation-delay: 0s;
+  animation-delay: 0s;
 }
-
 .playlist-item:nth-child(2) {
-    animation-delay: 0.3s;
-    width: 90px;
+  animation-delay: 0.3s;
+  width: 90px;
 }
-
 .playlist-item:nth-child(3) {
-    animation-delay: 0.6s;
-    width: 80px;
+  animation-delay: 0.6s;
+  width: 80px;
 }
-
-/* itemSlide animation removed */
-
 .download-arrow {
-    position: absolute;
-    bottom: -10px;
-    right: 0;
-    width: 40px;
-    height: 40px;
-    background: #00ff00;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    color: #000;
-    box-shadow: 0 4px 15px rgba(0, 255, 0, 0.6);
-    /* Download bounce animation removed - frozen at default position */
+  position: absolute;
+  bottom: -10px;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  background: lime;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #000;
+  box-shadow: 0 4px 15px rgb(0 255 0 / 0.6);
 }
-
-/* downloadBounce animation removed */
-
-/* ========================================
-   PROJECT 4: SMART VAULT
-   ======================================== */
 .smart-vault {
-    background: linear-gradient(135deg, #8A2BE2 0%, #FF6F61 100%);
+  background: linear-gradient(135deg, #8a2be2 0%, #ff6f61 100%);
 }
-
 .vault-safe {
-    position: relative;
-    width: 120px;
-    height: 120px;
-    background: linear-gradient(145deg, #2a2a3e, #1a1a2e);
-    border-radius: 12px;
-    border: 4px solid #3a3a4e;
-    box-shadow:
-        inset 0 0 20px rgba(0, 0, 0, 0.5),
-        0 8px 25px rgba(0, 0, 0, 0.4);
+  position: relative;
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(145deg, #2a2a3e, #1a1a2e);
+  border-radius: 12px;
+  border: 4px solid #3a3a4e;
+  box-shadow:
+    inset 0 0 20px rgb(0 0 0 / 0.5),
+    0 8px 25px rgb(0 0 0 / 0.4);
 }
-
 .vault-door {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(145deg, #4a4a5e, #2a2a3e);
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 3px solid #5a5a6e;
-    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.6);
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(145deg, #4a4a5e, #2a2a3e);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 3px solid #5a5a6e;
+  box-shadow: inset 0 0 15px rgb(0 0 0 / 0.6);
 }
-
 .vault-handle {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(145deg, #8A2BE2, #6A1BC2);
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(45deg);
-    border: 2px solid #9A3BF2;
-    /* Handle rotation animation removed - frozen at 45deg angle */
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(145deg, #8a2be2, #6a1bc2);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  border: 2px solid #9a3bf2;
 }
-
-/* handleRotate animation removed */
-
 .vault-handle::before {
-    content: '';
-    position: absolute;
-    width: 8px;
-    height: 20px;
-    background: #fff;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 4px;
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 20px;
+  background: #fff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
 }
-
 .vault-lock {
-    position: absolute;
-    width: 20px;
-    height: 25px;
-    background: #FFD600;
-    border-radius: 5px 5px 0 0;
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0 0 10px rgba(255, 214, 0, 0.6);
+  position: absolute;
+  width: 20px;
+  height: 25px;
+  background: #ffd600;
+  border-radius: 5px 5px 0 0;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 10px rgb(255 214 0 / 0.6);
 }
-
 .vault-lock::before {
-    content: '';
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    border: 3px solid #FFD600;
-    border-radius: 50%;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-bottom: none;
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 3px solid #ffd600;
+  border-radius: 50%;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-bottom: none;
 }
-
 .lock-indicator {
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    top: 10px;
-    right: 10px;
-    /* Lock blink animation removed - frozen at full opacity */
-    opacity: 1;
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  top: 10px;
+  right: 10px;
+  opacity: 1;
 }
-
 .lock-indicator.locked {
-    background: #FF6F61;
-    box-shadow: 0 0 10px #FF6F61;
+  background: #ff6f61;
+  box-shadow: 0 0 10px #ff6f61;
 }
-
-/* lockBlink animation removed */
-
-
-/* ========================================
-   RESPONSIVE ADJUSTMENTS
-   ======================================== */
 @media (max-width: 768px) {
-    .project-icon-container {
-        height: 110px;
-    }
-
-    .emotion-face {
-        width: 100px;
-        height: 100px;
-        transform: scale(0.7);
-    }
-
-    .hand-gesture {
-        width: 70px;
-        height: 90px;
-        transform: scale(0.7);
-    }
-
-    .youtube-icon {
-        width: 100px;
-        height: 70px;
-        transform: scale(0.7);
-    }
-
-    .youtube-playlist {
-        width: 120px;
-        height: 100px;
-        transform: scale(0.7);
-    }
-
-    .vault-safe {
-        width: 100px;
-        height: 100px;
-        transform: scale(0.7);
-    }
-
-
-
-    .reddit-icon {
-        transform: scale(0.7);
-    }
-
-    .qr-frame {
-        transform: scale(0.7);
-    }
-
-    .calculator-display {
-        font-size: 14px;
-        padding: 4px 8px;
-        bottom: 5px;
-    }
-}
-
-/* ========================================
-   PROJECT 7: REDDIT DATA SCRAPER
-   ======================================== */
-.reddit-scraper {
-    background: linear-gradient(135deg, #FF4500 0%, #FF8700 100%);
-}
-
-.reddit-icon {
-    position: relative;
+  .project-icon-container {
+    height: 110px;
+  }
+  .emotion-face {
     width: 100px;
     height: 100px;
-}
-
-.reddit-head {
-    position: absolute;
-    width: 80px;
-    height: 50px;
-    background: #fff;
-    border-radius: 25px;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.reddit-eye {
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    background: #FF4500;
-    border-radius: 50%;
-    top: 18px;
-    animation: blink 4s infinite;
-}
-
-.reddit-eye.left {
-    left: 20px;
-}
-
-.reddit-eye.right {
-    right: 20px;
-}
-
-.reddit-mouth {
-    position: absolute;
-    width: 30px;
-    height: 15px;
-    border-bottom: 3px solid #000;
-    border-radius: 50%;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.reddit-antenna {
-    position: absolute;
-    bottom: 60px;
-    left: 50%;
-    transform: translateX(-50%) rotate(20deg);
-    width: 4px;
-    height: 25px;
-    background: #fff;
-    transform-origin: bottom center;
-    /* Antenna wiggle animation removed - frozen at 20deg angle */
-}
-
-.reddit-antenna::before {
-    content: '';
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 16px;
-    height: 16px;
-    background: #fff;
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-}
-
-/* antennaWiggle animation removed */
-
-.data-particles {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-}
-
-.data-bit {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 2px;
-    /* Data float animation removed - frozen in static position */
-    opacity: 0.6;
-}
-
-.data-bit:nth-child(1) {
-    top: 20%;
-    left: 10%;
-    animation-delay: 0s;
-}
-
-.data-bit:nth-child(2) {
-    top: 40%;
-    right: 10%;
-    animation-delay: 1s;
-}
-
-.data-bit:nth-child(3) {
-    top: 10%;
-    right: 30%;
-    animation-delay: 2s;
-}
-
-/* dataFloat animation removed */
-
-/* ========================================
-   PROJECT 8: HYPER QR UTILITY
-   ======================================== */
-.hyper-qr {
-    background: linear-gradient(135deg, #000000 0%, #434343 100%);
-}
-
-.qr-frame {
-    position: relative;
+    transform: scale(0.7);
+  }
+  .hand-gesture {
+    width: 70px;
+    height: 90px;
+    transform: scale(0.7);
+  }
+  .youtube-icon {
+    width: 100px;
+    height: 70px;
+    transform: scale(0.7);
+  }
+  .youtube-playlist {
+    width: 120px;
+    height: 100px;
+    transform: scale(0.7);
+  }
+  .vault-safe {
     width: 100px;
     height: 100px;
-    background: #fff;
-    border-radius: 8px;
-    padding: 5px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-}
-
-.qr-pattern {
-    width: 100%;
-    height: 100%;
-    background-image:
-        linear-gradient(45deg, #000 25%, transparent 25%),
-        linear-gradient(-45deg, #000 25%, transparent 25%),
-        linear-gradient(45deg, transparent 75%, #000 75%),
-        linear-gradient(-45deg, transparent 75%, #000 75%);
-    background-size: 20px 20px;
-    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-    opacity: 0.8;
-}
-
-.qr-corner {
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    border: 4px solid #000;
-    background: transparent;
-}
-
-.qr-corner.tl {
-    top: 5px;
-    left: 5px;
-    border-right: none;
-    border-bottom: none;
-}
-
-.qr-corner.tr {
-    top: 5px;
-    right: 5px;
-    border-left: none;
-    border-bottom: none;
-}
-
-.qr-corner.bl {
+    transform: scale(0.7);
+  }
+  .reddit-icon {
+    transform: scale(0.7);
+  }
+  .qr-frame {
+    transform: scale(0.7);
+  }
+  .calculator-display {
+    font-size: 14px;
+    padding: 4px 8px;
     bottom: 5px;
-    left: 5px;
-    border-right: none;
-    border-top: none;
+  }
 }
-
+.reddit-scraper {
+  background: linear-gradient(135deg, #ff4500 0%, #ff8700 100%);
+}
+.reddit-icon {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+.reddit-head {
+  position: absolute;
+  width: 80px;
+  height: 50px;
+  background: #fff;
+  border-radius: 25px;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 15px rgb(0 0 0 / 0.2);
+}
+.reddit-eye {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #ff4500;
+  border-radius: 50%;
+  top: 18px;
+  animation: none;
+}
+.reddit-eye.left {
+  left: 20px;
+}
+.reddit-eye.right {
+  right: 20px;
+}
+.reddit-mouth {
+  position: absolute;
+  width: 30px;
+  height: 15px;
+  border-bottom: 3px solid #000;
+  border-radius: 50%;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.reddit-antenna {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%) rotate(20deg);
+  width: 4px;
+  height: 25px;
+  background: #fff;
+  transform-origin: bottom center;
+}
+.reddit-antenna::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgb(255 255 255 / 0.8);
+}
+.data-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.data-bit {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: rgb(255 255 255 / 0.6);
+  border-radius: 2px;
+  opacity: 0.6;
+}
+.data-bit:nth-child(1) {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+.data-bit:nth-child(2) {
+  top: 40%;
+  right: 10%;
+  animation-delay: 1s;
+}
+.data-bit:nth-child(3) {
+  top: 10%;
+  right: 30%;
+  animation-delay: 2s;
+}
+.hyper-qr {
+  background: linear-gradient(135deg, #000000 0%, #434343 100%);
+}
+.qr-frame {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 5px;
+  box-shadow: 0 0 20px rgb(255 255 255 / 0.2);
+}
+.qr-pattern {
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(45deg, #000 25%, transparent 25%),
+    linear-gradient(-45deg, #000 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #000 75%),
+    linear-gradient(-45deg, transparent 75%, #000 75%);
+  background-size: 20px 20px;
+  background-position:
+    0 0,
+    0 10px,
+    10px -10px,
+    -10px 0;
+  opacity: 0.8;
+}
+.qr-corner {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border: 4px solid #000;
+  background: #fff0;
+}
+.qr-corner.tl {
+  top: 5px;
+  left: 5px;
+  border-right: none;
+  border-bottom: none;
+}
+.qr-corner.tr {
+  top: 5px;
+  right: 5px;
+  border-left: none;
+  border-bottom: none;
+}
+.qr-corner.bl {
+  bottom: 5px;
+  left: 5px;
+  border-right: none;
+  border-top: none;
+}
 .qr-scan-line {
-    position: absolute;
-    width: 110%;
-    height: 2px;
-    background: #00ff00;
-    box-shadow: 0 0 10px #00ff00;
-    left: -5%;
-    top: 50%;
-    /* QR scan animation removed - frozen at center */
-    opacity: 0.8;
+  position: absolute;
+  width: 110%;
+  height: 2px;
+  background: lime;
+  box-shadow: 0 0 10px lime;
+  left: -5%;
+  top: 50%;
+  opacity: 0.8;
 }
-
-/* qrScan animation removed */
-
 .wifi-waves {
-    position: absolute;
-    top: -20px;
-    right: -20px;
-    width: 40px;
-    height: 40px;
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 40px;
+  height: 40px;
 }
-
 .wifi-wave {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    border: 3px solid transparent;
-    border-top-color: #00ff00;
-    border-radius: 50%;
-    /* Wifi pulse animation removed - frozen at medium opacity */
-    opacity: 0.5;
-    transform: scale(1);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border: 3px solid #fff0;
+  border-top-color: lime;
+  border-radius: 50%;
+  opacity: 0.5;
+  transform: scale(1);
 }
-
 .wifi-wave:nth-child(1) {
-    width: 20px;
-    height: 20px;
-    animation-delay: 0s;
+  width: 20px;
+  height: 20px;
+  animation-delay: 0s;
 }
-
 .wifi-wave:nth-child(2) {
-    width: 30px;
-    height: 30px;
-    animation-delay: 0.3s;
+  width: 30px;
+  height: 30px;
+  animation-delay: 0.3s;
 }
-
 .wifi-wave:nth-child(3) {
-    width: 40px;
-    height: 40px;
-    animation-delay: 0.6s;
+  width: 40px;
+  height: 40px;
+  animation-delay: 0.6s;
 }
-
-/* wifiPulse animation removed */
-
-/* ========================================
-   PROJECT: MEDASSIST
-   ======================================== */
 .med-assist {
-    background: linear-gradient(135deg, #00C853 0%, #B2FF59 100%);
+  background: linear-gradient(135deg, #00c853 0%, #b2ff59 100%);
 }
-
 .medical-cross {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    background: #fff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* Pulse heal animation removed - frozen with medium glow */
-    box-shadow: 0 0 30px rgba(0, 200, 83, 0.6);
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 30px rgb(0 200 83 / 0.6);
 }
-
 .cross-horizontal {
-    position: absolute;
-    width: 60px;
-    height: 18px;
-    background: #F44336;
-    border-radius: 4px;
+  position: absolute;
+  width: 60px;
+  height: 18px;
+  background: #f44336;
+  border-radius: 4px;
 }
-
 .cross-vertical {
-    position: absolute;
-    width: 18px;
-    height: 60px;
-    background: #F44336;
-    border-radius: 4px;
+  position: absolute;
+  width: 18px;
+  height: 60px;
+  background: #f44336;
+  border-radius: 4px;
 }
-
 .heart-beat {
-    position: absolute;
-    width: 120%;
-    height: 2px;
-    background: rgba(255, 255, 255, 0.5);
-    top: 50%;
-    left: -10%;
-    overflow: hidden;
+  position: absolute;
+  width: 120%;
+  height: 2px;
+  background: rgb(255 255 255 / 0.5);
+  top: 50%;
+  left: -10%;
+  overflow: hidden;
 }
-
 .heart-beat::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, #fff, transparent);
-    /* Heart line animation removed - frozen at center */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, #fff, transparent);
+  animation: none;
 }
-
-/* pulseHeal animation removed */
-
-/* heartLine animation removed */

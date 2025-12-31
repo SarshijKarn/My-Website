@@ -1,30 +1,14 @@
-// GSAP Animations and Interactions
 gsap.registerPlugin(ScrollTrigger);
-
-// 🔧 CONFIGURATION: CHANGE THIS URL WHEN DEPLOYING
 const BACKEND_URL = "https://backend-contact-form-hvqf.onrender.com";
-// Example: const BACKEND_URL = 'https://my-backend.onrender.com';
-
-// Safety check: Ensure BACKEND_URL is defined
-if (typeof BACKEND_URL === 'undefined' || !BACKEND_URL) {
-  console.error('BACKEND_URL is not defined! Please check script.js configuration.');
+if (typeof BACKEND_URL === "undefined" || !BACKEND_URL) {
+  console.error(
+    "BACKEND_URL is not defined! Please check script.js configuration.",
+  );
 }
-
-// TextScramble Class Removed for Performance
-
-// ========================================
-// ENHANCED NAVBAR
-// ========================================
-
-// ========================================
-// SIDEBAR & MOBILE NAVIGATION
-// ========================================
-
 const sidebar = document.getElementById("sidebar");
 const sidebarOverlay = document.getElementById("sidebarOverlay");
 const mobileMenuBtn = document.getElementById("mobileMenuBtn");
 const navLinks = document.querySelectorAll(".nav-link");
-
 function toggleSidebar() {
   if (sidebar && mobileMenuBtn) {
     sidebar.classList.toggle("active");
@@ -32,7 +16,6 @@ function toggleSidebar() {
     if (sidebarOverlay) sidebarOverlay.classList.toggle("active");
   }
 }
-
 function closeSidebar() {
   if (sidebar && mobileMenuBtn) {
     sidebar.classList.remove("active");
@@ -40,73 +23,42 @@ function closeSidebar() {
     if (sidebarOverlay) sidebarOverlay.classList.remove("active");
   }
 }
-
 if (mobileMenuBtn) {
   mobileMenuBtn.addEventListener("click", toggleSidebar);
 }
-
 if (sidebarOverlay) {
   sidebarOverlay.addEventListener("click", closeSidebar);
 }
-
-// Close sidebar when clicking on links
 navLinks.forEach((link) => {
   link.addEventListener("click", closeSidebar);
 });
-
-// Consolidated Scroll Tracking
-let lastScroll = 0;
-// Note: Scroll execution is throttled via requestTick at the bottom of the file
-
-// Active Section Tracking
 const sections = document.querySelectorAll("section[id]");
-
-// Active Section Tracking Logic (Moved to updateScrollEffects for performance)
-
-// Theme Management
 const themeToggle = document.getElementById("themeToggle");
 const body = document.body;
-let isDark = true;
-
+let isDark = !0;
 if (themeToggle) {
   themeToggle.addEventListener("click", () => {
     isDark = !isDark;
     body.className = isDark ? "dark" : "light";
     themeToggle.classList.toggle("active");
-
-    // Theme logic handled by CSS variables for videos/backgrounds
   });
 }
-
-// Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
     e.preventDefault();
     const target = document.querySelector(this.getAttribute("href"));
     if (target) {
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   });
 });
-
-// ========================================
-// MOBILE PERFORMANCE OPTIMIZATIONS
-// ========================================
-
-// Detect if device is mobile
 const isMobile = window.innerWidth <= 768;
 const isLowEndDevice = window.innerWidth <= 480;
-
-// Typing effect for hero tagline - disabled on mobile for performance
 const typingText = document.querySelector(".typing-text");
 if (typingText && !isMobile) {
   const text = typingText.textContent;
   typingText.textContent = "";
   let i = 0;
-
   function typeWriter() {
     if (i < text.length) {
       typingText.textContent += text.charAt(i);
@@ -114,52 +66,26 @@ if (typingText && !isMobile) {
       setTimeout(typeWriter, 100);
     }
   }
-
   setTimeout(typeWriter, 1000);
 } else if (typingText && isMobile) {
-  // On mobile, just show the text immediately without animation
   typingText.style.opacity = "1";
 }
-
-// GSAP Scroll Animations - optimized for performance
-// Reduce animation complexity on mobile
 const animDuration = isMobile ? 0.5 : 1.5;
 const animDelay = isMobile ? 0.1 : 0.3;
-
-// ========================================
-// HOMEPAGE ANIMATIONS (GSAP)
-// ========================================
-// These functions control how the elements "fly in" when the page loads.
-
-// Animate the LEFT text block
 gsap.from(".hero-content-left", {
-  duration: 1,       // Animation takes 1 second
-  x: -50,            // Starts 50px to the LEFT (slide-in effect)
-  opacity: 0,        // Starts invisible
-  ease: "power2.out",// Smooth easing function
-  delay: 0.2         // Waits 0.2s before starting
-});
-
-// Animate the RIGHT image block
-gsap.from(".hero-image-right", {
-  duration: 1.2,     // Slightly slower than text
-  x: isMobile ? 20 : 50, // Slides in from right (20px mobile, 50px desktop)
-  opacity: 0,        // Starts invisible
-  ease: "power2.out",
-  delay: 0           // Starts immediately (no wait)
-});
-
-// Old Photo Animation Removed
-/* 
-gsap.from(".hero-photo-wrapper", {
-  duration: animDuration,
-  scale: isMobile ? 0.8 : 0,
-  rotation: 0, 
+  duration: 1,
+  x: -50,
   opacity: 0,
-  ease: "back.out(1.7)",
+  ease: "power2.out",
+  delay: 0.2,
 });
-*/
-
+gsap.from(".hero-image-right", {
+  duration: 1.2,
+  x: isMobile ? 20 : 50,
+  opacity: 0,
+  ease: "power2.out",
+  delay: 0,
+});
 gsap.from(".hero-title", {
   duration: isMobile ? 0.5 : 1.2,
   y: isMobile ? 30 : 80,
@@ -167,7 +93,6 @@ gsap.from(".hero-title", {
   ease: "power2.out",
   delay: animDelay,
 });
-
 gsap.from(".typing-text", {
   duration: isMobile ? 0.3 : 0.8,
   y: isMobile ? 20 : 40,
@@ -175,7 +100,6 @@ gsap.from(".typing-text", {
   delay: animDelay,
   ease: "power2.out",
 });
-
 gsap.from(".social-icon", {
   duration: isMobile ? 0.3 : 0.6,
   y: isMobile ? 10 : 20,
@@ -184,8 +108,6 @@ gsap.from(".social-icon", {
   delay: 0.8,
   ease: "power2.out",
 });
-
-// Scroll-triggered animations - optimized for performance
 gsap.utils.toArray(".card").forEach((card) => {
   gsap.fromTo(
     card,
@@ -200,11 +122,9 @@ gsap.utils.toArray(".card").forEach((card) => {
         start: "top 85%",
         toggleActions: "play none none reverse",
       },
-    }
+    },
   );
 });
-
-// About photo animation
 gsap.fromTo(
   ".about-photo-wrapper",
   { scale: isMobile ? 0.9 : 0, rotation: isMobile ? 0 : -180, opacity: 0 },
@@ -219,29 +139,42 @@ gsap.fromTo(
       start: "top 80%",
       toggleActions: "play none none reverse",
     },
-  }
+  },
 );
-
-// Timeline animation - optimized for performance
 gsap.utils.toArray(".timeline-item").forEach((item, index) => {
-  gsap.fromTo(
-    item,
-    { x: isMobile ? 0 : index % 2 === 0 ? -60 : 60, opacity: 0 },
-    {
-      x: 0,
-      opacity: 1,
-      duration: 0.7,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: item,
-        start: "top 85%",
-        toggleActions: "play none none reverse",
+  // 💡 Performance Optimization: Skip complex slide-ins on mobile for smoother scrolling
+  if (isMobile) {
+    gsap.fromTo(
+      item,
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 0.5,
+        scrollTrigger: {
+          trigger: item,
+          start: "top 90%",
+          toggleActions: "play none none reverse",
+        },
       },
-    }
-  );
+    );
+  } else {
+    gsap.fromTo(
+      item,
+      { x: index % 2 === 0 ? -60 : 60, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 0.7,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: item,
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
+      },
+    );
+  }
 });
-
-// Circuit line animations - optimized for performance
 gsap.utils.toArray(".circuit-line").forEach((line) => {
   gsap.fromTo(
     line,
@@ -255,46 +188,27 @@ gsap.utils.toArray(".circuit-line").forEach((line) => {
         start: "top 85%",
         toggleActions: "play none none reverse",
       },
-    }
+    },
   );
 });
-
-// Navbar scroll effect handled in optimized scroll listener at bottom
-
-// Add hover effects to project cards - optimized for performance
 document.querySelectorAll(".card-3d").forEach((card) => {
   card.addEventListener("mouseenter", () => {
-    gsap.to(card, {
-      scale: 1.03,
-      duration: 0.2,
-      ease: "power2.out",
-    });
+    gsap.to(card, { scale: 1.03, duration: 0.2, ease: "power2.out" });
   });
-
   card.addEventListener("mouseleave", () => {
-    gsap.to(card, {
-      scale: 1,
-      duration: 0.2,
-      ease: "power2.out",
-    });
+    gsap.to(card, { scale: 1, duration: 0.2, ease: "power2.out" });
   });
 });
-
-// Initialize everything when DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
-  // ⚡ WAKE UP CALL (Mitigate Render Cold Starts) & UPDATE UI
   const statusEl = document.getElementById("serverStatus");
   const submitBtn = document.querySelector(".submit-button");
   const btnText = submitBtn ? submitBtn.querySelector(".button-text") : null;
   const originalBtnText = btnText ? "Send Message" : "Send";
-
-  // Lock the button initially (Cyber Security Protocol)
   if (submitBtn && btnText) {
-    submitBtn.disabled = true;
+    submitBtn.disabled = !0;
     submitBtn.classList.add("initializing");
     btnText.textContent = "📡 INITIALIZING UPLINK...";
   }
-
   fetch(`${BACKEND_URL}/api/wake-up`)
     .then((res) => {
       if (res.ok) {
@@ -303,14 +217,11 @@ document.addEventListener("DOMContentLoaded", () => {
           statusEl.classList.add("online");
           statusEl.querySelector(".status-text").textContent = "System Online";
         }
-        // Unlock Button
         if (submitBtn && btnText) {
-          submitBtn.disabled = false;
+          submitBtn.disabled = !1;
           submitBtn.classList.remove("initializing");
           submitBtn.classList.add("system-ready");
-          btnText.textContent = "TRANSMIT MESSAGE"; // Cooler text
-
-          // Remove flash effect after animation
+          btnText.textContent = "TRANSMIT MESSAGE";
           setTimeout(() => submitBtn.classList.remove("system-ready"), 1000);
         }
       }
@@ -322,105 +233,86 @@ document.addEventListener("DOMContentLoaded", () => {
         statusEl.querySelector(".status-text").textContent =
           "Server Offline (Waking up...)";
       }
-      // Unlock anyway (fallback) so they can try click
       if (submitBtn && btnText) {
-        submitBtn.disabled = false;
+        submitBtn.disabled = !1;
         submitBtn.classList.remove("initializing");
         btnText.textContent = originalBtnText;
       }
     });
-
-  // Create initial particles - reduced count for better performance
   function createParticle() {
+    // 💡 Performance Optimization: Only create particles on desktop or higher-end devices
+    // This reduces DOM manipulation significantly on mobile
+    if (window.innerWidth <= 768) return;
+
     const particle = document.createElement("div");
     particle.className = "cyber-particle";
     particle.style.left = Math.random() * 100 + "vw";
     particle.style.top = Math.random() * 100 + "vh";
     particle.style.animationDuration = Math.random() * 3 + 2 + "s";
     document.body.appendChild(particle);
-
-    // Cleanup
     setTimeout(() => {
       particle.remove();
       if (document.body.contains(particle))
-        requestAnimationFrame(createParticle); // Keep generating
+        requestAnimationFrame(createParticle);
     }, 5000);
   }
 
-  for (let i = 0; i < 5; i++) {
+  // 💡 Performance Optimization: Limit particles on systems that support them
+  const particleCount = window.innerWidth <= 768 ? 0 : 5;
+  for (let i = 0; i < particleCount; i++) {
     setTimeout(createParticle, i * 200);
   }
-
-  // Add loading animation
-  gsap.from("body", {
-    opacity: 0,
-    duration: 0.8,
-    ease: "power2.out",
-  });
+  gsap.from("body", { opacity: 0, duration: 0.8, ease: "power2.out" });
 });
-
-// Performance optimization: Throttle scroll events
-let ticking = false;
-
+let ticking = !1;
 function updateScrollEffects() {
   const scrollY = window.pageYOffset;
-  
-  // 1. Navbar Effects
   if (navbar) {
     if (scrollY > 100) {
       navbar.classList.add("scrolled");
-      navbar.style.backdropFilter = "blur(20px)";
+      // 💡 Performance Optimization: Only apply heavy blur on larger screens
+      if (window.innerWidth > 768) {
+        navbar.style.backdropFilter = "blur(20px)";
+        navbar.style.webkitBackdropFilter = "blur(20px)";
+      } else {
+        navbar.style.backgroundColor = "rgba(10, 10, 10, 0.95)";
+      }
     } else {
       navbar.classList.remove("scrolled");
-      navbar.style.backdropFilter = "blur(10px)";
+      if (window.innerWidth > 768) {
+        navbar.style.backdropFilter = "blur(10px)";
+        navbar.style.webkitBackdropFilter = "blur(10px)";
+      } else {
+        navbar.style.backgroundColor = "rgba(10, 10, 10, 0.8)";
+      }
     }
   }
-
-  // 2. Active Section Tracking
-  sections.forEach((section) => {
-    const sectionHeight = section.offsetHeight;
-    const sectionTop = section.offsetTop - 100;
-    const sectionId = section.getAttribute("id");
-
-    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-      // Update desktop nav
-      navLinks.forEach((link) => {
-        link.classList.remove("active");
-        if (link.getAttribute("data-section") === sectionId) {
-          link.classList.add("active");
-        }
-      });
-
-      // Update mobile nav
-      mobileLinks.forEach((link) => {
-        link.classList.remove("active");
-        if (link.getAttribute("data-section") === sectionId) {
-          link.classList.add("active");
-        }
-      });
-    }
-  });
-
-  ticking = false;
+  // 💡 Refactored: Section tracking is now handled by IntersectionObserver for much better performance
+  ticking = !1;
 }
-
 function requestTick() {
   if (!ticking) {
     requestAnimationFrame(updateScrollEffects);
-    ticking = true;
+    ticking = !0;
   }
 }
 
-window.addEventListener("scroll", requestTick, { passive: true });
-// Initial call to set state
+// 💡 Performance Optimization: Use IntersectionObserver for section tracking instead of scroll listener where possible
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const sectionId = entry.target.getAttribute('id');
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('data-section') === sectionId);
+      });
+    }
+  });
+}, { threshold: 0.5 });
+
+sections.forEach(section => sectionObserver.observe(section));
+window.addEventListener("scroll", requestTick, { passive: !0 });
 requestAnimationFrame(updateScrollEffects);
-
-// Add intersection observer for better performance
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: "0px 0px -50px 0px",
-};
-
+const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -428,33 +320,24 @@ const observer = new IntersectionObserver((entries) => {
     }
   });
 }, observerOptions);
-
-// Observe all cards for animation
 document.querySelectorAll(".card").forEach((card) => {
   observer.observe(card);
 });
-// Name Jumble Effect for SARSHIJ KARN - optimized for performance
 (function () {
   const heroName = document.getElementById("hero-name");
   if (!heroName) return;
-
   const originalText = heroName.textContent;
   const chars = "!<>-_\\/[]{}=+*^?#";
-  let animating = false;
-
+  let animating = !1;
   function triggerJumble() {
     if (animating) return;
-    animating = true;
-
-    const duration = 350; // total animation time in ms
+    animating = !0;
+    const duration = 350;
     const start = performance.now();
-
     function animate(now) {
       let progress = (now - start) / duration;
       if (progress > 1) progress = 1;
-
       const revealCount = Math.floor(progress * originalText.length);
-
       let newText = "";
       for (let i = 0; i < originalText.length; i++) {
         if (i < revealCount) {
@@ -463,35 +346,26 @@ document.querySelectorAll(".card").forEach((card) => {
           newText += chars[Math.floor(Math.random() * chars.length)];
         }
       }
-
       heroName.textContent = newText;
-
       if (progress < 1) {
         requestAnimationFrame(animate);
       } else {
         heroName.textContent = originalText;
-        animating = false;
+        animating = !1;
       }
     }
-
     requestAnimationFrame(animate);
   }
-
   heroName.addEventListener("mouseenter", triggerJumble);
-  heroName.addEventListener("touchstart", triggerJumble, { passive: true });
+  heroName.addEventListener("touchstart", triggerJumble, { passive: !0 });
 })();
-
-// Pronunciation Feature
 const pronounceBtn = document.getElementById("pronounce-name");
 if (pronounceBtn) {
   pronounceBtn.addEventListener("click", () => {
-    // Visual feedback
-    pronounceBtn.style.color = "#00CED1"; // Cyan color when active
+    pronounceBtn.style.color = "#00CED1";
     setTimeout(() => {
-      pronounceBtn.style.color = "#ffffff"; // Revert to white
+      pronounceBtn.style.color = "#ffffff";
     }, 1000);
-
-    // Speech synthesis
     const utterance = new SpeechSynthesisUtterance("Call me Sarshij");
     utterance.lang = "en-US";
     utterance.rate = 0.9;
@@ -500,37 +374,24 @@ if (pronounceBtn) {
     window.speechSynthesis.speak(utterance);
   });
 }
-
-// ========================================
-// MAGNETIC CONTACT SECTION
-// ========================================
-
-// Magnetic Tilt Effect
 document.querySelectorAll("[data-magnetic]").forEach((card) => {
   card.addEventListener("mousemove", (e) => {
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-
     const rotateX = (y - centerY) / 10;
     const rotateY = (centerX - x) / 10;
-
     card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
   });
-
   card.addEventListener("mouseleave", () => {
     card.style.transform = "perspective(1000px) rotateX(0) rotateY(0) scale(1)";
   });
 });
-
-// Click to Copy Functionality
 document.querySelectorAll("[data-copy]").forEach((element) => {
   element.addEventListener("click", async () => {
     const textToCopy = element.getAttribute("data-copy");
-
     try {
       await navigator.clipboard.writeText(textToCopy);
       showToast();
@@ -540,24 +401,18 @@ document.querySelectorAll("[data-copy]").forEach((element) => {
     }
   });
 });
-
-// Show Toast Notification
 function showToast() {
   const toast = document.getElementById("copyToast");
   toast.classList.add("show");
-
   setTimeout(() => {
     toast.classList.remove("show");
   }, 2000);
 }
-
-// Create Particle Burst Effect
 function createParticleBurst(element) {
   const container = element
     .closest(".magnetic-card")
     .querySelector(".card-particles");
   const colors = ["#8A2BE2", "#00CED1", "#FFD600"];
-
   for (let i = 0; i < 12; i++) {
     const particle = document.createElement("div");
     particle.style.position = "absolute";
@@ -569,14 +424,11 @@ function createParticleBurst(element) {
     particle.style.left = "50%";
     particle.style.top = "50%";
     particle.style.pointerEvents = "none";
-
     const angle = (Math.PI * 2 * i) / 12;
     const velocity = 50 + Math.random() * 50;
     const tx = Math.cos(angle) * velocity;
     const ty = Math.sin(angle) * velocity;
-
     container.appendChild(particle);
-
     particle.animate(
       [
         {
@@ -588,15 +440,10 @@ function createParticleBurst(element) {
           opacity: 0,
         },
       ],
-      {
-        duration: 800,
-        easing: "cubic-bezier(0, .9, .57, 1)",
-      }
+      { duration: 800, easing: "cubic-bezier(0, .9, .57, 1)" },
     ).onfinish = () => particle.remove();
   }
 }
-
-// Enhanced Form Handling
 const contactForm = document.getElementById("contactForm");
 if (contactForm) {
   const formInputs = contactForm.querySelectorAll(".form-input");
@@ -604,8 +451,6 @@ if (contactForm) {
   const formProgressText = document.getElementById("formProgressText");
   const messageInput = document.getElementById("message");
   const charCount = document.getElementById("charCount");
-
-  // Update Progress Bar
   function updateProgress() {
     let filledFields = 0;
     formInputs.forEach((input) => {
@@ -613,132 +458,105 @@ if (contactForm) {
         filledFields++;
       }
     });
-
     const progress = (filledFields / formInputs.length) * 100;
     formProgress.style.width = progress + "%";
     formProgressText.textContent = Math.round(progress) + "% Complete";
-
     if (progress === 100) {
       formProgressText.style.color = "#00ff88";
     } else {
       formProgressText.style.color = "#8A2BE2";
     }
   }
-
-  // Character Counter
   if (messageInput && charCount) {
     messageInput.addEventListener("input", () => {
       const count = messageInput.value.length;
       const max = messageInput.getAttribute("maxlength");
       charCount.textContent = count;
-
       const counter = messageInput
         .closest(".form-group")
         .querySelector(".character-counter");
       counter.classList.remove("warning", "danger");
-
       if (count > max * 0.9) {
         counter.classList.add("danger");
       } else if (count > max * 0.7) {
         counter.classList.add("warning");
       }
-
       updateProgress();
     });
   }
-
-  // Update progress on input
   formInputs.forEach((input) => {
     input.addEventListener("input", updateProgress);
     input.addEventListener("blur", updateProgress);
   });
-
-  // Form validation function
   function validateForm() {
-    const nameInput = contactForm.querySelector('#name');
-    const emailInput = contactForm.querySelector('#email');
-    const messageInput = contactForm.querySelector('#message');
-    
+    const nameInput = contactForm.querySelector("#name");
+    const emailInput = contactForm.querySelector("#email");
+    const messageInput = contactForm.querySelector("#message");
     const errors = [];
-    
-    // Validate name
-    const name = nameInput?.value.trim() || '';
+    const name = nameInput?.value.trim() || "";
     if (!name) {
-      errors.push('Name is required');
-      nameInput?.classList.add('error');
+      errors.push("Name is required");
+      nameInput?.classList.add("error");
     } else if (name.length < 2) {
-      errors.push('Name must be at least 2 characters');
-      nameInput?.classList.add('error');
+      errors.push("Name must be at least 2 characters");
+      nameInput?.classList.add("error");
     } else if (name.length > 100) {
-      errors.push('Name must be less than 100 characters');
-      nameInput?.classList.add('error');
+      errors.push("Name must be less than 100 characters");
+      nameInput?.classList.add("error");
     } else {
-      nameInput?.classList.remove('error');
+      nameInput?.classList.remove("error");
     }
-    
-    // Validate email
-    const email = emailInput?.value.trim() || '';
+    const email = emailInput?.value.trim() || "";
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email) {
-      errors.push('Email is required');
-      emailInput?.classList.add('error');
+      errors.push("Email is required");
+      emailInput?.classList.add("error");
     } else if (!emailRegex.test(email)) {
-      errors.push('Please enter a valid email address');
-      emailInput?.classList.add('error');
+      errors.push("Please enter a valid email address");
+      emailInput?.classList.add("error");
     } else if (email.length > 255) {
-      errors.push('Email must be less than 255 characters');
-      emailInput?.classList.add('error');
+      errors.push("Email must be less than 255 characters");
+      emailInput?.classList.add("error");
     } else {
-      emailInput?.classList.remove('error');
+      emailInput?.classList.remove("error");
     }
-    
-    // Validate message
-    const message = messageInput?.value.trim() || '';
+    const message = messageInput?.value.trim() || "";
     if (!message) {
-      errors.push('Message is required');
-      messageInput?.classList.add('error');
+      errors.push("Message is required");
+      messageInput?.classList.add("error");
     } else if (message.length < 10) {
-      errors.push('Message must be at least 10 characters');
-      messageInput?.classList.add('error');
+      errors.push("Message must be at least 10 characters");
+      messageInput?.classList.add("error");
     } else if (message.length > 500) {
-      errors.push('Message must be less than 500 characters');
-      messageInput?.classList.add('error');
+      errors.push("Message must be less than 500 characters");
+      messageInput?.classList.add("error");
     } else {
-      messageInput?.classList.remove('error');
+      messageInput?.classList.remove("error");
     }
-    
     return { isValid: errors.length === 0, errors };
   }
-
-  // Form submission
   contactForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-
-    // Safety check: Ensure BACKEND_URL is defined
-    if (typeof BACKEND_URL === 'undefined' || !BACKEND_URL) {
-      console.error('BACKEND_URL is not defined! Cannot submit form.');
-      alert('Configuration error: Backend URL is not set. Please contact the site administrator.');
+    if (typeof BACKEND_URL === "undefined" || !BACKEND_URL) {
+      console.error("BACKEND_URL is not defined! Cannot submit form.");
+      alert(
+        "Configuration error: Backend URL is not set. Please contact the site administrator.",
+      );
       return;
     }
-
     const submitButton = contactForm.querySelector(".submit-button");
     if (!submitButton) {
-      console.error('Submit button not found!');
+      console.error("Submit button not found!");
       return;
     }
-    
     const buttonText = submitButton.querySelector(".button-text");
     if (!buttonText) {
-      console.error('Button text element not found!');
+      console.error("Button text element not found!");
       return;
     }
-    
     const originalText = buttonText.textContent;
-
-    // Frontend validation
     const validation = validateForm();
     if (!validation.isValid) {
-      // Show first error
       buttonText.textContent = validation.errors[0];
       submitButton.classList.add("error");
       setTimeout(() => {
@@ -747,24 +565,16 @@ if (contactForm) {
       }, 3000);
       return;
     }
-
-    // Add loading state
     submitButton.classList.add("loading");
-    submitButton.disabled = true;
-
+    submitButton.disabled = !0;
     try {
       const formData = new FormData(contactForm);
       const data = Object.fromEntries(formData.entries());
-      
-      // Sanitize data (trim whitespace)
       data.name = data.name.trim();
       data.email = data.email.trim();
       data.message = data.message.trim();
-
-      // Add timeout to prevent hanging
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
-
+      const timeoutId = setTimeout(() => controller.abort(), 30000);
       let response;
       try {
         response = await fetch(`${BACKEND_URL}/api/contact`, {
@@ -781,47 +591,35 @@ if (contactForm) {
         clearTimeout(timeoutId);
         throw fetchError;
       }
-
-      // Handle response
       try {
         if (response.ok) {
           const result = await response.json();
-          
-          // Validate response structure
-          if (!result || typeof result !== 'object') {
-            throw new Error('Invalid response from server');
+          if (!result || typeof result !== "object") {
+            throw new Error("Invalid response from server");
           }
-          
-          // Success state
           submitButton.classList.remove("loading");
           submitButton.classList.add("success");
           buttonText.textContent = "Message Sent!";
-
-          // Create success particle burst
           createFormSuccessEffect(submitButton);
-
-          // Reset form
           contactForm.reset();
           formInputs.forEach((input) => {
             input.classList.remove("has-value", "error");
           });
           updateProgress();
-
           setTimeout(() => {
             submitButton.classList.remove("success");
             buttonText.textContent = originalText;
-            submitButton.disabled = false;
+            submitButton.disabled = !1;
           }, 3000);
         } else {
-          // Handle non-OK responses
           let errorMessage = "Form submission failed";
           try {
             const errorData = await response.json();
             errorMessage = errorData.message || errorData.error || errorMessage;
           } catch (parseError) {
-            // If response is not JSON, use status text
             if (response && response.status) {
-              errorMessage = response.statusText || `Server error (${response.status})`;
+              errorMessage =
+                response.statusText || `Server error (${response.status})`;
             }
           }
           throw new Error(errorMessage);
@@ -831,45 +629,41 @@ if (contactForm) {
       }
     } catch (error) {
       console.error("Form submission error:", error);
-
-      // Error state
       submitButton.classList.remove("loading");
       submitButton.classList.add("error");
-      
-      // Show more specific error message
       let errorMessage = "Error! Try Again";
-      
-      if (error.name === 'AbortError' || error.message.includes("timeout")) {
+      if (error.name === "AbortError" || error.message.includes("timeout")) {
         errorMessage = "Request Timeout! Try Again";
-      } else if (error.message.includes("Failed to fetch") || error.message.includes("NetworkError") || error.message.includes("ERR_")) {
+      } else if (
+        error.message.includes("Failed to fetch") ||
+        error.message.includes("NetworkError") ||
+        error.message.includes("ERR_")
+      ) {
         errorMessage = "Network Error! Check Connection";
-      } else if (error.message.includes("Rate limit") || error.message.includes("Too many requests")) {
+      } else if (
+        error.message.includes("Rate limit") ||
+        error.message.includes("Too many requests")
+      ) {
         errorMessage = "Too Many Requests! Please wait a minute";
       } else if (error.message.includes("All fields are required")) {
         errorMessage = "Please fill all fields";
       } else if (error.message) {
-        errorMessage = error.message.length > 50 ? "Error! Try Again" : error.message;
+        errorMessage =
+          error.message.length > 50 ? "Error! Try Again" : error.message;
       }
-      
       buttonText.textContent = errorMessage;
-
       setTimeout(() => {
         submitButton.classList.remove("error");
         buttonText.textContent = originalText;
-        submitButton.disabled = false;
+        submitButton.disabled = !1;
       }, 3000);
     }
   });
-
-  // Initial progress update
   updateProgress();
 }
-
-// Form Success Particle Effect
 function createFormSuccessEffect(button) {
   const container = button.querySelector(".button-particles");
   const colors = ["#8A2BE2", "#00CED1", "#FFD600"];
-
   for (let i = 0; i < 30; i++) {
     setTimeout(() => {
       const particle = document.createElement("div");
@@ -885,42 +679,26 @@ function createFormSuccessEffect(button) {
       particle.style.boxShadow = `0 0 10px ${
         colors[Math.floor(Math.random() * colors.length)]
       } `;
-
       container.appendChild(particle);
-
       const angle = Math.random() * Math.PI * 2;
       const velocity = 50 + Math.random() * 100;
       const tx = Math.cos(angle) * velocity;
       const ty = Math.sin(angle) * velocity;
-
       particle.animate(
         [
-          {
-            transform: "translate(0, 0) scale(1)",
-            opacity: 1,
-          },
-          {
-            transform: `translate(${tx}px, ${ty}px) scale(0)`,
-            opacity: 0,
-          },
+          { transform: "translate(0, 0) scale(1)", opacity: 1 },
+          { transform: `translate(${tx}px, ${ty}px) scale(0)`, opacity: 0 },
         ],
         {
           duration: 1000 + Math.random() * 500,
           easing: "cubic-bezier(0, .9, .57, 1)",
-        }
+        },
       ).onfinish = () => particle.remove();
     }, i * 30);
   }
 }
-
-// ========================================
-// BACK TO TOP BUTTON
-// ========================================
-
 const backToTopButton = document.getElementById("backToTop");
-
 if (backToTopButton) {
-  // Show/hide button based on scroll position
   window.addEventListener("scroll", () => {
     if (window.pageYOffset > 300) {
       backToTopButton.classList.add("show");
@@ -928,41 +706,24 @@ if (backToTopButton) {
       backToTopButton.classList.remove("show");
     }
   });
-
-  // Scroll to top when clicked
   backToTopButton.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   });
 }
-
-// ========================================
-// MOBILE NOTICE POPUP
-// ========================================
-
 const mobileNotice = document.getElementById("mobileNotice");
 const closeMobileNotice = document.getElementById("closeMobileNotice");
-
 if (closeMobileNotice && mobileNotice) {
-  // Function to close popup
   const closePopup = () => {
     mobileNotice.style.opacity = "0";
     setTimeout(() => {
       mobileNotice.style.display = "none";
     }, 300);
   };
-
-  // Close on button click
   closeMobileNotice.addEventListener("click", (e) => {
-    e.stopPropagation(); // Prevent triggering the window click immediately if overlapping
+    e.stopPropagation();
     closePopup();
   });
-
-  // Close on click outside
   window.addEventListener("click", (e) => {
-    // If popup is visible and click is outside the popup
     if (
       mobileNotice.style.display !== "none" &&
       !mobileNotice.contains(e.target)
@@ -971,209 +732,216 @@ if (closeMobileNotice && mobileNotice) {
     }
   });
 }
-
-// ========================================
-// NEW CYBER FEATURES (Preloader, Radar, PWA, Terminal)
-// ========================================
-
-// 1. Optimized Progressive Loading & Preloader Dismissal
 const initProgressiveLoad = () => {
-    const preloader = document.getElementById('preloader');
-    if (!preloader) return;
-
-    // Use a "Race Condition" so slow net won't block the user
-    const dismissPreloader = () => {
-        if (preloader.classList.contains('dismissed')) return;
-        preloader.classList.add('dismissed');
-
-        gsap.to(preloader, {
-            opacity: 0,
-            duration: 0.8,
-            ease: "power2.inOut",
-            onComplete: () => {
-                preloader.style.display = 'none';
-                // Trigger Background Video Loading after preloader is gone
-                document.querySelectorAll('video').forEach(vid => {
-                    vid.setAttribute('preload', 'auto');
-                    vid.play().catch(e => console.log("Autoplay blocked/waiting for interaction"));
-                });
-            }
+  const preloader = document.getElementById("preloader");
+  if (!preloader) return;
+  const dismissPreloader = () => {
+    if (preloader.classList.contains("dismissed")) return;
+    preloader.classList.add("dismissed");
+    gsap.to(preloader, {
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.inOut",
+      onComplete: () => {
+        preloader.style.display = "none";
+        document.querySelectorAll("video").forEach((vid) => {
+          // 💡 Performance Optimization: Higher-end mobile or desktop only for video autoplay
+          if (window.innerWidth > 480) {
+            vid.setAttribute("preload", "auto");
+            vid
+              .play()
+              .catch((e) =>
+                console.log("Autoplay blocked/waiting for interaction"),
+              );
+          } else {
+            vid.style.display = "none"; // Hide video on very small screens to save data/CPU
+            document.body.style.background = "var(--bg-dark)"; 
+          }
         });
-    };
-
-    // Fast dismissal: If DOM is ready, wait max 2s for "Intro effect" 
-    // but don't wait for heavy images/videos
-    setTimeout(dismissPreloader, 2500);
-
-    // If everything happens to load fast, dismiss sooner
-    window.addEventListener('load', dismissPreloader);
+      },
+    });
+  };
+  setTimeout(dismissPreloader, 2500);
+  window.addEventListener("load", dismissPreloader);
 };
-
-// Initialize preloader logic immediately
 initProgressiveLoad();
-
-// 2. Register Service Worker (PWA)
-if ('serviceWorker' in navigator) {
-
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js')
-            .then(reg => console.log('Service Worker registered.'))
-            .catch(err => console.log('Service Worker failed:', err));
-    });
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/service-worker.js")
+      .then((reg) => console.log("Service Worker registered."))
+      .catch((err) => console.log("Service Worker failed:", err));
+  });
 }
-
-// 3. (Removed Skill Radar)
-
-
-// 4. Terminal Mode Logic
 function initTerminalMode() {
-    const toggleBtn = document.getElementById('toggleTerminal');
-    const terminal = document.getElementById('contactTerminal');
-    const normalForm = document.getElementById('contactForm');
-    const input = document.getElementById('terminalInput');
-    const output = document.getElementById('terminalOutput');
-    const helpBtn = document.getElementById('terminalHelp');
-    
-    if (!toggleBtn || !terminal) return;
-
-    let step = 0;
-    const userData = { name: '', email: '', message: '' };
-
-    if (helpBtn) {
-        helpBtn.addEventListener('click', () => {
-            printToTerminal("---| TERMINAL USER GUIDE |---");
-            printToTerminal("1. Type 'contact' and press ENTER to start.");
-            printToTerminal("2. Follow prompts to enter Name, Email, and Message.");
-            printToTerminal("3. Your data will be sent automatically at the end.");
-            printToTerminal("4. Commands: 'clear' to reset, 'exit' to close.");
-        });
-    }
-
-    toggleBtn.addEventListener('click', () => {
-        terminal.classList.toggle('active');
-        if (terminal.classList.contains('active')) {
-            normalForm.style.display = 'none';
-            toggleBtn.innerHTML = '<i class="fas fa-times"></i> EXIT TERMINAL';
-            printToTerminal("SYSTEM: Establishing secure uplink...");
-            setTimeout(() => printToTerminal("SYSTEM: Connection stabilized. Type 'help' for commands."), 1000);
-            input.focus();
-        } else {
-            normalForm.style.display = 'block';
-            toggleBtn.innerHTML = '<i class="fas fa-terminal"></i> USE CYBER TERMINAL';
-        }
+  const toggleBtn = document.getElementById("toggleTerminal");
+  const terminal = document.getElementById("contactTerminal");
+  const normalForm = document.getElementById("contactForm");
+  const input = document.getElementById("terminalInput");
+  const output = document.getElementById("terminalOutput");
+  const helpBtn = document.getElementById("terminalHelp");
+  if (!toggleBtn || !terminal) return;
+  let step = 0;
+  const userData = { name: "", email: "", message: "" };
+  if (helpBtn) {
+    helpBtn.addEventListener("click", () => {
+      printToTerminal("---| TERMINAL USER GUIDE |---");
+      printToTerminal("1. Type 'contact' and press ENTER to start.");
+      printToTerminal("2. Follow prompts to enter Name, Email, and Message.");
+      printToTerminal("3. Your data will be sent automatically at the end.");
+      printToTerminal("4. Commands: 'clear' to reset, 'exit' to close.");
     });
-
-    input.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            const cmd = input.value.trim().toLowerCase();
-            printToTerminal(`<span class="terminal-prompt">root@sarshij:~$</span> ${input.value}`);
-            input.value = '';
-            processCommand(cmd);
-        }
-    });
-
-    function printToTerminal(text, isTypewriter = false) {
-        const line = document.createElement('div');
-        line.className = 'terminal-line';
-        output.appendChild(line);
-
-        if (isTypewriter) {
-            let i = 0;
-            const speed = 20;
-            function type() {
-                if (i < text.length) {
-                    if (text.charAt(i) === '<') {
-                        // Simple tag handling for colors
-                        const tagEnd = text.indexOf('>', i);
-                        line.innerHTML += text.substring(i, tagEnd + 1);
-                        i = tagEnd + 1;
-                    } else {
-                        line.innerHTML += text.charAt(i);
-                        i++;
-                    }
-                    setTimeout(type, speed);
-                    terminal.scrollTop = terminal.scrollHeight;
-                }
-            }
-            type();
-        } else {
-            line.innerHTML = text;
-            terminal.scrollTop = terminal.scrollHeight;
-        }
+  }
+  toggleBtn.addEventListener("click", () => {
+    terminal.classList.toggle("active");
+    if (terminal.classList.contains("active")) {
+      normalForm.style.display = "none";
+      toggleBtn.innerHTML = '<i class="fas fa-times"></i> EXIT TERMINAL';
+      printToTerminal("SYSTEM: Establishing secure uplink...");
+      setTimeout(
+        () =>
+          printToTerminal(
+            "SYSTEM: Connection stabilized. Type 'help' for commands.",
+          ),
+        1000,
+      );
+      input.focus();
+    } else {
+      normalForm.style.display = "block";
+      toggleBtn.innerHTML =
+        '<i class="fas fa-terminal"></i> USE CYBER TERMINAL';
     }
-
-    async function processCommand(cmd) {
-        if (cmd === 'help') {
-            printToTerminal("---| TERMINAL USER GUIDE |---");
-            printToTerminal("1. Type 'contact' and press ENTER to start.");
-            printToTerminal("2. Commands: 'clear', 'status', 'exit'", true);
-            return;
-        }
-        if (cmd === 'clear') {
-            output.innerHTML = 'SYSTEM: Memory cleared...';
-            setTimeout(() => output.innerHTML = '', 1000);
-            return;
-        }
-        if (cmd === 'status') {
-            printToTerminal("SYSTEM: Pinging uplink server...", true);
-            try {
-                const res = await fetch(`${BACKEND_URL}/api/wake-up`);
-                if (res.ok) printToTerminal("SYSTEM: <span style='color: #00ff88'>UPLINK ONLINE</span> (v3.0.4)", true);
-                else printToTerminal("SYSTEM: <span style='color: #ff3e3e'>UPLINK DEGRADED</span>", true);
-            } catch (e) {
-                printToTerminal("SYSTEM: <span style='color: #ff3e3e'>UPLINK OFFLINE</span>", true);
-            }
-            return;
-        }
-        if (cmd === 'exit') {
-            toggleBtn.click();
-            return;
-        }
-        
-        // Contact wizard logic
-        if (step === 0 && cmd === 'contact') {
-            step = 1;
-            printToTerminal("SURVEY: Initiation sequence started. Enter your name:", true);
-        } else if (step === 1) {
-            userData.name = cmd;
-            step = 2;
-            printToTerminal(`SUCCESS: ID confirmed as '${cmd}'. Enter neural-mail:`, true);
-        } else if (step === 2) {
-            userData.email = cmd;
-            step = 3;
-            printToTerminal("SUCCESS: Uplink address verified. Enter your transmission data:", true);
-        } else if (step === 3) {
-            userData.message = cmd;
-            printToTerminal("SYSTEM: Encrypting and transmitting data packet...", true);
-            sendData();
-            step = 0;
-        } else {
-            printToTerminal(`ERROR: Unknown command '${cmd}'. Try 'help'.`);
-        }
+  });
+  input.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      const cmd = input.value.trim().toLowerCase();
+      printToTerminal(
+        `<span class="terminal-prompt">root@sarshij:~$</span> ${input.value}`,
+      );
+      input.value = "";
+      processCommand(cmd);
     }
-
-    async function sendData() {
-        try {
-            const response = await fetch(`${BACKEND_URL}/api/contact`, {
-                method: "POST",
-                body: JSON.stringify(userData),
-                headers: { "Content-Type": "application/json" }
-            });
-            if (response.ok) {
-                printToTerminal("SYSTEM: <span style='color: #00ff88'>TRANSMISSION SUCCESSFUL.</span> Uplink terminated.", true);
-            } else {
-                printToTerminal("ERROR: <span style='color: #ff3e3e'>TRANSMISSION REJECTED by server.</span>", true);
-            }
-        } catch (err) {
-            printToTerminal("ERROR: <span style='color: #ff3e3e'>CONNECTION TIMEOUT.</span> Packet lost in transit.", true);
+  });
+  function printToTerminal(text, isTypewriter = !1) {
+    const line = document.createElement("div");
+    line.className = "terminal-line";
+    output.appendChild(line);
+    if (isTypewriter) {
+      let i = 0;
+      const speed = 20;
+      function type() {
+        if (i < text.length) {
+          if (text.charAt(i) === "<") {
+            const tagEnd = text.indexOf(">", i);
+            line.innerHTML += text.substring(i, tagEnd + 1);
+            i = tagEnd + 1;
+          } else {
+            line.innerHTML += text.charAt(i);
+            i++;
+          }
+          setTimeout(type, speed);
+          terminal.scrollTop = terminal.scrollHeight;
         }
+      }
+      type();
+    } else {
+      line.innerHTML = text;
+      terminal.scrollTop = terminal.scrollHeight;
     }
+  }
+  async function processCommand(cmd) {
+    if (cmd === "help") {
+      printToTerminal("---| TERMINAL USER GUIDE |---");
+      printToTerminal("1. Type 'contact' and press ENTER to start.");
+      printToTerminal("2. Commands: 'clear', 'status', 'exit'", !0);
+      return;
+    }
+    if (cmd === "clear") {
+      output.innerHTML = "SYSTEM: Memory cleared...";
+      setTimeout(() => (output.innerHTML = ""), 1000);
+      return;
+    }
+    if (cmd === "status") {
+      printToTerminal("SYSTEM: Pinging uplink server...", !0);
+      try {
+        const res = await fetch(`${BACKEND_URL}/api/wake-up`);
+        if (res.ok)
+          printToTerminal(
+            "SYSTEM: <span style='color: #00ff88'>UPLINK ONLINE</span> (v3.0.4)",
+            !0,
+          );
+        else
+          printToTerminal(
+            "SYSTEM: <span style='color: #ff3e3e'>UPLINK DEGRADED</span>",
+            !0,
+          );
+      } catch (e) {
+        printToTerminal(
+          "SYSTEM: <span style='color: #ff3e3e'>UPLINK OFFLINE</span>",
+          !0,
+        );
+      }
+      return;
+    }
+    if (cmd === "exit") {
+      toggleBtn.click();
+      return;
+    }
+    if (step === 0 && cmd === "contact") {
+      step = 1;
+      printToTerminal(
+        "SURVEY: Initiation sequence started. Enter your name:",
+        !0,
+      );
+    } else if (step === 1) {
+      userData.name = cmd;
+      step = 2;
+      printToTerminal(
+        `SUCCESS: ID confirmed as '${cmd}'. Enter neural-mail:`,
+        !0,
+      );
+    } else if (step === 2) {
+      userData.email = cmd;
+      step = 3;
+      printToTerminal(
+        "SUCCESS: Uplink address verified. Enter your transmission data:",
+        !0,
+      );
+    } else if (step === 3) {
+      userData.message = cmd;
+      printToTerminal("SYSTEM: Encrypting and transmitting data packet...", !0);
+      sendData();
+      step = 0;
+    } else {
+      printToTerminal(`ERROR: Unknown command '${cmd}'. Try 'help'.`);
+    }
+  }
+  async function sendData() {
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/contact`, {
+        method: "POST",
+        body: JSON.stringify(userData),
+        headers: { "Content-Type": "application/json" },
+      });
+      if (response.ok) {
+        printToTerminal(
+          "SYSTEM: <span style='color: #00ff88'>TRANSMISSION SUCCESSFUL.</span> Uplink terminated.",
+          !0,
+        );
+      } else {
+        printToTerminal(
+          "ERROR: <span style='color: #ff3e3e'>TRANSMISSION REJECTED by server.</span>",
+          !0,
+        );
+      }
+    } catch (err) {
+      printToTerminal(
+        "ERROR: <span style='color: #ff3e3e'>CONNECTION TIMEOUT.</span> Packet lost in transit.",
+        !0,
+      );
+    }
+  }
 }
-
-// Initializations
-document.addEventListener('DOMContentLoaded', () => {
-    initTerminalMode();
-
-    // Text scramble removed for performance
+document.addEventListener("DOMContentLoaded", () => {
+  initTerminalMode();
 });
-

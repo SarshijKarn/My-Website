@@ -13,7 +13,7 @@ A futuristic, high-performance portfolio website designed for **Sarshij Karn**, 
   - **Mobile:** Cyber-styled hamburger menu with a "pocket-level" text start for optimal ergonomics.
 - **Immersive Visuals:**
   - **Hero Section:** High-quality profile integration with dynamic neon lighting and glitch effects.
-  - **Backgrounds:** Deep space/galaxy video backgrounds with particle overlays (`tsParticles`).
+  - **Backgrounds:** Deep space/galaxy video backgrounds with optimized CSS particle overlays.
 - **Advanced Animations:**
   - Powered by **GSAP (GreenSock)** for smooth scroll triggers and element fly-ins.
   - Custom typing effects and neon glow pulses.
@@ -29,7 +29,6 @@ A futuristic, high-performance portfolio website designed for **Sarshij Karn**, 
   - [GSAP](https://greensock.com/gsap/) (Animations)
   - [Tailwind CSS](https://tailwindcss.com/) (Utility classes)
   - [FontAwesome](https://fontawesome.com/) (Icons)
-  - [tsParticles](https://github.com/matteobruni/tsparticles) (Particle effects)
 - **Design Style:** Cyberpunk / Neon-Glass / Dark Mode
 
 ## 🚀 Getting Started
@@ -68,4 +67,6 @@ To run this project locally:
 
 ---
 
-_© 2025 Sarshij Karn. All Rights Reserved._
+---
+
+Built by SARSHIJ KARN
