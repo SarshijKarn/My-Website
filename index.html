@@ -112,82 +112,21 @@
         "description": "Electronics, Communication & Information Engineering student specializing in AI, Cybersecurity, and innovation."
       }
     </script>
-    <script src="https://cdn.tailwindcss.com" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="preload"
+      rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
     />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      />
-    </noscript>
     <link
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Fira+Code:wght@300;400;500&family=Poppins:wght@500;600&display=swap"
       rel="stylesheet"
     />
-    <style>
-      :root {
-        --primary-color: #8a2be2;
-        --secondary-color: #00ced1;
-        --bg-dark: #0a0a0a;
-        --text-dark: #ffffff;
-      }
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      body {
-        font-family: "Poppins", sans-serif;
-        background: var(--bg-dark);
-        color: var(--text-dark);
-        overflow-x: hidden;
-      }
-      #preloader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--bg-dark);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-        transition: opacity 0.8s ease-in-out;
-      }
-      .preloader-content { text-align: center; position: relative; }
-      .preloader-text {
-        font-family: "Orbitron", sans-serif;
-        margin-top: 20px;
-        color: var(--secondary-color);
-        letter-spacing: 4px;
-        font-size: 0.8rem;
-        text-transform: uppercase;
-      }
-      #bg-video {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        z-index: -2;
-        opacity: 0.6;
-      }
-    </style>
-    <link rel="preload" href="style.css?v=2.2" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="project-icons.css?v=2.2" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-      <link rel="stylesheet" href="style.css?v=2.2">
-      <link rel="stylesheet" href="project-icons.css?v=2.2">
-    </noscript>
-    <link rel="preload" href="assets/img/fullME-optimized.webp" as="image" />
-    <link rel="preload" href="assets/img/me.webp" as="image" />
+    <link rel="stylesheet" href="style.css?v=2.0" />
+    <link rel="stylesheet" href="project-icons.css?v=2.0" />
   </head>
   <body class="dark">
     <div id="preloader">
@@ -212,13 +151,9 @@
           <div class="sidebar-avatar-wrapper">
             <img
               src="assets/img/me.webp"
-              srcset="assets/img/me-mobile.webp 100w, assets/img/me.webp 180w"
-              sizes="(max-width: 768px) 100px, 180px"
               alt="Sarshij Karn"
               class="sidebar-hologram-avatar"
               loading="lazy"
-              width="180"
-              height="180"
             />
             <div class="avatar-scanline"></div>
           </div>
@@ -402,13 +337,9 @@
         <div class="hero-img-overlay"></div>
         <img
           src="assets/img/fullME-optimized.webp"
-          srcset="assets/img/fullME-optimized-mobile.webp 600w, assets/img/fullME-optimized.webp 1500w"
-          sizes="(max-width: 768px) 100vw, 50vw"
           alt="Sarshij Karn"
           class="full-body-img"
           fetchpriority="high"
-          width="1500"
-          height="1500"
         />
       </div>
       <div
@@ -1370,6 +1301,6 @@
     <button id="backToTop" class="back-to-top" aria-label="Back to top">
       <i class="fas fa-arrow-up"></i>
     </button>
-    <script src="script.js?v=3.0" defer></script>
+    <script src="script.js?v=3.0"></script>
   </body>
 </html>

@@ -19,13 +19,8 @@ A futuristic, high-performance portfolio website designed for **Sarshij Karn**, 
   - Custom typing effects and neon glow pulses.
 - **Interactive Terminal:**
   - A hidden "Hacker Mode" contact form (`Terminal Mode`) for tech-savvy visitors.
-- **Performance Optimized (v2.0):**
-  - **99+ PageSpeed Score:** Achieved through critical CSS inlining and non-blocking resource loading.
-  - **Responsive Images:** Automatic `srcset` implementation to serve smaller assets to mobile users.
-  - **Aggressive Caching:** 1-year cache lifetimes for static assets (fonts, icons, video) via `.htaccess`.
-- **Intelligent Caching (Service Worker v2.0):**
-  - **Stale-While-Revalidate:** Instant loading from cache with background updates.
-  - **Auto-Update:** Proactive update detection and automatic page reload when new versions are ready.
+- **Performance Optimized:**
+  - Lightweight assets, lazy loading, and optimized minimal code structure.
 
 ## 🛠️ Tech Stack
 
