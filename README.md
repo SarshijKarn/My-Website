@@ -68,5 +68,11 @@ To run this project locally:
 ---
 
 ---
+<div align="center">
 
-Built by SARSHIJ KARN
+### Created with ❤️ by Sarshij Karn
+
+[![Website](https://img.shields.io/badge/Website-sarshijkarn.com.np-8a2be2?style=for-the-badge&logo=google-chrome&logoColor=white)](https://sarshijkarn.com.np)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sarshij-karn-1a7766236/)
+
+</div>
