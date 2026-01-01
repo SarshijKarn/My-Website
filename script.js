@@ -2,7 +2,7 @@ gsap.registerPlugin(ScrollTrigger);
 const BACKEND_URL = "https://backend-contact-form-hvqf.onrender.com";
 if (typeof BACKEND_URL === "undefined" || !BACKEND_URL) {
   console.error(
-    "BACKEND_URL is not defined! Please check script.js configuration.",
+    "BACKEND_URL is not defined! Please check script.js configuration."
   );
 }
 const sidebar = document.getElementById("sidebar");
@@ -122,11 +122,11 @@ gsap.utils.toArray(".card").forEach((card) => {
         start: "top 85%",
         toggleActions: "play none none reverse",
       },
-    },
+    }
   );
 });
 gsap.fromTo(
-  ".about-photo-wrapper",
+  ".about-photo-enhanced",
   { scale: isMobile ? 0.9 : 0, rotation: isMobile ? 0 : -180, opacity: 0 },
   {
     scale: 1,
@@ -135,11 +135,11 @@ gsap.fromTo(
     duration: isMobile ? 0.5 : 1,
     ease: "back.out(1.7)",
     scrollTrigger: {
-      trigger: ".about-photo-wrapper",
+      trigger: ".about-photo-enhanced",
       start: "top 80%",
       toggleActions: "play none none reverse",
     },
-  },
+  }
 );
 gsap.utils.toArray(".timeline-item").forEach((item, index) => {
   // 💡 Performance Optimization: Skip complex slide-ins on mobile for smoother scrolling
@@ -155,7 +155,7 @@ gsap.utils.toArray(".timeline-item").forEach((item, index) => {
           start: "top 90%",
           toggleActions: "play none none reverse",
         },
-      },
+      }
     );
   } else {
     gsap.fromTo(
@@ -171,7 +171,7 @@ gsap.utils.toArray(".timeline-item").forEach((item, index) => {
           start: "top 85%",
           toggleActions: "play none none reverse",
         },
-      },
+      }
     );
   }
 });
@@ -188,7 +188,7 @@ gsap.utils.toArray(".circuit-line").forEach((line) => {
         start: "top 85%",
         toggleActions: "play none none reverse",
       },
-    },
+    }
   );
 });
 document.querySelectorAll(".card-3d").forEach((card) => {
@@ -266,27 +266,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 let ticking = !1;
 function updateScrollEffects() {
-  const scrollY = window.pageYOffset;
-  if (navbar) {
-    if (scrollY > 100) {
-      navbar.classList.add("scrolled");
-      // 💡 Performance Optimization: Only apply heavy blur on larger screens
-      if (window.innerWidth > 768) {
-        navbar.style.backdropFilter = "blur(20px)";
-        navbar.style.webkitBackdropFilter = "blur(20px)";
-      } else {
-        navbar.style.backgroundColor = "rgba(10, 10, 10, 0.95)";
-      }
-    } else {
-      navbar.classList.remove("scrolled");
-      if (window.innerWidth > 768) {
-        navbar.style.backdropFilter = "blur(10px)";
-        navbar.style.webkitBackdropFilter = "blur(10px)";
-      } else {
-        navbar.style.backgroundColor = "rgba(10, 10, 10, 0.8)";
-      }
-    }
-  }
   // 💡 Refactored: Section tracking is now handled by IntersectionObserver for much better performance
   ticking = !1;
 }
@@ -298,18 +277,24 @@ function requestTick() {
 }
 
 // 💡 Performance Optimization: Use IntersectionObserver for section tracking instead of scroll listener where possible
-const sectionObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const sectionId = entry.target.getAttribute('id');
-      navLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('data-section') === sectionId);
-      });
-    }
-  });
-}, { threshold: 0.5 });
+const sectionObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const sectionId = entry.target.getAttribute("id");
+        navLinks.forEach((link) => {
+          link.classList.toggle(
+            "active",
+            link.getAttribute("data-section") === sectionId
+          );
+        });
+      }
+    });
+  },
+  { threshold: 0.5 }
+);
 
-sections.forEach(section => sectionObserver.observe(section));
+sections.forEach((section) => sectionObserver.observe(section));
 window.addEventListener("scroll", requestTick, { passive: !0 });
 requestAnimationFrame(updateScrollEffects);
 const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
@@ -325,36 +310,38 @@ document.querySelectorAll(".card").forEach((card) => {
 });
 (function () {
   const heroName = document.getElementById("hero-name");
-  if (!heroName) return;
-  const originalText = heroName.textContent;
+  const jumbleElements = document.querySelectorAll(".jumble-text");
+  if (!heroName || jumbleElements.length === 0) return;
   const chars = "!<>-_\\/[]{}=+*^?#";
-  let animating = !1;
   function triggerJumble() {
-    if (animating) return;
-    animating = !0;
-    const duration = 350;
-    const start = performance.now();
-    function animate(now) {
-      let progress = (now - start) / duration;
-      if (progress > 1) progress = 1;
-      const revealCount = Math.floor(progress * originalText.length);
-      let newText = "";
-      for (let i = 0; i < originalText.length; i++) {
-        if (i < revealCount) {
-          newText += originalText[i];
+    jumbleElements.forEach((el) => {
+      if (el.dataset.animating === "true") return;
+      el.dataset.animating = "true";
+      const originalText = el.dataset.text || el.textContent;
+      const duration = 400;
+      const start = performance.now();
+      function animate(now) {
+        let progress = (now - start) / duration;
+        if (progress > 1) progress = 1;
+        const revealCount = Math.floor(progress * originalText.length);
+        let newText = "";
+        for (let i = 0; i < originalText.length; i++) {
+          if (i < revealCount) {
+            newText += originalText[i];
+          } else {
+            newText += chars[Math.floor(Math.random() * chars.length)];
+          }
+        }
+        el.textContent = newText;
+        if (progress < 1) {
+          requestAnimationFrame(animate);
         } else {
-          newText += chars[Math.floor(Math.random() * chars.length)];
+          el.textContent = originalText;
+          el.dataset.animating = "false";
         }
       }
-      heroName.textContent = newText;
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      } else {
-        heroName.textContent = originalText;
-        animating = !1;
-      }
-    }
-    requestAnimationFrame(animate);
+      requestAnimationFrame(animate);
+    });
   }
   heroName.addEventListener("mouseenter", triggerJumble);
   heroName.addEventListener("touchstart", triggerJumble, { passive: !0 });
@@ -440,7 +427,7 @@ function createParticleBurst(element) {
           opacity: 0,
         },
       ],
-      { duration: 800, easing: "cubic-bezier(0, .9, .57, 1)" },
+      { duration: 800, easing: "cubic-bezier(0, .9, .57, 1)" }
     ).onfinish = () => particle.remove();
   }
 }
@@ -540,7 +527,7 @@ if (contactForm) {
     if (typeof BACKEND_URL === "undefined" || !BACKEND_URL) {
       console.error("BACKEND_URL is not defined! Cannot submit form.");
       alert(
-        "Configuration error: Backend URL is not set. Please contact the site administrator.",
+        "Configuration error: Backend URL is not set. Please contact the site administrator."
       );
       return;
     }
@@ -692,7 +679,7 @@ function createFormSuccessEffect(button) {
         {
           duration: 1000 + Math.random() * 500,
           easing: "cubic-bezier(0, .9, .57, 1)",
-        },
+        }
       ).onfinish = () => particle.remove();
     }, i * 30);
   }
@@ -751,11 +738,11 @@ const initProgressiveLoad = () => {
             vid
               .play()
               .catch((e) =>
-                console.log("Autoplay blocked/waiting for interaction"),
+                console.log("Autoplay blocked/waiting for interaction")
               );
           } else {
             vid.style.display = "none"; // Hide video on very small screens to save data/CPU
-            document.body.style.background = "var(--bg-dark)"; 
+            document.body.style.background = "var(--bg-dark)";
           }
         });
       },
@@ -766,19 +753,19 @@ const initProgressiveLoad = () => {
 };
 initProgressiveLoad();
 // 🚀 Service Worker Removal Logic - Ensures users get the latest version without caching issues
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.getRegistrations().then(function(registrations) {
-    for(let registration of registrations) {
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.getRegistrations().then(function (registrations) {
+    for (let registration of registrations) {
       registration.unregister();
-      console.log('Service Worker unregistered');
+      console.log("Service Worker unregistered");
     }
   });
-  
+
   // Clear all browser caches for this site
-  if ('caches' in window) {
-    caches.keys().then(function(names) {
+  if ("caches" in window) {
+    caches.keys().then(function (names) {
       for (let name of names) caches.delete(name);
-      console.log('All caches cleared');
+      console.log("All caches cleared");
     });
   }
 }
@@ -810,9 +797,9 @@ function initTerminalMode() {
       setTimeout(
         () =>
           printToTerminal(
-            "SYSTEM: Connection stabilized. Type 'help' for commands.",
+            "SYSTEM: Connection stabilized. Type 'help' for commands."
           ),
-        1000,
+        1000
       );
       input.focus();
     } else {
@@ -825,7 +812,7 @@ function initTerminalMode() {
     if (e.key === "Enter") {
       const cmd = input.value.trim().toLowerCase();
       printToTerminal(
-        `<span class="terminal-prompt">root@sarshij:~$</span> ${input.value}`,
+        `<span class="terminal-prompt">root@sarshij:~$</span> ${input.value}`
       );
       input.value = "";
       processCommand(cmd);
@@ -877,17 +864,17 @@ function initTerminalMode() {
         if (res.ok)
           printToTerminal(
             "SYSTEM: <span style='color: #00ff88'>UPLINK ONLINE</span> (v3.0.4)",
-            !0,
+            !0
           );
         else
           printToTerminal(
             "SYSTEM: <span style='color: #ff3e3e'>UPLINK DEGRADED</span>",
-            !0,
+            !0
           );
       } catch (e) {
         printToTerminal(
           "SYSTEM: <span style='color: #ff3e3e'>UPLINK OFFLINE</span>",
-          !0,
+          !0
         );
       }
       return;
@@ -900,21 +887,21 @@ function initTerminalMode() {
       step = 1;
       printToTerminal(
         "SURVEY: Initiation sequence started. Enter your name:",
-        !0,
+        !0
       );
     } else if (step === 1) {
       userData.name = cmd;
       step = 2;
       printToTerminal(
         `SUCCESS: ID confirmed as '${cmd}'. Enter neural-mail:`,
-        !0,
+        !0
       );
     } else if (step === 2) {
       userData.email = cmd;
       step = 3;
       printToTerminal(
         "SUCCESS: Uplink address verified. Enter your transmission data:",
-        !0,
+        !0
       );
     } else if (step === 3) {
       userData.message = cmd;
@@ -935,18 +922,18 @@ function initTerminalMode() {
       if (response.ok) {
         printToTerminal(
           "SYSTEM: <span style='color: #00ff88'>TRANSMISSION SUCCESSFUL.</span> Uplink terminated.",
-          !0,
+          !0
         );
       } else {
         printToTerminal(
           "ERROR: <span style='color: #ff3e3e'>TRANSMISSION REJECTED by server.</span>",
-          !0,
+          !0
         );
       }
     } catch (err) {
       printToTerminal(
         "ERROR: <span style='color: #ff3e3e'>CONNECTION TIMEOUT.</span> Packet lost in transit.",
-        !0,
+        !0
       );
     }
   }
