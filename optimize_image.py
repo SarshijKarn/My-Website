@@ -1,8 +1,8 @@
 from PIL import Image
 import os
 
-source_path = r"c:/Users/acer/PROJECTS/WEBSITE_MY_REMOTE/Anti/My-Website/assets/img/fullME-removebg-min.png"
-dest_path = r"c:/Users/acer/PROJECTS/WEBSITE_MY_REMOTE/Anti/My-Website/assets/img/fullME-optimized.webp"
+source_path = r"c:/Users/acer/PROJECTS/WEBSITE_MY_REMOTE/PULLED/My-Website/assets/img/web-preview.png"
+dest_path = r"c:/Users/acer/PROJECTS/WEBSITE_MY_REMOTE/PULLED/My-Website/assets/img/web-preview.webp"
 
 try:
     if os.path.exists(source_path):

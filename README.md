@@ -1,6 +1,6 @@
 # 🚀 Neural-Aura Portfolio
 
-![Website Preview](assets/img/website-preview.png)
+![Website Preview](assets/img/web-preview.webp)
 
 > **"Engineering · Technology · Cybersecurity · AI"**
 
@@ -68,6 +68,7 @@ To run this project locally:
 ---
 
 ---
+
 <div align="center">
 
 ### Created with ❤️ by Sarshij Karn
