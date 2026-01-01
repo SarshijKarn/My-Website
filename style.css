@@ -869,11 +869,13 @@ body {
 .theme-toggle.active::before {
   transform: translateX(30px);
 }
-.social-icon {
+.profile-link {
   transition: all 0.3s ease;
   font-size: 1.5rem;
+  display: inline-block;
+  color: #c0c0c0; /* Fallback light color */
 }
-.social-icon:hover {
+.profile-link:hover {
   transform: translateY(-3px) scale(1.1);
   color: var(--primary-color);
   text-shadow: 0 0 10px var(--primary-color);
