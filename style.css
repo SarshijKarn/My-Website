@@ -782,12 +782,12 @@ body {
   }
 }
 .neon-purple {
-  color: var(--primary-color);
-  text-shadow: 0 0 4px rgb(138 43 226 / 0.45), 0 0 6px rgb(138 43 226 / 0.12);
+  color: #b366ff;
+  text-shadow: 0 0 4px rgb(179 102 255 / 0.45), 0 0 6px rgb(179 102 255 / 0.12);
 }
 .neon-cyan {
-  color: var(--secondary-color);
-  text-shadow: 0 0 4px rgb(0 206 209 / 0.35), 0 0 8px rgb(0 206 209 / 0.1);
+  color: #00fafe;
+  text-shadow: 0 0 4px rgb(0 250 254 / 0.35), 0 0 8px rgb(0 250 254 / 0.1);
 }
 .neon-border {
   border: 2px solid #fff0;
@@ -3702,7 +3702,7 @@ body {
 }
 .sidebar-copyright {
   font-size: 0.7rem;
-  color: #555;
+  color: #a0a0a0;
   margin-top: 1rem;
 }
 .hamburger-btn {
