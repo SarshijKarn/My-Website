@@ -3,7 +3,6 @@
 # 🚀 NEURAL-AURA PORTFOLIO
 
 [![Website](https://img.shields.io/website?label=sarshijkarn.com.np&style=for-the-badge&url=https%3A%2F%2Fsarshijkarn.com.np)](https://sarshijkarn.com.np)
-[![GitHub](https://img.shields.io/github/license/SarshijKarn/My-Website?style=for-the-badge)](LICENSE)
 [![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com)
 [![GitHub Pages](https://img.shields.io/badge/Hosted%20on-GitHub%20Pages-222222?style=for-the-badge&logo=githubpages)](https://pages.github.com/)
 
@@ -190,77 +189,13 @@ See [deployment guide](# "Check Vercel documentation") for detailed instructions
 
 ---
 
-## � Key Features Breakdown
-
-### 🔐 Security
-
-- ✅ Rate limiting (10 req/min per IP)
-- ✅ Input validation & sanitization
-- ✅ CORS protection
-- ✅ XSS prevention headers
-- ✅ Encrypted environment variables
-
-### 📊 Performance Metrics
-
-- ⚡ **Lighthouse Score**: 95+
-- 🚀 **First Contentful Paint**: < 1.5s
-- 📦 **Total Bundle Size**: < 500KB
-- 🌐 **API Response Time**: < 300ms
-
-### 🎨 Design Philosophy
-
-- **Dark Mode First** - Cyberpunk aesthetic
-- **Neon Accents** - High-tech visual language
-- **Glassmorphism** - Modern UI trend
-- **Micro-interactions** - Engaging UX
-
----
-
-## � Screenshots
-
-<div align="center">
-
-### Desktop View
-
-_Immersive hero section with Neural-Aura effect_
-
-### Mobile View
-
-_Optimized portrait layout with responsive design_
-
-### Contact Form
-
-_Instant serverless backend with auto-reply_
-
-</div>
-
----
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome!
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
-
-## 📜 License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
----
-
 ## 👨‍💻 About the Developer
 
 <div align="center">
 
 ### **SARSHIJ KARN**
 
-**Electronics & Communication Engineering Student | AI Enthusiast | Cybersecurity Explorer**
+**Electronics, Communication & Information Engineering | AI Enthusiast | Cybersecurity Explorer**
 
 [![Website](https://img.shields.io/badge/Website-sarshijkarn.com.np-8a2be2?style=for-the-badge&logo=google-chrome&logoColor=white)](https://sarshijkarn.com.np)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sarshij-karn-1a7766236/)
@@ -272,17 +207,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 💼 **Focus**: Electronics · AI · Cybersecurity · Web Development
 
 </div>
-
----
-
-## 🙏 Acknowledgments
-
-- **GSAP** - For incredible animation capabilities
-- **Vercel** - For seamless serverless deployment
-- **Resend** - For reliable email delivery
-- **Cloudflare** - For DNS and CDN services
-- **Font Awesome** - For beautiful icons
-- **Google Fonts** - For typography
 
 ---
 
@@ -300,7 +224,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 **Made with ❤️ and ☕ by Sarshij Karn**
 
-_Building the future, one line of code at a time_ 🚀
+_Building the future_ 🚀
 
 [⬆ Back to Top](#-neural-aura-portfolio)
 
