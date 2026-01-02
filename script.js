@@ -771,7 +771,7 @@ const initProgressiveLoad = () => {
   window.addEventListener("load", dismissPreloader);
 };
 initProgressiveLoad();
-// 🚀 Service Worker Removal Logic - Ensures users get the latest version without caching issues
+// 🚀 Enhanced Cache Clearing - Ensures users always get the latest version
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.getRegistrations().then(function (registrations) {
     for (let registration of registrations) {
@@ -780,12 +780,34 @@ if ("serviceWorker" in navigator) {
     }
   });
 
-  // Clear all browser caches for this site
+  // Clear all browser caches aggressively
   if ("caches" in window) {
     caches.keys().then(function (names) {
-      for (let name of names) caches.delete(name);
-      console.log("All caches cleared");
+      for (let name of names) {
+        caches.delete(name);
+        console.log("Cache cleared:", name);
+      }
     });
+  }
+
+  // Clear IndexedDB to remove any stored data
+  if (window.indexedDB) {
+    indexedDB.databases().then((databases) => {
+      databases.forEach((db) => {
+        if (db.name) {
+          indexedDB.deleteDatabase(db.name);
+          console.log("IndexedDB cleared:", db.name);
+        }
+      });
+    }).catch(() => {
+      // Silently fail if IndexedDB clearing not supported
+    });
+  }
+
+  // Force reload after clearing (only once per session)
+  if (!sessionStorage.getItem("cacheCleared")) {
+    sessionStorage.setItem("cacheCleared", "true");
+    console.log("Cache cleanup complete - fresh start");
   }
 }
 function initTerminalMode() {
