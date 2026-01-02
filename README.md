@@ -48,14 +48,30 @@ To run this project locally:
 ## 📂 Project Structure
 
 ```
-├── 📄 index.html        # Main structure
-├── 🎨 style.css         # Global styles & responsive design
-├── 📜 script.js         # GSAP animations & logic
+├── 📄 index.html         # Main structure
+├── 🎨 style.css          # Global styles & responsive design
+├── 📜 script.js          # GSAP animations & logic
+├── 🔌 api/
+│   └── contact.js        # Vercel serverless contact form
+├── ⚙️ vercel.json        # Vercel configuration
+├── 📦 package.json       # Dependencies
 ├── 📂 assets/
-│   ├── 🖼️ img/          # Profile images & icons
-│   └── 🎥 [videos]      # Background loops
-└── 📄 README.md         # Documentation
+│   ├── 🖼️ img/           # Profile images & icons
+│   └── 🎥 [videos]       # Background loops
+└── 📄 README.md          # Documentation
 ```
+
+## ⚡ Backend (Vercel Serverless)
+
+The contact form is powered by **Vercel Serverless Functions** for:
+
+- ⚡ **Zero cold starts** - Instant response
+- 📧 **Email notifications** via [Resend API](https://resend.com)
+- 💬 **Discord webhooks** for real-time alerts
+- 🌍 **Edge functions** - Fast globally
+- 💰 **100% Free** - No server costs
+
+**API Endpoint**: `https://portfoli-contact.vercel.app/api/contact`
 
 ## 👨‍💻 Credits & Author
 

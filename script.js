@@ -1,10 +1,6 @@
 gsap.registerPlugin(ScrollTrigger);
-const BACKEND_URL = "https://backend-contact-form-hvqf.onrender.com";
-if (typeof BACKEND_URL === "undefined" || !BACKEND_URL) {
-  console.error(
-    "BACKEND_URL is not defined! Please check script.js configuration."
-  );
-}
+// 🚀 Vercel Serverless API - Instant response, no cold starts!
+const BACKEND_URL = 'https://portfoli-contact.vercel.app';
 const sidebar = document.getElementById("sidebar");
 const sidebarOverlay = document.getElementById("sidebarOverlay");
 const mobileMenuBtn = document.getElementById("mobileMenuBtn");
@@ -200,45 +196,14 @@ document.querySelectorAll(".card-3d").forEach((card) => {
   });
 });
 document.addEventListener("DOMContentLoaded", () => {
-  const statusEl = document.getElementById("serverStatus");
   const submitBtn = document.querySelector(".submit-button");
   const btnText = submitBtn ? submitBtn.querySelector(".button-text") : null;
-  const originalBtnText = btnText ? "Send Message" : "Send";
+
+  // ⚡ Vercel serverless functions are always instant - no warming needed!
   if (submitBtn && btnText) {
-    submitBtn.disabled = !0;
-    submitBtn.classList.add("initializing");
-    btnText.textContent = "📡 INITIALIZING UPLINK...";
+    submitBtn.disabled = false;
+    btnText.textContent = "TRANSMIT MESSAGE";
   }
-  fetch(`${BACKEND_URL}/api/wake-up`)
-    .then((res) => {
-      if (res.ok) {
-        console.log("Server Status: Online");
-        if (statusEl) {
-          statusEl.classList.add("online");
-          statusEl.querySelector(".status-text").textContent = "System Online";
-        }
-        if (submitBtn && btnText) {
-          submitBtn.disabled = !1;
-          submitBtn.classList.remove("initializing");
-          submitBtn.classList.add("system-ready");
-          btnText.textContent = "TRANSMIT MESSAGE";
-          setTimeout(() => submitBtn.classList.remove("system-ready"), 1000);
-        }
-      }
-    })
-    .catch((err) => {
-      console.log("Server waking up...");
-      if (statusEl) {
-        statusEl.classList.add("offline");
-        statusEl.querySelector(".status-text").textContent =
-          "Server Offline (Waking up...)";
-      }
-      if (submitBtn && btnText) {
-        submitBtn.disabled = !1;
-        submitBtn.classList.remove("initializing");
-        btnText.textContent = originalBtnText;
-      }
-    });
   function createParticle() {
     // 💡 Performance Optimization: Only create particles on desktop or higher-end devices
     // This reduces DOM manipulation significantly on mobile
@@ -543,13 +508,7 @@ if (contactForm) {
   }
   contactForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    if (typeof BACKEND_URL === "undefined" || !BACKEND_URL) {
-      console.error("BACKEND_URL is not defined! Cannot submit form.");
-      alert(
-        "Configuration error: Backend URL is not set. Please contact the site administrator."
-      );
-      return;
-    }
+    
     const submitButton = contactForm.querySelector(".submit-button");
     if (!submitButton) {
       console.error("Submit button not found!");
