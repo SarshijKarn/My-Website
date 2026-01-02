@@ -1318,39 +1318,12 @@ body {
   pointer-events: none;
   z-index: 1;
 }
+/* 💡 Performance: Disabled circuit animations for better mobile performance */
 .circuit-path {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: drawCircuit 4s ease-out forwards infinite alternate;
-  opacity: 0.3;
-}
-@keyframes drawCircuit {
-  0% {
-    stroke-dashoffset: 1000;
-    opacity: 0.1;
-  }
-  50% {
-    opacity: 0.4;
-  }
-  100% {
-    stroke-dashoffset: 0;
-    opacity: 0.3;
-  }
+  display: none; /* Removed to eliminate lag */
 }
 .circuit-node {
-  animation: nodeGlow 2s ease-in-out infinite alternate;
-}
-@keyframes nodeGlow {
-  0% {
-    r: 3;
-    opacity: 0.5;
-    filter: blur(0);
-  }
-  100% {
-    r: 5;
-    opacity: 1;
-    filter: blur(2px);
-  }
+  display: none; /* Removed to eliminate lag */
 }
 .projection-lens {
   position: relative;
@@ -1411,23 +1384,9 @@ body {
   height: 290px;
   transform: rotate(0deg);
 }
+/* 💡 Performance: Removed hud-scanner-line animation - was causing lag */
 .hud-scanner-line {
-  position: absolute;
-  width: 360px;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgb(0 206 209 / 0.8),
-    transparent
-  );
-  box-shadow: 0 0 15px #00ced1;
-  z-index: 1;
-  top: 50%;
-  transform: translateY(0);
-  opacity: 0.8;
-  pointer-events: none;
-  will-change: transform;
+  display: none; /* Disabled to improve performance */
 }
 .micro-data-stream {
   position: absolute;
@@ -1443,28 +1402,10 @@ body {
   letter-spacing: 1px;
   pointer-events: none;
 }
+/* 💡 Performance: Disabled blinking text animation for better mobile performance */
 .micro-data-stream span {
-  animation: blinkData 2s infinite;
-}
-.micro-data-stream span:nth-child(2) {
-  animation-delay: 0.5s;
-}
-.micro-data-stream span:nth-child(3) {
-  animation-delay: 1s;
-}
-.micro-data-stream span:nth-child(4) {
-  animation-delay: 1.5s;
-}
-@keyframes blinkData {
-  0%,
-  100% {
-    opacity: 0.3;
-    transform: translateX(0);
-  }
-  50% {
-    opacity: 1;
-    transform: translateX(5px);
-  }
+  animation: none; /* Removed blinking effect */
+  opacity: 0.6; /* Static opacity */
 }
 .focus-bracket {
   position: absolute;

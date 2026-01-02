@@ -308,43 +308,62 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(".card").forEach((card) => {
   observer.observe(card);
 });
+// 🎭 Jumble/Decrypt Animation - Triggers when hovering/clicking on the name text only
 (function () {
-  const heroName = document.getElementById("hero-name");
   const jumbleElements = document.querySelectorAll(".jumble-text");
-  if (!heroName || jumbleElements.length === 0) return;
+  if (jumbleElements.length === 0) return;
   const chars = "!<>-_\\/[]{}=+*^?#";
-  function triggerJumble() {
-    jumbleElements.forEach((el) => {
-      if (el.dataset.animating === "true") return;
-      el.dataset.animating = "true";
-      const originalText = el.dataset.text || el.textContent;
-      const duration = 400;
-      const start = performance.now();
-      function animate(now) {
-        let progress = (now - start) / duration;
-        if (progress > 1) progress = 1;
-        const revealCount = Math.floor(progress * originalText.length);
-        let newText = "";
-        for (let i = 0; i < originalText.length; i++) {
-          if (i < revealCount) {
-            newText += originalText[i];
-          } else {
-            newText += chars[Math.floor(Math.random() * chars.length)];
-          }
-        }
-        el.textContent = newText;
-        if (progress < 1) {
-          requestAnimationFrame(animate);
+  
+  // Function to animate a single element
+  function animateJumble(el) {
+    if (el.dataset.animating === "true") return;
+    el.dataset.animating = "true";
+    const originalText = el.dataset.text || el.textContent.trim();
+    const duration = 400;
+    const start = performance.now();
+    
+    function animate(now) {
+      let progress = (now - start) / duration;
+      if (progress > 1) progress = 1;
+      const revealCount = Math.floor(progress * originalText.length);
+      let newText = "";
+      for (let i = 0; i < originalText.length; i++) {
+        if (i < revealCount) {
+          newText += originalText[i];
         } else {
-          el.textContent = originalText;
-          el.dataset.animating = "false";
+          newText += chars[Math.floor(Math.random() * chars.length)];
         }
       }
-      requestAnimationFrame(animate);
-    });
+      el.textContent = newText;
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        el.textContent = originalText.trim();
+        el.dataset.animating = "false";
+      }
+    }
+    requestAnimationFrame(animate);
   }
-  heroName.addEventListener("mouseenter", triggerJumble);
-  heroName.addEventListener("touchstart", triggerJumble, { passive: !0 });
+  
+  // Add event listeners to each name span individually
+  jumbleElements.forEach((el) => {
+    // Desktop: hover on name text
+    el.addEventListener("mouseenter", function() {
+      animateJumble(this);
+    });
+    
+    // Mobile: touch/click on name text
+    el.addEventListener("touchstart", function() {
+      animateJumble(this);
+    }, { passive: !0 });
+    
+    el.addEventListener("click", function() {
+      animateJumble(this);
+    });
+    
+    // Add cursor pointer to indicate it's interactive
+    el.style.cursor = "pointer";
+  });
 })();
 const pronounceBtn = document.getElementById("pronounce-name");
 if (pronounceBtn) {
