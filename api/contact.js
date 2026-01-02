@@ -147,21 +147,12 @@ module.exports = async (req, res) => {
 
   const systemInfo = `**IP:** ${ip}\n**Time:** ${timestamp}\n**Device:** ${userAgent}`;
 
-  // Respond immediately
-  res.status(200).json({ 
-    success: true, 
-    message: 'Message received successfully!' 
-  });
-
-  // Handle emails asynchronously (don't block response)
-  (async () => {
-    try {
-      // Check if email credentials are configured
-      if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-        console.warn('⚠️ Email credentials not configured.');
-        return;
-      }
-
+  // Handle emails and notifications
+  try {
+    // Check if email credentials are configured
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+      console.warn('⚠️ Email credentials not configured.');
+    } else {
       const RESEND_API_KEY = process.env.EMAIL_PASS;
       const SENDER_EMAIL = process.env.EMAIL_USER;
       const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
@@ -251,33 +242,28 @@ module.exports = async (req, res) => {
           })),
       ];
 
-      // Wait for all to complete
+      // Wait for all to complete BEFORE returning response
       const results = await Promise.allSettled(promises);
 
       // Log summary
-      const summary = results.map((result, index) => {
+      console.log('📊 Notification Summary:');
+      results.forEach((result) => {
         if (result.status === 'fulfilled') {
-          return result.value;
-        } else {
-          const types = ['admin', 'user', 'discord'];
-          return {
-            type: types[index] || 'unknown',
-            success: false,
-            error: result.reason?.message || 'Unknown error',
-          };
+          const item = result.value;
+          console.log(
+            `   ${item.type}: ${item.success ? '✅ SUCCESS' : '❌ FAILED'} ${item.error ? `(${item.error})` : ''}`,
+          );
         }
       });
-
-      console.log('📊 Notification Summary:');
-      summary.forEach((item) => {
-        console.log(
-          `   ${item.type}: ${item.success ? '✅ SUCCESS' : '❌ FAILED'} ${item.error ? `(${item.error})` : ''}`,
-        );
-      });
-
-      console.log('✅ All notification attempts completed.');
-    } catch (error) {
-      console.error('❌ Background email processing error:', error.message);
     }
-  })();
+  } catch (error) {
+    console.error('❌ Notification error:', error.message);
+    // Don't fail the request if notifications fail, but log it
+  }
+
+  // Respond to client ONLY after attempts are done
+  res.status(200).json({ 
+    success: true, 
+    message: 'Message received successfully!' 
+  });
 };
