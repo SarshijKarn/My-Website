@@ -20,42 +20,15 @@
 
 ## ✨ Features
 
-### 🎨 **Cyberpunk Aesthetic**
+ 🎨 **Cyberpunk Aesthetic**
 
-- 🌌 Deep space galaxy video backgrounds
-- 💫 Dynamic neon lighting & glitch effects
-- 🔮 Glassmorphism UI elements
-- ⚡ Custom Neural-Aura theme
+ 🚄 **Performance Optimized**
 
-### 🚄 **Performance Optimized**
+ 📱 **Fully Responsive**
 
-- ⚡ **< 1s** serverless backend response
-- 🌍 Global edge network deployment
-- 📦 Optimized assets & lazy loading
-- 🗜️ Gzip compression enabled
-- 💾 Smart caching strategy
+ 🎭 **Advanced Animations**
 
-### 📱 **Fully Responsive**
-
-- 🖥️ **Desktop**: Fixed sidebar navigation
-- 📱 **Mobile**: Ergonomic hamburger menu
-- 🎯 Optimized for all screen sizes
-- ✅ Touch-friendly interactions
-
-### 🎭 **Advanced Animations**
-
-- 🎬 GSAP-powered scroll triggers
-- ✨ Custom decrypt text effects
-- 🌊 Smooth element transitions
-- 🎪 Interactive hover states
-
-### 📬 **Instant Contact Form**
-
-- ⚡ Serverless Vercel backend
-- 📧 Email via Resend API
-- 🤖 Auto-reply system
-- 💬 Discord webhook integration
-- 🛡️ Rate limiting & validation
+ 📬 **Instant Contact Form**
 
 ---
 
