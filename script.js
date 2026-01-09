@@ -705,17 +705,18 @@ const initProgressiveLoad = () => {
       onComplete: () => {
         preloader.style.display = "none";
         document.querySelectorAll("video").forEach((vid) => {
-          // 💡 Performance Optimization: Higher-end mobile or desktop only for video autoplay
-          if (window.innerWidth > 480) {
-            vid.setAttribute("preload", "auto");
-            vid
-              .play()
-              .catch((e) =>
-                console.log("Autoplay blocked/waiting for interaction")
-              );
-          } else {
-            vid.style.display = "none"; // Hide video on very small screens to save data/CPU
-            document.body.style.background = "var(--bg-dark)";
+          // 💡 Premium Experience: Enable video on all devices with low-power check
+          vid.setAttribute("preload", "auto");
+          vid.setAttribute("playsinline", ""); // Critical for iOS
+          
+          // Try to play - modern browsers hinder autoplay if low battery/data saver
+          const playPromise = vid.play();
+          
+          if (playPromise !== undefined) {
+             playPromise.catch((e) => {
+                console.log("Autoplay blocked/waiting for interaction or low power mode");
+                // Fallback for very low-end devices effectively handled by browser refusal to play
+             });
           }
         });
       },
