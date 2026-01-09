@@ -5,12 +5,20 @@
   "main": "index.html",
   "scripts": {
     "dev": "vercel dev",
-    "deploy": "vercel --prod"
+    "deploy": "vercel --prod",
+    "build:css": "npx tailwindcss -i ./assets/css/input.css -o ./assets/css/tailwind.css --minify"
   },
-  "keywords": ["portfolio", "vercel", "serverless"],
+  "keywords": [
+    "portfolio",
+    "vercel",
+    "serverless"
+  ],
   "author": "Sarshij Karn",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
   }
 }

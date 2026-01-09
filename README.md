@@ -20,15 +20,15 @@
 
 ## ✨ Features
 
- 🎨 **Cyberpunk Aesthetic**
+🎨 **Cyberpunk Aesthetic**
 
- 🚄 **Performance Optimized**
+🚄 **Performance Optimized**
 
- 📱 **Fully Responsive**
+📱 **Fully Responsive**
 
- 🎭 **Advanced Animations**
+🎭 **Advanced Animations**
 
- 📬 **Instant Contact Form**
+📬 **Instant Contact Form**
 
 ---
 
@@ -116,6 +116,12 @@ git clone https://github.com/SarshijKarn/My-Website.git
 # Navigate to directory
 cd My-Website
 
+# Install Dependencies (required for Tailwind CSS)
+npm install
+
+# Build CSS (if making style changes)
+npm run build:css
+
 # Open in browser
 # Simply open index.html in your browser
 # OR use a local server (recommended):
@@ -195,7 +201,7 @@ See [deployment guide](# "Check Vercel documentation") for detailed instructions
 
 ### ⭐ Star this repo if you like it!
 
-**Made with ❤️ and ☕ by Sarshij Karn**
+**Made with ❤️ and ☕, built by SARSHIJ KARN**
 
 _Building the future_ 🚀
 
