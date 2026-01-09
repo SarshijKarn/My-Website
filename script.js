@@ -1,6 +1,6 @@
 gsap.registerPlugin(ScrollTrigger);
 // 🚀 Vercel Serverless API - Instant response, no cold starts!
-const BACKEND_URL = 'https://portfoli-contact.vercel.app';
+const BACKEND_URL = "https://portfoli-contact.vercel.app";
 const sidebar = document.getElementById("sidebar");
 const sidebarOverlay = document.getElementById("sidebarOverlay");
 const mobileMenuBtn = document.getElementById("mobileMenuBtn");
@@ -68,54 +68,46 @@ if (typingText && !isMobile) {
 }
 const animDuration = isMobile ? 0.5 : 1.5;
 const animDelay = isMobile ? 0.1 : 0.3;
-gsap.from(".hero-content-left", {
-  duration: 1,
-  x: -50,
-  opacity: 0,
-  ease: "power2.out",
-  delay: 0.2,
-});
-gsap.from(".hero-image-right", {
-  duration: 1.2,
-  x: isMobile ? 20 : 50,
-  opacity: 0,
-  ease: "power2.out",
-  delay: 0,
-});
-gsap.from(".hero-title", {
-  duration: isMobile ? 0.5 : 1.2,
-  y: isMobile ? 30 : 80,
-  opacity: 0,
-  ease: "power2.out",
-  delay: animDelay,
-});
-gsap.from(".typing-text", {
-  duration: isMobile ? 0.3 : 0.8,
-  y: isMobile ? 20 : 40,
-  opacity: 0,
-  delay: animDelay,
-  ease: "power2.out",
-});
-gsap.from(".social-icon", {
-  duration: isMobile ? 0.3 : 0.6,
-  y: isMobile ? 10 : 20,
-  opacity: 0,
-  stagger: 0.08,
-  delay: 0.8,
-  ease: "power2.out",
-});
+// 🚀 Optimized Hero Animations - Unified & Smooth
+// Using fromTo with autoAlpha handles the FOUC (Flash of Unstyled Content) by ensuring elements start hidden and reveal smoothly
+const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+tl.fromTo(".hero-content-left", 
+  { x: -30, autoAlpha: 0 },
+  { x: 0, autoAlpha: 1, duration: 1 }
+)
+.fromTo(".hero-image-right", 
+  { x: 30, autoAlpha: 0 },
+  { x: 0, autoAlpha: 1, duration: 1 },
+  "<0.1" // Start 0.1s after previous
+)
+.fromTo(".hero-title", 
+  { y: 30, autoAlpha: 0 },
+  { y: 0, autoAlpha: 1, duration: 0.8 },
+  "<0.2"
+)
+.fromTo(".typing-text", 
+  { y: 20, autoAlpha: 0 },
+  { y: 0, autoAlpha: 1, duration: 0.8 },
+  "<0.1"
+)
+.fromTo(".social-icon", 
+  { y: 20, autoAlpha: 0 },
+  { y: 0, autoAlpha: 1, stagger: 0.05, duration: 0.5 },
+  "<0.2"
+);
 gsap.utils.toArray(".card").forEach((card) => {
   gsap.fromTo(
     card,
-    { y: isMobile ? 15 : 30, opacity: 0 },
+    { y: 30, autoAlpha: 0 }, // autoAlpha handles opacity + visibility
     {
       y: 0,
-      opacity: 1,
-      duration: isMobile ? 0.3 : 0.6,
+      autoAlpha: 1,
+      duration: isMobile ? 0.4 : 0.6,
       ease: "power2.out",
       scrollTrigger: {
         trigger: card,
-        start: "top 85%",
+        start: "top 90%",
         toggleActions: "play none none reverse",
       },
     }
@@ -123,16 +115,15 @@ gsap.utils.toArray(".card").forEach((card) => {
 });
 gsap.fromTo(
   ".about-photo-enhanced",
-  { scale: isMobile ? 0.9 : 0, rotation: isMobile ? 0 : -180, opacity: 0 },
+  { scale: 0.9, autoAlpha: 0 }, // Simplified start state
   {
     scale: 1,
-    rotation: 0,
-    opacity: 1,
-    duration: isMobile ? 0.5 : 1,
-    ease: "back.out(1.7)",
+    autoAlpha: 1,
+    duration: 0.8,
+    ease: "back.out(1.2)",
     scrollTrigger: {
       trigger: ".about-photo-enhanced",
-      start: "top 80%",
+      start: "top 85%",
       toggleActions: "play none none reverse",
     },
   }
@@ -142,9 +133,9 @@ gsap.utils.toArray(".timeline-item").forEach((item, index) => {
   if (isMobile) {
     gsap.fromTo(
       item,
-      { opacity: 0 },
+      { autoAlpha: 0 },
       {
-        opacity: 1,
+        autoAlpha: 1,
         duration: 0.5,
         scrollTrigger: {
           trigger: item,
@@ -156,10 +147,10 @@ gsap.utils.toArray(".timeline-item").forEach((item, index) => {
   } else {
     gsap.fromTo(
       item,
-      { x: index % 2 === 0 ? -60 : 60, opacity: 0 },
+      { x: index % 2 === 0 ? -60 : 60, autoAlpha: 0 },
       {
         x: 0,
-        opacity: 1,
+        autoAlpha: 1,
         duration: 0.7,
         ease: "power2.out",
         scrollTrigger: {
@@ -278,7 +269,7 @@ document.querySelectorAll(".card").forEach((card) => {
   const jumbleElements = document.querySelectorAll(".jumble-text");
   if (jumbleElements.length === 0) return;
   const chars = "!<>-_\\/[]{}=+*^?#";
-  
+
   // Function to animate a single element
   function animateJumble(el) {
     if (el.dataset.animating === "true") return;
@@ -286,7 +277,7 @@ document.querySelectorAll(".card").forEach((card) => {
     const originalText = el.dataset.text || el.textContent.trim();
     const duration = 400;
     const start = performance.now();
-    
+
     function animate(now) {
       let progress = (now - start) / duration;
       if (progress > 1) progress = 1;
@@ -309,23 +300,27 @@ document.querySelectorAll(".card").forEach((card) => {
     }
     requestAnimationFrame(animate);
   }
-  
+
   // Add event listeners to each name span individually
   jumbleElements.forEach((el) => {
     // Desktop: hover on name text
-    el.addEventListener("mouseenter", function() {
+    el.addEventListener("mouseenter", function () {
       animateJumble(this);
     });
-    
+
     // Mobile: touch/click on name text
-    el.addEventListener("touchstart", function() {
-      animateJumble(this);
-    }, { passive: !0 });
-    
-    el.addEventListener("click", function() {
+    el.addEventListener(
+      "touchstart",
+      function () {
+        animateJumble(this);
+      },
+      { passive: !0 }
+    );
+
+    el.addEventListener("click", function () {
       animateJumble(this);
     });
-    
+
     // Add cursor pointer to indicate it's interactive
     el.style.cursor = "pointer";
   });
@@ -508,7 +503,7 @@ if (contactForm) {
   }
   contactForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    
+
     const submitButton = contactForm.querySelector(".submit-button");
     if (!submitButton) {
       console.error("Submit button not found!");
@@ -730,45 +725,7 @@ const initProgressiveLoad = () => {
   window.addEventListener("load", dismissPreloader);
 };
 initProgressiveLoad();
-// 🚀 Enhanced Cache Clearing - Ensures users always get the latest version
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.getRegistrations().then(function (registrations) {
-    for (let registration of registrations) {
-      registration.unregister();
-      console.log("Service Worker unregistered");
-    }
-  });
-
-  // Clear all browser caches aggressively
-  if ("caches" in window) {
-    caches.keys().then(function (names) {
-      for (let name of names) {
-        caches.delete(name);
-        console.log("Cache cleared:", name);
-      }
-    });
-  }
-
-  // Clear IndexedDB to remove any stored data
-  if (window.indexedDB) {
-    indexedDB.databases().then((databases) => {
-      databases.forEach((db) => {
-        if (db.name) {
-          indexedDB.deleteDatabase(db.name);
-          console.log("IndexedDB cleared:", db.name);
-        }
-      });
-    }).catch(() => {
-      // Silently fail if IndexedDB clearing not supported
-    });
-  }
-
-  // Force reload after clearing (only once per session)
-  if (!sessionStorage.getItem("cacheCleared")) {
-    sessionStorage.setItem("cacheCleared", "true");
-    console.log("Cache cleanup complete - fresh start");
-  }
-}
+// Cache clearing logic removed to improve load stability and UX
 function initTerminalMode() {
   const toggleBtn = document.getElementById("toggleTerminal");
   const terminal = document.getElementById("contactTerminal");
