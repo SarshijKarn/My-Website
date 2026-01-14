@@ -1,13 +1,13 @@
 from PIL import Image
 import os
 
-source_path = r"c:/Users/acer/PROJECTS/WEBSITE_MY_REMOTE/PULLED/My-Website/assets/img/web-preview.png"
-dest_path = r"c:/Users/acer/PROJECTS/WEBSITE_MY_REMOTE/PULLED/My-Website/assets/img/web-preview.webp"
+source_path = r"c:/Users/acer/PROJECTS/WEBSITE_MY_REMOTE/pullee/My-Website/assets/img/desktopp.png"
+dest_path = r"c:/Users/acer/PROJECTS/WEBSITE_MY_REMOTE/pullee/My-Website/assets/og_preview.webp"
 
 try:
     if os.path.exists(source_path):
         print(f"Converting {source_path}...")
-        img = Image.open(source_path)
+        img = Image.open(source_path) 
         # Resize if too huge (e.g. height > 1500px) - keep aspect ratio
         if img.height > 1500:
             ratio = 1500 / img.height
