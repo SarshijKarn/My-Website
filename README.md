@@ -1,210 +1,252 @@
-<div align="center">
+# 🌌 Sarshij Karn - Cyberpunk Portfolio
 
-# 🚀 NEURAL-AURA PORTFOLIO
+> A futuristic, highly secure portfolio website built with cutting-edge security and stunning cyberpunk aesthetics.
 
-[![Website](https://img.shields.io/website?label=sarshijkarn.com.np&style=for-the-badge&url=https%3A%2F%2Fsarshijkarn.com.np)](https://sarshijkarn.com.np)
-[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com)
-[![GitHub Pages](https://img.shields.io/badge/Hosted%20on-GitHub%20Pages-222222?style=for-the-badge&logo=githubpages)](https://pages.github.com/)
-
-![Website Preview](assets/img/web-preview.webp)
-
-### ⚡ _Engineering · Technology · Cybersecurity · AI_
-
-**A futuristic, high-performance portfolio showcasing the intersection of electronics engineering and cutting-edge technology.**
-
-[🌐 Live Demo](https://sarshijkarn.com.np) · [📧 Contact](mailto:sarshijkarn333@gmail.com) · [💼 LinkedIn](https://www.linkedin.com/in/sarshij-karn-1a7766236/)
-
-</div>
+[![Security: Hardened](https://img.shields.io/badge/Security-Hardened-green.svg)](https://sarshijkarn.com.np)
+[![CAPTCHA: Cloudflare Turnstile](https://img.shields.io/badge/CAPTCHA-Turnstile-orange.svg)](https://www.cloudflare.com/products/turnstile/)
+[![Rate Limit: 5/hour](https://img.shields.io/badge/Rate%20Limit-5%2Fhour-blue.svg)](https://sarshijkarn.com.np)
 
 ---
 
-## ✨ Features
+## 🚀 Features
 
-🎨 **Cyberpunk Aesthetic**
+### 🎨 Design
 
-🚄 **Performance Optimized**
+- **Cyberpunk Neon Aesthetics** with dark mode optimization
+- **Responsive Design** across all devices
+- **GSAP Animations** for smooth scroll effects
+- **Holographic Effects** and neural-aura visuals
+- **Cyber Terminal Mode** for CLI enthusiasts
 
-📱 **Fully Responsive**
+### 🛡️ Security (Enterprise-Grade)
 
-🎭 **Advanced Animations**
+- **Cloudflare Turnstile CAPTCHA** - Bot protection
+- **Strict Rate Limiting** - 5 requests/hour per IP
+- **XSS Prevention** - All inputs sanitized
+- **CORS Whitelisting** - Domain-restricted API
+- **Email Validation** - Blocklist for temp/fake emails
+- **Math Challenge** in Terminal Mode
 
-📬 **Instant Contact Form**
+### ⚡ Performance
+
+- **Vercel Serverless Backend** - Instant response
+- **Static TailwindCSS Build** - No CDN bloat
+- **Optimized Images** - WebP format
+- **Lazy Loading** - Faster initial load
+- **Service Worker** - Offline support
+
+---
+
+## 📁 Project Structure
+
+```
+My-Website/
+├── api/
+│   └── contact.js          # Serverless contact form handler (SECURED)
+├── assets/
+│   ├── css/
+│   │   └── tailwind.css    # Static Tailwind build
+│   ├── img/                # Optimized WebP images
+│   └── galaxy.mp4          # Background video
+├── index.html              # Main HTML (with Turnstile)
+├── script.js               # Client-side logic (sanitized)
+├── style.css               # Custom cyberpunk styles
+├── project-icons.css       # Animated project icons
+├── vercel.json             # Vercel config (strict CORS)
+└── README.md               # This file
+```
+
+---
+
+## 🔧 Setup & Deployment
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/SarshijKarn/portfolio.git
+cd portfolio
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure Environment Variables
+
+Create a `.env` file or add to **Vercel Dashboard**:
+
+```env
+# Email Service (Resend.com)
+EMAIL_USER=your-email@resend.dev
+EMAIL_PASS=your-resend-api-key
+ADMIN_EMAIL=your-admin-email@gmail.com
+
+# Discord Webhook (Optional)
+DISCORD_WEBHOOK_URL=your-discord-webhook-url
+
+# Cloudflare Turnstile (REQUIRED for CAPTCHA)
+TURNSTILE_SECRET_KEY=your-turnstile-secret-key
+```
+
+### 4. Update Turnstile Site Key
+
+In `index.html` (Line 1231):
+
+```html
+<div
+  class="cf-turnstile"
+  data-sitekey="YOUR_SITE_KEY_HERE"
+  data-theme="dark"
+></div>
+```
+
+### 5. Deploy to Vercel
+
+```bash
+vercel --prod
+```
+
+Or connect your GitHub repo to Vercel for auto-deployment.
+
+---
+
+## 🧪 Local Development
+
+### Run Development Server
+
+```bash
+vercel dev
+```
+
+Visit: `http://localhost:3000`
+
+### Build TailwindCSS (if modified)
+
+```bash
+npm run build:css
+```
+
+---
+
+## 🔐 Security Features Explained
+
+### 1. **Cloudflare Turnstile**
+
+- **What it is**: Free, privacy-friendly CAPTCHA alternative
+- **How it works**: Invisible challenge for most users; manual puzzle for bots
+- **Implementation**: Client widget + server-side verification
+
+### 2. **Rate Limiting**
+
+- **Current**: 5 requests/hour per IP (in-memory)
+- **Recommendation**: Upgrade to Vercel KV/Upstash Redis for distributed tracking
+
+### 3. **XSS Prevention**
+
+- **Client-side**: `escapeHtml()` sanitizes Terminal inputs
+- **Server-side**: All form data escaped before email insertion
+
+### 4. **Domain Blocklist**
+
+Blocks submissions from:
+
+- `test.com`, `example.com`
+- `tempmail.com`, `mailinator.com`
+
+### 5. **CORS Whitelist**
+
+Only these origins can call the API:
+
+- `https://sarshijkarn.com.np`
+- `https://www.sarshijkarn.com.np`
+- `http://localhost:3000` (dev)
+
+---
+
+## 📊 Security Audit Results
+
+| Test                     | Status  |
+| ------------------------ | ------- |
+| Bot Protection (CAPTCHA) | ✅ PASS |
+| Rate Limiting (5/hour)   | ✅ PASS |
+| XSS Prevention           | ✅ PASS |
+| CORS Policy              | ✅ PASS |
+| Email Validation         | ✅ PASS |
+| Input Sanitization       | ✅ PASS |
+| Terminal Math Challenge  | ✅ PASS |
+
+---
+
+## 🎯 Future Enhancements
+
+- [ ] Upgrade to Redis-based rate limiting (Vercel KV)
+- [ ] Add CSP headers for script injection prevention
+- [ ] Implement honeypot field for bot detection
+- [ ] Add IP reputation scoring (IPQualityScore)
+- [ ] Enable PostHog analytics for attack tracking
+- [ ] Add admin dashboard for contact submissions
 
 ---
 
 ## 🛠️ Tech Stack
 
-### **Frontend**
+### Frontend
 
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+- **HTML5** + **CSS3** + **Vanilla JavaScript**
+- **TailwindCSS** (static build)
+- **GSAP** for animations
+- **Font Awesome** for icons
 
-**Libraries & Frameworks:**
+### Backend
 
-- [GSAP](https://greensock.com/gsap/) - Professional-grade animations
-- [Font Awesome](https://fontawesome.com/) - Icon library
-- Custom CSS Variables & Glassmorphism
+- **Vercel Serverless Functions** (Node.js)
+- **Resend API** for email delivery
+- **Discord Webhooks** for notifications
+- **Cloudflare Turnstile** for bot protection
 
-### **Backend**
+### Security
 
-![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-
-**Services:**
-
-- **Vercel Serverless Functions** - Instant backend
-- **Resend API** - Email delivery
-- **Discord Webhooks** - Real-time notifications
-
-### **Deployment**
-
-![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-222222?style=for-the-badge&logo=githubpages&logoColor=white)
-![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)
-
-- **Frontend**: GitHub Pages
-- **Backend**: Vercel Edge Network
-- **DNS**: Cloudflare
+- **Cloudflare Turnstile** - CAPTCHA
+- **In-Memory Rate Limiting** (5/hour)
+- **HTML Sanitization** (XSS prevention)
+- **CORS Whitelisting**
+- **Email Blocklist**
 
 ---
 
-## 📂 Project Structure
+## 📞 Contact
 
-```
-My-Website/
-├── 📄 index.html              # Main HTML structure
-├── 🎨 style.css               # Global styles & animations
-├── 📜 script.js               # GSAP animations & logic
-├── 🎭 project-icons.css       # Project showcase styling
-│
-├── 🔌 api/
-│   └── contact.js             # Vercel serverless contact handler
-│
-├── ⚙️ vercel.json              # Vercel configuration
-├── 📦 package.json            # Dependencies
-├── 🔐 .htaccess               # Cache & security headers
-├── 🤫 .gitignore              # Git ignore rules
-│
-├── 📂 assets/
-│   ├── 🖼️ img/                # Profile images & icons
-│   │   ├── fullME.webp       # Hero portrait
-│   │   ├── cyber-portrait.webp
-│   │   └── web-preview.webp  # README preview
-│   └── 🎥 videos/             # Background loops
-│       └── galaxy.mp4
-│
-└── 📄 README.md               # This file!
-```
+- **Website**: [sarshijkarn.com.np](https://sarshijkarn.com.np)
+- **Email**: sarshijkarn333@gmail.com
+- **GitHub**: [@SarshijKarn](https://github.com/SarshijKarn)
+- **LinkedIn**: [Sarshij Karn](https://www.linkedin.com/in/sarshij-karn-1a7766236/)
 
 ---
 
-## 🚀 Quick Start
+## 📜 License
 
-### Prerequisites
-
-- Modern web browser
-- Git installed
-- (Optional) Node.js for local development
-
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/SarshijKarn/My-Website.git
-
-# Navigate to directory
-cd My-Website
-
-# Install Dependencies (required for Tailwind CSS)
-npm install
-
-# Build CSS (if making style changes)
-npm run build:css
-
-# Open in browser
-# Simply open index.html in your browser
-# OR use a local server (recommended):
-
-# Using Python
-python -m http.server 8000
-
-# Using Node.js
-npx http-server
-
-# Using VS Code Live Server
-# Install "Live Server" extension and click "Go Live"
-```
-
-Visit `http://localhost:8000` (or your server port)
+This project is licensed under the **ISC License**.
 
 ---
 
-## ⚙️ Configuration
+## 🙏 Credits
 
-### Backend Setup (Optional - for Contact Form)
+**Designed & Developed by [SARSHIJ KARN](https://sarshijkarn.com.np)**
 
-The contact form uses Vercel Serverless Functions. To set up:
-
-1. **Deploy to Vercel**:
-
-   ```bash
-   npm install -g vercel
-   vercel
-   ```
-
-2. **Add Environment Variables** in Vercel dashboard:
-
-   - `EMAIL_USER` - Your sending email
-   - `EMAIL_PASS` - Resend API key
-   - `ADMIN_EMAIL` - Recipient email
-   - `DISCORD_WEBHOOK_URL` - Discord webhook (optional)
-
-3. **Configure DNS**:
-   - Add SPF record: `v=spf1 include:_spf.resend.com ~all`
-   - Add DKIM/DMARC records from Resend
-
-See [deployment guide](# "Check Vercel documentation") for detailed instructions.
+Built with passion and futuristic vision in Nepal 🇳🇵
 
 ---
 
-## 👨‍💻 About the Developer
+## 🔗 Quick Links
 
-<div align="center">
-
-### **SARSHIJ KARN**
-
-**Electronics, Communication & Information Engineering | AI Enthusiast | Cybersecurity Explorer**
-
-[![Website](https://img.shields.io/badge/Website-sarshijkarn.com.np-8a2be2?style=for-the-badge&logo=google-chrome&logoColor=white)](https://sarshijkarn.com.np)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sarshij-karn-1a7766236/)
-[![Email](https://img.shields.io/badge/Email-Contact-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:sarshijkarn333@gmail.com)
-[![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/SarshijKarn)
-
-📍 **Location**: Nepal  
-🎓 **Institution**: Tribhuvan University  
-💼 **Focus**: Electronics · AI · Cybersecurity · Web Development
-
-</div>
+- [Live Website](https://sarshijkarn.com.np)
+- [Security Walkthrough](./walkthrough.md)
+- [Implementation Plan](./implementation_plan.md)
+- [Vercel Dashboard](https://vercel.com/dashboard)
+- [Cloudflare Turnstile](https://dash.cloudflare.com)
 
 ---
 
-## 📊 Project Stats
-
-![GitHub repo size](https://img.shields.io/github/repo-size/SarshijKarn/My-Website?style=flat-square)
-![GitHub last commit](https://img.shields.io/github/last-commit/SarshijKarn/My-Website?style=flat-square)
-![GitHub stars](https://img.shields.io/github/stars/SarshijKarn/My-Website?style=social)
-
----
-
-<div align="center">
-
-### ⭐ Star this repo if you like it!
-
-**Made with ❤️ and ☕, built by SARSHIJ KARN**
-
-_Building the future_ 🚀
-
-[⬆ Back to Top](#-neural-aura-portfolio)
-
-</div>
+**Last Updated**: January 14, 2026

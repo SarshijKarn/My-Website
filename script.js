@@ -473,12 +473,20 @@ if (contactForm) {
       nameInput?.classList.remove("error");
     }
     const email = emailInput?.value.trim() || "";
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Strict Email Regex (W3C standard + TLD enforcement)
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    // Blocklist for common temp mails or generic placeholders
+    const blockedDomains = ["test.com", "example.com", "tempmail.com", "mailinator.com"];
+    const domain = email.split('@')[1];
+
     if (!email) {
       errors.push("Email is required");
       emailInput?.classList.add("error");
     } else if (!emailRegex.test(email)) {
       errors.push("Please enter a valid email address");
+      emailInput?.classList.add("error");
+    } else if (blockedDomains.includes(domain)) {
+      errors.push("Please use a legitimate email address");
       emailInput?.classList.add("error");
     } else if (email.length > 255) {
       errors.push("Email must be less than 255 characters");
@@ -499,6 +507,11 @@ if (contactForm) {
     } else {
       messageInput?.classList.remove("error");
     }
+    const turnstileResponse = contactForm.querySelector('[name="cf-turnstile-response"]')?.value;
+    if (!turnstileResponse) {
+       errors.push("Please complete the Security Check (CAPTCHA)");
+    }
+
     return { isValid: errors.length === 0, errors };
   }
   contactForm.addEventListener("submit", async (e) => {
@@ -533,6 +546,8 @@ if (contactForm) {
       data.name = data.name.trim();
       data.email = data.email.trim();
       data.message = data.message.trim();
+      // Add Turnstile Token to payload
+      data['cf-turnstile-response'] = formData.get('cf-turnstile-response');
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 30000);
       let response;
@@ -735,8 +750,20 @@ function initTerminalMode() {
   const output = document.getElementById("terminalOutput");
   const helpBtn = document.getElementById("terminalHelp");
   if (!toggleBtn || !terminal) return;
+  
+  // Helper to prevent XSS
+  const escapeHtml = (str) => {
+    if (!str) return '';
+    return str.replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  };
+
   let step = 0;
-  const userData = { name: "", email: "", message: "" };
+  let mathChallenge = { a: 0, b: 0, answer: 0 };
+  const userData = { name: "", email: "", message: "", isTerminal: true };
   if (helpBtn) {
     helpBtn.addEventListener("click", () => {
       printToTerminal("---| TERMINAL USER GUIDE |---");
@@ -770,7 +797,7 @@ function initTerminalMode() {
     if (e.key === "Enter") {
       const cmd = input.value.trim().toLowerCase();
       printToTerminal(
-        `<span class="terminal-prompt">root@sarshij:~$</span> ${input.value}`
+        `<span class="terminal-prompt">root@sarshij:~$</span> ${escapeHtml(input.value)}`
       );
       input.value = "";
       processCommand(cmd);
@@ -842,32 +869,49 @@ function initTerminalMode() {
       return;
     }
     if (step === 0 && cmd === "contact") {
-      step = 1;
+      step = 0.5; // Math Challenge Step
+      mathChallenge.a = Math.floor(Math.random() * 10) + 1;
+      mathChallenge.b = Math.floor(Math.random() * 10) + 1;
+      mathChallenge.answer = mathChallenge.a + mathChallenge.b;
       printToTerminal(
-        "SURVEY: Initiation sequence started. Enter your name:",
+        `SECURITY CHECK: What is ${mathChallenge.a} + ${mathChallenge.b}?`,
         !0
       );
+    } else if (step === 0.5) {
+      if (parseInt(cmd) === mathChallenge.answer) {
+        step = 1;
+        printToTerminal(
+         "ACCESS GRANTED. Initiation sequence started. Enter your name:",
+         !0
+        );
+      } else {
+        step = 0;
+         printToTerminal(
+         "ACCESS DENIED. Incorrect security code. Session reset.",
+         !0
+        );
+      }
     } else if (step === 1) {
-      userData.name = cmd;
+      userData.name = escapeHtml(cmd);
       step = 2;
       printToTerminal(
-        `SUCCESS: ID confirmed as '${cmd}'. Enter neural-mail:`,
+        `SUCCESS: ID confirmed as '${escapeHtml(cmd)}'. Enter neural-mail:`,
         !0
       );
     } else if (step === 2) {
-      userData.email = cmd;
+      userData.email = escapeHtml(cmd); // Basic check could go here
       step = 3;
       printToTerminal(
         "SUCCESS: Uplink address verified. Enter your transmission data:",
         !0
       );
     } else if (step === 3) {
-      userData.message = cmd;
+      userData.message = escapeHtml(cmd);
       printToTerminal("SYSTEM: Encrypting and transmitting data packet...", !0);
       sendData();
       step = 0;
     } else {
-      printToTerminal(`ERROR: Unknown command '${cmd}'. Try 'help'.`);
+      printToTerminal(`ERROR: Unknown command '${escapeHtml(cmd)}'. Try 'help'.`);
     }
   }
   async function sendData() {
