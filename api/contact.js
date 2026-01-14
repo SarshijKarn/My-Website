@@ -198,15 +198,22 @@ module.exports = async (req, res) => {
   const { name, email, message } = req.body;
   const turnstileToken = req.body['cf-turnstile-response'];
   const isTerminal = req.body.isTerminal;
+  const honeypot = req.body.website;
 
   // --- SECURITY CHECKS ---
+
+  // 0. Honeypot Check (Silent bot trap)
+  if (honeypot) {
+    console.warn(`🤖 Bot detected via honeypot from IP: ${ip}`);
+    return res.status(400).json({ success: false, message: 'Unable to process request.' });
+  }
 
   // 1. CAPTCHA Verification (Skip for Terminal if we rely on rate limit, or strictly enforce)
   // For now, we enforce for everyone unless the Env var is missing.
   if (!isTerminal) {
       const isHuman = await verifyTurnstile(turnstileToken, ip);
       if (!isHuman) {
-        return res.status(403).json({ success: false, message: 'Security Check Failed. Please complete the CAPTCHA.' });
+        return res.status(403).json({ success: false, message: 'Unable to process request. Please try again.' });
       }
   } else {
      // Terminal Mode: Stricter internal rate limit?

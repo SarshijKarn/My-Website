@@ -512,6 +512,13 @@ if (contactForm) {
        errors.push("Please complete the Security Check (CAPTCHA)");
     }
 
+    // Honeypot check (reject if filled - bots auto-fill hidden fields)
+    const honeypot = contactForm.querySelector('#website')?.value;
+    if (honeypot) {
+      console.warn('🤖 Bot detected via honeypot field');
+      errors.push("Validation failed");
+    }
+
     return { isValid: errors.length === 0, errors };
   }
   contactForm.addEventListener("submit", async (e) => {
