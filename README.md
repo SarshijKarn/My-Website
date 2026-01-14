@@ -179,7 +179,7 @@ My-Website/
 ┃ ┣ 📂 css/
 ┃ ┃ ┗ 📜 tailwind.css           ← Static build
 ┃ ┣ 📂 img/
-┃ ┃ ┣ 🖼️ fullME-optimized.webp
+┃ ┃ ┣ 🖼️ HomepageFix.webp
 ┃ ┃ ┣ 🖼️ me.webp
 ┃ ┃ ┗ 🖼️ og_preview.webp
 ┃ ┣ 🎥 galaxy.mp4              ← Background video
@@ -592,12 +592,9 @@ _Electronics Engineer • AI Enthusiast • Cybersecurity Explorer_
   <img src="https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind">
 </p>
 
-
-
 ---
 
 <div align="center">
-
 
 <img src="https://komarev.com/ghpvc/?username=SarshijKarn&label=Profile%20Views&color=8a2be2&style=flat-square" alt="Profile Views">
 
