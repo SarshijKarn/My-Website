@@ -9,7 +9,6 @@
 
 <p align="center">
   <a href="https://sarshijkarn.com.np"><img src="https://img.shields.io/badge/🌐_LIVE_SITE-sarshijkarn.com.np-00ff88?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Site"></a>
-  <a href="#"><img src="https://img.shields.io/badge/Security-HARDENED-green?style=for-the-badge&logo=cloudflare&logoColor=white" alt="Security Hardened"></a>
   <a href="#"><img src="https://img.shields.io/badge/CAPTCHA-Turnstile-orange?style=for-the-badge&logo=cloudflare&logoColor=white" alt="Cloudflare Turnstile"></a>
   <a href="#"><img src="https://img.shields.io/badge/Rate_Limit-5%2Fhour-blue?style=for-the-badge&logo=nginx&logoColor=white" alt="Rate Limit"></a>
 </p>
@@ -22,60 +21,11 @@
 
 **A futuristic, bulletproof portfolio website featuring real-time animations, advanced security, and a cyberpunk aesthetic that screams 2026.**
 
-[🚀 View Live](https://sarshijkarn.com.np) • [📖 Documentation](#-table-of-contents) • [🛡️ Security](#-security-architecture) • [⚡ Features](#-feature-showcase)
+[🚀 View Live](https://sarshijkarn.com.np)
 
 </div>
 
 ---
-
-## 📑 Table of Contents
-
-<details open>
-<summary><b>Click to expand/collapse</b></summary>
-
-- [🎬 Demo \& Preview](#-demo--preview)
-- [✨ Feature Showcase](#-feature-showcase)
-- [🏗️ Architecture](#-architecture)
-- [🛡️ Security Architecture](#-security-architecture)
-- [🚀 Quick Start](#-quick-start)
-- [⚙️ Configuration](#️-configuration)
-- [🧪 Testing](#-testing)
-- [📊 Performance Metrics](#-performance-metrics)
-- [🗺️ Roadmap](#️-roadmap)
-- [🤝 Contributing](#-contributing)
-- [📞 Contact](#-contact)
-- [⭐ Credits](#-credits)
-
-</details>
-
----
-
-## 🎬 Demo & Preview
-
-### **Desktop View**
-
-<div align="center">
-  <img src="assets/og_preview.webp" alt="Desktop Preview" width="800px" style="border-radius: 10px; box-shadow: 0 4px 20px rgba(0,255,136,0.3);">
-</div>
-
-### **Mobile Responsive**
-
-<table>
-  <tr>
-    <td align="center" width="33%">
-      <img src="https://via.placeholder.com/300x600/0a0a0a/00ff88?text=Hero+Section" alt="Mobile Hero">
-      <br><b>Hero Section</b>
-    </td>
-    <td align="center" width="33%">
-      <img src="https://via.placeholder.com/300x600/0a0a0a/8a2be2?text=Projects" alt="Mobile Projects">
-      <br><b>Projects Grid</b>
-    </td>
-    <td align="center" width="33%">
-      <img src="https://via.placeholder.com/300x600/0a0a0a/00ced1?text=Contact+Form" alt="Mobile Contact">
-      <br><b>Contact Form</b>
-    </td>
-  </tr>
-</table>
 
 ### **Interactive Features Demo**
 
@@ -246,31 +196,6 @@ My-Website/
 ---
 
 ## 🛡️ Security Architecture
-
-### **Defense Layers**
-
-```mermaid
-graph TD
-    Start[👤 User Request] --> Layer1{🌐 CORS Check}
-    Layer1 -->|❌ Blocked| Reject1[403 Forbidden]
-    Layer1 -->|✅ Pass| Layer2{🚦 Rate Limit}
-    Layer2 -->|❌ Exceeded| Reject2[429 Too Many]
-    Layer2 -->|✅ Pass| Layer3{🤖 Turnstile}
-    Layer3 -->|❌ Failed| Reject3[403 Bot Detected]
-    Layer3 -->|✅ Pass| Layer4{📧 Email Valid}
-    Layer4 -->|❌ Invalid| Reject4[400 Bad Email]
-    Layer4 -->|✅ Pass| Layer5{🧹 Sanitize}
-    Layer5 --> Success[✅ 200 Success]
-
-    style Layer1 fill:#ffa500,stroke:#fff,stroke-width:2px,color:#000
-    style Layer2 fill:#ffa500,stroke:#fff,stroke-width:2px,color:#000
-    style Layer3 fill:#ffa500,stroke:#fff,stroke-width:2px,color:#000
-    style Success fill:#00ff88,stroke:#000,stroke-width:2px,color:#000
-    style Reject1 fill:#ff3e3e,stroke:#fff,stroke-width:2px,color:#fff
-    style Reject2 fill:#ff3e3e,stroke:#fff,stroke-width:2px,color:#fff
-    style Reject3 fill:#ff3e3e,stroke:#fff,stroke-width:2px,color:#fff
-    style Reject4 fill:#ff3e3e,stroke:#fff,stroke-width:2px,color:#fff
-```
 
 ### **Security Features Matrix**
 
@@ -627,71 +552,6 @@ gantt
 
 ---
 
-## 🗺️ Roadmap
-
-### **Phase 1: Foundation** ✅ (Completed)
-
-- [x] Cyberpunk UI design
-- [x] Responsive layout
-- [x] GSAP animations
-- [x] Contact form (dual mode)
-
-### **Phase 2: Security** ✅ (Completed)
-
-- [x] Cloudflare Turnstile integration
-- [x] Rate limiting (5/hour)
-- [x] XSS prevention
-- [x] CORS whitelisting
-- [x] Email validation + blocklist
-
-### **Phase 3: Enhancements** 🚧 (In Progress)
-
-- [ ] Upgrade rate limiting to Redis (Vercel KV)
-- [ ] Add Content Security Policy headers
-- [ ] Implement honeypot field
-- [ ] Admin dashboard for submissions
-- [ ] Analytics dashboard (PostHog)
-
-### **Phase 4: Advanced** 📅 (Planned)
-
-- [ ] IP reputation scoring
-- [ ] Multi-language support
-- [ ] Blog section with CMS
-- [ ] Dark/Light theme toggle
-- [ ] Easter eggs & hidden features
-
----
-
-## 🤝 Contributing
-
-Contributions are what make the open-source community amazing! Any contributions you make are **greatly appreciated**.
-
-<details>
-<summary><b>How to Contribute</b></summary>
-
-1. **Fork the Project**
-2. **Create your Feature Branch**
-   ```bash
-   git checkout -b feature/AmazingFeature
-   ```
-3. **Commit your Changes**
-   ```bash
-   git commit -m 'Add some AmazingFeature'
-   ```
-4. **Push to the Branch**
-   ```bash
-   git push origin feature/AmazingFeature
-   ```
-5. **Open a Pull Request**
-
-</details>
-
-### **Code of Conduct**
-
-Please read our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing.
-
----
-
 ## 📞 Contact
 
 <div align="center">
@@ -732,30 +592,12 @@ _Electronics Engineer • AI Enthusiast • Cybersecurity Explorer_
   <img src="https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind">
 </p>
 
-### **Special Thanks To**
 
-- [Vercel](https://vercel.com) - Deployment & Serverless Infrastructure
-- [Cloudflare](https://cloudflare.com) - Turnstile CAPTCHA Protection
-- [Resend](https://resend.com) - Email Delivery Service
-- [GSAP](https://greensock.com) - Animation Framework
-- [Font Awesome](https://fontawesome.com) - Icon Library
 
 ---
 
 <div align="center">
 
-## 📜 License
-
-This project is licensed under the **ISC License** - see the [LICENSE](LICENSE) file for details.
-
----
-
-### ⭐ **If you found this helpful, please star this repo!**
-
-<img src="https://img.shields.io/github/stars/SarshijKarn/My-Website?style=social" alt="GitHub stars">
-<img src="https://img.shields.io/github/forks/SarshijKarn/My-Website?style=social" alt="GitHub forks">
-
----
 
 <img src="https://komarev.com/ghpvc/?username=SarshijKarn&label=Profile%20Views&color=8a2be2&style=flat-square" alt="Profile Views">
 
