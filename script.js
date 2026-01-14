@@ -72,26 +72,26 @@ const animDelay = isMobile ? 0.1 : 0.3;
 // Using fromTo with autoAlpha handles the FOUC (Flash of Unstyled Content) by ensuring elements start hidden and reveal smoothly
 const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-tl.fromTo(".hero-content-left", 
+tl.fromTo(".hero-content-left",
   { x: -30, autoAlpha: 0 },
   { x: 0, autoAlpha: 1, duration: 1 }
 )
-.fromTo(".hero-image-right", 
+.fromTo(".hero-image-right",
   { x: 30, autoAlpha: 0 },
   { x: 0, autoAlpha: 1, duration: 1 },
   "<0.1" // Start 0.1s after previous
 )
-.fromTo(".hero-title", 
+.fromTo(".hero-title",
   { y: 30, autoAlpha: 0 },
   { y: 0, autoAlpha: 1, duration: 0.8 },
   "<0.2"
 )
-.fromTo(".typing-text", 
+.fromTo(".typing-text",
   { y: 20, autoAlpha: 0 },
   { y: 0, autoAlpha: 1, duration: 0.8 },
   "<0.1"
 )
-.fromTo(".social-icon", 
+.fromTo(".social-icon",
   { y: 20, autoAlpha: 0 },
   { y: 0, autoAlpha: 1, stagger: 0.05, duration: 0.5 },
   "<0.2"
@@ -717,12 +717,13 @@ if (closeMobileNotice && mobileNotice) {
 const initProgressiveLoad = () => {
   const preloader = document.getElementById("preloader");
   if (!preloader) return;
+
   const dismissPreloader = () => {
     if (preloader.classList.contains("dismissed")) return;
     preloader.classList.add("dismissed");
     gsap.to(preloader, {
       opacity: 0,
-      duration: 0.8,
+      duration: 0.3, // Fast 300ms transition
       ease: "power2.inOut",
       onComplete: () => {
         preloader.style.display = "none";
@@ -730,10 +731,10 @@ const initProgressiveLoad = () => {
           // 💡 Premium Experience: Enable video on all devices with low-power check
           vid.setAttribute("preload", "auto");
           vid.setAttribute("playsinline", ""); // Critical for iOS
-          
+
           // Try to play - modern browsers hinder autoplay if low battery/data saver
           const playPromise = vid.play();
-          
+
           if (playPromise !== undefined) {
              playPromise.catch((e) => {
                 console.log("Autoplay blocked/waiting for interaction or low power mode");
@@ -744,8 +745,76 @@ const initProgressiveLoad = () => {
       },
     });
   };
-  setTimeout(dismissPreloader, 2500);
-  window.addEventListener("load", dismissPreloader);
+
+  // Smart Critical Content Loading - Wait for hero image + fonts
+  const waitForCriticalContent = async () => {
+    const promises = [];
+
+    // 1. Wait for hero image to load
+    const heroImage = document.querySelector('.full-body-img');
+    if (heroImage) {
+      if (heroImage.complete && heroImage.naturalHeight !== 0) {
+        // Image already loaded (from cache)
+        console.log('✅ Hero image loaded from cache');
+      } else {
+        // Wait for image to load
+        promises.push(
+          new Promise((resolve, reject) => {
+            heroImage.onload = () => {
+              console.log('✅ Hero image loaded');
+              resolve();
+            };
+            heroImage.onerror = () => {
+              console.warn('⚠️ Hero image failed to load');
+              resolve(); // Still resolve to not block forever
+            };
+            // Timeout fallback (4s max wait)
+            setTimeout(() => {
+              console.warn('⏱️ Hero image timeout - proceeding anyway');
+              resolve();
+            }, 4000);
+          })
+        );
+      }
+    }
+
+    // 2. Wait for fonts
+    if (document.fonts && document.fonts.ready) {
+      promises.push(
+        document.fonts.ready.then(() => {
+          console.log('✅ Fonts loaded');
+        })
+      );
+    }
+
+    // Wait for all critical resources
+    try {
+      await Promise.all(promises);
+      console.log('✅ All critical content loaded');
+    } catch (error) {
+      console.warn('⚠️ Error loading critical content:', error);
+    }
+
+    // Small delay for smooth transition (100ms)
+    await new Promise(resolve => setTimeout(resolve, 100));
+
+    dismissPreloader();
+  };
+
+  // Start waiting for critical content
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', waitForCriticalContent);
+  } else {
+    waitForCriticalContent();
+  }
+
+  // Fallback: Max 5 seconds total wait (for very slow connections)
+  setTimeout(() => {
+    if (!preloader.classList.contains("dismissed")) {
+      console.warn('⏱️ Preloader timeout - forcing dismiss');
+      dismissPreloader();
+    }
+  }, 5000);
 };
 initProgressiveLoad();
 // Cache clearing logic removed to improve load stability and UX
@@ -757,7 +826,7 @@ function initTerminalMode() {
   const output = document.getElementById("terminalOutput");
   const helpBtn = document.getElementById("terminalHelp");
   if (!toggleBtn || !terminal) return;
-  
+
   // Helper to prevent XSS
   const escapeHtml = (str) => {
     if (!str) return '';
