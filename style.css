@@ -102,18 +102,7 @@ body {
   position: relative;
   text-shadow: 0 1px 3px rgb(0 0 0 / 0.8);
 }
-#bg-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -2;
-  opacity: 0.6;
-  transform: translateZ(0);
-  will-change: opacity;
-}
+
 .digital-brain-bg {
   position: absolute;
   top: 50%;
@@ -358,10 +347,7 @@ body {
     animation-duration: 6s !important; /* Slower = lighter */
   }
 
-  /* Optimize video background for mobile */
-  #bg-video {
-    opacity: 0.4; /* Slightly dimmer for better text readability and performance */
-  }
+
 }
 @media (max-width: 768px) {
   #skills .card-3d:hover,
@@ -492,10 +478,7 @@ body {
   border: 1px solid rgb(0 0 0 / 0.1);
   box-shadow: 0 8px 32px rgb(0 0 0 / 0.1);
 }
-.light #bg-video {
-  opacity: 0 !important;
-  display: none;
-}
+
 .light body {
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   color: #333 !important;
@@ -3415,56 +3398,7 @@ body {
     transform: scale(1);
   }
 }
-#preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #0a0a0a;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-.preloader-content {
-  text-align: center;
-}
-.loader-scanline {
-  width: 250px;
-  height: 2px;
-  background: #00ced1;
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 15px;
-  box-shadow: 0 0 15px #00ced1;
-}
-.loader-scanline::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, #8a2be2, transparent);
-  animation: scanAnimation 2s linear infinite;
-}
-@keyframes scanAnimation {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
-  }
-}
-.preloader-text {
-  font-family: "Fira Code", monospace;
-  color: #00ced1;
-  font-size: 0.8rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
+
 .terminal-toggle-btn {
   background: rgb(138 43 226 / 0.1);
   border: 1px solid #8a2be2;
