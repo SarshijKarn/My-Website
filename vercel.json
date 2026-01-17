@@ -2,8 +2,7 @@
   "outputDirectory": ".",
   "rewrites": [
     { "source": "/testfolio", "destination": "https://sarshijkarn.github.io/testfolio/" },
-    { "source": "/testfolio/", "destination": "https://sarshijkarn.github.io/testfolio/" },
-    { "source": "/testfolio/:path*", "destination": "https://sarshijkarn.github.io/testfolio/:path*" },
+    { "source": "/testfolio/(.*)", "destination": "https://sarshijkarn.github.io/testfolio/$1" },
     { "source": "/api/(.*)", "destination": "/api/$1" }
   ],
   "headers": [
