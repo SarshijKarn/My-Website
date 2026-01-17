@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vercel dev",
     "deploy": "vercel --prod",
-    "build:css": "npx tailwindcss -i ./assets/css/input.css -o ./assets/css/tailwind.css --minify"
+    "build:css": "npx tailwindcss -i ./assets/css/input.css -o ./assets/css/tailwind.css --minify",
+    "build": "npm run build:css && node update-version.js"
   },
   "keywords": [
     "portfolio",
