@@ -3,30 +3,12 @@ const { execSync } = require('child_process');
 
 console.log('🔄 Auto-Versioning: Starting...');
 
-// 1. Determine the new Version ID
-let version = '';
+// 1. Determine the new Version ID (Timestamp-based for reliability)
+const now = new Date();
+const pad = (num) => String(num).padStart(2, '0');
+const version = `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}`;
 
-try {
-  // Priority 1: Vercel Environment Variable (Best for deployments)
-  if (process.env.VERCEL_GIT_COMMIT_SHA) {
-    version = process.env.VERCEL_GIT_COMMIT_SHA.substring(0, 7);
-    console.log(`✅ Using Vercel Commit Hash: ${version}`);
-  }
-  // Priority 2: Local Git Repository (Best for local dev)
-  else {
-    try {
-      version = execSync('git rev-parse --short HEAD').toString().trim();
-      console.log(`✅ Using Local Git Hash: ${version}`);
-    } catch (gitError) {
-      // If git command fails (no git or empty repo), fall through
-      throw new Error('Git command failed');
-    }
-  }
-} catch (error) {
-  // Priority 3: Fallback to Timestamp (Safety net)
-  version = Date.now().toString();
-  console.log(`⚠️ Git hash not found. Using Timestamp: ${version}`);
-}
+console.log(`✅ Generated Version Timestamp: ${version}`);
 
 // 2. Update index.html
 const targetFile = 'index.html';
