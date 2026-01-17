@@ -1085,298 +1085,202 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// 7. Advanced Interactive Companion Character
-const companion = document.getElementById('companion');
-const companionBubble = document.getElementById('companionBubble');
-const companionImg = companion?.querySelector('.companion-img');
+// 7. Advanced Interactive Companion Character (Personalized Voice & Smart Hype)
+(function() {
+    const companion = document.getElementById('companion');
+    const companionBubble = document.getElementById('companionBubble');
+    const bubbleText = document.getElementById('bubbleText');
+    const companionImg = companion?.querySelector('.companion-img');
+    const voiceToggle = document.getElementById('voiceToggle');
 
-if (companion && window.innerWidth > 768) {
-    // Smart Quote System - All about Sarshij Karn
-    const quotes = {
-        greeting: [
-            "👋 Welcome! I'm here to tell you about Sarshij Karn!",
-            "Hey there! Let me introduce you to Sarshij 💫",
-            "Welcome! Sarshij's portfolio awaits 🚀"
-        ],
-        achievements: [
-            "🎓 Studying Electronics Engineering at Tribhuvan University!",
-            "💻 Full-stack developer with AI/ML expertise!",
-            "🔐 Cybersecurity specialist from Nepal 🇳🇵",
-            "🤖 Building AI projects that actually solve problems!",
-            "📊 Data Science + Stock Market Trading skills!",
-            "🌐 Frontend, Backend, AND Hardware - He does it all!",
-            "⚡ Deep Learning & Machine Learning practitioner!"
-        ],
-        skills: [
-            "Expert in: Python, JavaScript, C++, and more! 💪",
-            "Knows: AI, ML, Deep Learning, Data Analysis 🧠",
-            "Specializes in IoT & Electronics systems 🔧",
-            "Full-stack wizard: Frontend + Backend master! 🎨",
-            "Cybersecurity pro - Your data is safe with him! 🛡️"
-        ],
-        projects: [
-            "Check out his AI projects - they're mind-blowing! 🤯",
-            "His GitHub has some serious innovation 💡",
-            "Combining hardware + software like a boss! 🔥",
-            "From circuit boards to neural networks! ⚡"
-        ],
-        personality: [
-            "Nepal's rising tech star! 🌟",
-            "He coded this entire site himself!  💜",
-            "Engineering student by day, innovator by night! 🌙",
-            "The future of tech is being built right here! 🚀"
-        ],
-        engagement: [
-            "Click me to learn more about Sarshij! 👆",
-            "Drag me around - I'm interactive! 🎮",
-            "Double-click me for a surprise! 💫",
-            "Scroll down to see his amazing projects! 📜"
-        ],
-        excited: [
-            'You discovered the interactive me! 🎉',
-            'Double-click = Extra enthusiasm! 💫',
-            "Sarshij coded this entire site! 🌟",
-            "You're exploring like a pro! 🚀"
-        ],
-        dragged: [
-            "Where to next on this portfolio? 🚀",
-            "I like this view of his work! 💜",
-            "Exploring Sarshij's genius! 😎",
-            "Repositioning for maximum hype! 🎯"
-        ]
-    };
+    if (!companion || window.innerWidth <= 768) return;
 
-    // Combine all facts for auto-popup
-    const allFacts = [
-        ...quotes.achievements,
-        ...quotes.skills,
-        ...quotes.projects,
-        ...quotes.personality
-    ];
-
-    let factIndex = 0;
-    let autoPopupInterval;
-
-    // State
+    // --- State & Config ---
     let isDragging = false;
+    let isMuted = localStorage.getItem('companion-muted') !== 'false'; // Default to muted (true) if not set to 'false'
     let currentX = 0, currentY = 0, initialX = 0, initialY = 0;
     let lastClickTime = 0;
-    let idleAnimationInterval;
+    let voice = null;
 
-    // Load saved position
-    const savedPos = localStorage.getItem('companion-position');
-    if (savedPos) {
-        const { x, y } = JSON.parse(savedPos);
-        companion.style.right = 'auto';
-        companion.style.bottom = 'auto';
-        companion.style.left = x + 'px';
-        companion.style.top = y + 'px';
+    // --- Quotes & Facts (Short & Punchy) ---
+    const quotes = {
+        greeting: [
+            "👋 Welcome! I'm your guide to Sarshij's world.",
+            "💫 Hey! Ready to see some engineering magic?",
+            "🚀 Welcome! Let me show you what Sarshij can do."
+        ],
+        smart: [
+            "📄 Need his resume? Check the big 'Resume' button!",
+            "💼 Want to hire a pro? Sarshij's projects are below!",
+            "🔗 Let's connect! His LinkedIn is in the profile section.",
+            "🛠️ Sarshij coded this whole site from scratch!",
+            "🤖 Ask him about AI - he's building the future!",
+            "🔐 Cybersecurity is his fort. Your data is safe!",
+            "⚡ Electronics + Software - He's a hybrid engineer!",
+            "🕵️ Hint: Triple tap 'Sarshij' on mobile for a surprise!",
+            "⌨️ Try pressing 4 arrow keys on desktop... trust me!",
+            "🌊 Scroll down! His expertise section is quite a view.",
+            "📬 Want to collaborate? The contact form is at the bottom!"
+        ],
+        facts: [
+            "🎓 Electronics Engineer @ Tribhuvan.",
+            "💻 Full-stack + AI/ML Expert.",
+            "🔐 Cybersecurity Specialist 🇳🇵",
+            "🤖 AI Projects Builder.",
+            "📊 Data Science + Trading Pro.",
+            "🌐 Frontend + Backend + Hardware.",
+            "⚡ Deep Learning Practitioner.",
+            "💪 Python, JS, C++ Expert.",
+            "🎨 UI/UX Design Enthusiast.",
+            "🚀 Next-Gen Innovator."
+        ],
+        excited: ["🎉 Yay! Glad you're here!", "💫 Energy levels rising!", "🌟 You're awesome!"],
+        dragged: ["🚀 Wheee! New viewpoint!", "🎯 Perfect positioning!", "😎 Moving with style!"]
+    };
+
+    const allEngage = [...quotes.smart, ...quotes.facts];
+
+    // --- Voice Initialization ---
+    function initVoice() {
+        const voices = window.speechSynthesis.getVoices();
+        // Look for a "cute" sounding female voice (Google/Microsoft female voices)
+        voice = voices.find(v => v.name.includes('Female') || v.name.includes('Google UK English Female') || v.name.includes('Microsoft Zira') || v.name.includes('Samantha')) || voices[0];
+    }
+    if (speechSynthesis.onvoiceschanged !== undefined) {
+        speechSynthesis.onvoiceschanged = initVoice;
+    }
+    initVoice();
+
+    function speak(text, force = false) {
+        if (!window.speechSynthesis) return;
+        if (isMuted && !force) return;
+
+        window.speechSynthesis.cancel();
+
+        // Strip emojis and metadata for a cleaner voice readout
+        const cleanText = text.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '').trim();
+
+        const utterance = new SpeechSynthesisUtterance(cleanText);
+        utterance.voice = voice;
+        utterance.pitch = 1.3;
+        utterance.rate = 1.0;
+
+        companionBubble.classList.add('speaking');
+        utterance.onend = () => companionBubble.classList.remove('speaking');
+        window.speechSynthesis.speak(utterance);
     }
 
-    // Drag functionality
-    companion.addEventListener('mousedown', dragStart);
-    document.addEventListener('mousemove', drag);
-    document.addEventListener('mouseup', dragEnd);
+    // --- UI Helpers ---
+    function updateMuteUI() {
+        const icon = voiceToggle.querySelector('i');
+        if (isMuted) {
+            icon.className = 'fas fa-volume-mute';
+            voiceToggle.style.background = 'rgba(138, 43, 226, 0.8)';
+            voiceToggle.title = "Voice Muted (Click to Enable)";
+        } else {
+            icon.className = 'fas fa-volume-up';
+            voiceToggle.style.background = '#00ced1';
+            voiceToggle.title = "Voice Enabled";
+        }
+    }
+    updateMuteUI();
 
-    function dragStart(e) {
-        if (e.target.closest('.companion-bubble')) return;
-        isDragging = true;
-        companion.style.cursor = 'grabbing';
-
-        const rect = companion.getBoundingClientRect();
-        initialX = e.clientX - rect.left;
-        initialY = e.clientY - rect.top;
+    function showMessage(text, forceVoice = false, duration = 4000) {
+        bubbleText.textContent = text;
+        companionBubble.classList.add('show');
+        speak(text, forceVoice);
+        setTimeout(() => companionBubble.classList.remove('show'), duration);
     }
 
-    function drag(e) {
-        if (!isDragging) return;
-        e.preventDefault();
+    // --- Interactivity ---
+    voiceToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        isMuted = !isMuted;
+        localStorage.setItem('companion-muted', isMuted);
+        updateMuteUI();
+        if (!isMuted) speak("Voice activated!");
+    });
 
-        currentX = e.clientX - initialX;
-        currentY = e.clientY - initialY;
-
-        // Keep within viewport
-        currentX = Math.max(0, Math.min(currentX, window.innerWidth - companion.offsetWidth));
-        currentY = Math.max(0, Math.min(currentY, window.innerHeight - companion.offsetHeight));
-
-        companion.style.left = currentX + 'px';
-        companion.style.top = currentY + 'px';
-        companion.style.right = 'auto';
-        companion.style.bottom = 'auto';
-    }
-
-    function dragEnd(e) {
-        if (!isDragging) return;
-        isDragging = false;
-        companion.style.cursor = 'pointer';
-
-        // Save position
-        localStorage.setItem('companion-position', JSON.stringify({
-            x: currentX,
-            y: currentY
-        }));
-
-        // Show dragged quote
-        showQuote(quotes.dragged);
-    }
-
-    // Click interactions
-    companion.addEventListener('click', (e) => {
+    companion.addEventListener('click', () => {
         if (isDragging) return;
         const now = Date.now();
-        const timeSinceLastClick = now - lastClickTime;
-
-        // Double-click detection
-        if (timeSinceLastClick < 300) {
-            showQuote(quotes.excited);
+        if (now - lastClickTime < 300) {
             playAnimation('spin');
+            showMessage(quotes.excited[Math.floor(Math.random() * quotes.excited.length)]);
         } else {
-            showQuote(quotes.normal);
+            const randomMsg = allEngage[Math.floor(Math.random() * allEngage.length)];
+            showMessage(randomMsg);
         }
-
         lastClickTime = now;
     });
 
-    // Show quote helper
-    function showQuote(quoteArray) {
-        const randomQuote = quoteArray[Math.floor(Math.random() * quoteArray.length)];
-        companionBubble.textContent = randomQuote;
-        companionBubble.classList.add('show');
+    // --- Greeting & Loop ---
+    setTimeout(() => {
+        const greeting = quotes.greeting[Math.floor(Math.random() * quotes.greeting.length)];
+        showMessage(greeting, true); // Force voice for initial greeting
+    }, 1000);
 
-        setTimeout(() => {
-            companionBubble.classList.remove('show');
-        }, 3500);
+    // Auto-Engagement Loop
+    setInterval(() => {
+        if (!companionBubble.classList.contains('show') && !isDragging) {
+            const randomMsg = allEngage[Math.floor(Math.random() * allEngage.length)];
+            showMessage(randomMsg);
+        }
+    }, 18000);
+
+    // --- Standard Mascot Logic (Drag/Anim/Track) ---
+    // Load Position
+    const savedPos = localStorage.getItem('companion-position');
+    if (savedPos) {
+        const { x, y } = JSON.parse(savedPos);
+        companion.style.right = 'auto'; companion.style.bottom = 'auto';
+        companion.style.left = x + 'px'; companion.style.top = y + 'px';
     }
 
-    // Animation system
+    companion.addEventListener('mousedown', (e) => {
+        if (e.target.closest('.companion-bubble')) return;
+        isDragging = true;
+        const rect = companion.getBoundingClientRect();
+        initialX = e.clientX - rect.left; initialY = e.clientY - rect.top;
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        currentX = Math.max(0, Math.min(e.clientX - initialX, window.innerWidth - companion.offsetWidth));
+        currentY = Math.max(0, Math.min(e.clientY - initialY, window.innerHeight - companion.offsetHeight));
+        companion.style.left = currentX + 'px'; companion.style.top = currentY + 'px';
+        companion.style.right = 'auto'; companion.style.bottom = 'auto';
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        localStorage.setItem('companion-position', JSON.stringify({ x: currentX, y: currentY }));
+        showMessage(quotes.dragged[Math.floor(Math.random() * quotes.dragged.length)]);
+    });
+
     function playAnimation(type) {
         companion.classList.remove('animate-wave', 'animate-bounce', 'animate-spin', 'animate-tilt');
-        void companion.offsetWidth; // Force reflow
+        void companion.offsetWidth;
         companion.classList.add('animate-' + type);
-
-        setTimeout(() => {
-            companion.classList.remove('animate-' + type);
-        }, 1000);
     }
 
-    // Random idle animations
-    function randomIdleAnimation() {
-        const animations = ['wave', 'bounce', 'tilt'];
-        const randomAnim = animations[Math.floor(Math.random() * animations.length)];
-        playAnimation(randomAnim);
-    }
+    setInterval(() => {
+        if (!isDragging) playAnimation(['wave', 'bounce', 'tilt'][Math.floor(Math.random() * 3)]);
+    }, 12000);
 
-    // Start idle animation cycle (every 8-15 seconds)
-    function startIdleAnimations() {
-        function scheduleNext() {
-            const delay = 8000 + Math.random() * 7000; // 8-15 seconds
-            idleAnimationInterval = setTimeout(() => {
-                randomIdleAnimation();
-                scheduleNext();
-            }, delay);
-        }
-        scheduleNext();
-    }
-
-    startIdleAnimations();
-
-    // Cursor tracking (subtle head tilt)
-    let lastMouseMove = 0;
+    let lastMove = 0;
     document.addEventListener('mousemove', (e) => {
-        const now = Date.now();
-        if (now - lastMouseMove < 100) return; // Throttle
-        lastMouseMove = now;
-
+        if (Date.now() - lastMove < 100) return;
+        lastMove = Date.now();
         const rect = companion.getBoundingClientRect();
-        const companionCenterX = rect.left + rect.width / 2;
-        const companionCenterY = rect.top + rect.height / 2;
-
-        const deltaX = e.clientX - companionCenterX;
-        const deltaY = e.clientY - companionCenterY;
-
-        const angle = Math.atan2(deltaY, deltaX);
-        const tiltX = Math.sin(angle) * 5; // Max 5deg tilt
-        const tiltY = Math.cos(angle) * -5;
-
+        const dx = e.clientX - (rect.left + rect.width / 2);
+        const dy = e.clientY - (rect.top + rect.height / 2);
+        const angle = Math.atan2(dy, dx);
         if (companionImg && !isDragging) {
-            companionImg.style.transform = `rotateX(${tiltY}deg) rotateY(${tiltX}deg)`;
+            companionImg.style.transform = `rotateX(${Math.cos(angle) * -5}deg) rotateY(${Math.sin(angle) * 5}deg)`;
         }
     });
-}
 
-
-
-// Auto-engage system for companion
-if (companion && window.innerWidth > 768) {
-    // Initial greeting
-    const hasGreeted = sessionStorage.getItem('companion-greeted');
-    if (!hasGreeted) {
-        setTimeout(() => {
-            const greetings = [
-                '👋 Hi! Let me tell you about Sarshij',
-                '💫 Hey! Meet Sarshij Karn',
-                '🚀 Welcome to Sarshij\'s Portfolio'
-            ];
-            const greeting = greetings[Math.floor(Math.random() * greetings.length)];
-            if (companionBubble) {
-                companionBubble.textContent = greeting;
-                companionBubble.classList.add('show');
-                setTimeout(() => companionBubble.classList.remove('show'), 4500);
-                sessionStorage.setItem('companion-greeted', 'true');
-            }
-        }, 2500);
-    }
-
-    // Auto-popup facts
-    const educationFacts = [
-        '🎓 Electronics Engineer @ Tribhuvan',
-        '💻 Full-stack + AI/ML Expert',
-        '🔐 Cybersecurity Specialist 🇳🇵',
-        '🤖 AI Projects Builder',
-        '📊 Data Science + Trading Pro',
-        '🌐 Frontend + Backend + Hardware',
-        '⚡ Deep Learning Practitioner',
-        '💪 Python, JS, C++ Expert',
-        '🧠 AI/ML/DL Master',
-        '🔧 IoT & Electronics Specialist',
-        '🎨 Full-stack Wizard',
-        '🛡️ Your Data is Safe!',
-        '🤯 Mind-blowing AI Projects',
-        '💡 GitHub Innovation Hub',
-        '🔥 Hardware + Software Boss',
-        '⚡ Circuits → Neural Networks',
-        '🌟 Nepal\'s Rising Tech Star',
-        '💜 He Coded This Site',
-        '🌙 Student + Innovator',
-        '🚀 Building The Future',
-        '📱 Mobile to Web Developer',
-        '🎯 Problem Solver Extraordinaire',
-        '💎 Quality Code Craftsman',
-        '🏆 Award-Winning Engineer',
-        '🧪 Constant Experimenter',
-        '🎨 UI/UX Design Enthusiast',
-        '🛡️ Secure Coding Advocate',
-        '📈 Technical Analysis Whiz',
-        '🛠️ Rapid Prototyping Skills',
-        '🔋 Low-Power Circuit Designer',
-        '📡 Wireless Communication Expert',
-        '💡 Inventive Mindset',
-        '🏔️ Proudly from Nepal',
-        '👨‍💻 100% Focused on Quality',
-        '🎓 Continuous Learner',
-        '🚀 Next-Gen Engineer'
-    ];
-
-    let fact_Index = 0;
-    setTimeout(() => {
-        setInterval(() => {
-            if (companionBubble && !companionBubble.classList.contains('show')) {
-                companionBubble.textContent = educationFacts[fact_Index];
-                companionBubble.classList.add('show');
-                setTimeout(() => companionBubble.classList.remove('show'), 4000);
-                fact_Index = (fact_Index + 1) % educationFacts.length;
-            }
-        }, 18000); // Every 18 seconds
-    }, 8000);
-}
+})();
 

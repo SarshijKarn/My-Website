@@ -4075,8 +4075,8 @@ body.hacker-mode .matrix-canvas {
 
 .companion-bubble {
   position: absolute;
-  bottom: 140px; /* Align with character's upper body */
-  right: 195px;  /* Position to the left of the 180px wide character */
+  bottom: 140px;
+  right: 195px;
   background: rgba(10, 10, 20, 0.95);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(138, 43, 226, 0.6);
@@ -4089,10 +4089,41 @@ body.hacker-mode .matrix-canvas {
   opacity: 0;
   transform: translateX(10px);
   transition: all 0.3s ease;
-  pointer-events: none;
+  pointer-events: auto; /* Enable for volume toggle */
   max-width: 280px;
   word-wrap: break-word;
   line-height: 1.4;
+  z-index: 1001;
+}
+
+.companion-bubble.speaking {
+  border-color: #00ced1;
+  box-shadow: 0 0 15px rgba(0, 206, 209, 0.6);
+}
+
+.voice-toggle {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  background: rgba(138, 43, 226, 0.8);
+  border: 1px solid rgba(0, 206, 209, 0.5);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 10px;
+  color: white;
+  transition: all 0.2s ease;
+  z-index: 1002;
+}
+
+.voice-toggle:hover {
+  transform: scale(1.1);
+  background: #00ced1;
+  color: #000;
 }
 
 .companion-bubble.show {
@@ -4104,7 +4135,7 @@ body.hacker-mode .matrix-canvas {
   content: '';
   position: absolute;
   top: 50%;
-  right: -10px; /* Triangle on the right side pointing to the girl */
+  right: -10px;
   transform: translateY(-50%);
   width: 0;
   height: 0;
