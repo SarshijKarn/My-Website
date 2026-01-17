@@ -919,3 +919,156 @@ function initTerminalMode() {
 document.addEventListener("DOMContentLoaded", () => {
   initTerminalMode();
 });
+// --- 🕵️‍♂️ EASTER EGG: ULTIMATE HACKER MODE ---
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. Glitch Text Initialization
+    const heroTitle = document.querySelector(".hero-title");
+    if (heroTitle) {
+        heroTitle.classList.add("glitch-hover");
+        heroTitle.setAttribute("data-text", heroTitle.innerText);
+    }
+
+    // 2. Matrix Rain Canvas Setup
+    let canvas, ctx;
+    let matrixInterval;
+    // Dynamic check is better than static const
+
+    function startMatrixRain() {
+        if (window.innerWidth <= 768) return; // Dynamic check: strictly no mobile
+
+        // Create Canvas if not exists
+        if (!document.getElementById("matrixCanvas")) {
+            canvas = document.createElement("canvas");
+            canvas.id = "matrixCanvas";
+            canvas.className = "matrix-canvas";
+            document.body.appendChild(canvas);
+            ctx = canvas.getContext("2d");
+
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            // Handle Resize: Stop if too small, Update size if okay
+            window.addEventListener("resize", () => {
+                if (window.innerWidth <= 768) {
+                    stopMatrixRain();
+                } else {
+                    // Only restart/resize if we are in Hacker Mode and it was stopped
+                    if (document.body.classList.contains("hacker-mode") && !matrixInterval) {
+                         startMatrixRain();
+                    }
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                }
+            });
+        }
+
+        const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*";
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function draw() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = "#0F0"; // Green text
+            ctx.font = `${fontSize}px monospace`;
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+            matrixInterval = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    function stopMatrixRain() {
+        if (matrixInterval) cancelAnimationFrame(matrixInterval);
+        if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    // 3. Hacker Mode Trigger Logic
+    let arrowKeys = [];
+    const neededKeys = 4;
+    const mobiletriggerEl = document.querySelector(".hero-title");
+    let touchCount = 0;
+
+    function toggleHackerMode() {
+        document.body.classList.toggle("hacker-mode");
+        const isHacked = document.body.classList.contains("hacker-mode");
+
+        // Toggle Matrix Rain
+        if (isHacked) {
+            startMatrixRain();
+        } else {
+            stopMatrixRain();
+        }
+
+        // Show Toast
+        const toast = document.createElement("div");
+        toast.className = "hack-toast";
+        toast.innerText = isHacked ? "⚠️ SYSTEM BREACHED: ROOT ACCESS GRANTED" : "🔒 SYSTEM RESTORED";
+        document.body.appendChild(toast);
+
+        requestAnimationFrame(() => toast.classList.add("show"));
+        setTimeout(() => {
+            toast.classList.remove("show");
+            setTimeout(() => toast.remove(), 500);
+        }, 3000);
+
+        if (navigator.vibrate) navigator.vibrate(isHacked ? [100, 50, 100] : 200);
+    }
+
+    // Desktop Trigger
+    window.addEventListener("keydown", (e) => {
+        if (e.key.includes("Arrow")) {
+            arrowKeys.push(e.key);
+            if (arrowKeys.length > neededKeys) arrowKeys.shift();
+            if (arrowKeys.length === neededKeys) {
+                toggleHackerMode();
+                arrowKeys = [];
+            }
+        } else {
+            arrowKeys = [];
+        }
+    });
+
+    // Universal Trigger: Triple Click/Tap Anywhere
+    document.addEventListener("click", (e) => {
+        // Optional: Avoid triggering when clicking interactive elements if needed,
+        // but for now, we want it "screen-wide" as requested.
+        touchCount++;
+        if (touchCount === 1) setTimeout(() => touchCount = 0, 800);
+        if (touchCount === 3) {
+            toggleHackerMode();
+            touchCount = 0;
+        }
+    });
+
+    // 4. UI Hint: Update the existing Server Status Text
+    const statusText = document.querySelector("#serverStatus .status-text");
+    const statusDot = document.querySelector("#serverStatus .status-dot");
+
+    if (statusText) {
+        // Instruction Text Logic
+        // Force "Press 4 Arrow Keys" for Desktop (width > 768)
+        // Force "Triple Tap Screen 3 Times" for Mobile (width <= 768)
+        const instruction = window.innerWidth <= 768 ? "Triple Tap Screen 3 Times" : "Press 4 Arrow Keys";
+
+        statusText.innerText = instruction;
+        // Optional: Green dot to show system ready
+        if (statusDot) statusDot.style.backgroundColor = "#27c93f";
+
+        // Ensure text updates on resize
+        window.addEventListener("resize", () => {
+             const newInst = window.innerWidth <= 768 ? "Triple Tap Screen 3 Times" : "Press 4 Arrow Keys";
+             statusText.innerText = newInst;
+        });
+    }
+});
