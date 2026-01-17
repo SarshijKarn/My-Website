@@ -1071,4 +1071,16 @@ document.addEventListener("DOMContentLoaded", () => {
              statusText.innerText = newInst;
         });
     }
+
+    // 5. Tab Visibility Logic (Signal Lost)
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+            document.title = "⚠️ Signal Lost... | Sarshij Karn";
+        } else {
+            document.title = "Signal Restored";
+            setTimeout(() => {
+                document.title = "Sarshij Karn | Electronics Engineer · AI · Cybersecurity";
+            }, 2000);
+        }
+    });
 });
