@@ -4075,38 +4075,42 @@ body.hacker-mode .matrix-canvas {
 
 .companion-bubble {
   position: absolute;
-  bottom: 200px;
-  right: 0;
-  background: rgba(0, 206, 209, 0.95);
-  color: #000;
+  bottom: 140px; /* Align with character's upper body */
+  right: 195px;  /* Position to the left of the 180px wide character */
+  background: rgba(10, 10, 20, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(138, 43, 226, 0.6);
+  color: #fff;
   padding: 12px 18px;
   border-radius: 15px;
   font-family: 'Fira Code', monospace;
   font-size: 0.85rem;
-  box-shadow: 0 4px 20px rgba(0, 206, 209, 0.4);
+  box-shadow: 0 4px 20px rgba(138, 43, 226, 0.3), inset 0 0 20px rgba(0, 206, 209, 0.1);
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateX(10px);
   transition: all 0.3s ease;
   pointer-events: none;
-  white-space: nowrap;
-  max-width: 250px;
+  max-width: 280px;
+  word-wrap: break-word;
+  line-height: 1.4;
 }
 
 .companion-bubble.show {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(0);
 }
 
 .companion-bubble::after {
   content: '';
   position: absolute;
-  bottom: -10px;
-  right: 30px;
+  top: 50%;
+  right: -10px; /* Triangle on the right side pointing to the girl */
+  transform: translateY(-50%);
   width: 0;
   height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 10px solid rgba(0, 206, 209, 0.95);
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid rgba(10, 10, 20, 0.95);
 }
 
 /* Hide on mobile */

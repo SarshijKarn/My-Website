@@ -1091,26 +1091,71 @@ const companionBubble = document.getElementById('companionBubble');
 const companionImg = companion?.querySelector('.companion-img');
 
 if (companion && window.innerWidth > 768) {
-    // Quotes for different moods
+    // Smart Quote System - All about Sarshij Karn
     const quotes = {
-        normal: [
-            'Nice cursor movements... 👀',
-            'The code is strong with this one ⚡',
-            'sudo make me a coffee ☕',
-            'Keep scrolling, nothing to see here 🌙',
-            'This site is fire 🔥'
+        greeting: [
+            "👋 Welcome! I'm here to tell you about Sarshij Karn!",
+            "Hey there! Let me introduce you to Sarshij 💫",
+            "Welcome! Sarshij's portfolio awaits 🚀"
+        ],
+        achievements: [
+            "🎓 Studying Electronics Engineering at Tribhuvan University!",
+            "💻 Full-stack developer with AI/ML expertise!",
+            "🔐 Cybersecurity specialist from Nepal 🇳🇵",
+            "🤖 Building AI projects that actually solve problems!",
+            "📊 Data Science + Stock Market Trading skills!",
+            "🌐 Frontend, Backend, AND Hardware - He does it all!",
+            "⚡ Deep Learning & Machine Learning practitioner!"
+        ],
+        skills: [
+            "Expert in: Python, JavaScript, C++, and more! 💪",
+            "Knows: AI, ML, Deep Learning, Data Analysis 🧠",
+            "Specializes in IoT & Electronics systems 🔧",
+            "Full-stack wizard: Frontend + Backend master! 🎨",
+            "Cybersecurity pro - Your data is safe with him! 🛡️"
+        ],
+        projects: [
+            "Check out his AI projects - they're mind-blowing! 🤯",
+            "His GitHub has some serious innovation 💡",
+            "Combining hardware + software like a boss! 🔥",
+            "From circuit boards to neural networks! ⚡"
+        ],
+        personality: [
+            "Nepal's rising tech star! 🌟",
+            "He coded this entire site himself!  💜",
+            "Engineering student by day, innovator by night! 🌙",
+            "The future of tech is being built right here! 🚀"
+        ],
+        engagement: [
+            "Click me to learn more about Sarshij! 👆",
+            "Drag me around - I'm interactive! 🎮",
+            "Double-click me for a surprise! 💫",
+            "Scroll down to see his amazing projects! 📜"
         ],
         excited: [
-            'Weee! This is fun! 🎉',
-            'Double-click detected! 💫',
-            'You found the secret! 🌟'
+            'You discovered the interactive me! 🎉',
+            'Double-click = Extra enthusiasm! 💫',
+            "Sarshij coded this entire site! 🌟",
+            "You're exploring like a pro! 🚀"
         ],
         dragged: [
-            "Where are we going? 🚀",
-            "I like this spot! 💜",
-            "New view, who dis? 😎"
+            "Where to next on this portfolio? 🚀",
+            "I like this view of his work! 💜",
+            "Exploring Sarshij's genius! 😎",
+            "Repositioning for maximum hype! 🎯"
         ]
     };
+
+    // Combine all facts for auto-popup
+    const allFacts = [
+        ...quotes.achievements,
+        ...quotes.skills,
+        ...quotes.projects,
+        ...quotes.personality
+    ];
+
+    let factIndex = 0;
+    let autoPopupInterval;
 
     // State
     let isDragging = false;
@@ -1259,4 +1304,79 @@ if (companion && window.innerWidth > 768) {
     });
 }
 
+
+
+// Auto-engage system for companion
+if (companion && window.innerWidth > 768) {
+    // Initial greeting
+    const hasGreeted = sessionStorage.getItem('companion-greeted');
+    if (!hasGreeted) {
+        setTimeout(() => {
+            const greetings = [
+                '👋 Hi! Let me tell you about Sarshij',
+                '💫 Hey! Meet Sarshij Karn',
+                '🚀 Welcome to Sarshij\'s Portfolio'
+            ];
+            const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+            if (companionBubble) {
+                companionBubble.textContent = greeting;
+                companionBubble.classList.add('show');
+                setTimeout(() => companionBubble.classList.remove('show'), 4500);
+                sessionStorage.setItem('companion-greeted', 'true');
+            }
+        }, 2500);
+    }
+
+    // Auto-popup facts
+    const educationFacts = [
+        '🎓 Electronics Engineer @ Tribhuvan',
+        '💻 Full-stack + AI/ML Expert',
+        '🔐 Cybersecurity Specialist 🇳🇵',
+        '🤖 AI Projects Builder',
+        '📊 Data Science + Trading Pro',
+        '🌐 Frontend + Backend + Hardware',
+        '⚡ Deep Learning Practitioner',
+        '💪 Python, JS, C++ Expert',
+        '🧠 AI/ML/DL Master',
+        '🔧 IoT & Electronics Specialist',
+        '🎨 Full-stack Wizard',
+        '🛡️ Your Data is Safe!',
+        '🤯 Mind-blowing AI Projects',
+        '💡 GitHub Innovation Hub',
+        '🔥 Hardware + Software Boss',
+        '⚡ Circuits → Neural Networks',
+        '🌟 Nepal\'s Rising Tech Star',
+        '💜 He Coded This Site',
+        '🌙 Student + Innovator',
+        '🚀 Building The Future',
+        '📱 Mobile to Web Developer',
+        '🎯 Problem Solver Extraordinaire',
+        '💎 Quality Code Craftsman',
+        '🏆 Award-Winning Engineer',
+        '🧪 Constant Experimenter',
+        '🎨 UI/UX Design Enthusiast',
+        '🛡️ Secure Coding Advocate',
+        '📈 Technical Analysis Whiz',
+        '🛠️ Rapid Prototyping Skills',
+        '🔋 Low-Power Circuit Designer',
+        '📡 Wireless Communication Expert',
+        '💡 Inventive Mindset',
+        '🏔️ Proudly from Nepal',
+        '👨‍💻 100% Focused on Quality',
+        '🎓 Continuous Learner',
+        '🚀 Next-Gen Engineer'
+    ];
+
+    let fact_Index = 0;
+    setTimeout(() => {
+        setInterval(() => {
+            if (companionBubble && !companionBubble.classList.contains('show')) {
+                companionBubble.textContent = educationFacts[fact_Index];
+                companionBubble.classList.add('show');
+                setTimeout(() => companionBubble.classList.remove('show'), 4000);
+                fact_Index = (fact_Index + 1) % educationFacts.length;
+            }
+        }, 18000); // Every 18 seconds
+    }, 8000);
+}
 
