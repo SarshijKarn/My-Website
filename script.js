@@ -1084,3 +1084,37 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+// 7. Corner Companion Character Interactions
+const companion = document.getElementById('companion');
+const companionBubble = document.getElementById('companionBubble');
+
+if (companion && window.innerWidth > 768) {
+    const quotes = [
+        'Nice cursor movements... ',
+        'The code is strong with this one ',
+        'Hacking the mainframe... JK ',
+        'sudo make me a coffee ',
+        '01001000 01101001 ',
+        'Keep scrolling, nothing to see here ',
+        'This site is fire ',
+        'You found me! '
+    ];
+    
+    let lastClickTime = 0;
+    
+    companion.addEventListener('click', () => {
+        const now = Date.now();
+        if (now - lastClickTime < 3000) return; // Cooldown
+        lastClickTime = now;
+        
+        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+        companionBubble.textContent = randomQuote;
+        companionBubble.classList.add('show');
+        
+        setTimeout(() => {
+            companionBubble.classList.remove('show');
+        }, 3500);
+    });
+}
+
