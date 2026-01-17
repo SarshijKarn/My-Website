@@ -1,6 +1,10 @@
 {
   "outputDirectory": ".",
-  "rewrites": [{ "source": "/api/(.*)", "destination": "/api/$1" }],
+  "rewrites": [
+    { "source": "/testfolio", "destination": "https://sarshijkarn.github.io/testfolio/" },
+    { "source": "/testfolio/:path*", "destination": "https://sarshijkarn.github.io/testfolio/:path*" },
+    { "source": "/api/(.*)", "destination": "/api/$1" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
