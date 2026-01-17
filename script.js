@@ -1085,36 +1085,178 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// 7. Corner Companion Character Interactions
+// 7. Advanced Interactive Companion Character
 const companion = document.getElementById('companion');
 const companionBubble = document.getElementById('companionBubble');
+const companionImg = companion?.querySelector('.companion-img');
 
 if (companion && window.innerWidth > 768) {
-    const quotes = [
-        'Nice cursor movements... ',
-        'The code is strong with this one ',
-        'Hacking the mainframe... JK ',
-        'sudo make me a coffee ',
-        '01001000 01101001 ',
-        'Keep scrolling, nothing to see here ',
-        'This site is fire ',
-        'You found me! '
-    ];
-    
+    // Quotes for different moods
+    const quotes = {
+        normal: [
+            'Nice cursor movements... 👀',
+            'The code is strong with this one ⚡',
+            'sudo make me a coffee ☕',
+            'Keep scrolling, nothing to see here 🌙',
+            'This site is fire 🔥'
+        ],
+        excited: [
+            'Weee! This is fun! 🎉',
+            'Double-click detected! 💫',
+            'You found the secret! 🌟'
+        ],
+        dragged: [
+            "Where are we going? 🚀",
+            "I like this spot! 💜",
+            "New view, who dis? 😎"
+        ]
+    };
+
+    // State
+    let isDragging = false;
+    let currentX = 0, currentY = 0, initialX = 0, initialY = 0;
     let lastClickTime = 0;
-    
-    companion.addEventListener('click', () => {
+    let idleAnimationInterval;
+
+    // Load saved position
+    const savedPos = localStorage.getItem('companion-position');
+    if (savedPos) {
+        const { x, y } = JSON.parse(savedPos);
+        companion.style.right = 'auto';
+        companion.style.bottom = 'auto';
+        companion.style.left = x + 'px';
+        companion.style.top = y + 'px';
+    }
+
+    // Drag functionality
+    companion.addEventListener('mousedown', dragStart);
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('mouseup', dragEnd);
+
+    function dragStart(e) {
+        if (e.target.closest('.companion-bubble')) return;
+        isDragging = true;
+        companion.style.cursor = 'grabbing';
+
+        const rect = companion.getBoundingClientRect();
+        initialX = e.clientX - rect.left;
+        initialY = e.clientY - rect.top;
+    }
+
+    function drag(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+
+        currentX = e.clientX - initialX;
+        currentY = e.clientY - initialY;
+
+        // Keep within viewport
+        currentX = Math.max(0, Math.min(currentX, window.innerWidth - companion.offsetWidth));
+        currentY = Math.max(0, Math.min(currentY, window.innerHeight - companion.offsetHeight));
+
+        companion.style.left = currentX + 'px';
+        companion.style.top = currentY + 'px';
+        companion.style.right = 'auto';
+        companion.style.bottom = 'auto';
+    }
+
+    function dragEnd(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        companion.style.cursor = 'pointer';
+
+        // Save position
+        localStorage.setItem('companion-position', JSON.stringify({
+            x: currentX,
+            y: currentY
+        }));
+
+        // Show dragged quote
+        showQuote(quotes.dragged);
+    }
+
+    // Click interactions
+    companion.addEventListener('click', (e) => {
+        if (isDragging) return;
         const now = Date.now();
-        if (now - lastClickTime < 3000) return; // Cooldown
+        const timeSinceLastClick = now - lastClickTime;
+
+        // Double-click detection
+        if (timeSinceLastClick < 300) {
+            showQuote(quotes.excited);
+            playAnimation('spin');
+        } else {
+            showQuote(quotes.normal);
+        }
+
         lastClickTime = now;
-        
-        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    });
+
+    // Show quote helper
+    function showQuote(quoteArray) {
+        const randomQuote = quoteArray[Math.floor(Math.random() * quoteArray.length)];
         companionBubble.textContent = randomQuote;
         companionBubble.classList.add('show');
-        
+
         setTimeout(() => {
             companionBubble.classList.remove('show');
         }, 3500);
+    }
+
+    // Animation system
+    function playAnimation(type) {
+        companion.classList.remove('animate-wave', 'animate-bounce', 'animate-spin', 'animate-tilt');
+        void companion.offsetWidth; // Force reflow
+        companion.classList.add('animate-' + type);
+
+        setTimeout(() => {
+            companion.classList.remove('animate-' + type);
+        }, 1000);
+    }
+
+    // Random idle animations
+    function randomIdleAnimation() {
+        const animations = ['wave', 'bounce', 'tilt'];
+        const randomAnim = animations[Math.floor(Math.random() * animations.length)];
+        playAnimation(randomAnim);
+    }
+
+    // Start idle animation cycle (every 8-15 seconds)
+    function startIdleAnimations() {
+        function scheduleNext() {
+            const delay = 8000 + Math.random() * 7000; // 8-15 seconds
+            idleAnimationInterval = setTimeout(() => {
+                randomIdleAnimation();
+                scheduleNext();
+            }, delay);
+        }
+        scheduleNext();
+    }
+
+    startIdleAnimations();
+
+    // Cursor tracking (subtle head tilt)
+    let lastMouseMove = 0;
+    document.addEventListener('mousemove', (e) => {
+        const now = Date.now();
+        if (now - lastMouseMove < 100) return; // Throttle
+        lastMouseMove = now;
+
+        const rect = companion.getBoundingClientRect();
+        const companionCenterX = rect.left + rect.width / 2;
+        const companionCenterY = rect.top + rect.height / 2;
+
+        const deltaX = e.clientX - companionCenterX;
+        const deltaY = e.clientY - companionCenterY;
+
+        const angle = Math.atan2(deltaY, deltaX);
+        const tiltX = Math.sin(angle) * 5; // Max 5deg tilt
+        const tiltY = Math.cos(angle) * -5;
+
+        if (companionImg && !isDragging) {
+            companionImg.style.transform = `rotateX(${tiltY}deg) rotateY(${tiltX}deg)`;
+        }
     });
 }
+
 
